@@ -12,6 +12,44 @@ class unit{
         this.goal={position:{x:0,y:0}}
         this.remove=false
         this.removeMark=false
+        this.turns=0
+    }
+    save(){
+        let composite={
+            team:this.team,
+            type:this.type,
+            value:this.value,
+            fade:this.fade,
+            reveal:this.reveal,
+            edit:this.edit,
+            tempVisible:this.tempVisible,
+            position:this.position,
+            goal:this.goal,
+            remove:this.remove,
+            removeMark:this.removeMark,
+            turns:this.turns,
+        }
+        return composite
+    }
+    load(composite){
+        this.team=composite.team
+        this.type=composite.type
+        this.value=composite.value
+        this.fade=composite.fade
+        this.reveal=composite.reveal
+        this.edit=composite.edit
+        this.tempVisible=composite.tempVisible
+        this.position=composite.position
+        this.goal=composite.goal
+        this.remove=composite.remove
+        this.removeMark=composite.removeMark
+        this.turns=composite.turns
+    }
+    newTurn(){
+        if(this.value>=2000&&this.turns>=50){
+            this.value-=round((this.value-1000)*random(0,0.05)/100)*100
+        }
+        this.turns++
     }
     display(layer){
         if(this.fade.main>0){
