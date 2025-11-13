@@ -76,6 +76,40 @@ class city{
     getNotUnits(teams,type=-1){
         return this.units.filter(unit=>{return !teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove})
     }
+    getUnitsVisible(teams,type=-1){
+        return this.units.filter(unit=>{return unit.fade.trigger&&teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove})
+    }
+    getNotUnitsVisible(teams,type=-1){
+        return this.units.filter(unit=>{return unit.fade.trigger&&!teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove})
+    }
+    getMostNotUnit(teams,type=-1){
+        let result=this.getNotUnits(teams,type)
+        let ledger=[]
+        for(let a=0,la=result.length;a<la;a++){
+            let done=false
+            for(let b=0,lb=ledger.length;b<lb;b++){
+                if(ledger[b][0]==result[a].team){
+                    ledger[b][1]+=result[a].value
+                    done=true
+                    break
+                }
+            }
+            if(!done){
+                ledger.push([result[a].team,result[a].value])
+            }
+        }
+        if(ledger.length==0){
+            return 0
+        }
+        let supremum=[ledger[0][0],ledger[0][1]]
+        for(let a=1,la=ledger.length;a<la;a++){
+            if(ledger[a][1]>supremum[1]){
+                supremum[1]=ledger[a][1]
+                supremum[0]=ledger[1][0]
+            }
+        }
+        return supremum[0]
+    }
     updateVisibility(turn){
         this.visibility=this.units.some(unit=>{return unit.team==turn||this.data.rule==types.team[turn].name})?2:0
         if(turn>=0){
@@ -97,15 +131,24 @@ class city{
                 layer.pop()
             break
             case 'map':
-                layer.push()
-                layer.translate(this.position.x,this.position.y)
-                let img=graphics.load.city[this.data.elect?1:0]
-                layer.image(img,0,0,img.width,img.height)
-                if(this.owner!=-1){
-                    img=graphics.load.unit[findName(this.owner,types.team)][2]
-                    layer.image(img,0,img.height*0.25-15,img.width*0.5,img.height*0.5)
+                if(dev.road){
+                    layer.stroke(0)
+                    layer.strokeWeight(20)
+                    for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
+                        let cit=this.operation.cities[findName(types.city[this.type].connect[a].name,types.city)]
+                        layer.line(this.position.x,this.position.y,cit.position.x*0.5+this.position.x*0.5,cit.position.y*0.5+this.position.y*0.5)
+                    }
+                }else{
+                    layer.push()
+                    layer.translate(this.position.x,this.position.y)
+                    let img=graphics.load.city[this.data.elect?1:0]
+                    layer.image(img,0,0,img.width,img.height)
+                    if(this.owner!=-1){
+                        img=graphics.load.unit[findName(this.owner,types.team)][2]
+                        layer.image(img,0,img.height*0.25-15,img.width*0.5,img.height*0.5)
+                    }
+                    layer.pop()
                 }
-                layer.pop()
             break
         }
     }
@@ -122,7 +165,7 @@ class city{
                     for(let b=0,lb=a;b<lb;b++){
                         if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type){
                             this.units[a].goal.position.y=this.units[b].goal.position.y
-                            if(distPos(this.units[a],this.units[b])<1){
+                            if(distPos(this.units[a],this.units[b])<1||dev.instant){
                                 this.units[a].remove=true
                                 this.units[a].fade.main=0
                                 this.units[b].value+=this.units[a].value
@@ -135,7 +178,7 @@ class city{
                     }
                 }
                 for(let a=0,la=this.units.length;a<la;a++){
-                    if(this.units[a].remove&&this.units[a].fade.main<=0){
+                    if(this.units[a].remove&&(this.units[a].fade.main<=0||dev.instant)){
                         this.units.splice(a,1)
                         a--
                         la--

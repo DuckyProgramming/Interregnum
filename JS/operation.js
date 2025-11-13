@@ -1,8 +1,8 @@
 class operation{
     constructor(){
-        this.zoom={position:{x:graphics.load.map.width*0.5,y:graphics.load.map.height*0.5},map:0}
+        this.zoom={position:{x:graphics.load.map.width*0.5,y:graphics.load.map.height*0.5},map:0,shift:{position:{x:0,y:0},active:false}}
         this.cities=[]
-        this.scene=`main`
+        this.scene=`setup`
         this.initial()
     }
     save(){
@@ -49,6 +49,12 @@ class operation{
         types.team.forEach(team=>{team.allies=[];team.offers=[]})
         this.calc=new calc()
         this.ui=new ui(this)
+        this.initialComponents()
+        this.transitionManager=new transitionManager(this)
+        constants.init=true
+    }
+    initialComponents(){
+        this.cities=[]
         types.city.forEach((item,index)=>this.cities.push(new city(this,item.loc[0],item.loc[1],index)))
         for(let a=0,la=types.team.length;a<la;a++){
             let cit=[]
@@ -62,35 +68,51 @@ class operation{
                 loc.units.push(new unit(loc,a,0,(cit.length*5+floor(random(0,6)))*100))
             }
         }
-        this.transitionManager=new transitionManager(this)
     }
     display(layer){
-        layer.push()
         switch(this.scene){
             case `main`:
+                layer.push()
                 layer.translate(layer.width*0.5-this.zoom.position.x,layer.height*0.5-this.zoom.position.y)
+                layer.image(graphics.load.map,graphics.load.map.width*0.5,graphics.load.map.height*0.5)
+                this.cities.forEach(city=>city.display(layer,this.scene))
+                layer.pop()
             break
             case `map`:
+                layer.push()
                 layer.translate(layer.width*0.5-this.ui.width*0.5,layer.height*0.5)
                 layer.scale(max((layer.width-this.ui.width)/graphics.load.map.width,layer.height/graphics.load.map.height))
                 layer.translate(-graphics.load.map.width*0.5,-graphics.load.map.height*0.5-this.zoom.map)
+                layer.image(graphics.load.map,graphics.load.map.width*0.5,graphics.load.map.height*0.5)
+                this.cities.forEach(city=>city.display(layer,this.scene))
+                layer.pop()
             break
         }
-        layer.image(graphics.load.map,graphics.load.map.width*0.5,graphics.load.map.height*0.5)
-        this.cities.forEach(city=>city.display(layer,this.scene))
-        layer.pop()
         this.ui.display(layer,this.scene)
         this.transitionManager.display(layer)
     }
     update(layer){
-        this.cities.forEach(city=>city.update(layer,this.scene))
+        switch(this.scene){
+            case `main`:
+                this.cities.forEach(city=>city.update(layer,this.scene))
+                if(this.zoom.shift.active){
+                    this.zoom.shift.position.x=constrain(this.zoom.shift.position.x,layer.width*0.5,graphics.load.map.width+this.ui.width-layer.width*0.5)
+                    this.zoom.shift.position.y=constrain(this.zoom.shift.position.y,layer.height*0.5,graphics.load.map.height-layer.height*0.5)
+                    if(distPos(this.zoom,this.zoom.shift)<0.5){
+                        this.zoom.shift.active=false
+                    }else{
+                        this.zoom.position=moveTowardVecDynamic(this.zoom,this.zoom.shift,0.5,0.125)
+                    }
+                }
+            break
+        }
         this.ui.update(layer,this.scene)
         this.transitionManager.update()
     }
     onClick(layer,mouse){
-        this.ui.onClick(layer,mouse,this.scene)
         let rel={position:{x:mouse.position.x+this.zoom.position.x-layer.width*0.5,y:mouse.position.y+this.zoom.position.y-layer.height*0.5}}
         this.cities.forEach(city=>city.onClick(layer,mouse,this.scene,rel))
+        this.ui.onClick(layer,mouse,this.scene)
     }
     onDrag(layer,mouse,previous,button){
         switch(this.scene){

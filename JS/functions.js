@@ -309,4 +309,18 @@ function ally(a,b){
     types.team[a].allies.push(b)
     types.team[b].allies.push(a)
 }
+function see(){
+    current.cities.forEach(city=>city.visibility=2)
+}
+function outAgents(){
+    current.ui.agents.forEach(agent=>print(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val})))
+}
+function topAgents(){
+    current.ui.agents=current.ui.agents
+        .map(value=>({value,sort:random(0,1)}))
+        .sort((a,b)=>a.sort-b.sort)
+        .map(({value})=>value)
+    current.ui.agents.splice(0,10)
+    current.ui.agents.forEach(agent=>print(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val})))
+}
 //dev

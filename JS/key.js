@@ -1,3 +1,5 @@
 function keyPressed(){
-    current.onKey(graphics.main,key)
+    if(constants.init){
+        current.onKey(graphics.main,key)
+    }
 }

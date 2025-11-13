@@ -75,7 +75,7 @@ class unit{
         this.reveal.trigger=visibility>=2||this.tempVisible
         this.fade.main=smoothAnim(this.fade.main,this.fade.trigger&&!this.remove,0,1,15)
         this.reveal.main=smoothAnim(this.reveal.main,this.reveal.trigger,0,1,15)
-        this.position=moveTowardVecDynamic(this,this.goal,0.5,0.125)
+        this.position=dev.instant?{x:this.goal.position.x,y:this.goal.position.y}:moveTowardVecDynamic(this,this.goal,0.5,0.125)
         if(this.removeMark&&(this.fade.main>=1||!this.fade.trigger)){
             this.remove=true
         }
