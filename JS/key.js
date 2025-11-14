@@ -1,5 +1,5 @@
 function keyPressed(){
-    if(constants.init){
+    if(constants.init&&!dev.close){
         current.onKey(graphics.main,key)
     }
 }

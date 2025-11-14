@@ -1,6 +1,5 @@
 class calc{
-    constructor(layer){
-        this.layer=layer
+    constructor(){
         this.variant=0
         this.terrain={list:[],select:0}
         this.sides=[{stack:false,strategy:0,smart:0,salient:0,force:[]},{stack:false,strategy:0,smart:0,salient:0,force:[]}]
@@ -8,7 +7,7 @@ class calc{
         this.terrainSet=[
             {name:'No Terrain',defend:[1,1.2],safe:1,attrition:[1,1]},
             {name:'River',defend:[1.3,1.3],safe:0.9,attrition:[1,1]},
-            {name:'Wall',defend:[2.25,2.5],safe:0.6,attrition:[1,0.5]},
+            {name:'Wall',defend:[2,2.25],safe:0.6,attrition:[1,0.5]},
         ]
         this.distSet=[
             {name:'Close',ab:'C',mult:1.075},
@@ -28,6 +27,7 @@ class calc{
         this.terrain.list=[]
     }
     calc(){
+        this.sides.forEach(side=>{if(side.force.length==0){throw new Error('Fight 0')}})
         this.sides.forEach(side=>side.force.forEach(force=>force.dist=constrain(force.dist,0,this.distSet.length-1)))
         this.result.winner=[]
         this.result.casualties=[]

@@ -73,7 +73,7 @@ types={
         {name:`Wittelsbach`,term:`wittelsbach`,auto:true,quality:1,chance:2.5},
     ],
 }
-dev={road:false,instant:false,assemble:true,pause:false,new:false,speed:1}
+dev={road:false,instant:false,assemble:false,pause:false,new:true,speed:1,close:false}
 graphics={main:0,load:{map:0,city:[],unit:[]}}
-constants={trig:[[],[]],spawn:{base:2000,spend:1000,regen:20,garrison:500},init:false}
+constants={trig:[[],[]],spawn:{base:2500,spend:1000,regen:10,garrison:500},init:false}
 inputs={mouse:{base:{x:0,y:0},rel:{x:0,y:0},previous:{base:{x:0,y:0},rel:{x:0,y:0}}}}

@@ -1,6 +1,6 @@
 class operation{
     constructor(){
-        this.zoom={position:{x:graphics.load.map.width*0.5,y:graphics.load.map.height*0.5},map:0,shift:{position:{x:0,y:0},active:false}}
+        this.zoom={position:{x:graphics.load.map.width*0.5,y:graphics.load.map.height*0.5},map:0,shift:{position:{x:0,y:0},active:false},dragging:0}
         this.cities=[]
         this.scene=`setup`
         this.initial()
@@ -95,7 +95,7 @@ class operation{
         switch(this.scene){
             case `main`:
                 this.cities.forEach(city=>city.update(layer,this.scene))
-                if(this.zoom.shift.active){
+                if(this.zoom.shift.active&&!dev.close){
                     this.zoom.shift.position.x=constrain(this.zoom.shift.position.x,layer.width*0.5,graphics.load.map.width+this.ui.width-layer.width*0.5)
                     this.zoom.shift.position.y=constrain(this.zoom.shift.position.y,layer.height*0.5,graphics.load.map.height-layer.height*0.5)
                     if(distPos(this.zoom,this.zoom.shift)<0.5){
@@ -107,12 +107,17 @@ class operation{
             break
         }
         this.ui.update(layer,this.scene)
-        this.transitionManager.update()
+        if(!dev.close){
+            this.transitionManager.update()
+        }
     }
     onClick(layer,mouse){
         let rel={position:{x:mouse.position.x+this.zoom.position.x-layer.width*0.5,y:mouse.position.y+this.zoom.position.y-layer.height*0.5}}
-        this.cities.forEach(city=>city.onClick(layer,mouse,this.scene,rel))
-        this.ui.onClick(layer,mouse,this.scene)
+        if(this.zoom.dragging<5){
+            this.cities.forEach(city=>city.onClick(layer,mouse,this.scene,rel))
+            this.ui.onClick(layer,mouse,this.scene)
+        }
+        this.zoom.dragging=0
     }
     onDrag(layer,mouse,previous,button){
         switch(this.scene){
@@ -128,6 +133,7 @@ class operation{
                 )
             break
         }
+        this.zoom.dragging++
     }
     onKey(layer,key){
         this.ui.onKey(layer,key,this.scene)

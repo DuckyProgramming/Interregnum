@@ -46,8 +46,8 @@ class unit{
         this.turns=composite.turns
     }
     newTurn(){
-        if(this.value>=2000&&this.turns>=50){
-            this.value-=round((this.value-1000)*random(0,0.05)/100)*100
+        if(this.value>=2000&&this.turns>=100){
+            this.value-=round((this.value-750)*random(0,0.04)/100)*100
         }
         this.turns++
     }

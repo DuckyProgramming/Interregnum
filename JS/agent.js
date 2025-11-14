@@ -85,7 +85,7 @@ class agent{
             }
             working=summa
         }
-        working.forEach(item=>{if(item<-1000000||item>1000000||item!=item){print(working);throw new Error("weird outputs")}})
+        working.forEach(item=>{if(item<-10000000||item>10000000||item!=item){print(working);throw new Error("weird outputs")}})
         return working
     }
     mutate(){
@@ -97,10 +97,10 @@ class agent{
                             if(c>=5){
                                 this.sets[a][b][c][d]=floor(random(a==0?13:a==1?12:9))
                             }else{
-                                this.sets[a][b][c][d]=floor(random(0,5))==0?-this.sets[a][b][c][d]:constrain(this.sets[a][b][c][d]*random(0.8,1.25),-100,100)
+                                this.sets[a][b][c][d]=floor(random(0,5))==0?-this.sets[a][b][c][d]:constrain(this.sets[a][b][c][d]*(floor(random(0,2)==0?random(1,2):1/random(1,2))),-100,100)
                             }
                         }else if(floor(random(0,3))==0&&c<5){
-                            this.sets[a][b][c][d]=constrain(this.sets[a][b][c][d]*random(0.95,20/19),-100,100)
+                            this.sets[a][b][c][d]=constrain(this.sets[a][b][c][d]*(floor(random(0,2)==0?random(1,1.2):1/random(1,1.2))),-100,100)
                         }
                     }
                 }
@@ -109,9 +109,9 @@ class agent{
         for(let a=0,la=this.constants.length;a<la;a++){
             for(let b=0,lb=this.constants[a].length;b<lb;b++){
                 if(floor(random(0,10))==0){
-                    this.constants[a][b]=floor(random(0,5))==0?-this.constants[a][b]:constrain(this.constants[a][b]*random(0.8,1.25),-100,100)
+                    this.constants[a][b]=floor(random(0,5))==0?-this.constants[a][b]:constrain(this.constants[a][b]*(floor(random(0,2)==0?random(1,2):1/random(1,2))),-100,100)
                 }else if(floor(random(0,3))==0){
-                    this.constants[a][b]=constrain(this.constants[a][b]*random(0.95,20/19),-100,100)
+                    this.constants[a][b]=constrain(this.constants[a][b]*(floor(random(0,2)==0?random(1,1.2):1/random(1,1.2))),-100,100)
                 }
             }
         }

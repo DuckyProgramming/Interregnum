@@ -323,4 +323,11 @@ function topAgents(){
     current.ui.agents.splice(0,10)
     current.ui.agents.forEach(agent=>print(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val})))
 }
+function training(){
+    noCanvas()
+    dev.close=true
+}
+function openMap(){
+    current.transitionManager.begin(`map`)
+}
 //dev

@@ -1,5 +1,7 @@
 function draw(){
-    current.display(graphics.main)
+    if(!dev.close){
+        current.display(graphics.main)
+    }
     for(let a=0,la=dev.speed;a<la;a++){
         current.update(graphics.main)
     }
