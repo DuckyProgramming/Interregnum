@@ -62,7 +62,6 @@ class city{
             let aligned=[own,...types.team[own].allies]
             for(let a=0,la=this.units.length;a<la;a++){
                 if(this.units[a].type==0&&!aligned.includes(this.units[a].team)){
-                    this.units[a].remove=true
                     for(let b=0,lb=this.units.length;b<lb;b++){
                         if(aligned.includes(this.units[b].team)){
                             this.units[b].remove=true
@@ -78,28 +77,28 @@ class city{
         let team=type==2?findName(this.owner,types.team):findName(this.data.rule,types.team)
         let num=floor(this.recruits/100/[1,4,2][type])*100
         this.units.push(new unit(this.city,team,0,num))
-        this.recruits=max(0,this.recruits-constants.spawn.spend*[1,1,0.5][type])
+        this.recruits=type==0?max(0,this.recruits-constants.spawn.spend*[1,1,0.75][type]):this.recruits-constants.spawn.spend*[1,1,0.75][type]
         if(num==0){
             throw new Error('SPAWN 0')
         }
     }
     getSpawn(type){
-        return floor(this.recruits/100/[1,4,2][type])*100
+        return max(0,floor(this.recruits/100/[1,4,2][type])*100)
     }
     raided(){
         this.recruits=round(this.recruits/20)*10
     }
     getUnits(teams,type=-1){
-        return this.units.filter(unit=>{return teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove})
+        return this.units.filter(unit=>{return teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove&&!unit.removeMark})
     }
     getNotUnits(teams,type=-1){
-        return this.units.filter(unit=>{return !teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove})
+        return this.units.filter(unit=>{return !teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove&&!unit.removeMark})
     }
     getUnitsVisible(teams,type=-1){
-        return this.units.filter(unit=>{return unit.fade.trigger&&teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove})
+        return this.units.filter(unit=>{return unit.fade.trigger&&teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove&&!unit.removeMark})
     }
     getNotUnitsVisible(teams,type=-1){
-        return this.units.filter(unit=>{return unit.fade.trigger&&!teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove})
+        return this.units.filter(unit=>{return unit.fade.trigger&&!teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove&&!unit.removeMark})
     }
     getMostNotUnit(teams,type=-1){
         let result=this.getNotUnits(teams,type)
@@ -130,7 +129,7 @@ class city{
         return supremum[0]
     }
     updateVisibility(turn){
-        this.visibility=this.units.some(unit=>{return unit.team==turn||this.data.rule==types.team[turn].name})?2:0
+        this.visibility=this.units.some(unit=>{return unit.team==turn})||this.data.rule==types.team[turn].name?2:0
         if(turn>=0){
             if(this.visibility==0){
                 for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
@@ -183,6 +182,9 @@ class city{
                                 this.units[b].turns=floor(this.units[a].turns*0.5+this.units[b].turns*0.5)
                             }
                         }
+                        if(!this.units[a].remove){
+                            this.units[a].update(this.visibility)
+                        }
                     }
                 }else{
                     this.fade.main=smoothAnim(this.fade.main,this.fade.trigger,0,1,15)
@@ -203,7 +205,9 @@ class city{
                                 }
                             }
                         }
-                        this.units[a].update(this.visibility)
+                        if(this.units[a].fade.main>0||!this.units[a].remove){
+                            this.units[a].update(this.visibility)
+                        }
                         if(!this.units[a].remove){
                             cap+=33-this.units[a].type*9
                         }
@@ -238,11 +242,11 @@ class city{
                         this.owner=supremum[1]
                     }
                 }
-                if(!this.units.some(unit=>unit.type==0)&&this.owner!=-1){
+                if(!this.units.some(unit=>unit.type==0)&&this.owner!=-1&&this.units.length>=1){
                     let own=findName(this.owner,types.team)
                     let aligned=[own,...types.team[own].allies]
                     for(let a=0,la=this.units.length;a<la;a++){
-                        if(this.units[a].type==1&&!aligned.includes(this.units[a].team)){
+                        if(this.units[a].type==1&&!aligned.includes(this.units[a].team)&&!this.units[a].remove){
                             this.units[a].remove=true
                             this.units.push(new unit(this,this.units[a].team,1-this.units[a].type,this.units[a].value))
                         }

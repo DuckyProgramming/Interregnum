@@ -1,0 +1,125 @@
+modes:
+
+0 - facing city
+[
+    # of cities looked at
+    turns left
+    core of city (binary)
+    electoral city (binary)
+    presence of enemy (binary)
+    total owned cities
+    total owned & cored cities
+    total adjacent cities
+    total owned adjacent cities
+    existence of friendly mobile troops (binary)
+    existence of friendly garrison (binary)
+    existence of enemy mobile troops (binary)
+    existence of enemy garrison (binary)
+    number of mobile troops already there (/1000)
+    number of garrison troops already there (/1000)
+    number of enemy mobile troops already there (/1000)
+    number of enemy garrison already there (/1000)
+    total allied troops on map (/10000)
+    number of recruitable troops (if applicable) (/1000)
+    siege progress
+] - > [5 middle, 5 multiplicative] -> [
+    recruit/rebel
+    move
+    reorganize/breakout/storm the city
+    reject (move to next city)
+]
+
+1 - move units
+[
+    # of move targets looked at
+    turns left
+    move target owned (binary)
+    core of move target (binary)
+    electoral city (binary)
+    number of connections from that city
+    total owned cities
+    total owned & cored cities
+    amount moving (/1000)
+    existence of friendly field army (binary)
+    existence of friendly garrison (binary)
+    number of friendly field army (/1000)
+    number of friendly garrison (/1000)
+    existence of enemy field army (binary)
+    existence of enemy garrison (binary)
+    total allied troops on map (/10000)
+] - > [5 middle, 5 multiplicative] -> [
+    move to
+]
+
+2 - reorganize
+[
+    turns left
+    existence of mobile troops (binary)
+    existence of garrison troops (binary)
+    >1000 mobile troops (binary)
+    >1000 garrison troops (binary)
+    random 0-10
+    number of mobile troops (/1000)
+    number of garrison troops (/1000)
+    total allied troops on map (/10000)
+] -> [5 middle, 5 multiplicative] -> [
+    one number: positive = 100 men from garrison to field
+    negative: the opposite
+    after this leaves
+]
+
+3 - pick defender strategy 1
+[
+    turns left
+    core of city (binary)
+    total owned cities
+    number of friendly troops
+    number of enemy troops
+    rebelling?
+] -> [
+    battle
+]
+
+4 - pick attacker strategy
+[
+    turns left
+    core of city (binary)
+    total owned cities
+    number of friendly troops
+    number of enemy troops
+    rebelling?
+] -> [
+    storm
+]
+
+5 - pick defender strategy 2
+[
+    turns left
+    core of city (binary)
+    total owned cities
+    number of friendly troops
+    number of enemy troops
+] -> [
+    retreat
+]
+
+6 - pick retreat target
+[
+    # of move targets looked at
+    turns left
+    move target owned (binary)
+    core of move target (binary)
+    electoral city (binary)
+    number of connections from that city
+    visibility
+    amount moving
+    existence of friendly field army (binary)
+    existence of friendly garrison (binary)
+    number of friendly field army (/1000)
+    number of friendly garrison (/1000)
+    existence of enemy field army (binary)
+    existence of enemy garrison (binary)
+    total allied troops on map (/10000)
+] - > [5 middle, 5 multiplicative] -> [
+    move to
+]

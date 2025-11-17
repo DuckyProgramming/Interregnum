@@ -32,24 +32,26 @@ types={
         {name:`Würzburg`,elect:true,loc:[1712,2526],rule:'Bibra',connect:[{name:`Bamberg`,type:1},{name:`Hall`,type:0},{name:`Frankfurt`,type:0},{name:`Nürnberg`,type:1},{name:`Fulda`,type:1}]},
         {name:`Trier`,elect:true,loc:[741,2527],rule:'Ecclesiastical',connect:[{name:`Koblenz`,type:1},{name:`Simmern`,type:0},{name:`Metz`,type:0}]},
         {name:`Nürnberg`,elect:false,loc:[2049,2693],rule:'Hohenzollern',connect:[{name:`Ingolstadt`,type:0},{name:`Amberg`,type:0},{name:`Hall`,type:1},{name:`Würzburg`,type:1},{name:`Bamberg`,type:0},{name:`Plauen`,type:0}]},
-        {name:`Amberg`,elect:false,loc:[2296,2705],rule:'Wittelsbach',connect:[{name:`Regensburg`,type:0},{name:`Ingolstadt`,type:0},{name:`Plauen`,type:0},{name:`Nürnberg`,type:0}]},
+        {name:`Amberg`,elect:false,loc:[2296,2705],rule:'Wittelsbach',connect:[{name:`Regensburg`,type:0},{name:`Ingolstadt`,type:0},{name:`Plauen`,type:0},{name:`Nürnberg`,type:0},{name:`Straubing`,type:0}]},
         {name:`Heidelberg`,elect:true,loc:[1334,2713],rule:'Wittelsbach',connect:[{name:`Frankfurt`,type:0},{name:`Stuttgart`,type:0},{name:`Speyer`,type:0},{name:`Simmern`,type:1},{name:`Pirmasens`,type:1}]},
         {name:`Speyer`,elect:false,loc:[1255,2749],rule:'Zähringen',connect:[{name:`Pirmasens`,type:1},{name:`Heidelberg`,type:0},{name:`Stuttgart`,type:0},{name:`Freiburg`,type:0}]},
         {name:`Metz`,elect:false,loc:[580,2817],rule:'Lorraine',connect:[{name:`Trier`,type:0},{name:`Pirmasens`,type:0},{name:`Bar`,type:1},{name:`Nanzig`,type:0}]},
-        {name:`Pirmasens`,elect:false,loc:[957,2824],rule:'Wittelsbach',connect:[{name:`Heidelberg`,type:1},{name:`Metz`,type:0},{name:`Speyer`,type:1},{name:`Straßburg`,type:0}]},
+        {name:`Pirmasens`,elect:false,loc:[957,2824],rule:'League of Cities',connect:[{name:`Heidelberg`,type:1},{name:`Metz`,type:0},{name:`Speyer`,type:1},{name:`Straßburg`,type:0}]},
         {name:`Hall`,elect:false,loc:[1642,2857],rule:'League of Cities',connect:[{name:`Nürnberg`,type:1},{name:`Würzburg`,type:1},{name:`Stuttgart`,type:0},{name:`Ulm`,type:0}]},
-        {name:`Regensburg`,elect:true,loc:[2356,2894],rule:'Ecclesiastical',connect:[{name:`Amberg`,type:0},{name:`Ingolstadt`,type:0}]},
-        {name:`Bar`,elect:false,loc:[261,2975],rule:'Lorraine',connect:[{name:`Metz`,type:1},{name:`Nanzig`,type:1}]},
+        {name:`Regensburg`,elect:true,loc:[2356,2894],rule:'Ecclesiastical',connect:[{name:`Amberg`,type:0},{name:`Ingolstadt`,type:0},{name:`Straubing`,type:0}]},
+        {name:`Straubing`,elect:false,loc:[2501,2956],rule:'Ecclesiastical',connect:[{name:`Amberg`,type:0},{name:`Regensburg`,type:0}]},
+        {name:`Bar`,elect:false,loc:[261,2975],rule:'Lorraine',connect:[{name:`Metz`,type:1},{name:`Nanzig`,type:1},{name:`Spinneln`,type:1}]},
         {name:`Stuttgart`,elect:false,loc:[1468,3018],rule:'Württemberg',connect:[{name:`Heidelberg`,type:0},{name:`Speyer`,type:0},{name:`Hall`,type:0},{name:`Ulm`,type:0},{name:`Freiburg`,type:0}]},
-        {name:`Nanzig`,elect:false,loc:[573,3023],rule:'Lorraine',connect:[{name:`Metz`,type:0},{name:`Bar`,type:1},{name:`Straßburg`,type:0},{name:`Bisanz`,type:1}]},
+        {name:`Nanzig`,elect:false,loc:[573,3023],rule:'Lorraine',connect:[{name:`Metz`,type:0},{name:`Bar`,type:1},{name:`Straßburg`,type:0},{name:`Spinneln`,type:1}]},
         {name:`Ingolstadt`,elect:false,loc:[2146,3025],rule:'Wittelsbach',connect:[{name:`Ulm`,type:0},{name:`Regensburg`,type:0},{name:`Amberg`,type:0},{name:`Nürnberg`,type:0}]},
-        {name:`Straßburg`,elect:false,loc:[1048,3099],rule:'League of Cities',connect:[{name:`Nanzig`,type:0},{name:`Pirmasens`,type:0},{name:`Freiburg`,type:1},{name:`Bisanz`,type:0}]},
+        {name:`Straßburg`,elect:false,loc:[1048,3099],rule:'League of Cities',connect:[{name:`Nanzig`,type:0},{name:`Pirmasens`,type:0},{name:`Freiburg`,type:1},{name:`Bisanz`,type:0},{name:`Spinneln`,type:1}]},
         {name:`Ulm`,elect:false,loc:[1718,3200],rule:'League of Cities',connect:[{name:`Hall`,type:0},{name:`Stuttgart`,type:0},{name:`Ingolstadt`,type:0},{name:`Bregenz`,type:0}]},
+        {name:`Spinneln`,elect:false,loc:[650,3284],rule:'Lorraine',connect:[{name:`Bisanz`,type:0},{name:`Bar`,type:1},{name:`Straßburg`,type:1},{name:`Nanzig`,type:0}]},
         {name:`Freiburg`,elect:false,loc:[1076,3389],rule:'Habsburg',connect:[{name:`Speyer`,type:0},{name:`Straßburg`,type:1},{name:`Stuttgart`,type:0},{name:`Konstanz`,type:0}]},
         {name:`Konstanz`,elect:false,loc:[1462,3554],rule:'Habsburg',connect:[{name:`Freiburg`,type:0},{name:`Bregenz`,type:0},{name:`Herisau`,type:0}]},
         {name:`Bregenz`,elect:false,loc:[1656,3640],rule:'Habsburg',connect:[{name:`Ulm`,type:0},{name:`Konstanz`,type:0},{name:`Herisau`,type:1}]},
         {name:`Herisau`,elect:false,loc:[1489,3710],rule:'Schwyz',connect:[{name:`Bregenz`,type:1},{name:`Konstanz`,type:0}]},
-        {name:`Bisanz`,elect:false,loc:[488,3728],rule:'Habsburg',connect:[{name:`Nanzig`,type:1},{name:`Straßburg`,type:0}]},
+        {name:`Bisanz`,elect:false,loc:[488,3728],rule:'Habsburg',connect:[{name:`Spinneln`,type:1},{name:`Straßburg`,type:0}]},
     ],team:[
         {name:`Wiemken`,term:`wiemken`,auto:true,quality:1,chance:0.1},
         {name:`Isenberg`,term:`isenberg`,auto:true,quality:1,chance:0.4},
@@ -73,7 +75,7 @@ types={
         {name:`Wittelsbach`,term:`wittelsbach`,auto:true,quality:1,chance:2.5},
     ],
 }
-dev={road:false,instant:false,assemble:false,pause:false,new:true,speed:1,close:false}
+dev={road:false,instant:true,assemble:true,pause:false,new:true,speed:5000,close:true}
 graphics={main:0,load:{map:0,city:[],unit:[]}}
 constants={trig:[[],[]],spawn:{base:2500,spend:1000,regen:10,garrison:500},init:false}
 inputs={mouse:{base:{x:0,y:0},rel:{x:0,y:0},previous:{base:{x:0,y:0},rel:{x:0,y:0}}}}

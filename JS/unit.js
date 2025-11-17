@@ -46,7 +46,7 @@ class unit{
         this.turns=composite.turns
     }
     newTurn(){
-        if(this.value>=2000&&this.turns>=100){
+        if(this.value>=2000&&this.turns>=100&&this.type==0&&floor(random(0,2))==0){
             this.value-=round((this.value-750)*random(0,0.04)/100)*100
         }
         this.turns++
@@ -70,14 +70,23 @@ class unit{
         }
     }
     update(visibility){
-        this.fade.trigger=visibility>=1||this.tempVisible
-        this.fade.trigger=visibility>=1||this.tempVisible
-        this.reveal.trigger=visibility>=2||this.tempVisible
-        this.fade.main=smoothAnim(this.fade.main,this.fade.trigger&&!this.remove,0,1,15)
-        this.reveal.main=smoothAnim(this.reveal.main,this.reveal.trigger,0,1,15)
-        this.position=dev.instant?{x:this.goal.position.x,y:this.goal.position.y}:moveTowardVecDynamic(this,this.goal,0.5,0.125)
-        if(this.removeMark&&(this.fade.main>=1||!this.fade.trigger)){
-            this.remove=true
+        if(dev.close){
+            this.fade.trigger=visibility>=1||this.tempVisible
+            this.reveal.trigger=visibility>=2||this.tempVisible
+            this.fade.main=this.fade.trigger?1:0
+            this.reveal.main=this.reveal.trigger?1:0
+            if(this.removeMark){
+                this.remove=true
+            }
+        }else{
+            this.fade.trigger=visibility>=1||this.tempVisible
+            this.reveal.trigger=visibility>=2||this.tempVisible
+            this.fade.main=smoothAnim(this.fade.main,this.fade.trigger&&!this.remove,0,1,15)
+            this.reveal.main=smoothAnim(this.reveal.main,this.reveal.trigger,0,1,15)
+            this.position=dev.instant?{x:this.goal.position.x,y:this.goal.position.y}:moveTowardVecDynamic(this,this.goal,0.5,0.125)
+            if(this.removeMark&&(this.fade.main>=1||!this.fade.trigger)){
+                this.remove=true
+            }
         }
     }
 }
