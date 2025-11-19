@@ -179,6 +179,7 @@ class city{
                             if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type&&!this.units[a].remove&&!this.units[b].remove){
                                 this.units[a].remove=true
                                 this.units[b].value+=this.units[a].value
+                                this.units[b].edit.num+=this.units[a].edit.num
                                 this.units[b].turns=floor(this.units[a].turns*0.5+this.units[b].turns*0.5)
                             }
                         }
@@ -201,6 +202,7 @@ class city{
                                     this.units[a].remove=true
                                     this.units[a].fade.main=0
                                     this.units[b].value+=this.units[a].value
+                                    this.units[b].edit.num+=this.units[a].edit.num
                                     this.units[b].turns=floor(this.units[a].turns*0.5+this.units[b].turns*0.5)
                                 }
                             }

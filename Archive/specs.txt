@@ -25,8 +25,9 @@ modes:
 ] - > [5 middle, 5 multiplicative] -> [
     recruit/rebel
     move
-    reorganize/breakout/storm the city
+    reorganize
     reject (move to next city)
+    siege action (breakout/storm)
 ]
 
 1 - move units
@@ -47,6 +48,7 @@ modes:
     existence of enemy field army (binary)
     existence of enemy garrison (binary)
     total allied troops on map (/10000)
+    fully internal (binary)
 ] - > [5 middle, 5 multiplicative] -> [
     move to
 ]

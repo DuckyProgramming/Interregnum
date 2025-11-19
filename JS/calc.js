@@ -19,6 +19,7 @@ class calc{
             {name:'Miserable',ab:'MI',mult:0.4},
             {name:'Dejected',ab:'DE',mult:0.275},
             {name:'Crushed',ab:'CR',mult:0.2},
+            {name:'Incapable',ab:'I',mult:0.1},
         ]
     }
     reset(){
@@ -49,6 +50,7 @@ class calc{
                         this.result.casualties[b][c].morale+=result.casualties[b][c].morale
                     }
                     this.result.casualties[b][c].team=this.sides[b].force[c].team
+                    this.result.casualties[b][c].type=this.sides[b].force[c].type
                     this.sides[b].force[c].number-=result.casualties[b][c].number
                 }
             }

@@ -16,37 +16,37 @@ class agent{
             for(let a=0,la=5;a<la;a++){
                 this.sets[0][0].push([])
                 for(let b=0,lb=20;b<lb;b++){
-                    this.sets[0][0][a].push(random(-100,100))
+                    this.sets[0][0][a].push(random(-10,10))
                 }
             }
             for(let a=0,la=5;a<la;a++){
                 this.sets[0][0].push([floor(random(0,20)),floor(random(0,20))])
             }
-            for(let a=0,la=4;a<la;a++){
+            for(let a=0,la=5;a<la;a++){
                 this.sets[0][1].push([])
                 for(let b=0,lb=10;b<lb;b++){
-                    this.sets[0][1][a].push(random(-100,100))
+                    this.sets[0][1][a].push(random(-10,10))
                 }
             }
             for(let c=0,lc=2;c<lc;c++){
                 for(let a=0,la=5;a<la;a++){
                     this.sets[1+c*5][0].push([])
-                    for(let b=0,lb=16-c;b<lb;b++){
-                        this.sets[1+c*5][0][a].push(random(-100,100))
+                    for(let b=0,lb=17-c*2;b<lb;b++){
+                        this.sets[1+c*5][0][a].push(random(-10,10))
                     }
                 }
                 for(let a=0,la=5;a<la;a++){
-                    this.sets[1+c*5][0].push([floor(random(0,16-c)),floor(random(0,16-c))])
+                    this.sets[1+c*5][0].push([floor(random(0,17-c*2)),floor(random(0,17-c*2))])
                 }
                 this.sets[1+c*5][1].push([])
                 for(let b=0,lb=10;b<lb;b++){
-                    this.sets[1+c*5][1][0].push(random(-100,100))
+                    this.sets[1+c*5][1][0].push(random(-10,10))
                 }
             }
             for(let a=0,la=5;a<la;a++){
                 this.sets[2][0].push([])
                 for(let b=0,lb=9;b<lb;b++){
-                    this.sets[2][0][a].push(random(-100,100))
+                    this.sets[2][0][a].push(random(-10,10))
                 }
             }
             for(let a=0,la=5;a<la;a++){
@@ -54,22 +54,23 @@ class agent{
             }
             this.sets[2][1].push([])
             for(let b=0,lb=10;b<lb;b++){
-                this.sets[2][1][0].push(random(-100,100))
+                this.sets[2][1][0].push(random(-10,10))
             }
             for(let c=0,lc=3;c<lc;c++){
                 this.sets[3+c][0].push([])
                 for(let b=0,lb=[6,6,5][c];b<lb;b++){
-                    this.sets[3+c][0][0].push(random(-100,100))
+                    this.sets[3+c][0][0].push(random(-10,10))
                 }
             }
             for(let a=0,la=10;a<la;a++){
                 for(let b=0,lb=4;b<lb;b++){
-                    this.constants[[0,1,2,6][b]].push(random(-100,100))
+                    this.constants[[0,1,2,6][b]].push(random(-10,10))
                 }
             }
         }
         this.record=0
-        this.attacks=0
+        this.rewards=0
+        this.punishments=0
     }
     execute(mode,data){
         let working=data
@@ -86,7 +87,7 @@ class agent{
                     }
                 }
                 if(b>=5){
-                    summa[b]=constrain(summa[b],-100,100)
+                    summa[b]=constrain(summa[b],-10,10)
                 }
             }
             working=summa
@@ -100,15 +101,15 @@ class agent{
                 for(let c=0,lc=this.sets[a][b].length;c<lc;c++){
                     for(let d=0,ld=this.sets[a][b][c].length;d<ld;d++){
                         if(floor(random(0,1000))==0&&!(c>=5&&b==0&&lb>1)){
-                            this.sets[a][b][c][d]=random(-100,100)
-                        }else if(floor(random(0,10))==0){
+                            this.sets[a][b][c][d]=random(-10,10)
+                        }else if(floor(random(0,25))==0){
                             if(c>=5&&b==0&&lb>1){
                                 this.sets[a][b][c][d]=floor(random(a==0?13:a==1?12:9))
                             }else{
-                                this.sets[a][b][c][d]=floor(random(0,5))==0?-this.sets[a][b][c][d]:constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-100,100)
+                                this.sets[a][b][c][d]=floor(random(0,5))==0?-this.sets[a][b][c][d]:constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-10,10)
                             }
-                        }else if(floor(random(0,3))==0&&c<5){
-                            this.sets[a][b][c][d]=constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-100,100)
+                        }else if(floor(random(0,10))==0&&c<5){
+                            this.sets[a][b][c][d]=constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-10,10)
                         }
                     }
                 }
@@ -117,11 +118,11 @@ class agent{
         for(let a=0,la=this.constants.length;a<la;a++){
             for(let b=0,lb=this.constants[a].length;b<lb;b++){
                 if(floor(random(0,1000))==0){
-                    this.constants[a][b]=random(-100,100)
+                    this.constants[a][b]=random(-10,10)
+                }else if(floor(random(0,25))==0){
+                    this.constants[a][b]=floor(random(0,5))==0?-this.constants[a][b]:constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-10,10)
                 }else if(floor(random(0,10))==0){
-                    this.constants[a][b]=floor(random(0,5))==0?-this.constants[a][b]:constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-100,100)
-                }else if(floor(random(0,3))==0){
-                    this.constants[a][b]=constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-100,100)
+                    this.constants[a][b]=constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-10,10)
                 }
             }
         }
