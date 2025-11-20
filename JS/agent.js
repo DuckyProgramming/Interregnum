@@ -15,12 +15,12 @@ class agent{
             this.constants=[[],[],[],[],[],[],[]]
             for(let a=0,la=5;a<la;a++){
                 this.sets[0][0].push([])
-                for(let b=0,lb=20;b<lb;b++){
+                for(let b=0,lb=22;b<lb;b++){
                     this.sets[0][0][a].push(random(-10,10))
                 }
             }
             for(let a=0,la=5;a<la;a++){
-                this.sets[0][0].push([floor(random(0,20)),floor(random(0,20))])
+                this.sets[0][0].push([floor(random(0,22)),floor(random(0,22))])
             }
             for(let a=0,la=5;a<la;a++){
                 this.sets[0][1].push([])
@@ -31,12 +31,12 @@ class agent{
             for(let c=0,lc=2;c<lc;c++){
                 for(let a=0,la=5;a<la;a++){
                     this.sets[1+c*5][0].push([])
-                    for(let b=0,lb=17-c*2;b<lb;b++){
+                    for(let b=0,lb=18-c*2;b<lb;b++){
                         this.sets[1+c*5][0][a].push(random(-10,10))
                     }
                 }
                 for(let a=0,la=5;a<la;a++){
-                    this.sets[1+c*5][0].push([floor(random(0,17-c*2)),floor(random(0,17-c*2))])
+                    this.sets[1+c*5][0].push([floor(random(0,18-c*2)),floor(random(0,18-c*2))])
                 }
                 this.sets[1+c*5][1].push([])
                 for(let b=0,lb=10;b<lb;b++){

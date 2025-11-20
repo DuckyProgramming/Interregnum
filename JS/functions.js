@@ -330,4 +330,13 @@ function training(){
 function openMap(){
     current.transitionManager.begin(`map`)
 }
+function modifex(type){
+    switch(type){
+        case 0:
+            agentset.forEach(agent=>{agent[0][0][0].forEach(item=>item.splice(2,0,0,0))})
+            agentset.forEach(agent=>{agent[0][1][0].forEach(item=>item.splice(3,0,0))})
+            agentset.forEach(agent=>{agent[0][6][0].forEach(item=>item.splice(3,0,0))})
+        break
+    }
+}
 //dev

@@ -52,6 +52,10 @@ class operation{
         this.initialComponents()
         this.transitionManager=new transitionManager(this)
         constants.init=true
+        types.team[findName(`Elder Wittelsbach`,types.team)].allies.push(findName(`Junior Wittelsbach`,types.team))
+        types.team[findName(`Junior Wittelsbach`,types.team)].allies.push(findName(`Elder Wittelsbach`,types.team))
+        types.team[findName(`Elder Habsburg`,types.team)].allies.push(findName(`Junior Habsburg`,types.team))
+        types.team[findName(`Junior Habsburg`,types.team)].allies.push(findName(`Elder Habsburg`,types.team))
     }
     initialComponents(){
         this.cities=[]
@@ -101,7 +105,7 @@ class operation{
                     if(distPos(this.zoom,this.zoom.shift)<0.5){
                         this.zoom.shift.active=false
                     }else{
-                        this.zoom.position=moveTowardVecDynamic(this.zoom,this.zoom.shift,0.5,0.125)
+                        this.zoom.position=moveTowardVecDynamic(this.zoom,this.zoom.shift,1,0.125)
                     }
                 }
             break

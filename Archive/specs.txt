@@ -4,6 +4,8 @@ modes:
 [
     # of cities looked at
     turns left
+    city owned (binary)
+    city owned by ally (binary)
     core of city (binary)
     electoral city (binary)
     presence of enemy (binary)
@@ -35,6 +37,7 @@ modes:
     # of move targets looked at
     turns left
     move target owned (binary)
+    move target owned by ally (binary)
     core of move target (binary)
     electoral city (binary)
     number of connections from that city
@@ -110,6 +113,7 @@ modes:
     # of move targets looked at
     turns left
     move target owned (binary)
+    move target owned by ally (binary)
     core of move target (binary)
     electoral city (binary)
     number of connections from that city
