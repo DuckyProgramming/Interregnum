@@ -52,6 +52,7 @@ modes:
     existence of enemy garrison (binary)
     total allied troops on map (/10000)
     fully internal (binary)
+    terrain type
 ] - > [5 middle, 5 multiplicative] -> [
     move to
 ]

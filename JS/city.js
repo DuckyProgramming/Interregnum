@@ -150,20 +150,20 @@ class city{
             break
             case 'map':
                 if(dev.road){
-                    layer.stroke(0)
                     layer.strokeWeight(20)
                     for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
+                        layer.stroke(...[[0,0,0],[0,0,100],[0,100,200]][types.city[this.type].connect[a].type])
                         let cit=this.operation.cities[findName(types.city[this.type].connect[a].name,types.city)]
                         layer.line(this.position.x,this.position.y,cit.position.x*0.5+this.position.x*0.5,cit.position.y*0.5+this.position.y*0.5)
                     }
                 }else{
                     layer.push()
                     layer.translate(this.position.x,this.position.y)
-                    let img=graphics.load.city[this.data.elect?1:0]
-                    layer.image(img,0,0,img.width,img.height)
+                    let img=graphics.load.city[this.data.circle?2:this.data.elect?1:0]
+                    layer.image(img,0,0,img.width*(this.data.name==`Ulm`?1.25:1),img.height*(this.data.name==`Ulm`?1.25:1))
                     if(this.owner!=-1){
                         img=graphics.load.unit[findName(this.owner,types.team)][2]
-                        layer.image(img,0,img.height*0.25-15,img.width*0.5,img.height*0.5)
+                        layer.image(img,0,img.height*0.25-10,img.width*0.5,img.height*0.5)
                     }
                     layer.pop()
                 }
@@ -196,7 +196,7 @@ class city{
                         }
                         this.units[a].goal.position.y=cap
                         for(let b=0,lb=a;b<lb;b++){
-                            if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type&&!this.units[a].remove&&!this.units[b].remove){
+                            if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type&&!this.units[a].remove&&!this.units[b].remove&&!this.units[a].removeMark&&!this.units[b].removeMark){
                                 this.units[a].goal.position.y=this.units[b].goal.position.y
                                 if(distPos(this.units[a],this.units[b])<1||dev.instant){
                                     this.units[a].remove=true
@@ -223,26 +223,7 @@ class city{
                     }
                 }
                 if(!this.units.some(unit=>types.team[unit.team].name==this.owner&&unit.type==1)){
-                    let decide=false
-                    let supremum=[0,findName(this.data.rule,types.team)]
-                    for(let a=0,la=this.units.length;a<la;a++){
-                        if(this.units[a].value>supremum[0]&&this.units[a].type==1){
-                            supremum[0]=this.units[a].value
-                            supremum[1]=types.team[this.units[a].team].name
-                            decide=true
-                        }
-                    }
-                    this.owner=supremum[1]
-                    if(!decide){
-                        supremum=[0,-1]
-                        for(let a=0,la=this.units.length;a<la;a++){
-                            if(this.units[a].value>supremum[0]){
-                                supremum[0]=this.units[a].value
-                                supremum[1]=types.team[this.units[a].team].name
-                            }
-                        }
-                        this.owner=supremum[1]
-                    }
+                    this.owner=this.units.length==0?-1:types.team[this.units[0].team].name
                 }
                 if(!this.units.some(unit=>unit.type==0)&&this.owner!=-1&&this.units.length>=1){
                     let own=findName(this.owner,types.team)

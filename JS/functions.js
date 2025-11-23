@@ -333,10 +333,23 @@ function openMap(){
 function modifex(type){
     switch(type){
         case 0:
-            agentset.forEach(agent=>{agent[0][0][0].forEach(item=>item.splice(2,0,0,0))})
-            agentset.forEach(agent=>{agent[0][1][0].forEach(item=>item.splice(3,0,0))})
-            agentset.forEach(agent=>{agent[0][6][0].forEach(item=>item.splice(3,0,0))})
+            agentset.forEach(agent=>{
+                agent[0][0][0].forEach(item=>item.splice(2,0,0,0))
+                agent[0][1][0].forEach(item=>item.splice(3,0,0))
+                agent[0][1][0].forEach(item=>item.push(0))
+                agent[0][6][0].forEach(item=>item.splice(3,0,0))
+            })
         break
+    }
+}
+function see(){
+    current.cities.forEach(city=>city.visibility=2)
+}
+function play(name){
+    if(findName(name,types.team)>=0){
+        current.ui.turn.main=findName(name,types.team)
+        current.ui.turn.count+=10
+        current.ui.updateVisibility()
     }
 }
 //dev

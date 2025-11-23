@@ -98,7 +98,9 @@ class operation{
     update(layer){
         switch(this.scene){
             case `main`:
-                this.cities.forEach(city=>city.update(layer,this.scene))
+                for(let a=0,la=this.ui.speed.main;a<la;a++){
+                    this.cities.forEach(city=>city.update(layer,this.scene))
+                }
                 if(this.zoom.shift.active&&!dev.close){
                     this.zoom.shift.position.x=constrain(this.zoom.shift.position.x,layer.width*0.5,graphics.load.map.width+this.ui.width-layer.width*0.5)
                     this.zoom.shift.position.y=constrain(this.zoom.shift.position.y,layer.height*0.5,graphics.load.map.height-layer.height*0.5)

@@ -31,12 +31,12 @@ class agent{
             for(let c=0,lc=2;c<lc;c++){
                 for(let a=0,la=5;a<la;a++){
                     this.sets[1+c*5][0].push([])
-                    for(let b=0,lb=18-c*2;b<lb;b++){
+                    for(let b=0,lb=19-c*3;b<lb;b++){
                         this.sets[1+c*5][0][a].push(random(-10,10))
                     }
                 }
                 for(let a=0,la=5;a<la;a++){
-                    this.sets[1+c*5][0].push([floor(random(0,18-c*2)),floor(random(0,18-c*2))])
+                    this.sets[1+c*5][0].push([floor(random(0,19-c*3)),floor(random(0,19-c*3))])
                 }
                 this.sets[1+c*5][1].push([])
                 for(let b=0,lb=10;b<lb;b++){
@@ -78,10 +78,14 @@ class agent{
         for(let a=0,la=this.sets[mode].length;a<la;a++){
             let summa=[]
             for(let b=0,lb=this.sets[mode][a].length;b<lb;b++){
-                summa.push(a==0&&la==2?this.constants[mode][b]:0)
+                summa.push(a==0&&la==2?this.constants[mode][b]:b>=5?1:0)
                 for(let c=0,lc=this.sets[mode][a][b].length;c<lc;c++){
+                    if(lc!=working.length&&b<5){
+                        print(mode,a,this.sets[mode][a][b],working)
+                        throw new Error(`Execute Fail`)
+                    }
                     if(b>=5){
-                        summa[b]*=working[c]**(this.sets[mode][a][b][c])
+                        summa[b]*=working[this.sets[mode][a][b][c]]
                     }else{
                         summa[b]+=this.sets[mode][a][b][c]*working[c]
                     }
