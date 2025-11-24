@@ -12,6 +12,7 @@ class unit{
         this.goal={position:{x:0,y:0}}
         this.remove=false
         this.removeMark=false
+        this.combining=false
         this.turns=0
     }
     save(){
@@ -46,8 +47,12 @@ class unit{
         this.turns=composite.turns
     }
     newTurn(){
-        if(this.value>=2000&&this.turns>=100&&this.type==0&&floor(random(0,2))==0){
-            this.value-=round((this.value-750)*random(0,0.04)/100)*100
+        if(this.value>=2000&&this.turns>=50&&this.type==0&&floor(random(0,2))==0){
+            this.value-=round((this.value-100)*random(0,0.05)/100)*100
+        }
+        if(this.value%100!=0){
+            print(this.value)
+            throw new Error(`Rounding Fail`)
         }
         this.turns++
     }

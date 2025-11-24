@@ -38,26 +38,12 @@ class city{
     }
     initial(){
         this.units.push(new unit(this.city,findName(this.owner,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
-        if(this.owner!=this.data.name){
+        if(this.owner!=this.data.rule){
             this.recruits-=floor(random(15,21))*100
         }
     }
     newTurn(){
         this.recruits=min(this.recruits+constants.spawn.regen*(this.recruits>=constants.spawn.base*0.8?0.5:this.recruits>=constants.spawn.base*0.6?0.75:1),constants.spawn.base)
-        let differ=false
-        for(let a=0,la=this.units.length;a<la;a++){
-            for(let b=a+1;b<la;b++){
-                if(this.units[a].team!=this.units[b].team&&!this.operation.teams[this.units[a].team].allies.includes(this.units[b].team)){
-                    differ=true
-                }
-            }
-        }
-        if(differ){
-            this.sieged+=0.1
-        }else{
-            this.sieged=0
-        }
-        this.units.forEach(unit=>{unit.tempVisible=false;unit.newTurn()})
         if(!this.units.some(unit=>unit.type==1)&&this.owner!=-1){
             let own=findName(this.owner,types.team)
             let aligned=[own,...this.operation.teams[own].allies]
@@ -73,6 +59,27 @@ class city{
                 }
             }
         }
+    }
+    newTurnTick(){
+        let differ=false
+        for(let a=0,la=this.units.length;a<la;a++){
+            for(let b=a+1;b<la;b++){
+                if(this.units[a].team!=this.units[b].team&&!this.operation.teams[this.units[a].team].allies.includes(this.units[b].team)&&this.units[a].value>=this.units[b].value*0.1&&this.units[b].value>=this.units[a].value*0.1){
+                    differ=true
+                    a=la
+                    b=la
+                }
+            }
+        }
+        if(differ){
+            this.sieged+=0.1
+        }else{
+            this.sieged=0
+        }
+        this.units.forEach(unit=>{unit.tempVisible=false;unit.newTurn()})
+    }
+    minorRegen(){
+        this.recruits=min(this.recruits+constants.spawn.regen*10,constants.spawn.base)
     }
     spawn(type){
         let team=type==2?findName(this.owner,types.team):findName(this.data.rule,types.team)
@@ -118,7 +125,7 @@ class city{
             }
         }
         if(ledger.length==0){
-            return 0
+            throw new Error('No Enemy Fail')
         }
         let supremum=[ledger[0][0],ledger[0][1]]
         for(let a=1,la=ledger.length;a<la;a++){
@@ -192,13 +199,14 @@ class city{
                     this.fade.main=smoothAnim(this.fade.main,this.fade.trigger,0,1,15)
                     let cap=0
                     for(let a=0,la=this.units.length;a<la;a++){
-                        if(a!=0&&!this.units[a].remove){
+                        if(a!=0&&!this.units[a].remove&&!this.units[a].combining){
                             cap+=33-this.units[a].type*9
                         }
                         this.units[a].goal.position.y=cap
                         for(let b=0,lb=a;b<lb;b++){
                             if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type&&!this.units[a].remove&&!this.units[b].remove&&!this.units[a].removeMark&&!this.units[b].removeMark){
                                 this.units[a].goal.position.y=this.units[b].goal.position.y
+                                this.units[a].combining=true
                                 if(distPos(this.units[a],this.units[b])<1||dev.instant){
                                     this.units[a].remove=true
                                     this.units[a].fade.main=0
@@ -211,7 +219,7 @@ class city{
                         if(this.units[a].fade.main>0||!this.units[a].remove){
                             this.units[a].update(this.visibility)
                         }
-                        if(!this.units[a].remove){
+                        if(!this.units[a].remove&&!this.units[a].combining){
                             cap+=33-this.units[a].type*9
                         }
                     }
@@ -224,7 +232,16 @@ class city{
                     }
                 }
                 if(!this.units.some(unit=>types.team[unit.team].name==this.owner&&unit.type==1)){
-                    this.owner=this.units.length==0?-1:types.team[this.units[0].team].name
+                    this.owner=-1
+                    for(let a=0,la=this.units.length;a<la;a++){
+                        if(this.units[a].type==1){
+                            this.owner=types.team[this.units[a].team].name
+                            break
+                        }
+                    }
+                    if(this.owner==-1&&this.units.length>0){
+                        this.owner=types.team[this.units[0].team].name
+                    }
                 }
                 if(!this.units.some(unit=>unit.type==0)&&this.owner!=-1&&this.units.length>=1){
                     let own=findName(this.owner,types.team)

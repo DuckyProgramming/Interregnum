@@ -63,6 +63,7 @@ class ui{
         if(dev.assemble&&this.turn.total!=0){
             if(this.turn.total%500==0){
                 this.agents.forEach((agent,index)=>agent.record+=this.operation.cities.reduce((acc,city)=>acc+(city.owner==types.team[index].name?1:0)*(city.data.elect?2:1),0)-types.city.reduce((acc,city)=>acc+(city.rule==types.team[index].name?1:0)*(city.elect?2:1),0))
+                this.operation.initialElements()
                 this.operation.initialComponents()
                 this.agents.splice(0,0,last(this.agents))
                 this.agents.splice(this.agents.length-1,1)
@@ -111,6 +112,14 @@ class ui{
             this.turn.count=len==0?0:floor(random(0.5,len*0.25+2.5))
             this.operation.cities.forEach(city=>city.visibility=0)
             this.moveTab(5)
+            if(!types.team[this.turn.main].auto){
+                let total=[0,0,0]
+                this.operation.cities.forEach(city=>{if(city.data.rule==types.team[this.turn.main].name){total[0]+=city.position.x;total[1]+=city.position.y;total[2]++}})
+                this.operation.zoom.shift.position.x=total[0]/total[2]
+                this.operation.zoom.shift.position.y=total[1]/total[2]
+                this.operation.zoom.shift.active=true
+            }
+            this.operation.cities.forEach(city=>city.newTurnTick())
         }
         this.turn.total++
         this.turn.timer=0
@@ -1828,7 +1837,7 @@ class ui{
                                 cit.data.rule==types.team[this.turn.main].name
                             ){
                                 if(inPointBox(rel,boxify(0,tick+25,160,40))){
-                                    cit.recruits=max(cit.recruits+constants.spawn.regen*10,constants.spawn.base)
+                                    cit.minorRegen()
                                     this.turn.count=0
                                     this.newTurn()
                                 }
@@ -2267,7 +2276,7 @@ class ui{
                             cit.data.rule==types.team[this.turn.main].name
                         ){
                             if(key==count.toString()){
-                                cit.recruits=max(cit.recruits+constants.spawn.regen*10,constants.spawn.base)
+                                cit.minorRegen()
                                 this.turn.count=0
                                 this.newTurn()
                             }
@@ -2620,6 +2629,7 @@ class ui{
             case `edit`:
                 count=1
                 if(key==`Enter`){
+                    this.operation.initialComponents()
                     this.operation.transitionManager.begin(`main`)
                 }
                 for(let a=0,la=types.team.length;a<la;a++){

@@ -7,20 +7,20 @@ class calc{
         this.terrainSet=[
             {name:'No Terrain',defend:[1,1.2],safe:1,attrition:[1,1]},
             {name:'River',defend:[1.3,1.3],safe:0.9,attrition:[1,1]},
-            {name:'Wall',defend:[2,2.25],safe:0.6,attrition:[1,0.5]},
+            {name:'Wall',defend:[2.225,2.5],safe:0.6,attrition:[1,0.5]},
             {name:'Sea',defend:[1.75,1.75],safe:0.7,attrition:[1.5,1.5]},
         ]
         this.distSet=[
-            {name:'Close',ab:'C',mult:1.075},
-            {name:'Mid',ab:'M',mult:1},
-            {name:'Distant',ab:'D',mult:0.925},
-            {name:'Disconnected',ab:'DC',mult:0.85},
-            {name:'Poor',ab:'P',mult:0.725},
-            {name:'Awful',ab:'A',mult:0.55},
-            {name:'Miserable',ab:'MI',mult:0.4},
-            {name:'Dejected',ab:'DE',mult:0.275},
-            {name:'Crushed',ab:'CR',mult:0.2},
-            {name:'Incapable',ab:'I',mult:0.1},
+            {name:'Close',ab:'C',mult:1},
+            {name:'Mid',ab:'M',mult:0.925},
+            {name:'Distant',ab:'D',mult:0.85},
+            {name:'Disconnected',ab:'DC',mult:0.725},
+            {name:'Poor',ab:'P',mult:0.55},
+            {name:'Awful',ab:'A',mult:0.4},
+            {name:'Miserable',ab:'MI',mult:0.275},
+            {name:'Dejected',ab:'DE',mult:0.2},
+            {name:'Crushed',ab:'CR',mult:0.125},
+            {name:'Incapable',ab:'I',mult:0.075},
         ]
     }
     reset(){

@@ -1,7 +1,7 @@
 class operation{
     constructor(){
         this.zoom={position:{x:graphics.load.map.width*0.5,y:graphics.load.map.height*0.5},map:0,shift:{position:{x:0,y:0},active:false},dragging:0}
-        this.speed={main:dev.speed?5000:1}
+        this.speed={main:dev.speed?5000:1,move:true}
         this.cities=[]
         this.teams=[]
         this.scene=`setup`
@@ -57,12 +57,15 @@ class operation{
     initial(){
         this.calc=new calc()
         this.ui=new ui(this)
+        this.transitionManager=new transitionManager(this)
+        constants.init=true
+        this.initialElements()
+    }
+    initialElements(){
         this.cities=[]
         types.city.forEach((item,index)=>this.cities.push(new city(this,item.loc[0],item.loc[1],index)))
         this.teams=[]
         types.team.forEach((item,index)=>this.teams.push(new team(index)))
-        this.transitionManager=new transitionManager(this)
-        constants.init=true
         this.teams[findName(`Two Leagues`,types.team)].allies.push(findName(`Schwyz`,types.team))
         this.teams[findName(`Schwyz`,types.team)].allies.push(findName(`Two Leagues`,types.team))
         this.teams[findName(`Elder Wittelsbach`,types.team)].allies.push(findName(`Junior Wittelsbach`,types.team))
@@ -81,7 +84,7 @@ class operation{
             }
             if(cit.length>0&&(floor(random(0,2))==0||cit.length>=2||!types.team[a].auto)){
                 let loc=this.cities[cit[floor(random(0,cit.length))]]
-                loc.units.push(new unit(loc,a,0,(cit.length*5+floor(random(0,6)))*100))
+                loc.units.push(new unit(loc,a,0,round(cit.length*(this.teams[a].name==`Ecclesiastical`?2.5:5)+random(0,5))*100))
             }
         }
     }
@@ -117,7 +120,7 @@ class operation{
         this.transitionManager.display(layer)
     }
     update(layer){        
-        if(this.ui.turn.main!=-1&&!dev.speed){
+        if(this.ui.turn.main!=-1&&!dev.speed&&this.speed.move){
             this.speed.main=smoothAnim(this.speed.main,types.team[this.ui.turn.main].auto,1,4,0.05)
         }
         switch(this.scene){
