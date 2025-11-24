@@ -10,12 +10,11 @@ class city{
         this.visibility=0
         this.sieged=0
         this.units=[]
-        this.initial()
     }
     save(){
         let composite={
             position:this.position,
-            type:this.type,
+            name:this.data.name,
             owner:this.owner,
             recruits:this.recruits,
             fade:this.fade,
@@ -28,7 +27,6 @@ class city{
     }
     load(composite){
         this.position=composite.position
-        this.type=composite.type
         this.owner=composite.owner
         this.recruits=composite.recruits
         this.fade=composite.fade
@@ -39,14 +37,17 @@ class city{
         composite.units.forEach(uni=>{this.units.push(new unit(this,0,0,0));last(this.units).load(uni)})
     }
     initial(){
-        this.units.push(new unit(this.city,findName(this.data.rule,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
+        this.units.push(new unit(this.city,findName(this.owner,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
+        if(this.owner!=this.data.name){
+            this.recruits-=floor(random(15,21))*100
+        }
     }
     newTurn(){
         this.recruits=min(this.recruits+constants.spawn.regen*(this.recruits>=constants.spawn.base*0.8?0.5:this.recruits>=constants.spawn.base*0.6?0.75:1),constants.spawn.base)
         let differ=false
         for(let a=0,la=this.units.length;a<la;a++){
             for(let b=a+1;b<la;b++){
-                if(this.units[a].team!=this.units[b].team&&!types.team[this.units[a].team].allies.includes(this.units[b].team)){
+                if(this.units[a].team!=this.units[b].team&&!this.operation.teams[this.units[a].team].allies.includes(this.units[b].team)){
                     differ=true
                 }
             }
@@ -59,7 +60,7 @@ class city{
         this.units.forEach(unit=>{unit.tempVisible=false;unit.newTurn()})
         if(!this.units.some(unit=>unit.type==1)&&this.owner!=-1){
             let own=findName(this.owner,types.team)
-            let aligned=[own,...types.team[own].allies]
+            let aligned=[own,...this.operation.teams[own].allies]
             for(let a=0,la=this.units.length;a<la;a++){
                 if(this.units[a].type==0&&!aligned.includes(this.units[a].team)){
                     for(let b=0,lb=this.units.length;b<lb;b++){
@@ -142,13 +143,13 @@ class city{
     }
     display(layer,scene){
         switch(scene){
-            case 'main':
+            case `main`:
                 layer.push()
                 layer.translate(this.position.x,this.position.y)
                 this.units.forEach(unit=>unit.display(layer))
                 layer.pop()
             break
-            case 'map':
+            case `map`: case `edit`:
                 if(dev.road){
                     layer.strokeWeight(20)
                     for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
@@ -227,7 +228,7 @@ class city{
                 }
                 if(!this.units.some(unit=>unit.type==0)&&this.owner!=-1&&this.units.length>=1){
                     let own=findName(this.owner,types.team)
-                    let aligned=[own,...types.team[own].allies]
+                    let aligned=[own,...this.operation.teams[own].allies]
                     for(let a=0,la=this.units.length;a<la;a++){
                         if(this.units[a].type==1&&!aligned.includes(this.units[a].team)&&!this.units[a].remove){
                             this.units[a].remove=true
@@ -242,7 +243,12 @@ class city{
         switch(scene){
             case 'main':
                 if(distPos(rel,this)<60){
-                    this.operation.ui.cityClick(layer,mouse,this.type)
+                    this.operation.ui.cityClick(layer,mouse,scene,this.type)
+                }
+            break
+            case 'edit':
+                if(distPos(rel,this)<120){
+                    this.operation.ui.cityClick(layer,mouse,scene,this.type)
                 }
             break
         }

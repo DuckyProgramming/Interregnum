@@ -306,14 +306,16 @@ function mergeColor(color1,color2,value){
 }
 //main
 function ally(a,b){
-    types.team[a].allies.push(b)
-    types.team[b].allies.push(a)
+    current.teams[a].allies.push(b)
+    current.teams[b].allies.push(a)
 }
 function see(){
     current.cities.forEach(city=>city.visibility=2)
 }
 function outAgents(){
-    current.ui.agents.forEach(agent=>print(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val})))
+    out=``
+    current.ui.agents.forEach(agent=>out+=(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val}))+`,\n\t`)
+    print(out)
 }
 function topAgents(){
     current.ui.agents=current.ui.agents

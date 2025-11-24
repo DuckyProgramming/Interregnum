@@ -106,13 +106,13 @@ class agent{
                     for(let d=0,ld=this.sets[a][b][c].length;d<ld;d++){
                         if(floor(random(0,1000))==0&&!(c>=5&&b==0&&lb>1)){
                             this.sets[a][b][c][d]=random(-10,10)
-                        }else if(floor(random(0,25))==0){
+                        }else if(floor(random(0,50))==0){
                             if(c>=5&&b==0&&lb>1){
                                 this.sets[a][b][c][d]=floor(random(a==0?13:a==1?12:9))
                             }else{
                                 this.sets[a][b][c][d]=floor(random(0,5))==0?-this.sets[a][b][c][d]:constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-10,10)
                             }
-                        }else if(floor(random(0,10))==0&&c<5){
+                        }else if(floor(random(0,20))==0&&c<5){
                             this.sets[a][b][c][d]=constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-10,10)
                         }
                     }
@@ -123,9 +123,9 @@ class agent{
             for(let b=0,lb=this.constants[a].length;b<lb;b++){
                 if(floor(random(0,1000))==0){
                     this.constants[a][b]=random(-10,10)
-                }else if(floor(random(0,25))==0){
+                }else if(floor(random(0,50))==0){
                     this.constants[a][b]=floor(random(0,5))==0?-this.constants[a][b]:constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-10,10)
-                }else if(floor(random(0,10))==0){
+                }else if(floor(random(0,20))==0){
                     this.constants[a][b]=constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-10,10)
                 }
             }
