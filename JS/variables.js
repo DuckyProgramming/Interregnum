@@ -87,7 +87,7 @@ types={
         {name:`Junior Wittelsbach`,term:`junior wittelsbach`,auto:true,quality:1,chance:2},
     ],
 }
-dev={road:false,instant:true,assemble:true,pause:false,new:false,speed:true,close:false}
+dev={road:false,instant:false,assemble:false,pause:false,new:false,speed:false,close:false}
 graphics={main:0,load:{map:0,city:[],unit:[]}}
 constants={trig:[[],[]],spawn:{base:2500,spend:1000,regen:10,garrison:500},init:false}
 inputs={mouse:{base:{x:0,y:0},rel:{x:0,y:0},previous:{base:{x:0,y:0},rel:{x:0,y:0}}}}
