@@ -17,7 +17,7 @@ class operation{
             transitionManager:this.transitionManager.save()
         }
         this.cities.forEach(city=>composite.cities.push(city.save()))
-        this.teams.forEach(team=>composite.cities.push(team.save()))
+        this.teams.forEach(team=>composite.teams.push(team.save()))
         return composite
     }
     saveCol(){
@@ -30,10 +30,10 @@ class operation{
         this.scene=composite.scene
         if(composite.cities!=undefined){
             this.cities.forEach(cit=>cit.units=[])
-            composite.cities.forEach(cit=>{let index=findName(cit.name,types.city);this.cities[index]=new city(this,0,0,0);this.cities[index].load(cit)})
+            composite.cities.forEach(cit=>{let index=findName(cit.name,types.city);if(index>=0){this.cities[index]=new city(this,0,0,0);this.cities[index].load(cit)}})
         }
         if(composite.teams!=undefined){
-            composite.teams.forEach(tea=>{let index=findName(tea.name,types.team);this.teams[index]=new team(0);this.teams[index].load(tea)})
+            composite.teams.forEach(tea=>{let index=findName(teap.name,types.team);if(index>=0){this.teams[index]=new team(0);this.teams[index].load(tea)}})
         }
         this.ui.load(composite.ui)
         this.transitionManager.load(composite.transitionManager)

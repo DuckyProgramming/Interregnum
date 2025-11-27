@@ -126,7 +126,7 @@ function findName(name,list){
 			return a
 		}
 	}
-    print('findName Fail',name)
+    throw new Error(`findName Fail: ${name}`)
 	return -1
 }
 function updateMouse(layer,scale){

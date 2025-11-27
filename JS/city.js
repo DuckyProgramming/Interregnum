@@ -50,9 +50,9 @@ class city{
             for(let a=0,la=this.units.length;a<la;a++){
                 if(this.units[a].type==0&&!aligned.includes(this.units[a].team)){
                     for(let b=0,lb=this.units.length;b<lb;b++){
-                        if(aligned.includes(this.units[b].team)){
+                        if(aligned.includes(this.units[b].team)&&!this.units[b].remove){
                             this.units[b].remove=true
-                            this.units.push(new unit(this,this.units[b].team,1-this.units[b].type,this.units[b].value))
+                            this.units.splice(0,0,new unit(this,this.units[b].team,1-this.units[b].type,this.units[b].value))
                         }
                     }
                     break
@@ -148,6 +148,47 @@ class city{
             }
         }
     }
+    updateUnits(){
+        if(dev.close){
+            for(let a=0,la=this.units.length;a<la;a++){
+                if(!this.units[a].remove){
+                    for(let b=0,lb=a;b<lb;b++){
+                        if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type&&!this.units[b].remove){
+                            this.units[a].remove=true
+                            this.units[b].value+=this.units[a].value
+                            this.units[b].edit.num+=this.units[a].edit.num
+                            this.units[b].turns=floor(this.units[a].turns*0.5+this.units[b].turns*0.5)
+                        }
+                    }
+                }
+                if(!this.units[a].remove){
+                    this.units[a].update(this.visibility)
+                }
+            }
+        }
+        if(!this.units.some(unit=>types.team[unit.team].name==this.owner&&unit.type==1)){
+            this.owner=-1
+            for(let a=0,la=this.units.length;a<la;a++){
+                if(this.units[a].type==1){
+                    this.owner=types.team[this.units[a].team].name
+                    break
+                }
+            }
+            if(this.owner==-1&&this.units.length>0){
+                this.owner=types.team[this.units[0].team].name
+            }
+        }
+        if(!this.units.some(unit=>unit.type==0)&&this.owner!=-1&&this.units.length>=1){
+            let own=findName(this.owner,types.team)
+            let aligned=[own,...this.operation.teams[own].allies]
+            for(let a=0,la=this.units.length;a<la;a++){
+                if(this.units[a].type==1&&!aligned.includes(this.units[a].team)&&!this.units[a].remove){
+                    this.units[a].remove=true
+                    this.units.push(new unit(this,this.units[a].team,1-this.units[a].type,this.units[a].value))
+                }
+            }
+        }
+    }
     display(layer,scene){
         switch(scene){
             case `main`:
@@ -181,21 +222,7 @@ class city{
     update(layer,scene){
         switch(scene){
             case 'main':
-                if(dev.close){
-                    for(let a=0,la=this.units.length;a<la;a++){
-                        for(let b=0,lb=a;b<lb;b++){
-                            if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type&&!this.units[a].remove&&!this.units[b].remove){
-                                this.units[a].remove=true
-                                this.units[b].value+=this.units[a].value
-                                this.units[b].edit.num+=this.units[a].edit.num
-                                this.units[b].turns=floor(this.units[a].turns*0.5+this.units[b].turns*0.5)
-                            }
-                        }
-                        if(!this.units[a].remove){
-                            this.units[a].update(this.visibility)
-                        }
-                    }
-                }else{
+                if(!dev.close){
                     this.fade.main=smoothAnim(this.fade.main,this.fade.trigger,0,1,15)
                     let cap=0
                     for(let a=0,la=this.units.length;a<la;a++){
@@ -203,6 +230,18 @@ class city{
                             cap+=33-this.units[a].type*9
                         }
                         this.units[a].goal.position.y=cap
+                        if(this.units[a].combining){
+                            let fail=true
+                            for(let b=0,lb=a;b<lb;b++){
+                                if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type){
+                                    fail=false
+                                    break
+                                }
+                            }
+                            if(fail){
+                                this.units[a].combining=false
+                            }
+                        }
                         for(let b=0,lb=a;b<lb;b++){
                             if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type&&!this.units[a].remove&&!this.units[b].remove&&!this.units[a].removeMark&&!this.units[b].removeMark){
                                 this.units[a].goal.position.y=this.units[b].goal.position.y
@@ -229,28 +268,6 @@ class city{
                         this.units.splice(a,1)
                         a--
                         la--
-                    }
-                }
-                if(!this.units.some(unit=>types.team[unit.team].name==this.owner&&unit.type==1)){
-                    this.owner=-1
-                    for(let a=0,la=this.units.length;a<la;a++){
-                        if(this.units[a].type==1){
-                            this.owner=types.team[this.units[a].team].name
-                            break
-                        }
-                    }
-                    if(this.owner==-1&&this.units.length>0){
-                        this.owner=types.team[this.units[0].team].name
-                    }
-                }
-                if(!this.units.some(unit=>unit.type==0)&&this.owner!=-1&&this.units.length>=1){
-                    let own=findName(this.owner,types.team)
-                    let aligned=[own,...this.operation.teams[own].allies]
-                    for(let a=0,la=this.units.length;a<la;a++){
-                        if(this.units[a].type==1&&!aligned.includes(this.units[a].team)&&!this.units[a].remove){
-                            this.units[a].remove=true
-                            this.units.push(new unit(this,this.units[a].team,1-this.units[a].type,this.units[a].value))
-                        }
                     }
                 }
             break
