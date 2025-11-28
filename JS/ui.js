@@ -2,7 +2,7 @@ class ui{
     constructor(operation){
         this.operation=operation
         this.width=200
-        this.tabs={active:0,anim:[],record:[]}
+        this.tabs={active:0,anim:[],record:[],editActive:0,editAnim:[]}
         this.turn={main:-1,total:0,count:0,timer:0,locked:false,pinned:false}
         this.select={city:-1,targetCity:-1,secondaryCity:-1,battleCity:-1,moved:[],trigger:false,edit:0}
         this.agency={count:0,time:0,reorg:false,lastResult:[]}
@@ -20,20 +20,27 @@ class ui{
     }
     save(){
         let composite={
-            tabs:this.tabs,
+            tabs:{
+                active:this.tabs.active,
+                editActive:this.tabs.editActive
+            },
             turn:this.turn,
             battle:this.battle,
         }
         return composite
     }
     load(composite){
-        this.tabs=composite.tabs
+        this.tabs.active=composite.tabs.active==undefined?0:composite.tabs.active
+        this.tabs.editActive=composite.tabs.editActive==undefined?0:composite.tabs.editActive
         this.turn=composite.turn
         this.battle=composite.battle
     }
     initial(){
         for(let a=0,la=15;a<la;a++){
             this.tabs.anim.push(0)
+        }
+        for(let a=0,la=2;a<la;a++){
+            this.tabs.editAnim.push(0)
         }
     }
     initialAgents(){
@@ -91,7 +98,7 @@ class ui{
                     .sort((a,b)=>a.sort-b.sort)
                     .map(({value})=>value)
             }
-            if(this.turn.total==100000||this.turn.total==1000000||this.turn.total==10000000){
+            if(this.turn.total==100000||this.turn.total==1000000||this.turn.total==1000000){
                 let nums=[floor(millis()/360000),floor(millis()/60000)%60,floor(millis()/1000)%60]
                 print(`Time at ${this.turn.total} Turns: ${nums[0]<10?`0`:``}${nums[0]}:${nums[1]<10?`0`:``}${nums[1]}:${nums[2]<10?`0`:``}${nums[2]}`)
             }
@@ -453,6 +460,7 @@ class ui{
             break
             case `edit`:
                 this.operation.cities[city].owner=types.team[this.select.edit].name
+                this.operation.cities[city].units=[]
             break
         }
     }
@@ -1046,36 +1054,80 @@ class ui{
             case `edit`:
                 layer.fill(150)
                 layer.rect(layer.width-this.width*0.5,layer.height*0.5,this.width,layer.height)
-                layer.push()
-                layer.translate(layer.width-this.width*0.5,0)
-                tick=75
-                count=1
-                layer.fill(0)
-                layer.textSize(24)
-                layer.text(`Editing Map`,0,40)
-                layer.textSize(18)
-                layer.text(`Placing: ${types.team[this.select.edit].name}`,0,tick+7.5)
-                tick+=25
-                layer.fill(120)
-                layer.rect(0,tick+25,160,40,10)
-                layer.fill(0)
-                layer.textSize(15)
-                layer.text(`Exit`,0,tick+25)
-                layer.textSize(10)
-                layer.text(`Enter`,60,tick+15)
-                tick+=52
-                for(let a=0,la=types.team.length;a<la;a++){
-                    layer.fill(120,120,120)
-                    layer.rect(0,tick+12.5,160,22,10)
-                    layer.fill(0)
-                    layer.textSize(12)
-                    layer.text(`${types.team[a].name}`,0,tick+12.5)
-                    layer.textSize(10)
-                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
-                    tick+=30
-                    count++
-                }
-                layer.pop()
+                this.tabs.editAnim.forEach((anim,index)=>{
+                    layer.fill(150)
+                    layer.rect(layer.width+this.width*0.5-this.width*anim,layer.height*0.5,this.width,layer.height)
+                    if(anim>0){
+                        layer.push()
+                        layer.translate(layer.width+this.width*0.5-this.width*anim,0)
+                        tick=75
+                        count=1
+                        switch(index){
+                            case 0:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Editing Map`,0,40)
+                                layer.textSize(18)
+                                layer.text(`Placing: ${types.team[this.select.edit].name}`,0,tick+7.5)
+                                tick+=25
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Exit`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(`Enter`,60,tick+15)
+                                tick+=50
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Place`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(count,60,tick+15)
+                                tick+=50
+                                count++
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Load`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(count,60,tick+15)
+                                tick+=50
+                                count++
+                            break
+                            case 1:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Pick Placer`,0,40)
+                                layer.textSize(18)
+                                layer.text(`Placing: ${types.team[this.select.edit].name}`,0,tick+7.5)
+                                tick+=25
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Exit`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(`Enter`,60,tick+15)
+                                tick+=52
+                                for(let a=0,la=types.team.length;a<la;a++){
+                                    layer.fill(120,120,120)
+                                    layer.rect(0,tick+12.5,160,22,10)
+                                    layer.fill(0)
+                                    layer.textSize(12)
+                                    layer.text(`${types.team[a].name}`,0,tick+12.5)
+                                    layer.textSize(10)
+                                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
+                                    tick+=30
+                                    count++
+                                }
+                            break
+                        }
+                        layer.pop()
+                    }
+                })
             break
         }
     }
@@ -1755,6 +1807,11 @@ class ui{
                     }
                 }
             break
+            case `edit`:
+                this.tabs.editAnim.forEach((anim,index,array)=>{
+                    array[index]=smoothAnim(anim,this.tabs.editActive==index,0,1,5)
+                })
+            break
         }
     }
     onClick(layer,mouse,scene){
@@ -2053,23 +2110,42 @@ class ui{
                 }
                 tick+=50
                 if(inPointBox(rel,boxify(0,tick+25,160,40))){
-                    this.operation.loadCol()
+                    this.operation.loadCol(`map`)
                 }
                 tick+=50
             break
             case `edit`:
                 rel={position:{x:mouse.position.x-layer.width+this.width*0.5,y:mouse.position.y}}
                 tick=100
-                if(inPointBox(rel,boxify(0,tick+25,160,40))){
-                    this.operation.initialComponents()
-                    this.operation.transitionManager.begin(`main`)
-                }
-                tick+=52
-                for(let a=0,la=types.team.length;a<la;a++){
-                    if(inPointBox(rel,boxify(0,tick+12.5,160,22,10))){
-                        this.select.edit=a
-                    }
-                    tick+=30
+                switch(this.tabs.editActive){
+                    case 0:
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.operation.initialComponents()
+                            this.operation.transitionManager.begin(`main`)
+                        }
+                        tick+=50
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.tabs.editActive=1
+                        }
+                        tick+=50
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.operation.loadCol(`edit`)
+                        }
+                        tick+=50
+                    break
+                    case 1:
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.tabs.editActive=0
+                        }
+                        tick+=52
+                        for(let a=0,la=types.team.length;a<la;a++){
+                            if(inPointBox(rel,boxify(0,tick+12.5,160,22,10))){
+                                this.select.edit=a
+                                this.tabs.editActive=0
+                            }
+                            tick+=30
+                        }
+                    break
                 }
             break
         }
@@ -2332,20 +2408,43 @@ class ui{
                         this.turn.count=0
                         this.newTurn()
                     }
-                    this.operation.loadCol()
+                    this.operation.loadCol(`map`)
                 }
+                count++
             break
             case `edit`:
                 count=1
-                if(key==`Enter`){
-                    this.operation.initialComponents()
-                    this.operation.transitionManager.begin(`main`)
-                }
-                for(let a=0,la=types.team.length;a<la;a++){
-                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
-                        this.select.edit=a
-                    }
-                    count++
+                switch(this.tabs.editActive){
+                    case 0:
+                        if(key==`Enter`){
+                            this.operation.initialComponents()
+                            this.operation.transitionManager.begin(`main`)
+                        }
+                        if(key==count.toString()){
+                            this.tabs.editActive=1
+                        }
+                        count++
+                        if(key==count.toString()){
+                            if(this.tabs.active!=0){
+                                this.turn.count=0
+                                this.newTurn()
+                            }
+                            this.operation.loadCol(`edit`)
+                        }
+                        count++
+                    break
+                    case 1:
+                        if(key==`Enter`){
+                            this.tabs.editActive=0
+                        }
+                        for(let a=0,la=types.team.length;a<la;a++){
+                            if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
+                                this.select.edit=a
+                                this.tabs.editActive=0
+                            }
+                            count++
+                        }
+                    break
                 }
             break
         }

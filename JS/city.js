@@ -13,7 +13,6 @@ class city{
     }
     save(){
         let composite={
-            position:this.position,
             name:this.data.name,
             owner:this.owner,
             recruits:this.recruits,
@@ -26,7 +25,6 @@ class city{
         return composite
     }
     load(composite){
-        this.position=composite.position
         this.owner=composite.owner
         this.recruits=composite.recruits
         this.fade=composite.fade
@@ -37,9 +35,11 @@ class city{
         composite.units.forEach(uni=>{this.units.push(new unit(this,0,0,0));last(this.units).load(uni)})
     }
     initial(){
-        this.units.push(new unit(this.city,findName(this.owner,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
-        if(this.owner!=this.data.rule){
-            this.recruits-=floor(random(15,21))*100
+        if(this.units.length==0){
+            this.units.push(new unit(this.city,findName(this.owner,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
+            if(this.owner!=this.data.rule){
+                this.recruits-=floor(random(15,21))*100
+            }
         }
     }
     newTurn(){

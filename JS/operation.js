@@ -30,29 +30,29 @@ class operation{
         this.scene=composite.scene
         if(composite.cities!=undefined){
             this.cities.forEach(cit=>cit.units=[])
-            composite.cities.forEach(cit=>{let index=findName(cit.name,types.city);if(index>=0){this.cities[index]=new city(this,0,0,0);this.cities[index].load(cit)}})
+            composite.cities.forEach(cit=>{let index=findName(cit.name,types.city);if(index>=0){this.cities[index]=new city(this,this.cities[index].position.x,this.cities[index].position.y,this.cities[index].type);this.cities[index].load(cit)}})
         }
         if(composite.teams!=undefined){
-            composite.teams.forEach(tea=>{let index=findName(teap.name,types.team);if(index>=0){this.teams[index]=new team(0);this.teams[index].load(tea)}})
+            composite.teams.forEach(tea=>{let index=findName(tea.name,types.team);if(index>=0){this.teams[index]=new team(0);this.teams[index].load(tea)}})
         }
         this.ui.load(composite.ui)
         this.transitionManager.load(composite.transitionManager)
     }
-    loadStp(input){
+    loadStp(input,scene){
         let file=input.files[0]
         let reader=new FileReader()
-        reader.battle=this
+        reader.operation=this
+        reader.scene=scene
         reader.readAsText(file)
-        reader.onload=function(){
-            this.battle.load(reader.result);
-        }
+        reader.onload=function(){this.operation.load(reader.result);this.operation.scene=scene}
     }
-    loadCol(){
+    loadCol(scene){
         let input=document.createElement('input')
         input.type='file'
-        input.battle=this
+        input.operation=this
+        input.scene=scene
         input.click()
-        input.addEventListener('change',function(){this.battle.loadStp(this)},false)
+        input.addEventListener('change',function(){this.operation.loadStp(this,this.scene)},false)
     }
     initial(){
         this.calc=new calc()
@@ -74,17 +74,20 @@ class operation{
         this.teams[findName(`Junior Habsburg`,types.team)].allies.push(findName(`Elder Habsburg`,types.team))
     }
     initialComponents(){
+        let units=this.cities.some(city=>city.units.length>0)
         this.cities.forEach(city=>city.initial())
-        for(let a=0,la=this.teams.length;a<la;a++){
-            let cit=[]
-            for(let b=0,lb=this.cities.length;b<lb;b++){
-                if(this.cities[b].owner==this.teams[a].name){
-                    cit.push(b)
+        if(!units){
+            for(let a=0,la=this.teams.length;a<la;a++){
+                let cit=[]
+                for(let b=0,lb=this.cities.length;b<lb;b++){
+                    if(this.cities[b].owner==this.teams[a].name){
+                        cit.push(b)
+                    }
                 }
-            }
-            if(cit.length>0&&(floor(random(0,2))==0||cit.length>=2||!types.team[a].auto)){
-                let loc=this.cities[cit[floor(random(0,cit.length))]]
-                loc.units.push(new unit(loc,a,0,round(cit.length*(this.teams[a].name==`Ecclesiastical`?2.5:5)+random(0,5))*100))
+                if(cit.length>0&&(floor(random(0,2))==0||cit.length>=2||!types.team[a].auto)){
+                    let loc=this.cities[cit[floor(random(0,cit.length))]]
+                    loc.units.push(new unit(loc,a,0,round(cit.length*(this.teams[a].name==`Ecclesiastical`?2.5:5)+random(0,5))*100))
+                }
             }
         }
     }
@@ -181,7 +184,7 @@ class operation{
             break
             case `map`: case `edit`:
                 this.zoom.map=constrain(
-                    this.zoom.map-(mouse.position.y-previous.position.y)*(button==`right`?3:1),
+                    this.zoom.map-(mouse.position.y-previous.position.y)*(button==`right`?6:2),
                     -(graphics.load.map.height*0.5-layer.height*0.5/max((layer.width-this.ui.width)/graphics.load.map.width,layer.height/graphics.load.map.height)),
                     (graphics.load.map.height*0.5-layer.height*0.5/max((layer.width-this.ui.width)/graphics.load.map.width,layer.height/graphics.load.map.height)),
                 )

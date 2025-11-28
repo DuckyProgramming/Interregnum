@@ -17,7 +17,7 @@ class unit{
     }
     save(){
         let composite={
-            team:this.team,
+            team:types.team[this.team].name,
             type:this.type,
             value:this.value,
             fade:this.fade,
@@ -33,7 +33,7 @@ class unit{
         return composite
     }
     load(composite){
-        this.team=composite.team
+        this.team=findName(typeof(composite.team)==`number`?convert[0][composite.team]:composite.team,types.team)
         this.type=composite.type
         this.value=composite.value
         this.fade=composite.fade
