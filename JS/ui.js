@@ -2,9 +2,9 @@ class ui{
     constructor(operation){
         this.operation=operation
         this.width=200
-        this.tabs={active:0,anim:[],record:[],editActive:0,editAnim:[]}
+        this.tabs={active:0,anim:[],record:[],mapActive:0,mapAnim:[],editActive:0,editAnim:[]}
         this.turn={main:-1,total:0,count:0,timer:0,locked:false,pinned:false}
-        this.select={city:-1,targetCity:-1,secondaryCity:-1,battleCity:-1,moved:[],trigger:false,edit:0}
+        this.select={city:-1,targetCity:-1,secondaryCity:-1,battleCity:-1,moved:[],trigger:false,edit:0,auto:[]}
         this.agency={count:0,time:0,reorg:false,lastResult:[]}
         this.battle={result:0,circumstance:[]}
         this.agents=[]
@@ -22,7 +22,8 @@ class ui{
         let composite={
             tabs:{
                 active:this.tabs.active,
-                editActive:this.tabs.editActive
+                mapActive:this.tabs.mapActive,
+                editActive:this.tabs.editActive,
             },
             turn:this.turn,
             battle:this.battle,
@@ -31,6 +32,7 @@ class ui{
     }
     load(composite){
         this.tabs.active=composite.tabs.active==undefined?0:composite.tabs.active
+        this.tabs.mapActive=composite.tabs.mapActive==undefined?0:composite.tabs.mapActive
         this.tabs.editActive=composite.tabs.editActive==undefined?0:composite.tabs.editActive
         this.turn=composite.turn
         this.battle=composite.battle
@@ -40,10 +42,14 @@ class ui{
             this.tabs.anim.push(0)
         }
         for(let a=0,la=2;a<la;a++){
+            this.tabs.mapAnim.push(0)
+        }
+        for(let a=0,la=2;a<la;a++){
             this.tabs.editAnim.push(0)
         }
     }
     initialAgents(){
+        this.agents=[]
         for(let a=0,la=types.team.length;a<la;a++){
             if(types.team[a].auto){
                 if(dev.new||agentset.length==0){
@@ -66,6 +72,11 @@ class ui{
             this.tabs.record.splice(0,1)
         }
     }
+    reset(){
+        this.turn.total=0
+        this.turn.count=0
+        this.newTurn()
+    }
     newTurn(){
         if(dev.assemble&&this.turn.total!=0){
             if(this.turn.total%500==0){
@@ -83,14 +94,14 @@ class ui{
                 this.agents.sort((a,b)=>a.record-b.record)
                 this.agents.splice(0,5)
                 let len=this.agents.length
-                for(let a=0,la=this.turn.total>=10000000?5:4;a<la;a++){
+                for(let a=0,la=this.turn.total>=100000000?5:4;a<la;a++){
                     this.agents.push(new agent(
                         JSON.parse(JSON.stringify(this.agents[len-1-a].sets)),
                         JSON.parse(JSON.stringify(this.agents[len-1-a].constants))
                     ))
                     last(this.agents).mutate()
                 }
-                if(this.turn.total<10000000){
+                if(this.turn.total<100000000){
                     this.agents.push(new agent())
                 }
                 this.agents=this.agents
@@ -98,7 +109,7 @@ class ui{
                     .sort((a,b)=>a.sort-b.sort)
                     .map(({value})=>value)
             }
-            if(this.turn.total==100000||this.turn.total==1000000||this.turn.total==1000000){
+            if(this.turn.total==1000000||this.turn.total==10000000||this.turn.total==10000000){
                 let nums=[floor(millis()/360000),floor(millis()/60000)%60,floor(millis()/1000)%60]
                 print(`Time at ${this.turn.total} Turns: ${nums[0]<10?`0`:``}${nums[0]}:${nums[1]<10?`0`:``}${nums[1]}:${nums[2]<10?`0`:``}${nums[2]}`)
             }
@@ -150,6 +161,13 @@ class ui{
             this.operation.cities[this.select.city],
             this.operation.cities[this.select.city]
         ][this.battle.circumstance[0]]
+        let totals=[]
+        for(let a=0,la=this.battle.result.casualties.length;a<la;a++){
+            totals.push(0)
+            for(let b=0,lb=this.battle.result.casualties[a].length;b<lb;b++){
+                totals[a]+=this.battle.result.casualties[a][b].base
+            }
+        }
         for(let a=0,la=this.battle.result.casualties.length;a<la;a++){
             for(let b=0,lb=this.battle.result.casualties[a].length;b<lb;b++){
                 let left=this.battle.result.casualties[a][b].number
@@ -177,6 +195,10 @@ class ui{
                         }
                     }
                 }
+                for(let c=0,lc=this.battle.result.casualties[1-a].length;c<lc;c++){
+                    this.operation.teams[this.battle.result.casualties[1-a][c].team].kills+=round(this.battle.result.casualties[a][b].number*this.battle.result.casualties[1-a][c].base/totals[1-a]/100+random(-0.5,0.5))*100
+                }
+                this.operation.teams[this.battle.result.casualties[a][b].team].deaths+=this.battle.result.casualties[a][b].number
             }
         }
         let totalLeft=[0,0]
@@ -288,7 +310,7 @@ class ui{
     }
     cityClick(layer,mouse,scene,city){
         switch(scene){
-            case `main`:
+            case `title`: case `setup`: case `main`:
                 let aligned=[this.turn.main,...this.operation.teams[this.turn.main].allies]
                 if(mouse.position.x<layer.width-this.width&&!this.select.trigger){
                     if(this.tabs.active==7&&types.city[this.select.city].connect.some(connection=>{return connection.name==types.city[city].name})){
@@ -362,7 +384,7 @@ class ui{
                                 this.operation.calc.reset()
                                 this.battle.result.casualties.forEach(set=>set.forEach(item=>item.number=round(item.number/100+random(-0.5,0.5))*100))
                                 this.battle.circumstance[1]=0
-                                this.agency.time=dev.instant?0:10
+                                this.agency.time=dev.instant?0:5
                             }else if(exists){
                                 for(let a=0,la=this.operation.cities[this.select.targetCity].units.length;a<la;a++){
                                     let uni=this.operation.cities[this.select.targetCity].units[a]
@@ -645,34 +667,98 @@ class ui{
         layer.noStroke()
         let tick=0
         let count=0
+        let set
+        let rows
         switch(scene){
-            case `setup`:
+            case `title`:
+                layer.push()
+                layer.translate(layer.width*0.5,0)
                 layer.fill(150)
+                layer.rect(0,400-types.map.length*30,560,180,20)
+                layer.rect(0,560,300,90+types.map.length*60,20)
+                for(let a=0,la=15;a<la;a++){
+                    layer.fill(20+a*2,20+a*2.5,20+a*3)
+                    layer.textSize(100)
+                    layer.text(`Interregnum`,a*0.2,380-types.map.length*30+a*0.5)
+                    layer.textSize(40)
+                    layer.text(`DuckyProgramming`,a*0.1,450-types.map.length*30+a*0.25)
+                }
+                layer.fill(0)
+                layer.textSize(40)
+                layer.text(`Select Map:`,0,552.5-types.map.length*30)
+                for(let a=0,la=types.map.length;a<la;a++){
+                    layer.fill(120)
+                    layer.rect(0,a*60+610-la*30,240,50,10)
+                    layer.fill(0)
+                    layer.textSize(20)
+                    layer.text(`${types.map[a].name}`,0,a*60+610-la*30)
+                    layer.textSize(10)
+                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],100,a*60+595-la*30)
+                }
+                layer.pop()
+            break
+            case `setup`:
+                set=types.map[this.operation.nextMap].teamSet
+                rows=ceil(this.select.auto.length/set)
+                layer.push()
+                layer.translate(layer.width*0.5,0)
+                layer.fill(150)
+                layer.rect(0,450,set*250+50,220+rows*60,20)
+                layer.fill(0)
+                layer.textSize(48)
+                layer.text(`Pick Player Factions`,0,405-rows*30)
+                for(let a=0,la=this.select.auto.length;a<la;a++){
+                    layer.fill(120,this.select.auto[a]?120:200,120)
+                    layer.rect(-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475,240,50,10)
+                    layer.fill(0)
+                    layer.textSize(20)
+                    layer.text(`${types.map[this.operation.nextMap].team[a].name}`,-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475)
+                    layer.textSize(10)
+                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],100-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+460)
+                }
+                layer.fill(120)
+                layer.rect(-125,rows*30+505,240,50,10)
+                layer.rect(125,rows*30+505,240,50,10)
+                layer.fill(0)
+                layer.textSize(20)
+                layer.text(`Begin`,-125,rows*30+505)
+                layer.text(`Edit Map`,125,rows*30+505)
+                layer.textSize(10)
+                layer.text(`Enter`,-25,rows*30+490)
+                layer.text(`Slash`,225,rows*30+490)
+                layer.pop()
+            break
+            case `pick`:
+                set=types.map[this.operation.nextMap].teamSet
+                rows=ceil(types.team.length/set)
+                layer.fill(180)
                 layer.rect(layer.width*0.5,layer.height*0.5,layer.width,layer.height)
                 layer.push()
                 layer.translate(layer.width*0.5,0)
+                layer.fill(150)
+                layer.rect(0,450,set*250+50,220+rows*60,20)
                 layer.fill(0)
                 layer.textSize(48)
-                layer.text(`Pick Player Factions`,0,160)
+                layer.text(`Pick Player Factions`,0,405-rows*30)
                 for(let a=0,la=types.team.length;a<la;a++){
                     layer.fill(120,types.team[a].auto?120:200,120)
-                    layer.rect(-250+250*(a%3),floor(a/3)*60+240,240,50,10)
+                    layer.rect(-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475,240,50,10)
                     layer.fill(0)
                     layer.textSize(20)
-                    layer.text(`${types.team[a].name}`,-250+250*(a%3),floor(a/3)*60+240)
+                    layer.text(`${types.team[a].name}`,-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475)
                     layer.textSize(10)
-                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],100-250+250*(a%3),floor(a/3)*60+225)
+                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],100-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+460)
                 }
                 layer.fill(120)
-                layer.rect(-125,floor((types.team.length+1)/3)*60+270,240,50,10)
-                layer.rect(125,floor((types.team.length+1)/3)*60+270,240,50,10)
+                layer.rect(-125,rows*30+505,240,50,10)
+                layer.rect(125,rows*30+505,240,50,10)
                 layer.fill(0)
                 layer.textSize(20)
-                layer.text(`Begin`,-125,floor((types.team.length+1)/3)*60+270)
-                layer.text(`Edit Map`,125,floor((types.team.length+1)/3)*60+270)
+                layer.text(`Begin`,-125,rows*30+505)
+                layer.text(`Edit Map`,125,rows*30+505)
                 layer.textSize(10)
-                layer.text(`Enter`,-25,floor((types.team.length+1)/3)*60+255)
-                layer.text(`Slash`,225,floor((types.team.length+1)/3)*60+255)
+                layer.text(`Enter`,-25,rows*30+490)
+                layer.text(`Slash`,225,rows*30+490)
                 layer.pop()
             break
             case `main`:
@@ -1013,43 +1099,91 @@ class ui{
             case `map`:
                 layer.fill(150)
                 layer.rect(layer.width-this.width*0.5,layer.height*0.5,this.width,layer.height)
-                layer.push()
-                layer.translate(layer.width-this.width*0.5,0)
-                tick=75
-                count=1
-                layer.fill(0)
-                layer.textSize(24)
-                layer.text(`Viewing Map`,0,40)
-                layer.textSize(18)
-                layer.text(`Total Turns: ${this.turn.total}`,0,tick+7.5)
-                tick+=25
-                layer.fill(120)
-                layer.rect(0,tick+25,160,40,10)
-                layer.fill(0)
-                layer.textSize(15)
-                layer.text(`Exit`,0,tick+25)
-                layer.textSize(10)
-                layer.text(`Enter`,60,tick+15)
-                tick+=50
-                layer.fill(120)
-                layer.rect(0,tick+25,160,40,10)
-                layer.fill(0)
-                layer.textSize(15)
-                layer.text(`Save`,0,tick+25)
-                layer.textSize(10)
-                layer.text(count,70,tick+15)
-                tick+=50
-                count++
-                layer.fill(120)
-                layer.rect(0,tick+25,160,40,10)
-                layer.fill(0)
-                layer.textSize(15)
-                layer.text(`Load`,0,tick+25)
-                layer.textSize(10)
-                layer.text(count,70,tick+15)
-                tick+=50
-                count++
-                layer.pop()
+                this.tabs.mapAnim.forEach((anim,index)=>{
+                    layer.fill(150)
+                    layer.rect(layer.width+this.width*0.5-this.width*anim,layer.height*0.5,this.width,layer.height)
+                    if(anim>0){
+                        layer.push()
+                        layer.translate(layer.width+this.width*0.5-this.width*anim,0)
+                        tick=75
+                        count=1
+                        switch(index){
+                            case 0:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Viewing Map`,0,40)
+                                layer.textSize(18)
+                                layer.text(`Total Turns: ${this.turn.total}`,0,tick+7.5)
+                                tick+=25
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Exit`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(`Enter`,60,tick+15)
+                                tick+=50
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Stats`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(count,70,tick+15)
+                                tick+=50
+                                count++
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Save`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(count,70,tick+15)
+                                tick+=50
+                                count++
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Load`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(count,70,tick+15)
+                                tick+=50
+                                count++
+                            break
+                            case 1:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Viewing Map`,0,40)
+                                layer.textSize(18)
+                                layer.text(`Total Turns: ${this.turn.total}`,0,tick+7.5)
+                                tick+=25
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Exit`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(`Enter`,60,tick+15)
+                                tick+=52
+                                for(let a=0,la=types.team.length;a<la;a++){
+                                    layer.fill(120,120,120)
+                                    layer.rect(0,tick+12.5,160,22,10)
+                                    layer.fill(0)
+                                    layer.textSize(12)
+                                    layer.textAlign(RIGHT,CENTER)
+                                    layer.text(`${this.operation.teams[a].kills}/${this.operation.teams[a].deaths}/${this.operation.teams[a].deserters}`,75,tick+12.5)
+                                    layer.textAlign(CENTER,CENTER)
+                                    let img=graphics.load.unit[types.team[a].loadIndex][2]
+                                    layer.image(img,-64,tick+12.5,img.width*0.15,img.height*0.15)
+                                    tick+=30
+                                    count++
+                                }
+                            break
+                        }
+                        layer.pop()
+                    }
+                })
             break
             case `edit`:
                 layer.fill(150)
@@ -1134,12 +1268,13 @@ class ui{
     update(layer,scene){
         switch(scene){
             case `main`:
-                this.select.trigger=false
                 if(!dev.close){
                     this.tabs.anim.forEach((anim,index,array)=>{
                         array[index]=smoothAnim(anim,this.tabs.active==index,0,1,5)
                     })
                 }
+            case `title`: case `setup`:
+                this.select.trigger=false
                 if(this.turn.timer>0){
                     if(dev.instant){
                         this.turn.timer=0
@@ -1179,7 +1314,7 @@ class ui{
                                     this.operation.zoom.shift.position.y=types.city[city].loc[1]
                                     this.operation.zoom.shift.active=true
                                     this.select.trigger=true
-                                    this.agency.time=dev.instant?0:10
+                                    this.agency.time=dev.instant?0:5
                                     this.agency.count++
                                 }
                             }
@@ -1239,7 +1374,7 @@ class ui{
                                     switch(maximal[1]){
                                         case 0:
                                             if(this.spawn(cit,this.turn.main)){
-                                                this.agency.time=dev.instant?0:10
+                                                this.agency.time=dev.instant?0:5
                                                 c=lc
                                                 moved=true
                                             }
@@ -1249,7 +1384,7 @@ class ui{
                                                 if(cit.getUnits([this.turn.main],0).length>0){
                                                     this.moveTab(3)
                                                     cit.units.forEach(unit=>{unit.edit.num=unit.type==0&&aligned.includes(unit.team)?unit.value:0;unit.edit.active=false})
-                                                    this.agency.time=dev.instant?0:10
+                                                    this.agency.time=dev.instant?0:5
                                                     c=lc
                                                     moved=true
                                                 }
@@ -1261,7 +1396,7 @@ class ui{
                                                     this.moveTab(2)
                                                     this.agency.reorg=true
                                                     cit.units.forEach(unit=>{unit.edit.num=0;unit.edit.active=false})
-                                                    this.agency.time=dev.instant?0:10
+                                                    this.agency.time=dev.instant?0:5
                                                     c=lc
                                                     moved=true
                                                 }
@@ -1301,7 +1436,7 @@ class ui{
                                             if(cit.getUnits([this.turn.main]).length>0){
                                                 if(cit.getNotUnits(aligned).length>0){
                                                     this.initializeCombat(2)
-                                                    this.agency.time=dev.instant?0:10
+                                                    this.agency.time=dev.instant?0:5
                                                     c=lc
                                                     moved=true
                                                 }
@@ -1479,7 +1614,7 @@ class ui{
                                 }
                                 cit.updateUnits()
                                 this.moveTab(this.turn.locked?1:0)
-                                this.agency.time=dev.instant?0:10
+                                this.agency.time=dev.instant?0:5
                             }
                         break
                         case 3:
@@ -1564,12 +1699,12 @@ class ui{
                                     type
                                 ])
                                 if(this.agency.lastResult[0]>0){
-                                    this.agency.time=dev.instant?0:10
+                                    this.agency.time=dev.instant?0:5
                                     this.cityClick(layer,{position:{x:0,y:0}},scene,this.select.targetCity)
                                 }else{
                                     if(this.agency.count>=10){
                                         this.select.targetCity=findName(randin(types.city[this.select.city].connect).name,types.city)
-                                        this.agency.time=dev.instant?0:10
+                                        this.agency.time=dev.instant?0:5
                                         this.cityClick(layer,{position:{x:0,y:0}},scene,this.select.targetCity)
                                     }else if(types.city[this.select.city].connect.length==0){
                                         this.newTurn()
@@ -1599,7 +1734,7 @@ class ui{
                                 ])
                                 if(this.agency.lastResult[0]>0){
                                     this.initializeCombat(0)
-                                    this.agency.time=dev.instant?0:10
+                                    this.agency.time=dev.instant?0:5
                                 }else{
                                     for(let a=0,la=this.operation.cities[this.select.targetCity].units.length;a<la;a++){
                                         let uni=this.operation.cities[this.select.targetCity].units[a]
@@ -1643,7 +1778,7 @@ class ui{
                                 ])
                                 if(this.agency.lastResult[0]>0){
                                     this.initializeCombat(1)
-                                    this.agency.time=dev.instant?0:10
+                                    this.agency.time=dev.instant?0:5
                                 }else{
                                     this.newTurn()
                                     this.agency.time=0
@@ -1728,12 +1863,12 @@ class ui{
                                     totals[2]/10000,
                                 ])
                                 if(this.agency.lastResult[0]>0){
-                                    this.agency.time=dev.instant?0:10
+                                    this.agency.time=dev.instant?0:5
                                     this.cityClick(layer,{position:{x:0,y:0}},scene,this.select.secondaryCity)
                                 }else{
                                     if(this.agency.count>=10){
                                         this.select.secondaryCity=findName(randin(types.city[this.select.targetCity].connect).name,types.city)
-                                        this.agency.time=dev.instant?0:10
+                                        this.agency.time=dev.instant?0:5
                                         this.cityClick(layer,{position:{x:0,y:0}},scene,this.select.secondaryCity)
                                     }else if(types.city[this.select.targetCity].connect.length==0){
                                         this.newTurn()
@@ -1787,12 +1922,12 @@ class ui{
                                     totals[2]/10000,
                                 ])
                                 if(this.agency.lastResult[0]>0){
-                                    this.agency.time=dev.instant?0:10
+                                    this.agency.time=dev.instant?0:5
                                     this.cityClick(layer,{position:{x:0,y:0}},scene,this.select.targetCity)
                                 }else{
                                     if(this.agency.count>=10){
                                         this.select.targetCity=findName(randin(types.city[this.select.city].connect).name,types.city)
-                                        this.agency.time=dev.instant?0:10
+                                        this.agency.time=dev.instant?0:5
                                         this.cityClick(layer,{position:{x:0,y:0}},scene,this.select.targetCity)
                                     }else if(types.city[this.select.city].connect.length==0){
                                         this.newTurn()
@@ -1807,6 +1942,11 @@ class ui{
                     }
                 }
             break
+            case `map`:
+                this.tabs.mapAnim.forEach((anim,index,array)=>{
+                    array[index]=smoothAnim(anim,this.tabs.mapActive==index,0,1,5)
+                })
+            break
             case `edit`:
                 this.tabs.editAnim.forEach((anim,index,array)=>{
                     array[index]=smoothAnim(anim,this.tabs.editActive==index,0,1,5)
@@ -1817,23 +1957,49 @@ class ui{
     onClick(layer,mouse,scene){
         let rel
         let tick
+        let set
+        let rows
         switch(scene){
+            case `title`:
+                rel={position:{x:mouse.position.x-layer.width*0.5,y:mouse.position.y}}
+                for(let a=0,la=types.map.length;a<la;a++){
+                    if(inPointBox(rel,boxify(0,a*60+610-la*30,240,50))){
+                        this.operation.transitionManager.begin(`setup`)
+                        this.operation.nextMap=a
+                        this.select.auto=[]
+                        types.map[a].team.forEach(item=>this.select.auto.push(true))
+                    }
+                }
+            break
             case `setup`:
+                set=types.map[this.operation.nextMap].teamSet
+                rows=ceil(this.select.auto.length/set)
+                rel={position:{x:mouse.position.x-layer.width*0.5,y:mouse.position.y}}
+                for(let a=0,la=this.select.auto.length;a<la;a++){
+                    if(inPointBox(rel,boxify(-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475,240,50))){
+                        this.select.auto[a]=!this.select.auto[a]
+                    }
+                }
+                if(inPointBox(rel,boxify(-125,rows*30+505,240,50))){
+                    this.operation.transitionManager.begin(`main`)
+                }
+                if(inPointBox(rel,boxify(125,rows*30+505,240,50))){
+                    this.operation.transitionManager.begin(`edit`)
+                }
+            break
+            case `pick`:
+                set=types.map[this.operation.nextMap].teamSet
+                rows=ceil(types.team.length/set)
                 rel={position:{x:mouse.position.x-layer.width*0.5,y:mouse.position.y}}
                 for(let a=0,la=types.team.length;a<la;a++){
-                    if(inPointBox(rel,boxify(-250+250*(a%3),floor(a/3)*60+240,240,50,10))){
+                    if(inPointBox(rel,boxify(-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475,240,50))){
                         types.team[a].auto=!types.team[a].auto
                     }
                 }
-                if(inPointBox(rel,boxify(-125,floor((types.team.length+1)/3)*60+270,240,50,10))){
-                    this.operation.initialComponents()
-                    this.initialAgents()
-                    this.newTurn()
+                if(inPointBox(rel,boxify(-125,rows*30+505,240,50))){
                     this.operation.transitionManager.begin(`main`)
                 }
-                if(inPointBox(rel,boxify(125,floor((types.team.length+1)/3)*60+270,240,50,10))){
-                    this.initialAgents()
-                    this.newTurn()
+                if(inPointBox(rel,boxify(125,rows*30+505,240,50))){
                     this.operation.transitionManager.begin(`edit`)
                 }
             break
@@ -2097,22 +2263,36 @@ class ui{
             case `map`:
                 rel={position:{x:mouse.position.x-layer.width+this.width*0.5,y:mouse.position.y}}
                 tick=100
-                if(inPointBox(rel,boxify(0,tick+25,160,40))){
-                    this.operation.transitionManager.begin(`main`)
+                switch(this.tabs.mapActive){
+                    case 0:
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.operation.transitionManager.begin(`main`)
+                        }
+                        tick+=50
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.tabs.mapActive=1
+                        }
+                        tick+=50
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            if(this.tabs.active!=0){
+                                this.turn.count=0
+                                this.newTurn()
+                            }
+                            this.operation.saveCol()
+                        }
+                        tick+=50
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.operation.loadCol(`map`)
+                        }
+                        tick+=50
+                    break
+                    case 1:
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.tabs.mapActive=0
+                        }
+                        tick+=52
+                    break
                 }
-                tick+=50
-                if(inPointBox(rel,boxify(0,tick+25,160,40))){
-                    if(this.tabs.active!=0){
-                        this.turn.count=0
-                        this.newTurn()
-                    }
-                    this.operation.saveCol()
-                }
-                tick+=50
-                if(inPointBox(rel,boxify(0,tick+25,160,40))){
-                    this.operation.loadCol(`map`)
-                }
-                tick+=50
             break
             case `edit`:
                 rel={position:{x:mouse.position.x-layer.width+this.width*0.5,y:mouse.position.y}}
@@ -2153,20 +2333,39 @@ class ui{
     onKey(layer,key,scene){
         let count=1
         switch(scene){
+            case `title`:
+                for(let a=0,la=types.map.length;a<la;a++){
+                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
+                        this.operation.transitionManager.begin(`setup`)
+                        this.operation.nextMap=a
+                        this.select.auto=[]
+                        types.map[a].team.forEach(item=>this.select.auto.push(true))
+                    }
+                }
+            break
             case `setup`:
+                for(let a=0,la=this.select.auto.length;a<la;a++){
+                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
+                        this.select.auto[a]=!this.select.auto[a]
+                    }
+                }
+                if(key==`Enter`){
+                    this.operation.transitionManager.begin(`main`)
+                }else if(key==`/`){
+                    this.operation.transitionManager.begin(`edit`)
+                }else if(key==`Shift`){
+                    this.select.auto.forEach((item,index,array)=>array[index]=!item)
+                }
+            break
+            case `pick`:
                 for(let a=0,la=types.team.length;a<la;a++){
                     if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
                         types.team[a].auto=!types.team[a].auto
                     }
                 }
                 if(key==`Enter`){
-                    this.operation.initialComponents()
-                    this.initialAgents()
-                    this.newTurn()
                     this.operation.transitionManager.begin(`main`)
                 }else if(key==`/`){
-                    this.initialAgents()
-                    this.newTurn()
                     this.operation.transitionManager.begin(`edit`)
                 }else if(key==`Shift`){
                     types.team.forEach(team=>team.auto=!team.auto)
@@ -2243,7 +2442,7 @@ class ui{
                         for(let a=0,la=cit.units.length;a<la;a++){
                             if(cit.units[a].edit.trigger){
                                 if(`1234567890`.includes(key)){
-                                    cit.units[a].edit.num=min(100000,cit.units[a].edit.num*10+int(key)*100)
+                                    cit.units[a].edit.num=min(1000000,cit.units[a].edit.num*10+int(key)*100)
                                 }else if(key==`Backspace`){
                                     cit.units[a].edit.num=floor(cit.units[a].edit.num/1000)*100
                                 }
@@ -2255,7 +2454,7 @@ class ui{
                         for(let a=0,la=cit.units.length;a<la;a++){
                             if(cit.units[a].edit.trigger){
                                 if(`1234567890`.includes(key)){
-                                    cit.units[a].edit.num=min(100000,cit.units[a].edit.num*10+int(key)*100)
+                                    cit.units[a].edit.num=min(1000000,cit.units[a].edit.num*10+int(key)*100)
                                 }else if(key==`Backspace`){
                                     cit.units[a].edit.num=floor(cit.units[a].edit.num/1000)*100
                                 }
@@ -2392,25 +2591,38 @@ class ui{
             break
             case `map`:
                 count=1
-                if(key==`Enter`){
-                    this.operation.transitionManager.begin(`main`)
+                switch(this.tabs.mapActive){
+                    case 0:
+                        if(key==`Enter`){
+                            this.operation.transitionManager.begin(`main`)
+                        }
+                        if(key==count.toString()){
+                            this.tabs.mapActive=1
+                        }
+                        count++
+                        if(key==count.toString()){
+                            if(this.tabs.active!=0){
+                                this.turn.count=0
+                                this.newTurn()
+                            }
+                            this.operation.saveCol()
+                        }
+                        count++
+                        if(key==count.toString()){
+                            if(this.tabs.active!=0){
+                                this.turn.count=0
+                                this.newTurn()
+                            }
+                            this.operation.loadCol(`map`)
+                        }
+                        count++
+                    break
+                    case 1:
+                        if(key==`Enter`){
+                            this.tabs.mapActive=0
+                        }
+                    break
                 }
-                if(key==count.toString()){
-                    if(this.tabs.active!=0){
-                        this.turn.count=0
-                        this.newTurn()
-                    }
-                    this.operation.saveCol()
-                }
-                count++
-                if(key==count.toString()){
-                    if(this.tabs.active!=0){
-                        this.turn.count=0
-                        this.newTurn()
-                    }
-                    this.operation.loadCol(`map`)
-                }
-                count++
             break
             case `edit`:
                 count=1

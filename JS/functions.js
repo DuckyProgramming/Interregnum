@@ -120,6 +120,15 @@ function numLength(num){
     }
     return len
 }
+function findList(item,list){
+	for(let a=0,la=list.length;a<la;a++){
+		if(list[a]==item){
+			return a
+		}
+	}
+    //throw new Error(`findName Fail: ${name}`)
+	return -1
+}
 function findName(name,list){
 	for(let a=0,la=list.length;a<la;a++){
 		if(list[a].name==name){
@@ -328,6 +337,7 @@ function topAgents(){
 function training(){
     noCanvas()
     dev.close=true
+    document.documentElement.style.backgroundColor="#000000"
 }
 function openMap(){
     current.transitionManager.begin(`map`)

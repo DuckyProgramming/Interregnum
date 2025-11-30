@@ -35,6 +35,7 @@ class transitionManager{
             this.anim=round(this.anim*5+1)/5
             if(this.anim>=1){
                 this.trigger=false
+                this.operation.transitionComplete(this.scene)
                 this.operation.scene=this.scene
             }
         }

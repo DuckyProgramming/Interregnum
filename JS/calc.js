@@ -50,6 +50,7 @@ class calc{
                         this.result.casualties[b][c].number+=result.casualties[b][c].number
                         this.result.casualties[b][c].morale+=result.casualties[b][c].morale
                     }
+                    this.result.casualties[b][c].base=this.sides[b].force[c].number
                     this.result.casualties[b][c].team=this.sides[b].force[c].team
                     this.result.casualties[b][c].type=this.sides[b].force[c].type
                     this.sides[b].force[c].number-=result.casualties[b][c].number

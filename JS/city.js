@@ -6,7 +6,6 @@ class city{
         this.data=types.city[this.type]
         this.owner=types.city[this.type].rule
         this.recruits=floor(random(constants.spawn.base-constants.spawn.spend,constants.spawn.base)/constants.spawn.regen)*constants.spawn.regen
-        this.fade={main:0,trigger:true}
         this.visibility=0
         this.sieged=0
         this.units=[]
@@ -16,7 +15,6 @@ class city{
             name:this.data.name,
             owner:this.owner,
             recruits:this.recruits,
-            fade:this.fade,
             visibility:this.visibility,
             sieged:this.sieged,
             units:[]
@@ -27,7 +25,6 @@ class city{
     load(composite){
         this.owner=composite.owner
         this.recruits=composite.recruits
-        this.fade=composite.fade
         this.visibility=composite.visibility
         this.sieged=composite.sieged
         this.data=types.city[this.type]
@@ -36,7 +33,7 @@ class city{
     }
     initial(){
         if(this.units.length==0){
-            this.units.push(new unit(this.city,findName(this.owner,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
+            this.units.push(new unit(this,findName(this.owner,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
             if(this.owner!=this.data.rule){
                 this.recruits-=floor(random(15,21))*100
             }
@@ -84,7 +81,7 @@ class city{
     spawn(type){
         let team=type==2?findName(this.owner,types.team):findName(this.data.rule,types.team)
         let num=floor(this.recruits/100/[1,4,2][type])*100
-        this.units.push(new unit(this.city,team,0,num))
+        this.units.push(new unit(this,team,0,num))
         this.recruits=type==0?max(0,this.recruits-constants.spawn.spend*[1,1,0.75][type]):this.recruits-constants.spawn.spend*[1,1,0.75][type]
         if(num==0){
             throw new Error('SPAWN 0')
@@ -166,7 +163,7 @@ class city{
                 }
             }
         }
-        if(!this.units.some(unit=>types.team[unit.team].name==this.owner&&unit.type==1)){
+        if(this.owner==-1||!this.units.some(unit=>types.team[unit.team].name==this.owner&&unit.type==1)){
             this.owner=-1
             for(let a=0,la=this.units.length;a<la;a++){
                 if(this.units[a].type==1){
@@ -191,6 +188,12 @@ class city{
     }
     display(layer,scene){
         switch(scene){
+            case `title`: case `setup`:
+                layer.push()
+                layer.translate(this.position.x,this.position.y)
+                this.units.forEach(unit=>unit.display(layer))
+                layer.pop()
+            break
             case `main`:
                 layer.push()
                 layer.translate(this.position.x,this.position.y)
@@ -208,10 +211,11 @@ class city{
                 }else{
                     layer.push()
                     layer.translate(this.position.x,this.position.y)
-                    let img=graphics.load.city[this.data.circle?2:this.data.elect?1:0]
+                    layer.scale(0.5/this.operation.zoom.scaling)
+                    let img=graphics.load.city[this.data.type]
                     layer.image(img,0,0,img.width*(this.data.name==`Ulm`?1.25:1),img.height*(this.data.name==`Ulm`?1.25:1))
                     if(this.owner!=-1){
-                        img=graphics.load.unit[findName(this.owner,types.team)][2]
+                        img=graphics.load.unit[types.team[findName(this.owner,types.team)].loadIndex][2]
                         layer.image(img,0,img.height*0.25-10,img.width*0.5,img.height*0.5)
                     }
                     layer.pop()
@@ -221,13 +225,14 @@ class city{
     }
     update(layer,scene){
         switch(scene){
+            case `title`: case `setup`:
+                this.visibility=2
             case 'main':
                 if(!dev.close){
-                    this.fade.main=smoothAnim(this.fade.main,this.fade.trigger,0,1,15)
                     let cap=0
                     for(let a=0,la=this.units.length;a<la;a++){
                         if(a!=0&&!this.units[a].remove&&!this.units[a].combining){
-                            cap+=33-this.units[a].type*9
+                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].name==`Tiny`?-1:1)
                         }
                         this.units[a].goal.position.y=cap
                         if(this.units[a].combining){
@@ -259,7 +264,7 @@ class city{
                             this.units[a].update(this.visibility)
                         }
                         if(!this.units[a].remove&&!this.units[a].combining){
-                            cap+=33-this.units[a].type*9
+                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].name==`Tiny`?-1:1)
                         }
                     }
                 }

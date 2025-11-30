@@ -14,6 +14,9 @@ class unit{
         this.removeMark=false
         this.combining=false
         this.turns=0
+        if(this.city==undefined){
+            throw new Error(`Undefined City Fail`)
+        }
     }
     save(){
         let composite={
@@ -47,8 +50,12 @@ class unit{
         this.turns=composite.turns
     }
     newTurn(){
-        if(this.value>=2000&&this.turns>=50&&this.type==0&&floor(random(0,2))==0){
-            this.value-=round((this.value-100)*random(0,0.05)/100)*100
+        if(this.value>2000&&this.turns>=50&&this.type==0&&floor(random(0,5))==0){
+            let diff=round(this.value*random(0,0.05)/100)*100
+            if(diff>0){
+                this.value-=diff
+                this.city.operation.teams[this.team].deserters+=diff
+            }
         }
         if(this.value%100!=0){
             print(this.value)
@@ -62,9 +69,10 @@ class unit{
                 layer.push()
                 layer.translate(this.position.x,this.position.y)
             }
-            layer.image(graphics.load.unit[this.team][this.type],0,0,graphics.load.unit[this.team][this.type].width*this.fade.main,graphics.load.unit[this.team][this.type].height*this.fade.main)
+            let img=graphics.load.unit[types.team[this.team].loadIndex][this.type]
+            layer.image(img,0,0,img.width*this.fade.main,img.height*this.fade.main)
             layer.noStroke()
-            layer.fill(0,(this.reveal.main)*this.fade.main)
+            layer.fill(0,this.reveal.main*this.fade.main)
             layer.textSize(15)
             layer.text(this.value,0,31.5-this.type*9)
             layer.fill(0,(1-this.reveal.main)*this.fade.main)
