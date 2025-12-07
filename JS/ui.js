@@ -162,7 +162,7 @@ class ui{
                 }
             }
             if(this.turn.total>=constants.threshold){
-                let nums=[floor(millis()/360000),floor(millis()/60000)%60,floor(millis()/1000)%60]
+                let nums=[floor(millis()/3600000),floor(millis()/60000)%60,floor(millis()/1000)%60]
                 print(`Time at ${constants.threshold} Turns: ${nums[0]<10?`0`:``}${nums[0]}:${nums[1]<10?`0`:``}${nums[1]}:${nums[2]<10?`0`:``}${nums[2]}`)
                 constants.threshold*=10
             }
@@ -307,6 +307,7 @@ class ui{
                         }
                         this.operation.cities[this.select.targetCity].getNotUnits(aligned).forEach(unit=>{
                             unit.remove=true
+                            this.operation.teams[unit.team].deaths+=unit.value
                             for(let c=0,lc=this.battle.result.casualties[0].length;c<lc;c++){
                                 this.operation.teams[this.battle.result.casualties[0][c].team].kills+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
                             }
@@ -320,6 +321,7 @@ class ui{
                     if(last(this.battle.result.winner)==1){
                         this.operation.cities[this.select.city].getNotUnits(aligned).forEach(unit=>{
                             unit.remove=true
+                            this.operation.teams[unit.team].deaths+=unit.value
                             for(let c=0,lc=this.battle.result.casualties[0].length;c<lc;c++){
                                 this.operation.teams[this.battle.result.casualties[0][c].team].kills+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
                             }

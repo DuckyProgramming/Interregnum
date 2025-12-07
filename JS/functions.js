@@ -370,4 +370,9 @@ function checkCity(){
     print(`Checking Self-Reference`)
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{if(connect.name==city.name){print(city.name)}})))
 }
+function checkTotalStats(){
+    let totals=[0,0,0]
+    current.teams.forEach(team=>{totals[0]+=team.kills;totals[1]+=team.deaths;totals[2]+=team.deserters})
+    print(totals)
+}
 //dev
