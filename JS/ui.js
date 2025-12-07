@@ -38,7 +38,7 @@ class ui{
         this.battle=composite.battle
     }
     initial(){
-        for(let a=0,la=15;a<la;a++){
+        for(let a=0,la=16;a<la;a++){
             this.tabs.anim.push(0)
         }
         for(let a=0,la=2;a<la;a++){
@@ -50,17 +50,33 @@ class ui{
     }
     initialAgents(){
         this.agents=[]
-        for(let a=0,la=types.team.length;a<la;a++){
-            if(types.team[a].auto){
-                if(dev.new||agentset.length==0){
-                    this.agents.push(new agent())
-                }else{
-                    let index=floor(random(0,agentset.length))
-                    this.agents.push(new agent(...agentset[index]))
-                    agentset.splice(index,1)
+        if(dev.assemble2){
+            for(let a=0,la=2;a<la;a++){
+                for(let b=0,lb=24;b<lb;b++){
+                    let term=[`main`,`large`][types.team[a].type]
+                    if(dev.new||agentset[term].length==0){
+                        this.agents.push(new agent())
+                    }else{
+                        let index=floor(random(0,agentset[term].length))
+                        this.agents.push(new agent(...agentset[term][index]))
+                        agentset[term].splice(index,1)
+                    }
                 }
-            }else{
-                this.agents.push(0)
+            }
+        }else{
+            for(let a=0,la=types.team.length;a<la;a++){
+                if(types.team[a].auto){
+                    let term=[`main`,`large`][types.team[a].type]
+                    if(dev.new||agentset[term].length==0){
+                        this.agents.push(new agent())
+                    }else{
+                        let index=floor(random(0,agentset[term].length))
+                        this.agents.push(new agent(...agentset[term][index]))
+                        agentset[term].splice(index,1)
+                    }
+                }else{
+                    this.agents.push(0)
+                }
             }
         }
     }
@@ -80,38 +96,75 @@ class ui{
     newTurn(){
         if(dev.assemble&&this.turn.total!=0){
             if(this.turn.total%500==0){
-                this.agents.forEach((agent,index)=>agent.record+=this.operation.cities.reduce((acc,city)=>acc+(city.owner==types.team[index].name?1:0)*(city.data.elect?2:1),0)-types.city.reduce((acc,city)=>acc+(city.rule==types.team[index].name?1:0)*(city.elect?2:1),0))
+                this.agents.forEach((agent,index)=>{if(index<this.operation.teams.length){agent.record+=this.operation.cities.reduce((acc,city)=>acc+(city.owner==types.team[index].name?1:0)*types.cityType[city.data.type].value,0)-types.city.reduce((acc,city)=>acc+(city.rule==types.team[index].name?1:0)*types.cityType[city.type].value,0)}})
                 this.operation.initialElements()
                 this.operation.initialComponents()
-                this.agents.splice(0,0,last(this.agents))
-                this.agents.splice(this.agents.length-1,1)
-            }
-            if(this.turn.total%24000==0){
-                let maximal=this.agents.reduce((acc,agent)=>max(acc,agent.rewards),0)
-                this.agents.forEach(agent=>{agent.record+=agent.rewards/maximal*5;agent.rewards=0})
-                maximal=this.agents.reduce((acc,agent)=>max(acc,agent.punishments),0)
-                this.agents.forEach(agent=>{agent.record-=agent.punishments/maximal*5;agent.punishments=0})
-                this.agents.sort((a,b)=>a.record-b.record)
-                this.agents.splice(0,5)
-                let len=this.agents.length
-                for(let a=0,la=this.turn.total>=100000000?5:4;a<la;a++){
-                    this.agents.push(new agent(
-                        JSON.parse(JSON.stringify(this.agents[len-1-a].sets)),
-                        JSON.parse(JSON.stringify(this.agents[len-1-a].constants))
-                    ))
-                    last(this.agents).mutate()
+                if(dev.assemble2){
+                    this.agents.splice(0,0,this.agents[23])
+                    this.agents.splice(24,1,this.agents[47])
+                    this.agents.splice(48,1)
+                }else{
+                    this.agents.splice(0,0,last(this.agents))
+                    this.agents.splice(this.agents.length-1,1)
                 }
-                if(this.turn.total<100000000){
-                    this.agents.push(new agent())
-                }
-                this.agents=this.agents
-                    .map(value=>({value,sort:random(0,1)}))
-                    .sort((a,b)=>a.sort-b.sort)
-                    .map(({value})=>value)
             }
-            if(this.turn.total==1000000||this.turn.total==10000000||this.turn.total==10000000){
+            if(dev.assemble2){
+                if(this.turn.total%(500*24*5)==0){
+                    let splits=[this.agents.slice(0,24),this.agents.slice(24,48)]
+                    for(let a=0,la=splits.length;a<la;a++){
+                        let maximal=splits[a].reduce((acc,agent)=>max(acc,agent.rewards),0)
+                        splits[a].forEach(agent=>{agent.record+=agent.rewards/maximal*(a==1?0.5:5);agent.rewards=0})
+                        maximal=splits[a].reduce((acc,agent)=>max(acc,agent.punishments),0)
+                        splits[a].forEach(agent=>{agent.record-=agent.punishments/maximal*(a==1?0.5:5);agent.punishments=0})
+                        splits[a].sort((a,b)=>a.record-b.record)
+                        splits[a].splice(0,5)
+                        let len=splits[a].length
+                        for(let b=0,lb=this.turn.total>=100000000?5:4;b<lb;b++){
+                            splits[a].push(new agent(
+                                JSON.parse(JSON.stringify(splits[a][len-1-b].sets)),
+                                JSON.parse(JSON.stringify(splits[a][len-1-b].constants))
+                            ))
+                            last(splits[a]).mutate()
+                        }
+                        if(this.turn.total<100000000){
+                            splits[a].push(new agent())
+                        }
+                        splits[a]=splits[a]
+                            .map(value=>({value,sort:random(0,1)}))
+                            .sort((a,b)=>a.sort-b.sort)
+                            .map(({value})=>value)
+                    }
+                    this.agents=[...splits[0],...splits[1]]
+                }
+            }else{
+                if(this.turn.total%(500*this.operation.teams.length*5)==0){
+                    let maximal=this.agents.reduce((acc,agent)=>max(acc,agent.rewards),0)
+                    this.agents.forEach(agent=>{agent.record+=agent.rewards/maximal*5;agent.rewards=0})
+                    maximal=this.agents.reduce((acc,agent)=>max(acc,agent.punishments),0)
+                    this.agents.forEach(agent=>{agent.record-=agent.punishments/maximal*5;agent.punishments=0})
+                    this.agents.sort((a,b)=>a.record-b.record)
+                    this.agents.splice(0,5)
+                    let len=this.agents.length
+                    for(let a=0,la=this.turn.total>=100000000?5:4;a<la;a++){
+                        this.agents.push(new agent(
+                            JSON.parse(JSON.stringify(this.agents[len-1-a].sets)),
+                            JSON.parse(JSON.stringify(this.agents[len-1-a].constants))
+                        ))
+                        last(this.agents).mutate()
+                    }
+                    if(this.turn.total<100000000){
+                        this.agents.push(new agent())
+                    }
+                    this.agents=this.agents
+                        .map(value=>({value,sort:random(0,1)}))
+                        .sort((a,b)=>a.sort-b.sort)
+                        .map(({value})=>value)
+                }
+            }
+            if(this.turn.total>=constants.threshold){
                 let nums=[floor(millis()/360000),floor(millis()/60000)%60,floor(millis()/1000)%60]
-                print(`Time at ${this.turn.total} Turns: ${nums[0]<10?`0`:``}${nums[0]}:${nums[1]<10?`0`:``}${nums[1]}:${nums[2]<10?`0`:``}${nums[2]}`)
+                print(`Time at ${constants.threshold} Turns: ${nums[0]<10?`0`:``}${nums[0]}:${nums[1]<10?`0`:``}${nums[1]}:${nums[2]<10?`0`:``}${nums[2]}`)
+                constants.threshold*=10
             }
         }
         let total=0
@@ -252,7 +305,12 @@ class ui{
                         if(rule!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(rule)){
                             this.operation.cities[this.select.targetCity].raided()
                         }
-                        this.operation.cities[this.select.targetCity].getNotUnits(aligned).forEach(unit=>unit.remove=true)
+                        this.operation.cities[this.select.targetCity].getNotUnits(aligned).forEach(unit=>{
+                            unit.remove=true
+                            for(let c=0,lc=this.battle.result.casualties[0].length;c<lc;c++){
+                                this.operation.teams[this.battle.result.casualties[0][c].team].kills+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
+                            }
+                        })
                         //flag p for prisoner
                     }
                     this.turn.timer=15
@@ -260,7 +318,12 @@ class ui{
             }else if(this.battle.circumstance[0]==1){
                 if(this.battle.circumstance[1]==0){
                     if(last(this.battle.result.winner)==1){
-                        this.operation.cities[this.select.city].getNotUnits(aligned).forEach(unit=>unit.remove=true)
+                        this.operation.cities[this.select.city].getNotUnits(aligned).forEach(unit=>{
+                            unit.remove=true
+                            for(let c=0,lc=this.battle.result.casualties[0].length;c<lc;c++){
+                                this.operation.teams[this.battle.result.casualties[0][c].team].kills+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
+                            }
+                        })
                         //flag p for prisoner
                     }
                     this.turn.timer=15
@@ -467,6 +530,62 @@ class ui{
                         this.turn.timer=30
                         this.operation.cities[this.select.city].updateUnits()
                         this.operation.cities[this.select.targetCity].updateUnits()
+                    }else if(this.tabs.active==15){
+                        this.select.city=city
+                        let cit=this.operation.cities[this.select.city]
+                        let turn=this.turn.main
+                        if(cit.getSpawn(3)>0){
+                            this.turn.pinned=true
+                            this.moveTab(8)
+                            this.battle.circumstance=[2]
+                            this.select.targetCity=this.select.city
+                            if(cit.getUnits([turn,...this.operation.teams[turn].allies],0).length>0){
+                                cit.spawn(3)
+                                cit.updateUnits()
+                                this.select.moved=[last(cit.units)]
+                                this.moveTab(10)
+                                this.battle.circumstance[1]=1
+                                let rule=findName(this.operation.cities[this.select.targetCity].data.rule,types.team)
+                                if(rule!=turn&&!this.operation.teams[turn].allies.includes(rule)){
+                                    this.operation.cities[this.select.targetCity].raided()
+                                }
+                                this.agency.time=0
+                            }else if(cit.getUnits([turn,...this.operation.teams[turn].allies],1).length>0){
+                                cit.spawn(3)
+                                cit.updateUnits()
+                                this.select.moved=[last(cit.units)]
+                                this.moveTab(9)
+                                this.select.battleCity=this.select.targetCity
+                                for(let a=0,la=this.operation.cities[this.select.targetCity].units.length;a<la;a++){
+                                    let unit=this.operation.cities[this.select.targetCity].units[a]
+                                    if(!unit.remove){
+                                        let side=aligned.includes(unit.team)?0:1
+                                        let fail=true
+                                        for(let b=0,lb=this.operation.calc.sides[side].force.length;b<lb;b++){
+                                            if(this.operation.calc.sides[side].force[b].team==unit.team&&this.operation.calc.sides[side].force[b].type==unit.type){
+                                                this.operation.calc.sides[side].force[b].number+=unit.value
+                                                fail=false
+                                                break
+                                            }
+                                        }
+                                        if(fail){
+                                            this.operation.calc.sides[side].force.push({team:unit.team,type:unit.type,number:unit.value,dist:0})
+                                        }
+                                    }
+                                }
+                                this.operation.calc.sides[1].strategy=1
+                                this.battle.result=this.operation.calc.calc()
+                                this.operation.calc.reset()
+                                this.battle.result.casualties.forEach(set=>set.forEach(item=>item.number=round(item.number/100+random(-0.5,0.5))*100))
+                                this.battle.circumstance[1]=0
+                            }else{
+                                cit.spawn(3)
+                                this.select.moved=[last(cit.units)]
+                            }
+                        }else{
+                            this.moveTab(15)
+                        }
+                        this.updateVisibility()
                     }else if(!this.turn.locked&&!this.turn.pinned&&!(this.tabs.active==1&&this.select.city==city)){
                         if(this.tabs.active==5){
                             this.updateVisibility()
@@ -693,7 +812,7 @@ class ui{
                     layer.textSize(20)
                     layer.text(`${types.map[a].name}`,0,a*60+610-la*30)
                     layer.textSize(10)
-                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],100,a*60+595-la*30)
+                    layer.text(a+1,100,a*60+595-la*30)
                 }
                 layer.pop()
             break
@@ -818,12 +937,23 @@ class ui{
                                     tick+=50
                                     count++
                                 }
-                                if(cit.owner==types.team[this.turn.main].name&&cit.data.name==`Ulm`){
+                                if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
                                     layer.fill(120)
                                     layer.rect(0,tick+25,160,40,10)
                                     layer.fill(0)
                                     layer.textSize(15)
                                     layer.text(`Imperial Diet -\nDelegate Turn`,0,tick+25)
+                                    layer.textSize(10)
+                                    layer.text(count,70,tick+15)
+                                    tick+=50
+                                    count++
+                                }
+                                if(cit.owner==types.team[this.turn.main].name&&cit.data.type==4){
+                                    layer.fill(120)
+                                    layer.rect(0,tick+25,160,40,10)
+                                    layer.fill(0)
+                                    layer.textSize(15)
+                                    layer.text(`Imperial Cathedral -\nForce Rebellion`,0,tick+25)
                                     layer.textSize(10)
                                     layer.text(count,70,tick+15)
                                     tick+=50
@@ -1091,6 +1221,11 @@ class ui{
                                     }
                                 }
                             break
+                            case 15:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Select Rebellion\nTarget`,0,40)
+                            break
                         }
                         layer.pop()
                     }
@@ -1174,8 +1309,9 @@ class ui{
                                     layer.textAlign(RIGHT,CENTER)
                                     layer.text(`${this.operation.teams[a].kills}/${this.operation.teams[a].deaths}/${this.operation.teams[a].deserters}`,75,tick+12.5)
                                     layer.textAlign(CENTER,CENTER)
-                                    let img=graphics.load.unit[types.team[a].loadIndex][2]
-                                    layer.image(img,-64,tick+12.5,img.width*0.15,img.height*0.15)
+                                    let img=[graphics.load.team[types.team[a].loadIndex],graphics.load.unit[2]]
+                                    layer.image(img[0],-64,tick+12.5,img[1].width*0.15,img[1].height*0.15)
+                                    layer.image(img[1],-64,tick+12.5,img[1].width*0.15,img[1].height*0.15)
                                     tick+=30
                                     count++
                                 }
@@ -1636,7 +1772,7 @@ class ui{
                                 }
                             }
                         break
-                        case 4: case 6: case 14:
+                        case 4: case 6: case 14: case 15:
                             if(types.team[this.turn.main].auto){
                                 this.moveTab(0)
                                 this.agency.time=0
@@ -2048,9 +2184,15 @@ class ui{
                                 }
                                 tick+=50
                             }
-                            if(cit.owner==types.team[this.turn.main].name&&cit.data.name==`Ulm`){
+                            if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
                                 if(inPointBox(rel,boxify(0,tick+25,160,40))){
                                     this.moveTab(14)
+                                }
+                                tick+=50
+                            }
+                            if(cit.owner==types.team[this.turn.main].name&&cit.data.type==4){
+                                if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                    this.moveTab(15)
                                 }
                                 tick+=50
                             }
@@ -2335,7 +2477,7 @@ class ui{
         switch(scene){
             case `title`:
                 for(let a=0,la=types.map.length;a<la;a++){
-                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
+                    if(key==(a+1).toString()){
                         this.operation.transitionManager.begin(`setup`)
                         this.operation.nextMap=a
                         this.select.auto=[]
@@ -2403,9 +2545,15 @@ class ui{
                             }
                             count++
                         }
-                        if(cit.owner==types.team[this.turn.main].name&&cit.data.name==`Ulm`){
+                        if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
                             if(key==count.toString()){
                                 this.moveTab(14)
+                            }
+                            count++
+                        }
+                        if(cit.owner==types.team[this.turn.main].name&&cit.data.type==4){
+                            if(key==count.toString()){
+                                this.moveTab(15)
                             }
                             count++
                         }

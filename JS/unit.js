@@ -50,7 +50,7 @@ class unit{
         this.turns=composite.turns
     }
     newTurn(){
-        if(this.value>2000&&this.turns>=50&&this.type==0&&floor(random(0,5))==0){
+        if(this.value>2000&&this.turns>=100&&this.type==0&&floor(random(0,10))==0){
             let diff=round(this.value*random(0,0.05)/100)*100
             if(diff>0){
                 this.value-=diff
@@ -69,8 +69,9 @@ class unit{
                 layer.push()
                 layer.translate(this.position.x,this.position.y)
             }
-            let img=graphics.load.unit[types.team[this.team].loadIndex][this.type]
-            layer.image(img,0,0,img.width*this.fade.main,img.height*this.fade.main)
+            let img=[graphics.load.team[types.team[this.team].loadIndex],graphics.load.unit[this.type]]
+            layer.image(img[0],0,0,img[1].width*this.fade.main-0.5,img[1].height*this.fade.main-0.5)
+            layer.image(img[1],0,0,img[1].width*this.fade.main,img[1].height*this.fade.main)
             layer.noStroke()
             layer.fill(0,this.reveal.main*this.fade.main)
             layer.textSize(15)

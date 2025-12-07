@@ -98,7 +98,7 @@ class operation{
         constants.spawn=types.map[map].constants.spawn
         types.city=types.map[map].city
         types.team=types.map[map].team
-        types.team.forEach(team=>{team.auto=true;team.loadIndex=findList(team.term,types.teamListing)})
+        types.team.forEach(team=>{team.auto=true;team.loadIndex=findList(team.term,listing.team)})
         this.initialElements()
         this.ui.initialAgents()
     }

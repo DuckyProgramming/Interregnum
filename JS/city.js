@@ -58,18 +58,22 @@ class city{
         }
     }
     newTurnTick(){
-        let differ=false
+        let differ=0
         for(let a=0,la=this.units.length;a<la;a++){
             for(let b=a+1;b<la;b++){
-                if(this.units[a].team!=this.units[b].team&&!this.operation.teams[this.units[a].team].allies.includes(this.units[b].team)&&this.units[a].value>=this.units[b].value*0.1&&this.units[b].value>=this.units[a].value*0.1){
-                    differ=true
-                    a=la
-                    b=la
+                if(this.units[a].team!=this.units[b].team&&!this.operation.teams[this.units[a].team].allies.includes(this.units[b].team)){
+                    if(this.units[a].value>=this.units[b].value*0.1&&this.units[b].value>=this.units[a].value*0.1){
+                        differ=1
+                        a=la
+                        b=la
+                    }else{
+                        differ+=0.1
+                    }
                 }
             }
         }
         if(differ){
-            this.sieged+=0.1
+            this.sieged+=differ/10
         }else{
             this.sieged=0
         }
@@ -79,16 +83,16 @@ class city{
         this.recruits=min(this.recruits+constants.spawn.regen*10,constants.spawn.base)
     }
     spawn(type){
-        let team=type==2?findName(this.owner,types.team):findName(this.data.rule,types.team)
-        let num=floor(this.recruits/100/[1,4,2][type])*100
+        let team=type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):findName(this.data.rule,types.team)
+        let num=floor(this.recruits/100/[1,4,2,4][type])*100
         this.units.push(new unit(this,team,0,num))
-        this.recruits=type==0?max(0,this.recruits-constants.spawn.spend*[1,1,0.75][type]):this.recruits-constants.spawn.spend*[1,1,0.75][type]
+        this.recruits=type==0?max(0,this.recruits-constants.spawn.spend*[1,1,0.75,1][type]):this.recruits-constants.spawn.spend*[1,1,0.75,1][type]*(types.team[team].auto?2:1)
         if(num==0){
             throw new Error('SPAWN 0')
         }
     }
     getSpawn(type){
-        return max(0,floor(this.recruits/100/[1,4,2][type])*100)
+        return max(0,floor(this.recruits/100/[1,4,2,4][type])*100)
     }
     raided(){
         this.recruits=round(this.recruits/20)*10
@@ -212,11 +216,12 @@ class city{
                     layer.push()
                     layer.translate(this.position.x,this.position.y)
                     layer.scale(0.5/this.operation.zoom.scaling)
-                    let img=graphics.load.city[this.data.type]
-                    layer.image(img,0,0,img.width*(this.data.name==`Ulm`?1.25:1),img.height*(this.data.name==`Ulm`?1.25:1))
+                    let img=graphics.load.city[types.cityType[this.data.type].term]
+                    layer.image(img,0,0,img.width,img.height)
                     if(this.owner!=-1){
-                        img=graphics.load.unit[types.team[findName(this.owner,types.team)].loadIndex][2]
-                        layer.image(img,0,img.height*0.25-10,img.width*0.5,img.height*0.5)
+                        img=[graphics.load.team[types.team[findName(this.owner,types.team)].loadIndex],graphics.load.unit[2]]
+                        layer.image(img[0],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
+                        layer.image(img[1],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
                     }
                     layer.pop()
                 }
