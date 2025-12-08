@@ -9,6 +9,7 @@ class city{
         this.visibility=0
         this.sieged=0
         this.units=[]
+        this.ruleIndex=findName(this.data.rule,types.team)
     }
     save(){
         let composite={
@@ -83,7 +84,7 @@ class city{
         this.recruits=min(this.recruits+constants.spawn.regen*10,constants.spawn.base)
     }
     spawn(type){
-        let team=type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):findName(this.data.rule,types.team)
+        let team=type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):this.ruleIndex
         let num=floor(this.recruits/100/[1,4,2,4][type])*100
         this.units.push(new unit(this,team,0,num))
         this.recruits=type==0?max(0,this.recruits-constants.spawn.spend*[1,1,0.75,1][type]):this.recruits-constants.spawn.spend*[1,1,0.75,1][type]*(types.team[team].auto?2:1)
