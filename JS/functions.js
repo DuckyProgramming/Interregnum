@@ -126,7 +126,7 @@ function findList(item,list){
 			return a
 		}
 	}
-    //throw new Error(`findList Fail: ${item}`)
+    throw new Error(`findList Fail: ${item}`)
 	return -1
 }
 function findName(name,list){
@@ -135,7 +135,7 @@ function findName(name,list){
 			return a
 		}
 	}
-    //throw new Error(`findName Fail: ${name}`)
+    throw new Error(`findName Fail: ${name}`)
 	return -1
 }
 function updateMouse(layer,scale){

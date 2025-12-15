@@ -14,7 +14,7 @@ class operation{
     }
     save(){
         let composite={
-            map:this.map,
+            map:types.map[this.map].name,
             zoom:this.zoom,
             cities:[],
             teams:[],
@@ -32,7 +32,7 @@ class operation{
     load(result){
         let composite=JSON.parse(result)
 
-        let map=composite.map==undefined?findName(`HRE`,types.map):composite.map
+        let map=composite.map==undefined?findName(`HRE`,types.map):findName(typeof(composite.map)==`number`?convert[1][composite.map]:composite.map,types.map)
         let reselect=false
         if(map!=this.map){
             reselect=true

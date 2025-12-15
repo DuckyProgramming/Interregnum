@@ -853,7 +853,7 @@ class ui{
                 layer.pop()
             break
             case `pick`:
-                set=types.map[this.operation.nextMap].teamSet
+                set=types.map[this.operation.map].teamSet
                 rows=ceil(types.team.length/set)
                 layer.fill(180)
                 layer.rect(layer.width*0.5,layer.height*0.5,layer.width,layer.height)
@@ -2110,7 +2110,7 @@ class ui{
                 }
             break
             case `pick`:
-                set=types.map[this.operation.nextMap].teamSet
+                set=types.map[this.operation.map].teamSet
                 rows=ceil(types.team.length/set)
                 rel={position:{x:mouse.position.x-layer.width*0.5,y:mouse.position.y}}
                 for(let a=0,la=types.team.length;a<la;a++){
