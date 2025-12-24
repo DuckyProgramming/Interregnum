@@ -3,10 +3,11 @@ listing={
         `cityPNG`,`electorPNG`,`circleCapitalPNG`,`majorCityPNG`
     ],team:[
         `albon`,`andechs`,`arduinici`,`arenberg`,`ascania`,`avesnes`,`baden`,`barcelona`,`bibra`,`dampierre`,
-        `ecclesiastical`,`ecclesiastical2`,`ecclesiastical3`,`elder habsburg`,`elder wittelsbach`,`friesland`,`geneva`,`harcourt`,`hesse`,`hohenzollern`,
-        `isenberg`,`junior habsburg`,`junior wittelsbach`,`kyburg`,`league of cities`,`league of cities2`,`leuven`,`lillebonne`,`lorraine`,`luxemburg`,
-        `marck`,`nassau`,`niklot`,`premyslid`,`rouergue`,`sabran`,`savoy`,`schwyz`,`toggenburg`,`two leagues`,
-        `unterwalden`,`valais`,`vermandois`,`wassenberg`,`welf`,`wettin`,`wiemken`,`wurttemberg`,`zahringen`,
+        `ecclesiastical`,`ecclesiastical2`,`ecclesiastical3`,`elder habsburg`,`elder wittelsbach`,`friesland`,`geneva`,`genevois`,`harcourt`,`hesse`,
+        `hohenzollern`,`isenberg`,`junior habsburg`,`junior wittelsbach`,`kyburg`,`league of cities`,`league of cities2`,`league of cities3`,`leuven`,`lillebonne`,
+        `lorraine`,`luxemburg`,`marck`,`nassau`,`niklot`,`premyslid`,`rouergue`,`sabran`,`savoy`,`schwyz`,
+        `toggenburg`,`two leagues`,`unterwalden`,`valais`,`vermandois`,`wassenberg`,`welf`,`wettin`,`wiemken`,`wurttemberg`,
+        `zahringen`,
     ],unit:[
         `large`,`garrison`,`display`
     ]
@@ -22,8 +23,9 @@ types={
         {name:`Symbolic Capital`,term:3,value:1.25},
     ],map:[
         {
-            name:`Tiny`,
+            name:[`Tiny`],
             term:`minim`,
+            stack:false,
             teamSet:2,
             constants:{spawn:{base:2500,spend:1000,regen:30,garrison:500}},
             city:[
@@ -56,8 +58,9 @@ types={
                 {name:`Wittelsbach`,term:`elder wittelsbach`,allies:[],type:0,quality:1,chance:1.5},
             ],
         },{
-            name:`HRE`,
+            name:[`HRE`,`Base`],
             term:`hre`,
+            stack:false,
             teamSet:3,
             constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500}},
             city:[
@@ -152,8 +155,9 @@ types={
                 {name:`Junior Wittelsbach`,term:`junior wittelsbach`,allies:[`Elder Wittelsbach`],type:0,quality:1,chance:1.5},
             ],
         },{
-            name:`HRE + Bohemia`,
+            name:[`HRE`,`+ Bohemia`],
             term:`hre+bohemia`,
+            stack:true,
             teamSet:3,
             constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500}},
             city:[
@@ -261,8 +265,9 @@ types={
                 {name:`Přemyslid`,term:`premyslid`,allies:[],type:1,quality:1,chance:5},
             ],
         },{
-            name:`Kingdom of Arles`,
+            name:[`Kingdom of Arles`,`Base`],
             term:`arelat`,
+            stack:false,
             teamSet:3,
             constants:{spawn:{base:2500,spend:1000,regen:15,garrison:500}},
             city:[
@@ -311,10 +316,10 @@ types={
                 {name:`Valais`,term:`valais`,allies:[`Unterwalden`],type:0,quality:1,chance:0.5},
                 {name:`Geneva`,term:`geneva`,allies:[],type:0,quality:1,chance:0.5},
                 {name:`Hohenzollern`,term:`hohenzollern`,allies:[],type:0,quality:1,chance:0.5},
-                {name:`Habsburg`,term:`junior habsburg`,allies:[],type:0,quality:1,chance:0.5},
                 {name:`Württemberg`,term:`wurttemberg`,allies:[],type:0,quality:1,chance:0.5},
                 {name:`Sabran`,term:`sabran`,allies:[],type:0,quality:1,chance:1},
-                {name:`Zähringen`,term:`zahringen`,allies:[],type:0,quality:1,chance:1},
+                {name:`Habsburg`,term:`junior habsburg`,allies:[`Zähringen`],type:0,quality:1,chance:0.5},
+                {name:`Zähringen`,term:`zahringen`,allies:[`Habsburg`],type:0,quality:1,chance:1},
                 {name:`Arduinici`,term:`arduinici`,allies:[],type:0,quality:1,chance:1},
                 {name:`Albon`,term:`albon`,allies:[],type:0,quality:1,chance:1.5},
                 {name:`Andechs`,term:`andechs`,allies:[],type:0,quality:1,chance:1.5},
@@ -324,8 +329,84 @@ types={
                 {name:`Savoy`,term:`savoy`,allies:[],type:0,quality:1,chance:1.5},
             ],
         },{
-            name:`Arelatisches Reich`,
+            name:[`Kingdom of Arles`,`+ Vosges`],
+            term:`arelat+-`,
+            stack:true,
+            teamSet:3,
+            constants:{spawn:{base:2500,spend:1000,regen:12,garrison:500}},
+            city:[
+                {name:`Toul`,type:0,loc:[1002,639],rule:`Lillebonne`,connect:[{name:`Épinal`,type:0},{name:`Lamarche`,type:0}]},
+                {name:`Épinal`,type:0,loc:[1226,891],rule:`Lorraine`,connect:[{name:`Toul`,type:0},{name:`Colmar`,type:1},{name:`Vesoul`,type:0},{name:`Belfort`,type:0}]},
+                {name:`Colmar`,type:0,loc:[1530,902],rule:`League of Cities`,connect:[{name:`Épinal`,type:1},{name:`Belfort`,type:0}]},
+                {name:`Lamarche`,type:0,loc:[943,961],rule:`Lorraine`,connect:[{name:`Toul`,type:0},{name:`Vesoul`,type:1}]},
+                {name:`Belfort`,type:0,loc:[1394,1147],rule:`Habsburg`,connect:[{name:`Épinal`,type:0},{name:`Colmar`,type:0},{name:`Basel`,type:0},{name:`Vesoul`,type:0}]},
+                {name:`Basel`,type:0,loc:[1651,1191],rule:`Ecclesiastical`,connect:[{name:`Aarau`,type:0},{name:`Belfort`,type:0},{name:`Bern`,type:0},{name:`Neuchâtel`,type:0}]},
+                {name:`Vesoul`,type:0,loc:[1137,1204],rule:`Andechs`,connect:[{name:`Épinal`,type:0},{name:`Belfort`,type:0},{name:`Dole`,type:0},{name:`Besançon`,type:0},{name:`Lamarche`,type:1},{name:`Pontarlier`,type:1}]},
+                {name:`Aarau`,type:0,loc:[1823,1261],rule:`Habsburg`,connect:[{name:`Bern`,type:0},{name:`Basel`,type:0},{name:`Altdorf`,type:0}]},
+                {name:`Besançon`,type:1,loc:[1117,1418],rule:`Ecclesiastical`,connect:[{name:`Pontarlier`,type:0},{name:`Lons`,type:0},{name:`Dole`,type:0},{name:`Vesoul`,type:0}]},
+                {name:`Dole`,type:1,loc:[925,1506],rule:`Andechs`,connect:[{name:`Vesoul`,type:0},{name:`Lons`,type:0},{name:`Besançon`,type:0}]},
+                {name:`Neuchâtel`,type:0,loc:[1442,1508],rule:`Hohenzollern`,connect:[{name:`Pontarlier`,type:0},{name:`Basel`,type:0},{name:`Lausanne`,type:0},{name:`Bern`,type:0}]},
+                {name:`Altdorf`,type:0,loc:[2066,1512],rule:`Schwyz`,connect:[{name:`Aarau`,type:0},{name:`Thun`,type:0},{name:`Visp`,type:0}]},
+                {name:`Bern`,type:1,loc:[1647,1527],rule:`Zähringen`,connect:[{name:`Basel`,type:0},{name:`Aarau`,type:0},{name:`Thun`,type:0},{name:`Neuchâtel`,type:0}]},
+                {name:`Pontarlier`,type:0,loc:[1259,1558],rule:`Andechs`,connect:[{name:`Neuchâtel`,type:0},{name:`Besançon`,type:0},{name:`Vesoul`,type:1},{name:`Lons`,type:0}]},
+                {name:`Thun`,type:0,loc:[1707,1622],rule:`Zähringen`,connect:[{name:`Altdorf`,type:0},{name:`Bern`,type:0},{name:`Lausanne`,type:0},{name:`Visp`,type:0}]},
+                {name:`Lons`,type:0,loc:[998,1738],rule:`Andechs`,connect:[{name:`Dole`,type:0},{name:`Besançon`,type:0},{name:`Lausanne`,type:0},{name:`Bourg`,type:0},{name:`Geneva`,type:0},{name:`Pontarlier`,type:0}]},
+                {name:`Lausanne`,type:0,loc:[1362,1782],rule:`Savoy`,connect:[{name:`Lons`,type:0},{name:`Thun`,type:0},{name:`Neuchâtel`,type:0},{name:`Geneva`,type:0},{name:`Sion`,type:0}]},
+                {name:`Visp`,type:0,loc:[1837,1866],rule:`Valais`,connect:[{name:`Thun`,type:0},{name:`Altdorf`,type:0},{name:`Sion`,type:0}]},
+                {name:`Sion`,type:0,loc:[1647,1917],rule:`Ecclesiastical`,connect:[{name:`Visp`,type:0},{name:`Lausanne`,type:0},{name:`Geneva`,type:1},{name:`Chamonix`,type:0}]},
+                {name:`Bourg`,type:0,loc:[875,1962],rule:`Arduinici`,connect:[{name:`Lons`,type:0},{name:`Geneva`,type:1},{name:`Colombier`,type:1},{name:`Lyon`,type:0}]},
+                {name:`Geneva`,type:3,loc:[1210,1985],rule:`Geneva`,connect:[{name:`Bourg`,type:1},{name:`Lons`,type:0},{name:`Lausanne`,type:0},{name:`Sion`,type:1},{name:`Annecy`,type:0}]},
+                {name:`Annecy`,type:0,loc:[1226,2099],rule:`Thoire`,connect:[{name:`Geneva`,type:0},{name:`Moustier`,type:0},{name:`Chambéry`,type:0}]},
+                {name:`Chamonix`,type:0,loc:[1474,2100],rule:`Savoy`,connect:[{name:`Sion`,type:0},{name:`Moustier`,type:0}]},
+                {name:`Lyon`,type:2,loc:[759,2210],rule:`Ecclesiastical`,connect:[{name:`Feurs`,type:0},{name:`Vienne`,type:0},{name:`Colombier`,type:0},{name:`Bourg`,type:0}]},
+                {name:`Colombier`,type:0,loc:[883,2254],rule:`Arduinici`,connect:[{name:`Bourg`,type:1},{name:`Lyon`,type:0},{name:`Chambéry`,type:0},{name:`Vienne`,type:0},{name:`Grenoble`,type:0}]},
+                {name:`Feurs`,type:0,loc:[551,2266],rule:`Albon`,connect:[{name:`Lyon`,type:0},{name:`Vienne`,type:0}]},
+                {name:`Chambéry`,type:0,loc:[1169,2280],rule:`Savoy`,connect:[{name:`Moustier`,type:1},{name:`Annecy`,type:0},{name:`Grenoble`,type:0},{name:`Colombier`,type:0}]},
+                {name:`Moustier`,type:0,loc:[1381,2300],rule:`Ecclesiastical`,connect:[{name:`Chamonix`,type:0},{name:`Chambéry`,type:1},{name:`Briançon`,type:0},{name:`Annecy`,type:0}]},
+                {name:`Vienne`,type:1,loc:[777,2347],rule:`Ecclesiastical`,connect:[{name:`Feurs`,type:0},{name:`Albon`,type:0},{name:`Lyon`,type:0},{name:`Colombier`,type:0}]},
+                {name:`Grenoble`,type:1,loc:[1111,2466],rule:`Albon`,connect:[{name:`Colombier`,type:0},{name:`Chambéry`,type:0},{name:`Gap`,type:0},{name:`Die`,type:0},{name:`Albon`,type:1}]},
+                {name:`Albon`,type:0,loc:[811,2514],rule:`Albon`,connect:[{name:`Vienne`,type:0},{name:`Grenoble`,type:1},{name:`Valence`,type:1}]},
+                {name:`Briançon`,type:0,loc:[1465,2609],rule:`Savoy`,connect:[{name:`Moustier`,type:0},{name:`Gap`,type:0},{name:`Barcelonette`,type:0}]},
+                {name:`Valence`,type:0,loc:[808,2646],rule:`Rouergue`,connect:[{name:`Viviers`,type:0},{name:`Die`,type:0},{name:`Albon`,type:1}]},
+                {name:`Die`,type:0,loc:[1002,2721],rule:`Rouergue`,connect:[{name:`Grenoble`,type:0},{name:`Gap`,type:0},{name:`Nyons`,type:0},{name:`Valence`,type:0}]},
+                {name:`Gap`,type:0,loc:[1287,2811],rule:`Sabran`,connect:[{name:`Briançon`,type:0},{name:`Barcelonette`,type:1},{name:`Forcalquier`,type:0},{name:`Die`,type:0},{name:`Grenoble`,type:0}]},
+                {name:`Barcelonette`,type:2,loc:[1483,2868],rule:`Savoy`,connect:[{name:`Briançon`,type:0},{name:`Gap`,type:1},{name:`Glandèves`,type:0},{name:`Nice`,type:0}]},
+                {name:`Viviers`,type:0,loc:[754,2895],rule:`Ecclesiastical`,connect:[{name:`Nyons`,type:0},{name:`Valence`,type:0},{name:`Avignon`,type:1}]},
+                {name:`Nyons`,type:0,loc:[931,2955],rule:`Rouergue`,connect:[{name:`Die`,type:0},{name:`Viviers`,type:0},{name:`Avignon`,type:0},{name:`Forcalquier`,type:0}]},
+                {name:`Glandèves`,type:0,loc:[1585,3108],rule:`Barcelona`,connect:[{name:`Draguignan`,type:0},{name:`Nice`,type:0},{name:`Barcelonette`,type:0}]},
+                {name:`Forcalquier`,type:0,loc:[1212,3149],rule:`Sabran`,connect:[{name:`Gap`,type:0},{name:`Nyons`,type:0},{name:`Aix`,type:1},{name:`Draguignan`,type:1}]},
+                {name:`Avignon`,type:0,loc:[842,3185],rule:`Rouergue`,connect:[{name:`Viviers`,type:1},{name:`Nyons`,type:0},{name:`Arles`,type:0},{name:`Aix`,type:1}]},
+                {name:`Nice`,type:0,loc:[1794,3206],rule:`Savoy`,connect:[{name:`Fréjus`,type:0},{name:`Barcelonette`,type:0},{name:`Glandèves`,type:0},{name:`Marseille`,type:2}]},
+                {name:`Draguignan`,type:0,loc:[1504,3321],rule:`Barcelona`,connect:[{name:`Fréjus`,type:0},{name:`Toulon`,type:1},{name:`Glandèves`,type:0},{name:`Forcalquier`,type:1}]},
+                {name:`Arles`,type:1,loc:[796,3330],rule:`Ecclesiastical`,connect:[{name:`Avignon`,type:0},{name:`Aix`,type:0}]},
+                {name:`Fréjus`,type:0,loc:[1611,3374],rule:`Barcelona`,connect:[{name:`Toulon`,type:0},{name:`Nice`,type:0},{name:`Draguignan`,type:0}]},
+                {name:`Aix`,type:1,loc:[1116,3393],rule:`Barcelona`,connect:[{name:`Arles`,type:0},{name:`Marseille`,type:0},{name:`Avignon`,type:1},{name:`Toulon`,type:0},{name:`Forcalquier`,type:1}]},
+                {name:`Marseille`,type:0,loc:[1099,3486],rule:`Barcelona`,connect:[{name:`Aix`,type:0},{name:`Toulon`,type:0},{name:`Nice`,type:2}]},
+                {name:`Toulon`,type:0,loc:[1327,3557],rule:`Barcelona`,connect:[{name:`Fréjus`,type:0},{name:`Draguignan`,type:1},{name:`Aix`,type:0},{name:`Marseille`,type:0}]},
+            ],team:[
+                {name:`League of Cities`,term:`league of cities3`,allies:[],type:0,quality:0.9,chance:0.5},
+                {name:`Schwyz`,term:`schwyz`,allies:[`Valais`],type:0,quality:1,chance:0.5},
+                {name:`Valais`,term:`valais`,allies:[`Schwyz`],type:0,quality:1,chance:0.5},
+                {name:`Lillebonne`,term:`lillebonne`,allies:[],type:0,quality:1,chance:0.5},
+                {name:`Geneva`,term:`geneva`,allies:[],type:0,quality:1,chance:0.5},
+                {name:`Thoire`,term:`genevois`,allies:[],type:0,quality:1,chance:0.5},
+                {name:`Hohenzollern`,term:`hohenzollern`,allies:[],type:0,quality:1,chance:0.5},
+                {name:`Habsburg`,term:`junior habsburg`,allies:[`Zähringen`],type:0,quality:1,chance:0.5},
+                {name:`Zähringen`,term:`zahringen`,allies:[`Habsburg`],type:0,quality:1,chance:1},
+                {name:`Lorraine`,term:`lorraine`,allies:[],type:0,quality:1,chance:1},
+                {name:`Sabran`,term:`sabran`,allies:[],type:0,quality:1,chance:1},
+                {name:`Arduinici`,term:`arduinici`,allies:[],type:0,quality:1,chance:1},
+                {name:`Albon`,term:`albon`,allies:[],type:0,quality:1,chance:1.5},
+                {name:`Andechs`,term:`andechs`,allies:[],type:0,quality:1,chance:1.5},
+                {name:`Ecclesiastical`,term:`ecclesiastical2`,allies:[],type:0,quality:0.9,chance:1.5},
+                {name:`Rouergue`,term:`rouergue`,allies:[],type:0,quality:1,chance:1.5},
+                {name:`Barcelona`,term:`barcelona`,allies:[],type:0,quality:1,chance:1.5},
+                {name:`Savoy`,term:`savoy`,allies:[],type:0,quality:1,chance:1.5},
+            ],
+        },{
+            name:[`Arelatisches Reich`],
             term:`arelat+`,
+            stack:false,
             teamSet:3,
             constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500}},
             city:[
@@ -425,8 +506,9 @@ types={
                 {name:`Savoy`,term:`savoy`,allies:[],type:0,quality:1,chance:1.5},
             ],
         },{
-            name:`Belgica`,
+            name:[`Belgica`],
             term:`belgica`,
+            stack:false,
             teamSet:3,
             constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500}},
             city:[
@@ -501,9 +583,10 @@ types={
 }
 convert=[
     [`Wiemken`,`Isenberg`,`Avesnes`,`Nassau`,`Zähringen`,`Ascania`,`Schwyz`,`Two Leagues`,`Lillebonne`,`Württemberg`,`Arenberg`,`Niklot`,`Bibra`,`Hesse`,`Hohenzollern`,`Ecclesiastical`,`League of Cities`,`Lorraine`,`Welf`,`Wettin`,`Elder Habsburg`,`Junior Habsburg`,`Elder Wittelsbach`,`Junior Wittelsbach`],//old teams
-    [`Tiny`,`HRE`,`HRE+Bohemia`,`Arelatisches Reich`],//old maps
+    [`Tiny`,`HRE`,`HRE + Bohemia`,`Arelatisches Reich`],//old maps
 ]
 dev={road:false,instant:false,assemble:false,assemble2:false,pause:false,new:false,speed:false,close:false}
+options={strength:1,strengthEdit:false}
 graphics={main:0,load:{map:[],city:[],team:[],unit:[]}}
 constants={trig:[[],[]],spawn:{},init:false,threshold:100000}
 inputs={mouse:{base:{x:0,y:0},rel:{x:0,y:0},previous:{base:{x:0,y:0},rel:{x:0,y:0}}}}

@@ -138,12 +138,18 @@ class operation{
         switch(this.scene){
             case `title`: case `setup`:
                 layer.image(graphics.load.map[this.map],graphics.load.map[this.map].width*0.5,graphics.load.map[this.map].height*0.5)
+                /*if(this.map==2){
+                    layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
+                }*/
                 this.cities.forEach(city=>city.display(layer,this.scene))
             break
             case `main`:
                 layer.push()
                 layer.translate(layer.width*0.5-this.zoom.position.x,layer.height*0.5-this.zoom.position.y)
                 layer.image(graphics.load.map[this.map],graphics.load.map[this.map].width*0.5,graphics.load.map[this.map].height*0.5)
+                /*if(this.map==2){
+                    layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
+                }*/
                 this.cities.forEach(city=>city.display(layer,this.scene))
                 layer.pop()
             break
@@ -154,6 +160,9 @@ class operation{
                 layer.scale(this.zoom.scaling)
                 layer.translate(-graphics.load.map[this.map].width*0.5,-graphics.load.map[this.map].height*0.5-this.zoom.map)
                 layer.image(graphics.load.map[this.map],graphics.load.map[this.map].width*0.5,graphics.load.map[this.map].height*0.5)
+                /*if(this.map==2){
+                    layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
+                }*/
                 this.cities.forEach(city=>city.display(layer,this.scene))
                 layer.pop()
             break
@@ -164,6 +173,9 @@ class operation{
                 layer.scale(this.zoom.scaling)
                 layer.translate(-graphics.load.map[this.map].width*0.5,-graphics.load.map[this.map].height*0.5-this.zoom.map)
                 layer.image(graphics.load.map[this.map],graphics.load.map[this.map].width*0.5,graphics.load.map[this.map].height*0.5)
+                /*if(this.map==2){
+                    layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
+                }*/
                 this.cities.forEach(city=>city.display(layer,this.scene))
                 layer.pop()
             break

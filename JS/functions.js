@@ -138,6 +138,15 @@ function findName(name,list){
     throw new Error(`findName Fail: ${name}`)
 	return -1
 }
+function findTerm(name,list){
+	for(let a=0,la=list.length;a<la;a++){
+		if(list[a].term==term){
+			return a
+		}
+	}
+    throw new Error(`findTerm Fail: ${term}`)
+	return -1
+}
 function updateMouse(layer,scale){
     inputs.mouse.previous.base.x=inputs.mouse.base.x
     inputs.mouse.previous.base.y=inputs.mouse.base.y
@@ -369,6 +378,10 @@ function checkCity(){
     types.map.forEach(map=>{for(let a=1,la=map.city.length;a<la;a++){if(map.city[a].loc[1]<map.city[a-1].loc[1]){print(map.name,map.city[a-1].name,map.city[a].name)}}})
     print(`Checking Self-Reference`)
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{if(connect.name==city.name){print(city.name)}})))
+}
+function checkTeam(){
+    print(`Checking Vacuous`)
+    types.map.forEach(map=>map.team.forEach(team=>{if(!map.city.some(city=>city.rule==team.name)){print(map.name,team.name)}}))
 }
 function checkTotalStats(){
     let totals=[0,0,0]

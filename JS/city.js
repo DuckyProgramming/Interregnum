@@ -85,7 +85,8 @@ class city{
     }
     spawn(type){
         let team=type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):this.ruleIndex
-        let num=floor(this.recruits/100/[1,4,2,4][type])*100
+        let mult=types.team[team].auto?options.strength:1
+        let num=floor(this.recruits/100/[1,4,2,4][type]*mult)*100
         this.units.push(new unit(this,team,0,num))
         this.recruits=type==0?max(0,this.recruits-constants.spawn.spend*[1,1,0.75,1][type]):this.recruits-constants.spawn.spend*[1,1,0.75,1][type]*(types.team[team].auto?2:1)
         if(num==0){
@@ -93,7 +94,10 @@ class city{
         }
     }
     getSpawn(type){
-        return max(0,floor(this.recruits/100/[1,4,2,4][type])*100)
+        let team=type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):this.ruleIndex
+        let mult=types.team[team].auto?options.strength:1
+        let num=floor(this.recruits/100/[1,4,2,4][type]*mult)*100
+        return max(0,num)
     }
     raided(){
         this.recruits=round(this.recruits/20)*10

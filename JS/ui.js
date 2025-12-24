@@ -795,29 +795,49 @@ class ui{
         let rows
         switch(scene){
             case `title`:
+                let groups=[]
+                for(let a=0,la=types.map.length;a<la;a++){
+                    if(!types.map[a].stack){
+                        groups.push([])
+                    }
+                    last(groups).push(a)
+                }
                 layer.push()
                 layer.translate(layer.width*0.5,0)
                 layer.fill(150)
-                layer.rect(0,400-types.map.length*30,560,180,20)
-                layer.rect(0,560,300,90+types.map.length*60,20)
+                layer.rect(0,400-groups.length*30,560,180,20)
+                layer.rect(0,560,300,90+groups.length*60,20)
                 for(let a=0,la=15;a<la;a++){
                     layer.fill(20+a*2,20+a*2.5,20+a*3)
                     layer.textSize(100)
-                    layer.text(`Interregnum`,a*0.2,380-types.map.length*30+a*0.5)
+                    layer.text(`Interregnum`,a*0.2,380-groups.length*30+a*0.5)
                     layer.textSize(40)
-                    layer.text(`DuckyProgramming`,a*0.1,450-types.map.length*30+a*0.25)
+                    layer.text(`DuckyProgramming`,a*0.1,450-groups.length*30+a*0.25)
                 }
                 layer.fill(0)
                 layer.textSize(40)
-                layer.text(`Select Map:`,0,552.5-types.map.length*30)
-                for(let a=0,la=types.map.length;a<la;a++){
+                layer.text(`Select Map:`,0,552.5-groups.length*30)
+                for(let a=0,la=groups.length;a<la;a++){
                     layer.fill(120)
                     layer.rect(0,a*60+610-la*30,240,50,10)
+                    if(groups[a].length>1){
+                        layer.fill(100)
+                        for(let b=0,lb=groups[a].length-1;b<lb;b++){
+                            layer.rect((b+1)/(lb+1)*240-120,a*60+610-la*30,3,50)
+                        }
+                    }
                     layer.fill(0)
                     layer.textSize(20)
-                    layer.text(`${types.map[a].name}`,0,a*60+610-la*30)
-                    layer.textSize(10)
-                    layer.text(a+1,100,a*60+595-la*30)
+                    layer.text(types.map[groups[a][0]].name[0],0,a*60+610-la*30)
+                    for(let b=0,lb=groups[a].length;b<lb;b++){
+                        layer.textSize(10)
+                        layer.text(count+1,(b+1)/lb*240-120-20,a*60+595-la*30)
+                        layer.textSize(12)
+                        if(types.map[groups[a][b]].name.length>=2){
+                            layer.text(types.map[groups[a][b]].name[1],(b+0.5)/lb*240-120,a*60+628-la*30)
+                        }
+                        count++
+                    }
                 }
                 layer.pop()
             break
@@ -827,29 +847,42 @@ class ui{
                 layer.push()
                 layer.translate(layer.width*0.5,0)
                 layer.fill(150)
-                layer.rect(0,450,set*250+50,220+rows*60,20)
+                layer.rect(0,450,set*250+50,280+rows*60,20)
                 layer.fill(0)
                 layer.textSize(48)
-                layer.text(`Pick Player Factions`,0,405-rows*30)
+                layer.text(`Pick Player Factions`,0,375-rows*30)
                 for(let a=0,la=this.select.auto.length;a<la;a++){
                     layer.fill(120,this.select.auto[a]?120:200,120)
-                    layer.rect(-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475,240,50,10)
+                    layer.rect(-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+445,240,50,10)
                     layer.fill(0)
                     layer.textSize(20)
-                    layer.text(`${types.map[this.operation.nextMap].team[a].name}`,-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475)
+                    layer.text(`${types.map[this.operation.nextMap].team[a].name}`,-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+445)
                     layer.textSize(10)
-                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],100-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+460)
+                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],100-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+430)
                 }
                 layer.fill(120)
-                layer.rect(-125,rows*30+505,240,50,10)
-                layer.rect(125,rows*30+505,240,50,10)
+                layer.rect(-125,rows*30+475,240,50,10)
+                layer.rect(125,rows*30+475,240,50,10)
+                layer.rect(-125,rows*30+535,240,50,10)
+                layer.rect(125,rows*30+535,240,50,10)
+                layer.fill(100)
+                layer.rect(125,rows*30+475,3,50)
                 layer.fill(0)
+                layer.rect(30,rows*30+475,18,2.4)
+                layer.rect(220,rows*30+475,18,2.4)
+                layer.rect(220,rows*30+475,2.4,18)
                 layer.textSize(20)
-                layer.text(`Begin`,-125,rows*30+505)
-                layer.text(`Edit Map`,125,rows*30+505)
+                layer.text(`Select Random`,-125,rows*30+475)
+                layer.text(`Difficulty: ${options.strength}`,125,rows*30+475)
+                layer.text(`Begin`,-125,rows*30+535)
+                layer.text(`Edit Map`,125,rows*30+535)
                 layer.textSize(10)
-                layer.text(`Enter`,-25,rows*30+490)
-                layer.text(`Slash`,225,rows*30+490)
+                layer.rect(25,rows*30+460,6,0.8)
+                layer.rect(225,rows*30+460,6,0.8)
+                layer.rect(225,rows*30+460,0.8,6)
+                layer.text(`#`,-25,rows*30+460)
+                layer.text(`Enter`,-25,rows*30+520)
+                layer.text(`Slash`,225,rows*30+520)
                 layer.pop()
             break
             case `pick`:
@@ -1936,7 +1969,7 @@ class ui{
                                         }
                                     }
                                     cit.updateUnits()
-                                    this.operation.cities[this.select.targetCity].sieged+=2
+                                    this.operation.cities[this.select.targetCity].sieged+=3
                                     this.moveTab(10)
                                     this.battle.circumstance[1]=1
                                     this.agency.time=0
@@ -2084,12 +2117,21 @@ class ui{
         switch(scene){
             case `title`:
                 rel={position:{x:mouse.position.x-layer.width*0.5,y:mouse.position.y}}
+                let groups=[]
                 for(let a=0,la=types.map.length;a<la;a++){
-                    if(inPointBox(rel,boxify(0,a*60+610-la*30,240,50))){
-                        this.operation.transitionManager.begin(`setup`)
-                        this.operation.nextMap=a
-                        this.select.auto=[]
-                        types.map[a].team.forEach(item=>this.select.auto.push(true))
+                    if(!types.map[a].stack){
+                        groups.push([])
+                    }
+                    last(groups).push(a)
+                }
+                for(let a=0,la=groups.length;a<la;a++){
+                    for(let b=0,lb=groups[a].length;b<lb;b++){
+                        if(inPointBox(rel,boxify((b+0.5)/lb*240-120,a*60+610-la*30,240/lb,50))){
+                            this.operation.transitionManager.begin(`setup`)
+                            this.operation.nextMap=groups[a][b]
+                            this.select.auto=[]
+                            types.map[groups[a][b]].team.forEach(item=>this.select.auto.push(true))
+                        }
                     }
                 }
             break
@@ -2098,14 +2140,34 @@ class ui{
                 rows=ceil(this.select.auto.length/set)
                 rel={position:{x:mouse.position.x-layer.width*0.5,y:mouse.position.y}}
                 for(let a=0,la=this.select.auto.length;a<la;a++){
-                    if(inPointBox(rel,boxify(-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475,240,50))){
+                    if(inPointBox(rel,boxify(-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+445,240,50))){
                         this.select.auto[a]=!this.select.auto[a]
                     }
                 }
-                if(inPointBox(rel,boxify(-125,rows*30+505,240,50))){
+                if(inPointBox(rel,boxify(-125,rows*30+475,240,50))){
+                    let possible=[]
+                    for(let a=0,la=this.select.auto.length;a<la;a++){
+                        if(this.select.auto[a]){
+                            possible.push(a)
+                        }
+                    }
+                    if(possible.length>0){
+                        let index=randin(possible)
+                        this.select.auto[index]=!this.select.auto[index]
+                    }
+                }
+                if(inPointBox(rel,boxify(65,rows*30+475,120,50))&&options.strength>0.2){
+                    options.strength=round(options.strength*10-1)/10
+                    options.strengthEdit=true
+                }
+                if(inPointBox(rel,boxify(185,rows*30+475,120,50))&&options.strength<2){
+                    options.strength=round(options.strength*10+1)/10
+                    options.strengthEdit=true
+                }
+                if(inPointBox(rel,boxify(-125,rows*30+535,240,50))){
                     this.operation.transitionManager.begin(`main`)
                 }
-                if(inPointBox(rel,boxify(125,rows*30+505,240,50))){
+                if(inPointBox(rel,boxify(125,rows*30+535,240,50))){
                     this.operation.transitionManager.begin(`edit`)
                 }
             break
@@ -2365,7 +2427,7 @@ class ui{
                                     }
                                 }
                                 this.operation.cities[this.select.targetCity].updateUnits()
-                                this.operation.cities[this.select.targetCity].sieged+=2
+                                this.operation.cities[this.select.targetCity].sieged+=3
                                 this.moveTab(10)
                                 this.battle.circumstance[1]=1
                             }
@@ -2477,7 +2539,24 @@ class ui{
                         this.select.auto[a]=!this.select.auto[a]
                     }
                 }
-                if(key==`Enter`){
+                if(key==`#`){
+                    let possible=[]
+                    for(let a=0,la=this.select.auto.length;a<la;a++){
+                        if(this.select.auto[a]){
+                            possible.push(a)
+                        }
+                    }
+                    if(possible.length>0){
+                        let index=randin(possible)
+                        this.select.auto[index]=!this.select.auto[index]
+                    }
+                }else if(key==`+`&&options.strength>0.2){
+                    options.strength=round(options.strength*10-1)/10
+                    options.strengthEdit=true
+                }else if(key==`-`&&options.strength<2){
+                    options.strength=round(options.strength*10+1)/10
+                    options.strengthEdit=true
+                }else if(key==`Enter`){
                     this.operation.transitionManager.begin(`main`)
                 }else if(key==`/`){
                     this.operation.transitionManager.begin(`edit`)
@@ -2701,7 +2780,7 @@ class ui{
                                 }
                             }
                             this.operation.cities[this.select.targetCity].updateUnits()
-                            this.operation.cities[this.select.targetCity].sieged+=2
+                            this.operation.cities[this.select.targetCity].sieged+=3
                             this.moveTab(10)
                             this.battle.circumstance[1]=1
                         }

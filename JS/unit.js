@@ -57,7 +57,7 @@ class unit{
                 this.city.operation.teams[this.team].deserters+=diff
             }
         }
-        if(this.value%100!=0){
+        if(this.value%100!=0&&!options.strengthEdit){
             print(this.value)
             throw new Error(`Rounding Fail`)
         }
