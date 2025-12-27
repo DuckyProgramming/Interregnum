@@ -10,6 +10,7 @@ class city{
         this.sieged=0
         this.units=[]
         this.ruleIndex=findName(this.data.rule,types.team)
+        this.number=0
     }
     save(){
         let composite={
@@ -143,11 +144,11 @@ class city{
         return supremum[0]
     }
     updateVisibility(turn){
-        this.visibility=this.units.some(unit=>{return unit.team==turn})||this.data.rule==types.team[turn].name?2:0
+        this.visibility=this.units.some(unit=>{return unit.team==turn&&!unit.remove})||this.data.rule==types.team[turn].name?2:0
         if(turn>=0){
             if(this.visibility==0){
                 for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
-                    if(this.operation.cities[findName(types.city[this.type].connect[a].name,types.city)].units.some(unit=>{return unit.team==turn})){
+                    if(this.operation.cities[findName(types.city[this.type].connect[a].name,types.city)].units.some(unit=>{return unit.team==turn&&!unit.remove})){
                         this.visibility=1
                     }
                 }
@@ -207,6 +208,16 @@ class city{
                 layer.push()
                 layer.translate(this.position.x,this.position.y)
                 this.units.forEach(unit=>unit.display(layer))
+                if(this.number>0){
+                    let variant=this.operation.ui.spawnVariant(this,this.operation.ui.turn.main)
+                    if(variant>=0){
+                        layer.fill(0,this.number)
+                        layer.stroke(255,this.number)
+                        layer.strokeWeight(2)
+                        layer.textSize(40)
+                        layer.text(this.getSpawn(variant),0,2)
+                    }
+                }
                 layer.pop()
             break
             case `map`: case `edit`:
@@ -277,6 +288,7 @@ class city{
                             cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].name==`Tiny`?-1:1)
                         }
                     }
+                    this.number=smoothAnim(this.number,this.operation.ui.tabs.active==16,0,1,15)
                 }
                 for(let a=0,la=this.units.length;a<la;a++){
                     if(this.units[a].remove&&(this.units[a].fade.main<=0||dev.instant||dev.close)){

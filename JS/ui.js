@@ -38,7 +38,7 @@ class ui{
         this.battle=composite.battle
     }
     initial(){
-        for(let a=0,la=16;a<la;a++){
+        for(let a=0,la=17;a<la;a++){
             this.tabs.anim.push(0)
         }
         for(let a=0,la=2;a<la;a++){
@@ -81,6 +81,9 @@ class ui{
         }
     }
     moveTab(tab){
+        if(this.tabs.active==16){
+            this.updateVisibility()
+        }
         this.tabs.active=tab
         this.tabs.record.push(tab)
         if(this.tabs.record.length>100){
@@ -610,6 +613,19 @@ class ui{
             break
         }
     }
+    spawnVariant(cit,turn){
+        let aligned=[this.turn.main,...this.operation.teams[this.turn.main].allies]
+        if(cit.data.rule==types.team[turn].name){
+            if(cit.getNotUnits(aligned).length<=0){
+                return 0
+            }else{
+                return 1
+            }
+        }else if(cit.owner==types.team[turn].name){
+            return 2
+        }
+        return -1
+    }
     spawn(cit,turn){
         let aligned=[this.turn.main,...this.operation.teams[this.turn.main].allies]
         if(cit.data.rule==types.team[turn].name){
@@ -940,12 +956,12 @@ class ui{
                                 layer.textSize(18)
                                 layer.text(`Turns Left: ${this.turn.count+1}`,0,tick+12.5)
                                 tick+=25
-                                for(let a=0,la=3;a<la;a++){
+                                for(let a=0,la=4;a<la;a++){
                                     layer.fill(120)
                                     layer.rect(0,tick+25,160,40,10)
                                     layer.fill(0)
                                     layer.textSize(15)
-                                    layer.text([`Pass`,`Alliances`,`Map`][a],0,tick+25)
+                                    layer.text([`Pass`,`Alliances`,`Map`,`Recruitments`][a],0,tick+25)
                                     layer.textSize(10)
                                     layer.text(count,70,tick+15)
                                     tick+=50
@@ -970,28 +986,6 @@ class ui{
                                     layer.fill(0)
                                     layer.textSize(15)
                                     layer.text(`Pass`,0,tick+25)
-                                    layer.textSize(10)
-                                    layer.text(count,70,tick+15)
-                                    tick+=50
-                                    count++
-                                }
-                                if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
-                                    layer.fill(120)
-                                    layer.rect(0,tick+25,160,40,10)
-                                    layer.fill(0)
-                                    layer.textSize(15)
-                                    layer.text(`Imperial Diet -\nDelegate Turn`,0,tick+25)
-                                    layer.textSize(10)
-                                    layer.text(count,70,tick+15)
-                                    tick+=50
-                                    count++
-                                }
-                                if(cit.owner==types.team[this.turn.main].name&&cit.data.type==4){
-                                    layer.fill(120)
-                                    layer.rect(0,tick+25,160,40,10)
-                                    layer.fill(0)
-                                    layer.textSize(15)
-                                    layer.text(`Imperial Cathedral -\nForce Rebellion`,0,tick+25)
                                     layer.textSize(10)
                                     layer.text(count,70,tick+15)
                                     tick+=50
@@ -1040,6 +1034,39 @@ class ui{
                                     tick+=50
                                     count++
                                 }
+                                if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
+                                    layer.fill(120)
+                                    layer.rect(0,tick+25,160,40,10)
+                                    layer.fill(0)
+                                    layer.textSize(15)
+                                    layer.text(`Imperial Diet -\nDelegate Turn`,0,tick+25)
+                                    layer.textSize(10)
+                                    layer.text(count,70,tick+15)
+                                    tick+=50
+                                    count++
+                                }
+                                if(cit.owner==types.team[this.turn.main].name&&cit.data.type==4){
+                                    layer.fill(120)
+                                    layer.rect(0,tick+25,160,40,10)
+                                    layer.fill(0)
+                                    layer.textSize(15)
+                                    layer.text(`Imperial Cathedral -\nForce Rebellion`,0,tick+25)
+                                    layer.textSize(10)
+                                    layer.text(count,70,tick+15)
+                                    tick+=50
+                                    count++
+                                }
+                                if(cit.getUnits([this.turn.main]).length>0&&cit.getNotUnits(aligned).length<=0&&cit.owner!=types.team[this.turn.main].name){
+                                    layer.fill(120)
+                                    layer.rect(0,tick+25,160,40,10)
+                                    layer.fill(0)
+                                    layer.textSize(15)
+                                    layer.text(`Take Control`,0,tick+25)
+                                    layer.textSize(10)
+                                    layer.text(count,70,tick+15)
+                                    tick+=50
+                                    count++
+                                }
                             break
                             case 2:
                                 cit=this.operation.cities[this.select.city]
@@ -1075,6 +1102,14 @@ class ui{
                                 layer.text(`Confirm`,0,tick+25)
                                 layer.textSize(10)
                                 layer.text(`Enter`,60,tick+15)
+                                tick+=50
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Disband`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(`Backspace`,50,tick+15)
                                 tick+=50
                                 for(let a=0,la=cit.units.length;a<la;a++){
                                     if(
@@ -1263,6 +1298,11 @@ class ui{
                                 layer.fill(0)
                                 layer.textSize(24)
                                 layer.text(`Select Rebellion\nTarget`,0,40)
+                            break
+                            case 16:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Viewing\nRecruitment`,0,40)
                             break
                         }
                         layer.pop()
@@ -1547,7 +1587,7 @@ class ui{
                                     this.agency.lastResult.splice(maximal[1],1)
                                     switch(maximal[1]){
                                         case 0:
-                                            if(this.spawn(cit,this.turn.main)){
+                                            if(cit.getNotUnits(aligned).reduce((acc,unit)=>acc+unit.value,0)<10000&&this.spawn(cit,this.turn.main)){
                                                 this.agency.time=dev.instant?0:5
                                                 c=lc
                                                 moved=true
@@ -1637,7 +1677,7 @@ class ui{
                                             }
                                         }
                                         if(cit.type!=-1){
-                                            if(this.spawn(cit,this.turn.main)){
+                                            if(cit.getNotUnits(aligned).reduce((acc,unit)=>acc+unit.value,0)<10000&&this.spawn(cit,this.turn.main)){
                                                 this.operation.zoom.shift.position.x=types.city[this.select.city].loc[0]
                                                 this.operation.zoom.shift.position.y=types.city[this.select.city].loc[1]
                                                 this.operation.zoom.shift.active=true
@@ -2189,7 +2229,7 @@ class ui{
             break
             case `main`:
                 rel={position:{x:mouse.position.x-layer.width+this.width*0.5,y:mouse.position.y}}
-                if(mouse.position.x<layer.width-this.width&&!this.turn.pinned){
+                if(mouse.position.x<layer.width-this.width&&!this.turn.pinned&&this.tabs.active!=16){
                     if(this.tabs.active==5){
                         this.updateVisibility()
                     }
@@ -2217,6 +2257,11 @@ class ui{
                                 this.operation.transitionManager.begin(`map`)
                             }
                             tick+=50
+                            if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                this.moveTab(16)
+                                this.operation.cities.forEach(city=>city.visibility=0)
+                            }
+                            tick+=50
                         break
                         case 1:
                             tick+=25
@@ -2229,18 +2274,6 @@ class ui{
                                     cit.minorRegen()
                                     this.turn.count=0
                                     this.newTurn()
-                                }
-                                tick+=50
-                            }
-                            if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
-                                if(inPointBox(rel,boxify(0,tick+25,160,40))){
-                                    this.moveTab(14)
-                                }
-                                tick+=50
-                            }
-                            if(cit.owner==types.team[this.turn.main].name&&cit.data.type==4){
-                                if(inPointBox(rel,boxify(0,tick+25,160,40))){
-                                    this.moveTab(15)
                                 }
                                 tick+=50
                             }
@@ -2270,6 +2303,24 @@ class ui{
                                     }
                                     tick+=50
                                 }
+                            }
+                            if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
+                                if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                    this.moveTab(14)
+                                }
+                                tick+=50
+                            }
+                            if(cit.owner==types.team[this.turn.main].name&&cit.data.type==4){
+                                if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                    this.moveTab(15)
+                                }
+                                tick+=50
+                            }
+                            if(cit.getUnits([this.turn.main]).length>0&&cit.getNotUnits(aligned).length<=0&&cit.owner!=types.team[this.turn.main].name){
+                                if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                    cit.owner=types.team[this.turn.main].name
+                                }
+                                tick+=50
                             }
                         break
                         case 2:
@@ -2316,6 +2367,13 @@ class ui{
                                         break
                                     }
                                 }
+                            }
+                            tick+=50
+                            if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                cit.getUnits([this.turn.main],0).forEach(unit=>{unit.remove=true;this.operation.teams[this.turn.main].deserters+=unit.value})
+                                this.updateVisibility(this.turn.main)
+                                cit.updateUnits()
+                                this.moveTab(1)
                             }
                             tick+=50
                             for(let a=0,la=cit.units.length;a<la;a++){
@@ -2591,11 +2649,16 @@ class ui{
                         if(key==count.toString()){
                             this.moveTab(4)
                         }
-                        count++  
+                        count++
                         if(key==count.toString()){
                             this.operation.transitionManager.begin(`map`)
                         }
-                        count++         
+                        count++
+                        if(key==count.toString()){
+                            this.moveTab(16)
+                            this.operation.cities.forEach(city=>city.visibility=0)
+                        }
+                        count++
                     break
                     case 1:
                         cit=this.operation.cities[this.select.city]
@@ -2607,18 +2670,6 @@ class ui{
                                 cit.minorRegen()
                                 this.turn.count=0
                                 this.newTurn()
-                            }
-                            count++
-                        }
-                        if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
-                            if(key==count.toString()){
-                                this.moveTab(14)
-                            }
-                            count++
-                        }
-                        if(cit.owner==types.team[this.turn.main].name&&cit.data.type==4){
-                            if(key==count.toString()){
-                                this.moveTab(15)
                             }
                             count++
                         }
@@ -2648,6 +2699,24 @@ class ui{
                                 }
                                 count++
                             }
+                        }
+                        if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
+                            if(key==count.toString()){
+                                this.moveTab(14)
+                            }
+                            count++
+                        }
+                        if(cit.owner==types.team[this.turn.main].name&&cit.data.type==4){
+                            if(key==count.toString()){
+                                this.moveTab(15)
+                            }
+                            count++
+                        }
+                        if(cit.getUnits([this.turn.main]).length>0&&cit.getNotUnits(aligned).length<=0&&cit.owner!=types.team[this.turn.main].name){
+                            if(key==count.toString()){
+                                cit.owner=types.team[this.turn.main].name
+                            }
+                            count++
                         }
                     break
                     case 2:
@@ -2687,6 +2756,12 @@ class ui{
                                     break
                                 }
                             }
+                        }
+                        if(key==`Backspace`){
+                            cit.getUnits([this.turn.main],0).forEach(unit=>{unit.remove=true;this.operation.teams[this.turn.main].deserters+=unit.value})
+                            this.updateVisibility(this.turn.main)
+                            cit.updateUnits()
+                            this.moveTab(1)
                         }
                     break
                     case 4:

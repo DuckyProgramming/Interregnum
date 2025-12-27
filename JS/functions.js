@@ -327,6 +327,10 @@ function ally(a,b){
     current.teams[a].allies.push(b)
     current.teams[b].allies.push(a)
 }
+function unally(a,b){
+    current.teams[a].allies.splice(current.teams[a].allies.indexOf(b),1)
+    current.teams[b].allies.splice(current.teams[b].allies.indexOf(a),1)
+}
 function see(){
     current.cities.forEach(city=>city.visibility=2)
 }

@@ -50,7 +50,7 @@ class unit{
         this.turns=composite.turns
     }
     newTurn(){
-        if(this.value>2000&&this.turns>=100&&this.type==0&&floor(random(0,10))==0){
+        if(this.value>2000&&this.turns>=50&&this.type==0&&floor(random(0,10))==0){
             let diff=round(this.value*random(0,0.05)/100)*100
             if(diff>0){
                 this.value-=diff
