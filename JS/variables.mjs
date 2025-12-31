@@ -686,5 +686,5 @@ export var dev={
 export var training={}
 export var options={strength:1,strengthEdit:false}
 export var graphics={main:0,load:{map:[],city:[],team:[],unit:[]}}
-export var constants={trig:[[],[]],spawn:{},init:false,threshold:100000}
+export var constants={trig:[[],[]],spawn:{},init:false,threshold:100000,thresholdTick:0}
 export var inputs={mouse:{base:{x:0,y:0},rel:{x:0,y:0},previous:{base:{x:0,y:0},rel:{x:0,y:0}}}}

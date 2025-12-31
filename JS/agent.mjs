@@ -1,9 +1,9 @@
-import {constrain} from './functions.mjs'
+import {constrain,floor,random} from './functions.mjs'
 export class agent{
     constructor(sets=[],constants=[]){
         this.sets=sets
         this.constants=constants
-        if(this.sets.length==0||this.constants.lenght==0){
+        if(this.sets.length==0||this.constants.length==0){
             this.sets=[
                 [[],[]],
                 [[],[]],
@@ -75,7 +75,7 @@ export class agent{
     }
     execute(mode,data){
         let working=data
-        working.forEach(item=>{if(item<-1000||item>1000||item!=item){print(working);throw new Error("weird inputs")}})
+        //working.forEach(item=>{if(item<-1000||item>1000||item!=item){print(working);throw new Error("weird inputs")}})
         for(let a=0,la=this.sets[mode].length;a<la;a++){
             let summa=[]
             for(let b=0,lb=this.sets[mode][a].length;b<lb;b++){
@@ -97,7 +97,7 @@ export class agent{
             }
             working=summa
         }
-        working.forEach(item=>{if(item<-10000000||item>10000000||item!=item){print(working);throw new Error("weird outputs")}})
+        //working.forEach(item=>{if(item<-10000000||item>10000000||item!=item){print(working);throw new Error("weird outputs")}})
         return working
     }
     mutate(){

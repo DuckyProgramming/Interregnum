@@ -13,14 +13,17 @@ export function random(min,max){
 export function round(value){
     return Math.round(value)
 }
-export function max(value){
-    return Math.max(value)
+export function max(value1,value2){
+    return Math.max(value1,value2)
 }
-export function min(value){
-    return Math.min(value)
+export function min(value1,value2){
+    return Math.min(value1,value2)
 }
 export function constrain(value,lower,upper){
     return Math.min(Math.max(value,lower),upper)
+}
+export function dist(x1,y1,x2,y2){
+    return Math.sqrt((x1-x2)**2+(y1-y2)**2)
 }
 export function distPos(p1,p2){
 	return dist(p1.position.x,p1.position.y,p2.position.x,p2.position.y)
@@ -36,9 +39,6 @@ export function near(value1,value2){
 }
 export function pl(value){
 	return value!=1?`s`:``
-}
-export function dist(x1,x2,y1,y2){
-    return Math.sqrt((x1-x2)**2+(y1-y2)**2)
 }
 export function spinControl(base){
 	return base<-180?base+360:base>180?base-360:base
@@ -372,17 +372,18 @@ export function unally(a,b){
 export function see(){
     current.cities.forEach(city=>city.visibility=2)
 }
-export function outAgents(){
-    out=`\t`
+export function outAgents(current){
+    let out=`export var agentset=[\n\t`
     current.ui.rings.forEach(ring=>{
         out+=`[`
         ring.forEach(agent=>out+=`\n\t\t`+JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val})+`,`)
         out+=`\n\t],`
     })
-    print(out)
+    out+=`\n]`
+    return out
 }
 export function outAgentsOld(){
-    out=``
+    let out=``
     current.ui.agents.forEach(agent=>out+=(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val}))+`,\n\t`)
     print(out)
 }

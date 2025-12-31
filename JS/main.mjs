@@ -1,4 +1,5 @@
 import {dev,graphics,constants,inputs} from './variables.mjs'
+import {openMap,openGrid} from './functions.mjs'
 import {setupGraphics,displayMain} from './graphics.mjs'
 import {operation} from './operation.mjs'
 var current
@@ -6,6 +7,7 @@ export function setup(){
     createCanvas(windowWidth-50,windowHeight-50)
     setupGraphics()
     current=new operation()
+    window.current=current
 }
 export function draw(){
     if(!dev.close){
@@ -38,3 +40,6 @@ window.windowResized=windowResized
 window.mouseClicked=mouseClicked
 window.mouseDragged=mouseDragged
 window.keyPressed=keyPressed
+
+window.openMap=openMap
+window.openGrid=openGrid

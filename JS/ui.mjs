@@ -1,5 +1,6 @@
-import {dev,types,options,constants} from './variables.mjs'
-import {findName,last,distPos,randin,inPointBox,boxify,smoothAnim,floor,ceil,random,min,round,constrain} from './functions.mjs'
+import {dev,types,options,constants,graphics} from './variables.mjs'
+import {findName,last,distPos,randin,inPointBox,boxify,smoothAnim,floor,ceil,random,min,max,round,constrain} from './functions.mjs'
+import {lsin,lcos} from './graphics.mjs'
 import {agent} from './agent.mjs'
 import {agentset} from './agentset.mjs'
 import {unit} from './unit.mjs'
@@ -183,7 +184,8 @@ export class ui{
             if(this.turn.total>=constants.threshold){
                 let nums=[floor(process.uptime().toFixed(3)/3600),floor(process.uptime().toFixed(3)/60)%60,floor(process.uptime().toFixed(3))%60]
                 console.log(`Time at ${constants.threshold} Turns: ${nums[0]<10?`0`:``}${nums[0]}:${nums[1]<10?`0`:``}${nums[1]}:${nums[2]<10?`0`:``}${nums[2]}`)
-                constants.threshold*=2
+                constants.threshold*=constants.thresholdTick%3==2?2.5:2
+                constants.thresholdTick++
             }
         }
         if(dev.assemble&&this.turn.total!=0){
@@ -1850,9 +1852,11 @@ export class ui{
                                         }
                                         if(cit.type!=-1){
                                             if(cit.getNotUnits(aligned).reduce((acc,unit)=>acc+unit.value,0)<10000&&this.spawn(cit,this.turn.main)){
-                                                this.operation.zoom.shift.position.x=types.city[this.select.city].loc[0]
-                                                this.operation.zoom.shift.position.y=types.city[this.select.city].loc[1]
-                                                this.operation.zoom.shift.active=true
+                                                if(!dev.close){
+                                                    this.operation.zoom.shift.position.x=types.city[this.select.city].loc[0]
+                                                    this.operation.zoom.shift.position.y=types.city[this.select.city].loc[1]
+                                                    this.operation.zoom.shift.active=true
+                                                }
                                             }else{
                                                 this.newTurn()
                                             }

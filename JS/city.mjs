@@ -1,4 +1,4 @@
-import {types,constants,dev,options} from './variables.mjs'
+import {types,constants,dev,options,graphics} from './variables.mjs'
 import {findName,smoothAnim,distPos,round,random,max,min,floor} from './functions.mjs'
 import {unit} from './unit.mjs'
 export class city{
