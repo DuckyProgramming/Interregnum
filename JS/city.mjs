@@ -1,11 +1,14 @@
-class city{
+import {types,constants,dev,options} from './variables.mjs'
+import {findName,smoothAnim,distPos,round,random,max,min,floor} from './functions.mjs'
+import {unit} from './unit.mjs'
+export class city{
     constructor(operation,x,y,type){
         this.operation=operation
         this.position={x:x,y:y}
         this.type=type
         this.data=types.city[this.type]
-        this.owner=types.city[this.type].rule
-        this.recruits=floor(random(constants.spawn.base-constants.spawn.spend,constants.spawn.base)/constants.spawn.regen)*constants.spawn.regen
+        this.owner=-1
+        this.recruits=Math.floor(Math.random(constants.spawn.base-constants.spawn.spend,constants.spawn.base)/constants.spawn.regen)*constants.spawn.regen
         this.visibility=0
         this.sieged=0
         this.units=[]
@@ -25,7 +28,7 @@ class city{
         return composite
     }
     load(composite){
-        this.owner=composite.owner
+        this.setOwner(composite.owner)
         this.recruits=composite.recruits
         this.visibility=composite.visibility
         this.sieged=composite.sieged
@@ -33,8 +36,22 @@ class city{
         this.units=[]
         composite.units.forEach(uni=>{this.units.push(new unit(this,0,0,0));last(this.units).load(uni)})
     }
+    setOwner(owner){
+        let team
+        if(this.owner!=-1){
+            team=this.operation.teams[findName(this.owner,types.team)]
+            if(team.cities.indexOf(this)>=0){
+                team.cities.splice(team.cities.indexOf(this),1)
+            }
+        }
+        this.owner=owner
+        if(this.owner!=-1){
+            team=this.operation.teams[findName(this.owner,types.team)]
+            team.cities.push(this)
+        }
+    }
     initial(){
-        if(this.units.length==0){
+        if(this.units.length==0&&this.owner!=-1){
             this.units.push(new unit(this,findName(this.owner,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
             if(this.owner!=this.data.rule){
                 this.recruits-=floor(random(15,21))*100
@@ -100,8 +117,20 @@ class city{
         let num=floor(this.recruits/100/[1,4,2,4][type]*mult)*100
         return max(0,num)
     }
-    raided(){
-        this.recruits=round(this.recruits/20)*10
+    raided(raider){
+        let num=round(this.recruits/20+10)*10
+        this.recruits-=num
+        let total=0
+        let send=[]
+        for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
+            let target=findName(types.city[this.type].connect[a].name,types.city)
+            let mult=[1,0.6,0.4][types.city[this.type].connect[a].type]*(types.city[target].rule==types.team[raider].name?2:1)
+            total+=mult
+            send.push([target,mult])
+        }
+        for(let a=0,la=send.length;a<la;a++){
+            this.operation.cities[send[a][0]].recruits+=round(num*send[a][1]/total/10*0.8)*10
+        }
     }
     getUnits(teams,type=-1){
         return this.units.filter(unit=>{return teams.includes(unit.team)&&(type==-1||unit.type==type)&&!unit.remove&&!unit.removeMark})
@@ -162,9 +191,9 @@ class city{
                     for(let b=0,lb=a;b<lb;b++){
                         if(this.units[a].team==this.units[b].team&&this.units[a].type==this.units[b].type&&!this.units[b].remove){
                             this.units[a].remove=true
+                            this.units[b].turns=(this.units[a].turns*this.units[a].value+this.units[b].turns*this.units[b].value)/(this.units[a].value+this.units[b].value)
                             this.units[b].value+=this.units[a].value
                             this.units[b].edit.num+=this.units[a].edit.num
-                            this.units[b].turns=floor(this.units[a].turns*0.5+this.units[b].turns*0.5)
                         }
                     }
                 }
@@ -173,16 +202,26 @@ class city{
                 }
             }
         }
-        if(this.owner==-1||!this.units.some(unit=>types.team[unit.team].name==this.owner&&unit.type==1)){
-            this.owner=-1
+        if(this.owner==-1||!this.units.some(unit=>types.team[unit.team].name==this.owner&&(unit.type==1||!this.units.some(subunit=>![unit.team,this.operation.teams[unit.team].allies].includes(subunit.team)))&&!unit.remove)){
+            let fail=true
             for(let a=0,la=this.units.length;a<la;a++){
-                if(this.units[a].type==1){
-                    this.owner=types.team[this.units[a].team].name
+                if(this.units[a].type==1&&!this.units[a].remove){
+                    this.setOwner(types.team[this.units[a].team].name)
+                    fail=false
                     break
                 }
             }
-            if(this.owner==-1&&this.units.length>0){
-                this.owner=types.team[this.units[0].team].name
+            if(fail){
+                for(let a=0,la=this.units.length;a<la;a++){
+                    if(this.units[a].type==0&&!this.units[a].remove){
+                        this.setOwner(types.team[this.units[a].team].name)
+                        fail=false
+                        break
+                    }
+                }
+            }
+            if(fail){
+                this.setOwner(-1)
             }
         }
         if(!this.units.some(unit=>unit.type==0)&&this.owner!=-1&&this.units.length>=1){
@@ -275,9 +314,9 @@ class city{
                                 if(distPos(this.units[a],this.units[b])<1||dev.instant){
                                     this.units[a].remove=true
                                     this.units[a].fade.main=0
+                                    this.units[b].turns=(this.units[a].turns*this.units[a].value+this.units[b].turns*this.units[b].value)/(this.units[a].value+this.units[b].value)
                                     this.units[b].value+=this.units[a].value
                                     this.units[b].edit.num+=this.units[a].edit.num
-                                    this.units[b].turns=floor(this.units[a].turns*0.5+this.units[b].turns*0.5)
                                 }
                             }
                         }

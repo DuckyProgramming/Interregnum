@@ -1,9 +1,12 @@
-class team{
+import {types} from './variables.mjs'
+export class team{
     constructor(type){
         this.type=type
         this.name=types.team[this.type].name
         this.allies=[]
         this.offers=[]
+        this.cities=[]
+        this.notif=[]
         this.kills=0
         this.deaths=0
         this.deserters=0

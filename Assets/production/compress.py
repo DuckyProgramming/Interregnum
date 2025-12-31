@@ -9,6 +9,6 @@ def compress(input_,output,max_colors=256):
     except Exception as e:
         print(f"Error compressing image: {e}")
 
-inputImg = "../map/"+input("name? ")+".png"
-outputImg = "compressed.png"
+inputImg="../map/"+input("name? ")+".png"
+outputImg="compressed.png"
 compress(inputImg,outputImg)

@@ -1,4 +1,5 @@
-class agent{
+import {constrain} from './functions.mjs'
+export class agent{
     constructor(sets=[],constants=[]){
         this.sets=sets
         this.constants=constants

@@ -1,8 +1,18 @@
-class operation{
+import {graphics,dev,types,listing,constants} from './variables.mjs'
+import {findList,findName2,findName,distPos,moveTowardVecDynamic,smoothAnim,floor,random,round} from './functions.mjs'
+import {calc} from './calc.mjs'
+import {ui} from './ui.mjs'
+import {transitionManager} from './transitionManager.mjs'
+import {city} from './city.mjs'
+import {unit} from './unit.mjs'
+import {team} from './team.mjs'
+export class operation{
     constructor(){
         this.map=0
         this.nextMap=0
-        this.zoom={position:{x:graphics.load.map[this.map].width*0.5,y:graphics.load.map[this.map].height*0.5},map:0,shift:{position:{x:0,y:0},active:false},dragging:0,scaling:1}
+        if(!dev.close){
+            this.zoom={position:{x:graphics.load.map[this.map].width*0.5,y:graphics.load.map[this.map].height*0.5},map:0,shift:{position:{x:0,y:0},active:false},dragging:0,scaling:1}
+        }
         this.speed={main:dev.speed?5000:1,move:true}
         this.cities=[]
         this.teams=[]
@@ -14,7 +24,7 @@ class operation{
     }
     save(){
         let composite={
-            map:types.map[this.map].name,
+            map:types.map[this.map].term,
             zoom:this.zoom,
             cities:[],
             teams:[],
@@ -24,6 +34,7 @@ class operation{
         }
         this.cities.forEach(city=>composite.cities.push(city.save()))
         this.teams.forEach(team=>composite.teams.push(team.save()))
+        this.cities.forEach(city=>city.setOwner(city.owner))
         return composite
     }
     saveCol(){
@@ -32,7 +43,7 @@ class operation{
     load(result){
         let composite=JSON.parse(result)
 
-        let map=composite.map==undefined?findName(`HRE`,types.map):findName(typeof(composite.map)==`number`?convert[1][composite.map]:composite.map,types.map)
+        let map=composite.map==undefined?findName(`HRE`,types.map):typeof(composite.map)==`number`?findName(convert[1][composite.map],types.map):typeof(composite.map)==`object`?findName2(composite.map,types.map):findName(composite.map,types.map)
         let reselect=false
         if(map!=this.map){
             reselect=true
@@ -113,6 +124,7 @@ class operation{
         types.city.forEach((item,index)=>this.cities.push(new city(this,item.loc[0],item.loc[1],index)))
         this.teams=[]
         types.team.forEach((item,index)=>{this.teams.push(new team(index));item.allies.forEach(ally=>this.teams[index].allies.push(findName(ally,types.team)))})
+        this.cities.forEach(city=>city.setOwner(city.data.rule))
     }
     initialComponents(){
         let units=this.cities.some(city=>city.units.length>0)
@@ -131,8 +143,10 @@ class operation{
                 }
             }
         }
-        this.zoom.position.x=graphics.load.map[this.map].width*0.5
-        this.zoom.position.y=graphics.load.map[this.map].height*0.5
+        if(!dev.close){
+            this.zoom.position.x=graphics.load.map[this.map].width*0.5
+            this.zoom.position.y=graphics.load.map[this.map].height*0.5
+        }
     }
     display(layer){
         switch(this.scene){
@@ -176,7 +190,7 @@ class operation{
                 /*if(this.map==2){
                     layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
                 }*/
-                this.cities.forEach(city=>city.display(layer,this.scene))
+            this.cities.forEach(city=>city.display(layer,this.scene))
                 layer.pop()
             break
         }

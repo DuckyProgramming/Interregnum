@@ -1,4 +1,6 @@
-class calc{
+import {types} from './variables.mjs'
+import {constrain,random,floor,min,max,round} from './functions.mjs'
+export class calc{
     constructor(){
         this.variant=0
         this.terrain={list:[],select:0}

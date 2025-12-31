@@ -1,4 +1,4 @@
-class transitionManager{
+export class transitionManager{
     constructor(operation){
         this.operation=operation
         this.trigger=false
