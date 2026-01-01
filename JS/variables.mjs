@@ -347,7 +347,7 @@ export var types={
                 {name:`Épinal`,type:0,loc:[1226,891],rule:`Lorraine`,connect:[{name:`Toul`,type:0},{name:`Colmar`,type:1},{name:`Vesoul`,type:0},{name:`Belfort`,type:0},{name:`Lunéville`,type:0}]},
                 {name:`Colmar`,type:0,loc:[1530,902],rule:`League of Cities`,connect:[{name:`Épinal`,type:1},{name:`Belfort`,type:0}]},
                 {name:`Lamarche`,type:0,loc:[943,961],rule:`Lorraine`,connect:[{name:`Toul`,type:0},{name:`Vesoul`,type:1}]},
-                {name:`Belfort`,type:0,loc:[1394,1147],rule:`Habsburg`,connect:[{name:`Épinal`,type:0},{name:`Colmar`,type:0},{name:`Basel`,type:0},{name:`Vesoul`,type:0}]},
+                {name:`Belfort`,type:2,loc:[1394,1147],rule:`Habsburg`,connect:[{name:`Épinal`,type:0},{name:`Colmar`,type:0},{name:`Basel`,type:0},{name:`Vesoul`,type:0}]},
                 {name:`Basel`,type:0,loc:[1651,1191],rule:`Ecclesiastical`,connect:[{name:`Aarau`,type:0},{name:`Belfort`,type:0},{name:`Bern`,type:0},{name:`Neuchâtel`,type:0}]},
                 {name:`Vesoul`,type:0,loc:[1137,1204],rule:`Andechs`,connect:[{name:`Épinal`,type:0},{name:`Belfort`,type:0},{name:`Dole`,type:0},{name:`Besançon`,type:0},{name:`Lamarche`,type:1},{name:`Pontarlier`,type:1}]},
                 {name:`Aarau`,type:0,loc:[1823,1261],rule:`Habsburg`,connect:[{name:`Bern`,type:0},{name:`Basel`,type:0},{name:`Altdorf`,type:0}]},
@@ -359,17 +359,17 @@ export var types={
                 {name:`Pontarlier`,type:0,loc:[1259,1558],rule:`Andechs`,connect:[{name:`Neuchâtel`,type:0},{name:`Besançon`,type:0},{name:`Vesoul`,type:1},{name:`Lons`,type:0}]},
                 {name:`Thun`,type:0,loc:[1707,1622],rule:`Zähringen`,connect:[{name:`Altdorf`,type:0},{name:`Bern`,type:0},{name:`Lausanne`,type:0},{name:`Visp`,type:0}]},
                 {name:`Lons`,type:0,loc:[998,1738],rule:`Andechs`,connect:[{name:`Dole`,type:0},{name:`Besançon`,type:0},{name:`Lausanne`,type:0},{name:`Bourg`,type:0},{name:`Geneva`,type:0},{name:`Pontarlier`,type:0}]},
-                {name:`Lausanne`,type:0,loc:[1362,1782],rule:`Savoy`,connect:[{name:`Lons`,type:0},{name:`Thun`,type:0},{name:`Neuchâtel`,type:0},{name:`Geneva`,type:0},{name:`Sion`,type:0}]},
+                {name:`Lausanne`,type:2,loc:[1362,1782],rule:`Savoy`,connect:[{name:`Lons`,type:0},{name:`Thun`,type:0},{name:`Neuchâtel`,type:0},{name:`Geneva`,type:0},{name:`Sion`,type:0}]},
                 {name:`Visp`,type:0,loc:[1837,1866],rule:`Valais`,connect:[{name:`Thun`,type:0},{name:`Altdorf`,type:0},{name:`Sion`,type:0}]},
                 {name:`Sion`,type:0,loc:[1647,1917],rule:`Ecclesiastical`,connect:[{name:`Visp`,type:0},{name:`Lausanne`,type:0},{name:`Geneva`,type:1},{name:`Chamonix`,type:0}]},
                 {name:`Bourg`,type:0,loc:[875,1962],rule:`Arduinici`,connect:[{name:`Lons`,type:0},{name:`Geneva`,type:1},{name:`Colombier`,type:1},{name:`Lyon`,type:0}]},
                 {name:`Geneva`,type:3,loc:[1210,1985],rule:`Geneva`,connect:[{name:`Bourg`,type:1},{name:`Lons`,type:0},{name:`Lausanne`,type:0},{name:`Sion`,type:1},{name:`Annecy`,type:0}]},
                 {name:`Annecy`,type:0,loc:[1226,2099],rule:`Thoire`,connect:[{name:`Geneva`,type:0},{name:`Moustier`,type:0},{name:`Chambéry`,type:0}]},
                 {name:`Chamonix`,type:0,loc:[1474,2100],rule:`Savoy`,connect:[{name:`Sion`,type:0},{name:`Moustier`,type:0}]},
-                {name:`Lyon`,type:2,loc:[759,2210],rule:`Ecclesiastical`,connect:[{name:`Feurs`,type:0},{name:`Vienne`,type:0},{name:`Colombier`,type:0},{name:`Bourg`,type:0}]},
+                {name:`Lyon`,type:0,loc:[759,2210],rule:`Ecclesiastical`,connect:[{name:`Feurs`,type:0},{name:`Vienne`,type:0},{name:`Colombier`,type:0},{name:`Bourg`,type:0}]},
                 {name:`Colombier`,type:0,loc:[883,2254],rule:`Arduinici`,connect:[{name:`Bourg`,type:1},{name:`Lyon`,type:0},{name:`Chambéry`,type:0},{name:`Vienne`,type:0},{name:`Grenoble`,type:0}]},
                 {name:`Feurs`,type:0,loc:[551,2266],rule:`Albon`,connect:[{name:`Lyon`,type:0},{name:`Vienne`,type:0}]},
-                {name:`Chambéry`,type:0,loc:[1169,2280],rule:`Savoy`,connect:[{name:`Moustier`,type:1},{name:`Annecy`,type:0},{name:`Grenoble`,type:0},{name:`Colombier`,type:0}]},
+                {name:`Chambéry`,type:2,loc:[1169,2280],rule:`Savoy`,connect:[{name:`Moustier`,type:1},{name:`Annecy`,type:0},{name:`Grenoble`,type:0},{name:`Colombier`,type:0}]},
                 {name:`Moustier`,type:0,loc:[1381,2300],rule:`Ecclesiastical`,connect:[{name:`Chamonix`,type:0},{name:`Chambéry`,type:1},{name:`Briançon`,type:0},{name:`Annecy`,type:0}]},
                 {name:`Vienne`,type:1,loc:[777,2347],rule:`Ecclesiastical`,connect:[{name:`Feurs`,type:0},{name:`Albon`,type:0},{name:`Lyon`,type:0},{name:`Colombier`,type:0}]},
                 {name:`Grenoble`,type:1,loc:[1111,2466],rule:`Albon`,connect:[{name:`Colombier`,type:0},{name:`Chambéry`,type:0},{name:`St. Bonet`,type:0},{name:`Die`,type:0},{name:`Albon`,type:1}]},
@@ -683,7 +683,9 @@ export var dev={
     road:false,pause:false,close:false,//tool
     assemble:false,assemble2:false,//deprecated
 }
-export var training={}
+export var training={
+    specific:-1,
+}
 export var options={strength:1,strengthEdit:false}
 export var graphics={main:0,load:{map:[],city:[],team:[],unit:[]}}
 export var constants={trig:[[],[]],spawn:{},init:false,threshold:100000,thresholdTick:0}

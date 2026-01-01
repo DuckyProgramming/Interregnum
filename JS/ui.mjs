@@ -1,4 +1,4 @@
-import {dev,types,options,constants,graphics} from './variables.mjs'
+import {dev,types,options,constants,graphics,training} from './variables.mjs'
 import {findName,last,distPos,randin,inPointBox,boxify,smoothAnim,floor,ceil,random,min,max,round,constrain} from './functions.mjs'
 import {lsin,lcos} from './graphics.mjs'
 import {agent} from './agent.mjs'
@@ -162,16 +162,25 @@ export class ui{
                         maximal=this.rings[a].reduce((acc,agent)=>max(acc,agent.punishments),0)
                         this.rings[a].forEach(agent=>{agent.record-=agent.punishments/maximal*5;agent.punishments=0})
                         this.rings[a].sort((a,b)=>a.record-b.record)
-                        this.rings[a].splice(0,5)
+                        let failures=this.rings[a].splice(0,5)
                         let len=this.rings[a].length
-                        for(let b=0,lb=this.turn.total>=100000000?5:4;b<lb;b++){
-                            this.rings[a].push(new agent(
-                                JSON.parse(JSON.stringify(this.rings[a][len-1-b].sets)),
-                                JSON.parse(JSON.stringify(this.rings[a][len-1-b].constants))
-                            ))
+                        let newer=this.turn.total<100000000&&training.specific==-1
+                        for(let b=0,lb=newer?4:5;b<lb;b++){
+                            let newSets
+                            let newConstants
+                            if(training.specific==-1){
+                                newSets=JSON.parse(JSON.stringify(this.rings[a][len-1-b].sets))
+                                newConstants=JSON.parse(JSON.stringify(this.rings[a][len-1-b].constants))
+                            }else{
+                                newSets=JSON.parse(JSON.stringify(failures[b].sets))
+                                newConstants=JSON.parse(JSON.stringify(failures[b].constants))
+                                newSets[training.specific]=JSON.parse(JSON.stringify(this.rings[a][len-1-b].sets[training.specific]))
+                                newConstants[training.specific]=JSON.parse(JSON.stringify(this.rings[a][len-1-b].constants[training.specific]))
+                            }
+                            this.rings[a].push(new agent(newSets,newConstants))
                             last(this.rings[a]).mutate()
                         }
-                        if(this.turn.total<100000000){
+                        if(newer){
                             this.rings[a].push(new agent())
                         }
                         this.rings[a]=this.rings[a]
@@ -915,6 +924,9 @@ export class ui{
     updateUnits(){
         this.operation.cities.forEach(city=>city.updateUnits())
     }
+    updateSiege(){
+        this.operation.cities.forEach(city=>city.updateSiege())
+    }
     display(layer,scene){
         layer.noStroke()
         let tick=0
@@ -1407,7 +1419,7 @@ export class ui{
                                 layer.textSize(24)
                                 layer.text(`Delegate Turn`,0,40)
                                 for(let a=0,la=types.team.length;a<la;a++){
-                                    if(a!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(a)){
+                                    if(a!=this.turn.main){
                                         layer.fill(120)
                                         layer.rect(0,tick+12.5,160,25,10)
                                         layer.fill(0)
@@ -2019,6 +2031,7 @@ export class ui{
                                         a--
                                         la--
                                         this.updateUnits()
+                                        this.updateSiege()
                                     }
                                 }
                                 this.moveTab(6)
@@ -2641,6 +2654,7 @@ export class ui{
                                     this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.splice(this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.indexOf(this.turn.main),1)
                                     this.operation.teams[this.turn.main].allies.splice(a,1)
                                     this.updateUnits()
+                                    this.updateSiege()
                                     break
                                 }
                                 tick+=50
@@ -2734,7 +2748,7 @@ export class ui{
                         break
                         case 14:
                             for(let a=0,la=types.team.length;a<la;a++){
-                                if(a!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(a)){
+                                if(a!=this.turn.main){
                                     if(inPointBox(rel,boxify(0,tick+12.5,160,25))){
                                         let ct=this.turn.count
                                         this.turn.count=0
@@ -3032,6 +3046,7 @@ export class ui{
                                 this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.splice(this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.indexOf(this.turn.main),1)
                                 this.operation.teams[this.turn.main].allies.splice(a,1)
                                 this.updateUnits()
+                                this.updateSiege()
                                 break
                             }
                             count++
@@ -3124,7 +3139,7 @@ export class ui{
                     break
                     case 14:
                         for(let a=0,la=types.team.length;a<la;a++){
-                            if(a!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(a)){
+                            if(a!=this.turn.main){
                                 if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
                                     let ct=this.turn.count
                                     this.turn.count=0

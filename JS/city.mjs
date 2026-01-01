@@ -8,7 +8,7 @@ export class city{
         this.type=type
         this.data=types.city[this.type]
         this.owner=-1
-        this.recruits=Math.floor(Math.random(constants.spawn.base-constants.spawn.spend,constants.spawn.base)/constants.spawn.regen)*constants.spawn.regen
+        this.recruits=floor(random(constants.spawn.base-constants.spawn.spend,constants.spawn.base)/constants.spawn.regen)*constants.spawn.regen
         this.visibility=0
         this.sieged=0
         this.units=[]
@@ -60,21 +60,7 @@ export class city{
     }
     newTurn(){
         this.recruits=min(this.recruits+constants.spawn.regen*(this.recruits>=constants.spawn.base*0.8?0.5:this.recruits>=constants.spawn.base*0.6?0.75:1),constants.spawn.base)
-        if(!this.units.some(unit=>unit.type==1)&&this.owner!=-1){
-            let own=findName(this.owner,types.team)
-            let aligned=[own,...this.operation.teams[own].allies]
-            for(let a=0,la=this.units.length;a<la;a++){
-                if(this.units[a].type==0&&!aligned.includes(this.units[a].team)){
-                    for(let b=0,lb=this.units.length;b<lb;b++){
-                        if(aligned.includes(this.units[b].team)&&!this.units[b].remove){
-                            this.units[b].remove=true
-                            this.units.splice(0,0,new unit(this,this.units[b].team,1-this.units[b].type,this.units[b].value))
-                        }
-                    }
-                    break
-                }
-            }
-        }
+        this.updateSiege()
     }
     newTurnTick(){
         let differ=0
@@ -129,7 +115,7 @@ export class city{
             send.push([target,mult])
         }
         for(let a=0,la=send.length;a<la;a++){
-            this.operation.cities[send[a][0]].recruits+=round(num*send[a][1]/total/10*0.8)*10
+            this.operation.cities[send[a][0]].recruits+=round(num*send[a][1]/total/10*0.5)*10
         }
     }
     getUnits(teams,type=-1){
@@ -231,6 +217,20 @@ export class city{
                 if(this.units[a].type==1&&!aligned.includes(this.units[a].team)&&!this.units[a].remove){
                     this.units[a].remove=true
                     this.units.push(new unit(this,this.units[a].team,1-this.units[a].type,this.units[a].value))
+                }
+            }
+        }
+    }
+    updateSiege(){
+        if(this.owner!=-1){
+            let own=findName(this.owner,types.team)
+            let aligned=[own,...this.operation.teams[own].allies]
+            if(this.units.some(unit=>!aligned.includes(unit.team)&&unit.type==0)){
+                for(let b=0,lb=this.units.length;b<lb;b++){
+                    if(aligned.includes(this.units[b].team)&&this.units[b].type==0&&!this.units[b].remove){
+                        this.units[b].remove=true
+                        this.units.splice(0,0,new unit(this,this.units[b].team,1-this.units[b].type,this.units[b].value))
+                    }
                 }
             }
         }
