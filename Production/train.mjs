@@ -6,10 +6,11 @@ process.on('SIGINT',async ()=>{
     const report=await new Promise(resolve=>{
         worker.once('message',msg=>{
             if(msg.cmd=='end'){
-                resolve(msg.data)
+                resolve(msg)
             }
         })
     })
-    await writeFile('agentset.mjs',report,{encoding:'utf8'})
+    console.log(report.status)
+    await writeFile('agentset.mjs',report.data,{encoding:'utf8'})
     process.exit(0)
 })

@@ -41,6 +41,7 @@ window.mouseClicked=mouseClicked
 window.mouseDragged=mouseDragged
 window.keyPressed=keyPressed
 
+window.dev=dev
 window.openMap=openMap
 window.openGrid=openGrid
 window.see=see

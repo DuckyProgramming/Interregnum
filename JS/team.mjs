@@ -6,6 +6,7 @@ export class team{
         this.allies=[]
         this.offers=[]
         this.cities=[]
+        this.cores=[]
         this.notif=[]
         this.kills=0
         this.deaths=0

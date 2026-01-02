@@ -39,7 +39,7 @@ export class calc{
         for(let a=0,la=this.sides.length;a<la;a++){
             this.result.casualties.push([])
         }
-        for(let a=0,la=floor(random(1,2.25));a<la;a++){
+        for(let a=0,la=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,3][floor(random(0,36))];a<la;a++){
             let result=this.battle(a)
             this.result.winner.push(result.winner+1)
             for(let b=0,lb=result.casualties.length;b<lb;b++){

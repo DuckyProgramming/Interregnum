@@ -1,6 +1,6 @@
 import {parentPort} from "node:worker_threads"
 import {dev} from '../JS/variables.mjs'
-import {outAgents} from '../JS/functions.mjs'
+import {outAgents,outTraining} from '../JS/functions.mjs'
 import {operation} from '../JS/operation.mjs'
 function draw(){
     current.update()
@@ -10,10 +10,11 @@ dev.instant=true
 dev.training=true
 dev.speed=true
 dev.close=true
+dev.new=true
 const current=new operation()
 draw()
 parentPort.on('message',msg=>{
     if(msg.cmd=='output'){
-        parentPort.postMessage({cmd:'end',data:outAgents(current)})
+        parentPort.postMessage({cmd:'end',status:`\nFinal Status:\n${outTraining(current)}\n`,data:outAgents(current)})
     }
 })

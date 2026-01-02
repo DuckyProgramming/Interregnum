@@ -1,5 +1,5 @@
-import {graphics,dev,types,listing,constants} from './variables.mjs'
-import {findList,findName2,findName,distPos,moveTowardVecDynamic,smoothAnim,floor,random,round} from './functions.mjs'
+import {graphics,dev,types,listing,constants,training} from './variables.mjs'
+import {findList,findName2,findName,findTerm,distPos,moveTowardVecDynamic,smoothAnim,floor,random,round} from './functions.mjs'
 import {calc} from './calc.mjs'
 import {ui} from './ui.mjs'
 import {transitionManager} from './transitionManager.mjs'
@@ -18,7 +18,7 @@ export class operation{
         this.teams=[]
         this.scene=`title`
         this.initial()
-        this.loadMap(findName(`Tiny`,types.map))
+        this.loadMap(findTerm(dev.training?training.map:`minim`,types.map))
         this.initialComponents()
         this.ui.reset()
     }
@@ -125,6 +125,7 @@ export class operation{
         this.teams=[]
         types.team.forEach((item,index)=>{this.teams.push(new team(index));item.allies.forEach(ally=>this.teams[index].allies.push(findName(ally,types.team)))})
         this.cities.forEach(city=>city.setOwner(city.data.rule))
+        this.cities.forEach(city=>city.setCore(city.data.rule))
     }
     initialComponents(){
         let units=this.cities.some(city=>city.units.length>0)
@@ -199,7 +200,7 @@ export class operation{
     }
     update(layer){        
         if(this.ui.turn.main!=-1&&!dev.speed&&this.speed.move){
-            this.speed.main=smoothAnim(this.speed.main,types.team[this.ui.turn.main].auto,1,4,0.05)
+            this.speed.main=smoothAnim(this.speed.main,types.team[this.ui.turn.main].auto,1,6,0.1)
         }
         switch(this.scene){
             case `title`: case `setup`:

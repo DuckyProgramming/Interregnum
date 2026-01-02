@@ -73,6 +73,7 @@ export class agent{
         this.record=0
         this.rewards=0
         this.punishments=0
+        this.benchmrk=false
     }
     execute(mode,data){
         let working=data

@@ -1,4 +1,4 @@
-import {inputs} from './variables.mjs'
+import {inputs,training} from './variables.mjs'
 import {lsin,lcos} from './graphics.mjs'
 //calculatory
 export function floor(value){
@@ -176,7 +176,7 @@ export function findName2(name,list){
     throw new Error(`findName2 Fail: ${name}`)
 	return -1
 }
-export function findTerm(name,list){
+export function findTerm(term,list){
 	for(let a=0,la=list.length;a<la;a++){
 		if(list[a].term==term){
 			return a
@@ -381,6 +381,9 @@ export function outAgents(current){
     })
     out+=`\n]`
     return out
+}
+export function outTraining(current){
+    return `Total Turns: ${current.ui.turn.total}\nGenerations: ${training.generations}`
 }
 export function outAgentsOld(){
     let out=``

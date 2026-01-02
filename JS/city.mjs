@@ -9,6 +9,7 @@ export class city{
         this.data=types.city[this.type]
         this.owner=-1
         this.recruits=floor(random(constants.spawn.base-constants.spawn.spend,constants.spawn.base)/constants.spawn.regen)*constants.spawn.regen
+        this.mercenaries=floor(random(constants.spawn.base-constants.spawn.spend,constants.spawn.base)/constants.spawn.regen)*constants.spawn.regen
         this.visibility=0
         this.sieged=0
         this.units=[]
@@ -20,6 +21,7 @@ export class city{
             name:this.data.name,
             owner:this.owner,
             recruits:this.recruits,
+            mercenaries:this.mercenaries,
             visibility:this.visibility,
             sieged:this.sieged,
             units:[]
@@ -30,6 +32,7 @@ export class city{
     load(composite){
         this.setOwner(composite.owner)
         this.recruits=composite.recruits
+        this.mercenaries=composite.mercenaries
         this.visibility=composite.visibility
         this.sieged=composite.sieged
         this.data=types.city[this.type]
@@ -50,6 +53,10 @@ export class city{
             team.cities.push(this)
         }
     }
+    setCore(owner){
+        let team=this.operation.teams[findName(owner,types.team)]
+        team.cores.push(this)
+    }
     initial(){
         if(this.units.length==0&&this.owner!=-1){
             this.units.push(new unit(this,findName(this.owner,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
@@ -60,6 +67,7 @@ export class city{
     }
     newTurn(){
         this.recruits=min(this.recruits+constants.spawn.regen*(this.recruits>=constants.spawn.base*0.8?0.5:this.recruits>=constants.spawn.base*0.6?0.75:1),constants.spawn.base)
+        this.mercenaries=min(this.mercenaries+constants.spawn.regen*(this.mercenaries>=constants.spawn.base*0.8?0.4:this.mercenaries>=constants.spawn.base*0.6?0.6:0.8),constants.spawn.base)
         this.updateSiege()
     }
     newTurnTick(){
@@ -86,21 +94,24 @@ export class city{
     }
     minorRegen(){
         this.recruits=min(this.recruits+constants.spawn.regen*10,constants.spawn.base)
+        this.mercenaries=min(this.mercenaries+constants.spawn.regen*10,constants.spawn.base)
     }
     spawn(type){
-        let team=type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):this.ruleIndex
+        let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
+        let team=type==4?findName(`Free Company`,types.team):type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):this.ruleIndex
         let mult=types.team[team].auto?options.strength:1
-        let num=floor(this.recruits/100/[1,4,2,4][type]*mult)*100
+        let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
         this.units.push(new unit(this,team,0,num))
-        this.recruits=type==0?max(0,this.recruits-constants.spawn.spend*[1,1,0.75,1][type]):this.recruits-constants.spawn.spend*[1,1,0.75,1][type]*(types.team[team].auto?2:1)
+        this[set]=type==0?max(0,this[set]-constants.spawn.spend*[1,1,0.75,1,1.5][type]):this[set]-constants.spawn.spend*[1,1,0.75,1,1.5][type]*(type==1&&types.team[team].auto?2:1)
         if(num==0){
             throw new Error('SPAWN 0')
         }
     }
     getSpawn(type){
-        let team=type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):this.ruleIndex
+        let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
+        let team=type==4?findName(`Free Company`,types.team):type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):this.ruleIndex
         let mult=types.team[team].auto?options.strength:1
-        let num=floor(this.recruits/100/[1,4,2,4][type]*mult)*100
+        let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
         return max(0,num)
     }
     raided(raider){
@@ -292,7 +303,7 @@ export class city{
                     let cap=0
                     for(let a=0,la=this.units.length;a<la;a++){
                         if(a!=0&&!this.units[a].remove&&!this.units[a].combining){
-                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].name==`Tiny`?-1:1)
+                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].term==`minim`?-1:1)
                         }
                         this.units[a].goal.position.y=cap
                         if(this.units[a].combining){
@@ -324,7 +335,7 @@ export class city{
                             this.units[a].update(this.visibility)
                         }
                         if(!this.units[a].remove&&!this.units[a].combining){
-                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].name==`Tiny`?-1:1)
+                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].term==`minim`?-1:1)
                         }
                     }
                     this.number=smoothAnim(this.number,this.operation.ui.tabs.active==16,0,1,15)
