@@ -140,7 +140,8 @@ export class operation{
                 }
                 if(cit.length>0&&(floor(random(0,2))==0||cit.length>=2||!types.team[a].auto)){
                     let loc=this.cities[cit[floor(random(0,cit.length))]]
-                    loc.units.push(new unit(loc,a,0,round(cit.length*(this.teams[a].name==`Ecclesiastical`?2.5:5)+random(0,5))*100))
+                    let mult=this.teams[a].auto?options.strength:1
+                    loc.units.push(new unit(loc,a,0,round(cit.length*((this.teams[a].name==`Ecclesiastical`?2.5:5)+random(0,5))*mult)*100))
                 }
             }
         }

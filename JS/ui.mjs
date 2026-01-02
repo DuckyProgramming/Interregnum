@@ -335,7 +335,7 @@ export class ui{
             this.operation.cities.forEach(city=>city.visibility=0)
             this.moveTab(5)
             if(types.team[this.turn.main].auto){
-                if(random(0,types.team[this.turn.main].chance*5*(types.team[this.turn.main].name==`Free Company`?0.25:1))<1){
+                if(random(0,types.team[this.turn.main].chance*5*(types.team[this.turn.main].name==`Free Company`?0.5:1))<1){
                     this.updateVisibility()
                     this.moveTab(4)
                 }
@@ -818,16 +818,15 @@ export class ui{
         let aligned=[this.turn.main,...this.operation.teams[this.turn.main].allies]
         if(
             cit.owner==types.team[this.turn.main].name&&cit.getNotUnits(aligned).length<=0&&cit.data.type==5&&
-            cit.getSpawn(4)>cit.getSpawn(this.spawnVariant(cit,turn))
+            types.team[turn].auto&&cit.getSpawn(4)>cit.getSpawn(this.spawnVariant(cit,turn))
         ){
             cit.spawn(4)
             cit.updateUnits()
             this.turn.timer=30
-            if(!this.operation.teams[findName(`Free Company`,types.team)].allies.includes(this.turn.main)){
+            if(!this.operation.teams[findName(`Free Company`,types.team)].allies.includes(this.turn.main)&&this.operation.teams[this.turn.main].name!=`Free Company`){
                 this.operation.teams[findName(`Free Company`,types.team)].allies.push(this.turn.main)
                 this.operation.teams[this.turn.main].allies.push(findName(`Free Company`,types.team))
             }
-            console.log('win')
             return true
         }else if(cit.data.rule==types.team[turn].name){
             if(cit.getNotUnits(aligned).length<=0){
@@ -2659,7 +2658,7 @@ export class ui{
                                         cit.spawn(4)
                                         cit.updateUnits()
                                         this.turn.timer=30
-                                        if(!this.operation.teams[findName(`Free Company`,types.team)].allies.includes(this.turn.main)){
+                                        if(!this.operation.teams[findName(`Free Company`,types.team)].allies.includes(this.turn.main)&&this.operation.teams[this.turn.main].name!=`Free Company`){
                                             this.operation.teams[findName(`Free Company`,types.team)].allies.push(this.turn.main)
                                             this.operation.teams[this.turn.main].allies.push(findName(`Free Company`,types.team))
                                         }
@@ -3090,7 +3089,7 @@ export class ui{
                                     cit.spawn(4)
                                     cit.updateUnits()
                                     this.turn.timer=30
-                                    if(!this.operation.teams[findName(`Free Company`,types.team)].allies.includes(this.turn.main)){
+                                    if(!this.operation.teams[findName(`Free Company`,types.team)].allies.includes(this.turn.main)&&this.operation.teams[this.turn.main].name!=`Free Company`){
                                         this.operation.teams[findName(`Free Company`,types.team)].allies.push(this.turn.main)
                                         this.operation.teams[this.turn.main].allies.push(findName(`Free Company`,types.team))
                                     }

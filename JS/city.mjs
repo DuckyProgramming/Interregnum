@@ -199,7 +199,7 @@ export class city{
                 }
             }
         }
-        if(this.owner==-1||!this.units.some(unit=>types.team[unit.team].name==this.owner&&(unit.type==1||!this.units.some(subunit=>![unit.team,this.operation.teams[unit.team].allies].includes(subunit.team)))&&!unit.remove)){
+        if(this.owner==-1||!this.units.some(unit=>types.team[unit.team].name==this.owner&&(unit.type==1||!this.units.some(subunit=>![unit.team,this.operation.teams[unit.team].allies].includes(subunit.team)&&subunit.type==0))&&!unit.remove)){
             let fail=true
             for(let a=0,la=this.units.length;a<la;a++){
                 if(this.units[a].type==1&&!this.units[a].remove){
