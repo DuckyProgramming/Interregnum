@@ -1,0 +1,23 @@
+types.district=[
+    {
+        name:"Île-de-Bourgogne",
+        circle:"Upper",
+        area:69914
+    },{
+        name:"Saône",
+        circle:"Upper",
+        area:703190
+    },{
+        name:"Transjurania",
+        circle:"Upper",
+        area:639151
+    },{
+        name:"Cisjurania",
+        circle:"Lower",
+        area:675503
+    },{
+        name:"Provence",
+        circle:"Lower",
+        area:871953
+    },
+]

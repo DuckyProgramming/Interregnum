@@ -15,6 +15,8 @@ export var listing={
 export var types={
     city:[],
     team:[],
+    cityRef:{},
+    teamRef:{},
     cityType:[
         {name:`Base`,term:0,value:1},
         {name:`Electorate`,term:1,value:2},
@@ -348,7 +350,7 @@ export var types={
                 {name:`Lunéville`,type:0,loc:[1210,661],rule:`Lorraine`,connect:[{name:`Épinal`,type:0},{name:`Toul`,type:1}]},
                 {name:`Épinal`,type:2,loc:[1226,891],rule:`Lorraine`,connect:[{name:`Toul`,type:0},{name:`Colmar`,type:1},{name:`Vesoul`,type:0},{name:`Belfort`,type:0},{name:`Lunéville`,type:0}]},
                 {name:`Colmar`,type:0,loc:[1530,902],rule:`League of Cities`,connect:[{name:`Épinal`,type:1},{name:`Belfort`,type:0}]},
-                {name:`Lamarche`,type:5,loc:[943,961],rule:`Lorraine`,connect:[{name:`Toul`,type:0},{name:`Vesoul`,type:1}]},
+                {name:`Lamarche`,type:0,loc:[943,961],rule:`Lorraine`,connect:[{name:`Toul`,type:0},{name:`Vesoul`,type:1}]},
                 {name:`Belfort`,type:0,loc:[1394,1147],rule:`Habsburg`,connect:[{name:`Épinal`,type:0},{name:`Colmar`,type:0},{name:`Basel`,type:0},{name:`Vesoul`,type:0}]},
                 {name:`Basel`,type:5,loc:[1651,1191],rule:`Ecclesiastical`,connect:[{name:`Aarau`,type:0},{name:`Belfort`,type:0},{name:`Bern`,type:0},{name:`Neuchâtel`,type:0}]},
                 {name:`Vesoul`,type:0,loc:[1137,1204],rule:`Andechs`,connect:[{name:`Épinal`,type:0},{name:`Belfort`,type:0},{name:`Dole`,type:0},{name:`Besançon`,type:0},{name:`Lamarche`,type:1},{name:`Pontarlier`,type:1}]},
@@ -371,7 +373,7 @@ export var types={
                 {name:`Chamonix`,type:0,loc:[1474,2100],rule:`Savoy`,connect:[{name:`Sion`,type:0},{name:`Moustier`,type:0}]},
                 {name:`Lyon`,type:0,loc:[759,2210],rule:`Ecclesiastical`,connect:[{name:`Feurs`,type:0},{name:`Vienne`,type:0},{name:`Colombier`,type:0},{name:`Bourg`,type:0}]},
                 {name:`Colombier`,type:0,loc:[883,2254],rule:`Arduinici`,connect:[{name:`Bourg`,type:1},{name:`Lyon`,type:0},{name:`Chambéry`,type:0},{name:`Vienne`,type:0},{name:`Grenoble`,type:0}]},
-                {name:`Feurs`,type:5,loc:[541,2266],rule:`Albon`,connect:[{name:`Lyon`,type:0},{name:`Vienne`,type:0}]},
+                {name:`Feurs`,type:0,loc:[541,2266],rule:`Albon`,connect:[{name:`Lyon`,type:0},{name:`Vienne`,type:0}]},
                 {name:`Chambéry`,type:2,loc:[1169,2280],rule:`Savoy`,connect:[{name:`Moustier`,type:1},{name:`Annecy`,type:0},{name:`Grenoble`,type:0},{name:`Colombier`,type:0}]},
                 {name:`Moustier`,type:0,loc:[1381,2300],rule:`Ecclesiastical`,connect:[{name:`Chamonix`,type:0},{name:`Chambéry`,type:1},{name:`Briançon`,type:0},{name:`Annecy`,type:0}]},
                 {name:`Vienne`,type:1,loc:[777,2347],rule:`Ecclesiastical`,connect:[{name:`Feurs`,type:0},{name:`Albon`,type:0},{name:`Lyon`,type:0},{name:`Colombier`,type:0}]},
@@ -382,10 +384,10 @@ export var types={
                 {name:`St. Bonet`,type:0,loc:[1264,2686],rule:`Albon`,connect:[{name:`Briançon`,type:0},{name:`Gap`,type:0},{name:`Grenoble`,type:0}]},
                 {name:`Die`,type:0,loc:[1002,2721],rule:`Rouergue`,connect:[{name:`Grenoble`,type:0},{name:`Gap`,type:0},{name:`Nyons`,type:0},{name:`Valence`,type:0}]},
                 {name:`Gap`,type:0,loc:[1287,2811],rule:`Sabran`,connect:[{name:`Barcelonette`,type:1},{name:`Sisteron`,type:0},{name:`Die`,type:0},{name:`St. Bonet`,type:0}]},
-                {name:`Barcelonette`,type:5,loc:[1483,2868],rule:`Savoy`,connect:[{name:`Briançon`,type:0},{name:`Gap`,type:1},{name:`Glandèves`,type:0},{name:`Nice`,type:0}]},
+                {name:`Barcelonette`,type:0,loc:[1483,2868],rule:`Savoy`,connect:[{name:`Briançon`,type:0},{name:`Gap`,type:1},{name:`Glandèves`,type:0},{name:`Nice`,type:0}]},
                 {name:`Viviers`,type:0,loc:[754,2895],rule:`Ecclesiastical`,connect:[{name:`Nyons`,type:0},{name:`Valence`,type:0},{name:`Avignon`,type:1}]},
-                {name:`Nyons`,type:2,loc:[931,2955],rule:`Rouergue`,connect:[{name:`Die`,type:0},{name:`Viviers`,type:0},{name:`Avignon`,type:0},{name:`Agoult`,type:0}]},
-                {name:`Sisteron`,type:0,loc:[1254,3007],rule:`Sabran`,connect:[{name:`Gap`,type:0},{name:`Glandèves`,type:0},{name:`Agoult`,type:0}]},
+                {name:`Nyons`,type:0,loc:[931,2955],rule:`Rouergue`,connect:[{name:`Die`,type:0},{name:`Viviers`,type:0},{name:`Avignon`,type:0},{name:`Agoult`,type:0}]},
+                {name:`Sisteron`,type:2,loc:[1254,3007],rule:`Sabran`,connect:[{name:`Gap`,type:0},{name:`Glandèves`,type:0},{name:`Agoult`,type:0}]},
                 {name:`Glandèves`,type:0,loc:[1585,3108],rule:`Barcelona`,connect:[{name:`Draguignan`,type:0},{name:`Nice`,type:0},{name:`Barcelonette`,type:0},{name:`Sisteron`,type:0}]},
                 {name:`Avignon`,type:0,loc:[842,3185],rule:`Rouergue`,connect:[{name:`Viviers`,type:1},{name:`Nyons`,type:0},{name:`Arles`,type:0},{name:`Agoult`,type:0}]},
                 {name:`Agoult`,type:0,loc:[1023,3202],rule:`Sabran`,connect:[{name:`Avignon`,type:0},{name:`Nyons`,type:0},{name:`Aix`,type:1},{name:`Sisteron`,type:0}]},
@@ -415,7 +417,7 @@ export var types={
                 {name:`Rouergue`,term:`rouergue`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Savoy`,term:`savoy`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`arles`,type:`Middle Nobility`,allies:[],quality:0.8,chance:1},
+                {name:`Free Company`,term:`arles`,type:`Middle Nobility`,allies:[],quality:1.25,chance:0.5},
             ],
         },{
             name:[`Arelatisches Reich`,``],
@@ -689,10 +691,10 @@ export var dev={
     assemble:false,assemble2:false,//deprecated
 }
 export var training={
-    specific:-1,generations:0,benchmark:0,turns:1000,runs:20,
+    specific:6,generations:0,benchmark:0,turns:1000,runs:50,inserter:50000000,
     map:`arelat+-`,
 }
 export var options={strength:1,strengthEdit:false}
 export var graphics={main:0,load:{map:[],city:[],team:[],unit:[]}}
-export var constants={trig:[[],[]],spawn:{},init:false,threshold:100000,thresholdTick:0}
+export var constants={trig:[[],[]],spawn:{},init:false,threshold:1000000,thresholdTick:0}
 export var inputs={mouse:{base:{x:0,y:0},rel:{x:0,y:0},previous:{base:{x:0,y:0},rel:{x:0,y:0}}}}

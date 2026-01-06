@@ -10,11 +10,13 @@ dev.instant=true
 dev.training=true
 dev.speed=true
 dev.close=true
-dev.new=true
+//dev.new=true
 const current=new operation()
 draw()
 parentPort.on('message',msg=>{
     if(msg.cmd=='output'){
         parentPort.postMessage({cmd:'end',status:`\nFinal Status:\n${outTraining(current)}\n`,data:outAgents(current)})
+    }else if(msg.cmd){
+        parentPort.postMessage({cmd:'status',status:`\nCurrent Status:\n${outTraining(current)}`})
     }
 })

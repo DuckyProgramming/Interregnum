@@ -54,10 +54,10 @@ export class operation{
         this.scene=composite.scene
         if(composite.cities!=undefined){
             this.cities.forEach(cit=>cit.units=[])
-            composite.cities.forEach(cit=>{let index=findName(cit.name,types.city);if(index>=0){this.cities[index]=new city(this,this.cities[index].position.x,this.cities[index].position.y,this.cities[index].type);this.cities[index].load(cit)}})
+            composite.cities.forEach(cit=>{let index=[types.cityRef[cit.name]];if(index>=0){this.cities[index]=new city(this,this.cities[index].position.x,this.cities[index].position.y,this.cities[index].type);this.cities[index].load(cit)}})
         }
         if(composite.teams!=undefined){
-            composite.teams.forEach(tea=>{let index=findName(tea.name,types.team);if(index>=0){this.teams[index]=new team(0);this.teams[index].load(tea)}})
+            composite.teams.forEach(tea=>{let index=[types.teamRef[tea.name]];if(index>=0){this.teams[index]=new team(0);this.teams[index].load(tea)}})
         }
         this.ui.load(composite.ui)
         this.transitionManager.load(composite.transitionManager)
@@ -109,6 +109,12 @@ export class operation{
         constants.spawn=types.map[map].constants.spawn
         types.city=types.map[map].city
         types.team=types.map[map].team
+
+        types.cityRef={}
+        types.teamRef={}
+        types.city.forEach((city,index)=>types.cityRef[city.name]=index)
+        types.team.forEach((team,index)=>types.teamRef[team.name]=index)
+
         types.team.forEach(team=>{team.auto=true;team.loadIndex=findList(team.term,listing.team)})
         this.initialElements()
         this.ui.initialAgents()
@@ -157,7 +163,7 @@ export class operation{
                 /*if(this.map==2){
                     layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
                 }*/
-                this.cities.forEach(city=>city.display(layer,this.scene))
+                this.cities.forEach((city,index,array)=>array[array.length-1-index].display(layer,this.scene))
             break
             case `main`:
                 layer.push()
@@ -166,7 +172,7 @@ export class operation{
                 /*if(this.map==2){
                     layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
                 }*/
-                this.cities.forEach(city=>city.display(layer,this.scene))
+                this.cities.forEach((city,index,array)=>array[array.length-1-index].display(layer,this.scene))
                 layer.pop()
             break
             case `map`:
@@ -179,7 +185,7 @@ export class operation{
                 /*if(this.map==2){
                     layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
                 }*/
-                this.cities.forEach(city=>city.display(layer,this.scene))
+                this.cities.forEach((city,index,array)=>array[array.length-1-index].display(layer,this.scene))
                 layer.pop()
             break
             case `edit`:
@@ -192,7 +198,7 @@ export class operation{
                 /*if(this.map==2){
                     layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
                 }*/
-            this.cities.forEach(city=>city.display(layer,this.scene))
+                this.cities.forEach((city,index,array)=>array[array.length-1-index].display(layer,this.scene))
                 layer.pop()
             break
         }

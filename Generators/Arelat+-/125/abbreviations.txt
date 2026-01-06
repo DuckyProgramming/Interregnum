@@ -1,0 +1,57 @@
+AM - Lordship of Ammerschweier
+BB - Lordship of Barbentane
+BE - Abbey of Bellelay
+EI - Abbey of Einsiedeln
+EN - Abbey of Engelberg
+ER - Abbey of Erstein
+GE - Bishopric of Geneva
+GN - Lordship of Grandson
+GR - Village of Gersau
+GS - Lordship of Grasburg
+GV - County of Geneva
+GW - Village of Gertwiller
+HÖ - Lordship of Höfe
+HR - Lordship of Horburg
+IK - Imperial Knights of Elsaß
+KP - Lordship of Kappel
+LA - Lordship of Laufenburg
+LD - Abbey of Les-Dames
+LM - Lordship of Lamarche
+LS - Bishopric of Lausanne
+LU - Abbey of Lure
+MC - Lordship of March
+MG - Abbey of Moutier-Grandval
+MI - Village of Miribel-les-Échelles
+MR - Lordship of Murten
+NM - Abbey of Niedermünster
+NW - Valley of Nidwalden
+RE - Abbey of Remiremont
+RN - Village of Rheinau
+RP - Lordship of Rappolstein
+RQ - Lordship of Roquemaure
+SÄ - Abbey of Schänis
+SH - Lordship of Sundhausen
+SM - Abbey of St. Maurice
+SO - Abbey of St. Odile
+ST - Village of Stäfa
+TO - Bishopric of Toul
+TW - Lordship of Thalwil
+UA - County of Unter-Aargau
+UR - Lordship of Urseren
+WI - Lordship of Willisau
+
+Ba - Basel
+Be - Bern
+Bç - Besançon
+Bg - Bremgarten
+Co - Colmar
+Ge - Geneva
+Lu - Luzern
+Mn - Münster
+Mü - Mülhausen
+Ob - Oberehnheim
+Rs - Rosheim
+Sc - Schlettstadt
+So - Solothurn
+To - Toul
+Tü - Türkheim

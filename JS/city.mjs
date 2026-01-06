@@ -13,7 +13,7 @@ export class city{
         this.visibility=0
         this.sieged=0
         this.units=[]
-        this.ruleIndex=findName(this.data.rule,types.team)
+        this.ruleIndex=types.teamRef[this.data.rule]
         this.number=0
     }
     save(){
@@ -42,24 +42,24 @@ export class city{
     setOwner(owner){
         let team
         if(this.owner!=-1){
-            team=this.operation.teams[findName(this.owner,types.team)]
+            team=this.operation.teams[types.teamRef[this.owner]]
             if(team.cities.indexOf(this)>=0){
                 team.cities.splice(team.cities.indexOf(this),1)
             }
         }
         this.owner=owner
         if(this.owner!=-1){
-            team=this.operation.teams[findName(this.owner,types.team)]
+            team=this.operation.teams[types.teamRef[this.owner]]
             team.cities.push(this)
         }
     }
     setCore(owner){
-        let team=this.operation.teams[findName(owner,types.team)]
+        let team=this.operation.teams[types.teamRef[owner]]
         team.cores.push(this)
     }
     initial(){
         if(this.units.length==0&&this.owner!=-1){
-            this.units.push(new unit(this,findName(this.owner,types.team),1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
+            this.units.push(new unit(this,types.teamRef[this.owner],1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
             if(this.owner!=this.data.rule){
                 this.recruits-=floor(random(15,21))*100
             }
@@ -98,7 +98,7 @@ export class city{
     }
     spawn(type){
         let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
-        let team=type==4?findName(`Free Company`,types.team):type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):this.ruleIndex
+        let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
         let mult=types.team[team].auto?options.strength:1
         let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
         this.units.push(new unit(this,team,0,num))
@@ -109,7 +109,7 @@ export class city{
     }
     getSpawn(type){
         let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
-        let team=type==4?findName(`Free Company`,types.team):type==3?this.operation.ui.turn.main:type==2?findName(this.owner,types.team):this.ruleIndex
+        let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
         let mult=types.team[team].auto?options.strength:1
         let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
         return max(0,num)
@@ -120,7 +120,7 @@ export class city{
         let total=0
         let send=[]
         for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
-            let target=findName(types.city[this.type].connect[a].name,types.city)
+            let target=types.cityRef[types.city[this.type].connect[a].name]
             let mult=[1,0.6,0.4][types.city[this.type].connect[a].type]*(types.city[target].rule==types.team[raider].name?2:1)
             total+=mult
             send.push([target,mult])
@@ -174,7 +174,7 @@ export class city{
         if(turn>=0){
             if(this.visibility==0){
                 for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
-                    if(this.operation.cities[findName(types.city[this.type].connect[a].name,types.city)].units.some(unit=>{return unit.team==turn&&!unit.remove})){
+                    if(this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]].units.some(unit=>{return unit.team==turn&&!unit.remove})){
                         this.visibility=1
                     }
                 }
@@ -199,7 +199,7 @@ export class city{
                 }
             }
         }
-        if(this.owner==-1||!this.units.some(unit=>types.team[unit.team].name==this.owner&&(unit.type==1||!this.units.some(subunit=>![unit.team,this.operation.teams[unit.team].allies].includes(subunit.team)&&subunit.type==0))&&!unit.remove)){
+        if(this.owner==-1||!this.units.some(unit=>types.team[unit.team].name==this.owner&&(unit.type==1||!this.units.some(subunit=>![unit.team,this.operation.teams[unit.team].allies].includes(subunit.team)&&subunit.type==1))&&!unit.remove)){
             let fail=true
             for(let a=0,la=this.units.length;a<la;a++){
                 if(this.units[a].type==1&&!this.units[a].remove){
@@ -222,7 +222,7 @@ export class city{
             }
         }
         if(!this.units.some(unit=>unit.type==0)&&this.owner!=-1&&this.units.length>=1){
-            let own=findName(this.owner,types.team)
+            let own=types.teamRef[this.owner]
             let aligned=[own,...this.operation.teams[own].allies]
             for(let a=0,la=this.units.length;a<la;a++){
                 if(this.units[a].type==1&&!aligned.includes(this.units[a].team)&&!this.units[a].remove){
@@ -234,7 +234,7 @@ export class city{
     }
     updateSiege(){
         if(this.owner!=-1){
-            let own=findName(this.owner,types.team)
+            let own=types.teamRef[this.owner]
             let aligned=[own,...this.operation.teams[own].allies]
             if(this.units.some(unit=>!aligned.includes(unit.team)&&unit.type==0)){
                 for(let b=0,lb=this.units.length;b<lb;b++){
@@ -275,7 +275,7 @@ export class city{
                     layer.strokeWeight(20)
                     for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
                         layer.stroke(...[[0,0,0],[0,0,100],[0,100,200]][types.city[this.type].connect[a].type])
-                        let cit=this.operation.cities[findName(types.city[this.type].connect[a].name,types.city)]
+                        let cit=this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]]
                         layer.line(this.position.x,this.position.y,cit.position.x*0.5+this.position.x*0.5,cit.position.y*0.5+this.position.y*0.5)
                     }
                 }else{
@@ -285,7 +285,7 @@ export class city{
                     let img=graphics.load.city[types.cityType[this.data.type].term]
                     layer.image(img,0,0,img.width,img.height)
                     if(this.owner!=-1){
-                        img=[graphics.load.team[types.team[findName(this.owner,types.team)].loadIndex],graphics.load.unit[2]]
+                        img=[graphics.load.team[types.team[types.teamRef[this.owner]].loadIndex],graphics.load.unit[2]]
                         layer.image(img[0],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
                         layer.image(img[1],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
                     }

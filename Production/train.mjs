@@ -14,3 +14,19 @@ process.on('SIGINT',async ()=>{
     await writeFile('agentset.mjs',report.data,{encoding:'utf8'})
     process.exit(0)
 })
+process.stdin.resume()
+process.stdin.setEncoding('utf8')
+process.stdin.on('data',async (input)=>{
+    const trimmed=input.trim()
+    if(trimmed.toLowerCase()=='status'){
+        worker.postMessage({cmd:'status'})
+        const report=await new Promise(resolve=>{
+            worker.once('message',msg=>{
+                if(msg.cmd=='status'){
+                    resolve(msg)
+                }
+            })
+        })
+        console.log(report.status)
+    }
+})
