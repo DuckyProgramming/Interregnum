@@ -1,6 +1,5 @@
 AB - Landgraviate of Aarburgund
 AM - Lordship of Ammerschweier
-AV - Archbishopric of Avignon
 BB - Lordship of Barbentane
 BE - Abbey of Bellelay
 EI - Abbey of Einsiedeln
@@ -27,7 +26,6 @@ MC - Lordship of March
 MG - Abbey of Moutier-Grandval
 MI - Village of Miribel-les-Échelles
 MR - Lordship of Murten
-NI - Lordship of Nidau
 NM - Abbey of Niedermünster
 NW - Valley of Nidwalden
 RE - Abbey of Remiremont
@@ -39,7 +37,6 @@ SH - Lordship of Sundhausen
 SM - Abbey of St. Maurice
 SO - Abbey of St. Odile
 ST - Village of Stäfa
-SX - Abbey of St. Marx
 TO - Bishopric of Toul
 TW - Lordship of Thalwil
 UR - Lordship of Urseren
@@ -53,11 +50,9 @@ Co - Colmar
 Fr - Fribourg
 Ge - Geneva
 Lu - Luzern
-Ly - Lyon
 Mn - Münster
 Mü - Mülhausen
 Ob - Oberehnheim
-Rf - Rheinfelden
 Rs - Rosheim
 Sc - Schlettstadt
 So - Solothurn

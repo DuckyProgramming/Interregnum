@@ -1,18 +1,6 @@
 types={state:[
   {
-    name:"Lyon",
-    title:"Free City",
-    district:"Cisjurania",
-    rule:"Burghers",
-    prestige:[],
-  },{
     name:"Basel",
-    title:"Free City",
-    district:"Transjurania",
-    rule:"Burghers",
-    prestige:[],
-  },{
-    name:"Rheinfelden",
     title:"Free City",
     district:"Transjurania",
     rule:"Burghers",
@@ -156,18 +144,6 @@ types={state:[
     rule:"Ecclesiastical",
     prestige:[],
   },{
-    name:"Aix",
-    title:"Archbishopric",
-    district:"Provence",
-    rule:"Ecclesiastical",
-    prestige:[],
-  },{
-    name:"Avignon",
-    title:"Archbishopric",
-    district:"Provence",
-    rule:"Ecclesiastical",
-    prestige:[],
-  },{
     name:"Lyon",
     title:"Archbishopric",
     district:"Cisjurania",
@@ -276,19 +252,7 @@ types={state:[
     rule:"Ecclesiastical",
     prestige:[],
   },{
-    name:"St. Marx",
-    title:"Abbey",
-    district:"Saône",
-    rule:"Ecclesiastical",
-    prestige:[],
-  },{
     name:"Le Beausset",
-    title:"Abbey",
-    district:"Provence",
-    rule:"Ecclesiastical",
-    prestige:[],
-  },{
-    name:"Lérins",
     title:"Abbey",
     district:"Provence",
     rule:"Ecclesiastical",
@@ -325,12 +289,6 @@ types={state:[
     prestige:[],
   },{
     name:"Frickgau",
-    title:"County",
-    district:"Transjurania",
-    rule:"Habsburg",
-    prestige:[],
-  },{
-    name:"Baden",
     title:"County",
     district:"Transjurania",
     rule:"Habsburg",
@@ -426,12 +384,6 @@ types={state:[
     rule:"Savoy",
     prestige:["Duke"],
   },{
-    name:"Bugey",
-    title:"County",
-    district:"Cisjurania",
-    rule:"Savoy",
-    prestige:[],
-  },{
     name:"Vaud",
     title:"County",
     district:"Transjurania",
@@ -468,12 +420,6 @@ types={state:[
     rule:"Savoy",
     prestige:[],
   },{
-    name:"Lanslebourg",
-    title:"Lordship",
-    district:"Cisjurania",
-    rule:"Savoy",
-    prestige:[],
-  },{
     name:"Barcelonette",
     title:"Margraviate",
     district:"Provence",
@@ -506,12 +452,6 @@ types={state:[
   },{
     name:"Oberland",
     title:"County",
-    district:"Transjurania",
-    rule:"Zähringen",
-    prestige:[],
-  },{
-    name:"Nidau",
-    title:"Lordship",
     district:"Transjurania",
     rule:"Zähringen",
     prestige:[],
@@ -595,7 +535,7 @@ types={state:[
     prestige:[],
   },{
     name:"Arlay",
-    title:"County",
+    title:"Lordship",
     district:"Cisjurania",
     rule:"Arduinici",
     prestige:[],
@@ -606,7 +546,7 @@ types={state:[
     rule:"Arduinici",
     prestige:[],
   },{
-    name:"Isère",
+    name:"Bugey",
     title:"County",
     district:"Cisjurania",
     rule:"Arduinici",
@@ -836,46 +776,34 @@ types={state:[
     rule:"Minor",
     prestige:[],
   },{
-    name:"Lorraine",
-    title:"Lordship Bench",
-    district:"Saône",
-    rule:"Lorraine",
-    prestige:[],
-  },{
     name:"Upper Burgundy",
     title:"Lordship Bench",
     district:"Saône",
     rule:"Minor",
     prestige:[],
   },{
-    name:"Transjurania",
+    name:"Transjurana",
     title:"Lordship Bench",
     district:"Saône",
     rule:"Habsburg",
     prestige:[],
   },{
-    name:"Jura",
+    name:"Genevois",
     title:"Lordship Bench",
     district:"Saône",
-    rule:"Zähringen",
+    rule:"Savoy",
     prestige:[],
   },{
     name:"Rhône",
     title:"Lordship Bench",
     district:"Saône",
-    rule:"Albon",
-    prestige:[],
-  },{
-    name:"Arles",
-    title:"Lordship Bench",
-    district:"Saône",
-    rule:"Rouergue",
+    rule:"Minor",
     prestige:[],
   },{
     name:"Alpine",
     title:"Lordship Bench",
     district:"Saône",
-    rule:"Savoy",
+    rule:"Zähringen",
     prestige:[],
   },{
     name:"Elsaß",
@@ -896,19 +824,7 @@ types={state:[
     rule:"Burghers",
     prestige:[],
   },{
-    name:"Rhône",
-    title:"City Bench",
-    district:"Saône",
-    rule:"Burghers",
-    prestige:[],
-  },{
-    name:"Lower Elsaß",
-    title:"Abbey Bench",
-    district:"Saône",
-    rule:"Ecclesiastical",
-    prestige:[],
-  },{
-    name:"Upper Lower Elsaß",
+    name:"Elsaß",
     title:"Abbey Bench",
     district:"Saône",
     rule:"Ecclesiastical",
@@ -932,16 +848,34 @@ types={state:[
     rule:"Ecclesiastical",
     prestige:[],
   },{
-    name:"Provence",
+    name:"Alpine",
     title:"Abbey Bench",
     district:"Saône",
     rule:"Ecclesiastical",
+    prestige:[],
+  },{
+    name:"Arles",
+    title:"Constable",
+    district:"Île-de-Bourgogne",
+    rule:"Albon",
+    prestige:[],
+  },{
+    name:"Arles",
+    title:"Architect",
+    district:"Île-de-Bourgogne",
+    rule:"Sabran",
     prestige:[],
   },{
     name:"",
     title:"Dame d'atour",
     district:"Île-de-Bourgogne",
     rule:"La Marck-Arenberg",
+    prestige:[],
+  },{
+    name:"",
+    title:"Dame de chambre",
+    district:"Île-de-Bourgogne",
+    rule:"Melun",
     prestige:[],
   },{
     name:"the Royal Valleys",
@@ -1017,4 +951,4 @@ types={state:[
     prestige:["Elector","Duke"],
   },
 ]}
-types.state.forEach(state=>{if([`County`,`Landgraviate`,`Margraviate`,`Bishopric`,`Archbishopric`,`County Palatine`,`Princessate`].includes(state.title)&&!((state.name==`Lausanne`||state.name==`Geneva`)&&state.title==`Bishopric`)){types.diet.push(state)}})
+types.state.forEach(state=>{if([`County`,`Landgraviate`,`Margraviate`,`Bishopric`,`Archbishopric`,`County Palatine`,`Princessate`].includes(state.title)){types.diet.push(state)}})

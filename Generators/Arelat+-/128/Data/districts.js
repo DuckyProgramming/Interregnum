@@ -6,7 +6,7 @@ types.district=[
     },{
         name:"Saône",
         circle:"Upper",
-        area:700647,
+        area:703190
     },{
         name:"Transjurania",
         circle:"Upper",
@@ -14,10 +14,10 @@ types.district=[
     },{
         name:"Cisjurania",
         circle:"Lower",
-        area:674911
+        area:675503
     },{
         name:"Provence",
         circle:"Lower",
-        area:874340
+        area:871953
     },
 ]

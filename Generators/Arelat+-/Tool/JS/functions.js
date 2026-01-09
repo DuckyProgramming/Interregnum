@@ -68,3 +68,45 @@ function outStats(){
     current.stats.items.forEach((stat,index)=>build+=`${index>0?`, `:``}${stat.name}: ${stat.base}`)
     print(build)
 }
+//major
+function smoothAnim(anim,trigger,minPoint,maxPoint,speed){
+	if(trigger&&anim<maxPoint){
+		return min(round(anim*speed+1)/speed,maxPoint)
+	}
+	if(!trigger&&anim>minPoint){
+		return max(round(anim*speed-1)/speed,minPoint)
+	}
+	return anim
+}
+function updateMouse(layer,scale){
+    /*inputs.mouse.previous.base.x=inputs.mouse.base.x
+    inputs.mouse.previous.base.y=inputs.mouse.base.y
+    inputs.mouse.previous.rel.x=inputs.mouse.rel.x
+    inputs.mouse.previous.rel.y=inputs.mouse.rel.y*/
+	inputs.mouse.base.x=mouseX
+	inputs.mouse.base.y=mouseY
+	inputs.mouse.rel.x=(inputs.mouse.base.x-width/2)/scale+layer.width/2
+	inputs.mouse.rel.y=(inputs.mouse.base.y-height/2)/scale+layer.height/2
+}
+function even(pos,total){
+    return pos-total*0.5+0.5
+}
+function boxify(x,y,width,height){
+	return {position:{x:x,y:y},width:width,height:height}
+}
+function inPointBox(point,box){
+    return point.position.x>box.position.x-box.width/2&&point.position.x<box.position.x+box.width/2&&point.position.y>box.position.y-box.height/2&&point.position.y<box.position.y+box.height/2
+}
+function findName(name,list){
+	for(let a=0,la=list.length;a<la;a++){
+		if(list[a].name==name){
+			return a
+		}
+	}
+    throw new Error(`findName Fail: ${name}`)
+	return -1
+}
+function last(array){
+    return array[array.length-1]
+}
+//holdover

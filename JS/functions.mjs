@@ -1,4 +1,5 @@
 import {inputs,training} from './variables.mjs'
+import {agentset} from './agentset.mjs'
 import {lsin,lcos} from './graphics.mjs'
 //calculatory
 export function floor(value){
@@ -412,12 +413,18 @@ export function openGrid(){
 export function modifex(type){
     switch(type){
         case 0:
-            agentset.forEach(agent=>{
+            agentset.forEach(set=>set.forEach(agent=>{
                 agent[0][0][0].forEach(item=>item.splice(2,0,0,0))
                 agent[0][1][0].forEach(item=>item.splice(3,0,0))
                 agent[0][1][0].forEach(item=>item.push(0))
                 agent[0][6][0].forEach(item=>item.splice(3,0,0))
-            })
+            }))
+        break
+        case 1:
+            agentset.forEach(set=>set.forEach(agent=>{
+                agent[0][0][1].push(agent[0][0][1][agent[0][0][1].length-1])
+                agent[0][4][0].forEach(item=>item.push(0))
+            }))
         break
     }
 }

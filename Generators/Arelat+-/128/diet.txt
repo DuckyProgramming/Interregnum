@@ -1,0 +1,32 @@
+Here's my current system for how the diet would work:
+
+The king has the sole power to convene the diet but is legally required to do so every few years. The magnates can petition him informally for a diet, but he isn't forced to. The diet can be convened anywhere, though it usually remains in the major ecclesiastical and political cities. The king also sets the agenda and breaks ties if they arise. If the king is unavailable, the count palatine (in his capacity as Arch-Steward) represents him and assumes these powers. The king is allowed to vote if he holds any existing seats (such as him being a count).
+
+The Princess of Commercy possesses the office of Mistress of the Royal Seal (Cancellaria Sigillum Regium), responsible for confirming the validity of and presenting documents. This position was originally part of the king's role but was ceded to Commercy. The princess is intended to be politically neutral, but this isn't always true in practice.
+
+The diet performs the following functions: confirming and establishing laws and privileges, arbitrating feuds and disagreements, funding and recruiting armies during extraordinary circumstances, and deciding on succession of extinct houses and regency when necessary.
+
+There's a total of 80 votes. 64 votes are connected to feudal territories:
+[37] All counties (including the county palatine), landgraviates, and margraviates have their own seats.
+[12] All territorial bishops and archbishops have their own seats. Non-territorial ones attend but cannot vote.
+[6] Minor lordships are organized into the following benches with one collective vote each: Alsace (Rappolstein, Landser, Sundhausen, Horburg, Ammerschweier, Weiler, [Representative of the royal knights]), Upper Burgundy (Lamarche, St. Dié, Salins, Seurre, Arlay), Transjurania (Thalwil, Kappel, Zug, Höfe, March, Willisau, Entlebuch, Laufenburg, Neuveville), Genevan (Grandson, Murten, Fribourg, Grasburg, Faucigny), Rhône (Annonay, Beaujeu, Roquemaure, Barbentane, Bollène), Alpine (Urseren, Hasli, Aigle)
+[5] Territorial abbeys are organized into the following benches with one collective vote each: Alsace (Andlau, Erstein, St. Odile, Niedermünster, Murbach), Transjurania (Einsiedeln, Engelberg, Schänis), Saône (Luxeuil, Lure, Remiremont, Les-Dames), Basel (Bellelay, Moutier-Grandval), Alpine (St. Maurice, Le Beausset)
+[3] Free royal cities are organized into the following benches with one collective vote each:
+Alsace (Rosheim, Oberehnheim, Colmar, Münster, Türkheim, Schlettstadt, Mülhausen), Transjurania (Basel, Solothurn, Bern, Bremgarten, Lucerne), Saône (Geneva, Besancon, Toul)
+[1] The Princess of Commercy gets a vote.
+The free royal villages have one collective non-voting representative.
+The elected leader of the royal knights is part of the collective bench of Alsatian lordships.
+(For collective votes, only one member must appear in person to represent the others)
+
+16 votes are connected to titles:
+[7] The electors each have an additional vote.
+[4] The ducal titles each grant an additional vote.
+[1] The Constable of Arles gets a vote.
+[1] The Architect of Arles (responsible for constructing both civilian buildings and military fortifications in peacetime) has a vote.
+[1] The Dame d'atour (servant in charge of the royal household's wardrobe and jewelry, a hereditary position held by female members of the House of La Marck-Arenberg) has a vote.
+[1] The Dame de chambre (servant in charge of access to the royal household's rooms, a hereditary position held by female members of the House of Melun).
+[1] The Advocate of the Royal Valleys (officer representing the Swiss Confederation, Glarus, Leventina, and the Seven Zenden, appointed by the king but deposable by the constituents) has a vote.
+
+Dynastic Breakdown of Votes: La Marck-Arenberg: 1, Melun: 1, Republic (Advocate of the Royal Valleys): 1, Württemberg: 1, Hohenzollern: 1, Thoire: 1, Lillebonne: 1, Sabran: 2, Arduinici: 2, Burghers: 3, Barcelona: 3, Andechs: 3, Lorraine: 3, Rouergue: 4, Minor Houses or Split: 5, Habsburg: 5, Albon: 5, Zähringen: 8, Savoy: 10, Ecclesiastical: 20
+
+Briefly, do you understand the above information?

@@ -1,5 +1,5 @@
-import {graphics,dev,types,listing,constants,training} from './variables.mjs'
-import {findList,findName2,findName,findTerm,distPos,moveTowardVecDynamic,smoothAnim,floor,random,round} from './functions.mjs'
+import {graphics,dev,types,listing,constants,training,options} from './variables.mjs'
+import {findList,findName2,findName,findTerm,distPos,moveTowardVecDynamic,smoothAnim,floor,random,round,last} from './functions.mjs'
 import {calc} from './calc.mjs'
 import {ui} from './ui.mjs'
 import {transitionManager} from './transitionManager.mjs'
@@ -156,6 +156,13 @@ export class operation{
             this.zoom.position.y=graphics.load.map[this.map].height*0.5
         }
     }
+    addTeam(data){
+        types.team.push(data)
+        types.teamRef[data.name]=types.team.length-1
+        this.teams.push(new team(types.team.length-1))
+        last(types.team).auto=true
+        last(types.team).loadIndex=findList(last(types.team).term,listing.team)
+    }
     display(layer){
         switch(this.scene){
             case `title`: case `setup`:
@@ -207,7 +214,7 @@ export class operation{
     }
     update(layer){        
         if(this.ui.turn.main!=-1&&!dev.speed&&this.speed.move){
-            this.speed.main=smoothAnim(this.speed.main,types.team[this.ui.turn.main].auto,1,6,0.1)
+            this.speed.main=!types.team[this.ui.turn.main].auto||types.team[this.ui.turn.main].name==`Royal Army`||types.team[this.ui.turn.main].name==`Imperial Army`?1:min(this.speed.main+0.1,options.speed?20:6)
         }
         switch(this.scene){
             case `title`: case `setup`:

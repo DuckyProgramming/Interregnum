@@ -29,7 +29,8 @@ modes:
     move
     reorganize
     reject (move to next city)
-    siege action (breakout/storm)
+    siege action 1 (storm)
+    siege action 2 (breakout)
 ]
 
 1 - move units
@@ -94,6 +95,7 @@ modes:
     number of friendly troops
     number of enemy troops
     rebelling?
+    siege progress
 ] -> [
     storm
 ]

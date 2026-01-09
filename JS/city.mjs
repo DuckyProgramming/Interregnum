@@ -15,6 +15,7 @@ export class city{
         this.units=[]
         this.ruleIndex=types.teamRef[this.data.rule]
         this.number=0
+        this.pathfind={num:0,predecessor:0}
     }
     save(){
         let composite={
@@ -113,6 +114,9 @@ export class city{
         let mult=types.team[team].auto?options.strength:1
         let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
         return max(0,num)
+    }
+    summonUnit(team,type,value){
+        this.units.push(new unit(this,team,type,value))
     }
     raided(raider){
         let num=round(this.recruits/20+10)*10
@@ -275,8 +279,12 @@ export class city{
                     layer.strokeWeight(20)
                     for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
                         layer.stroke(...[[0,0,0],[0,0,100],[0,100,200]][types.city[this.type].connect[a].type])
-                        let cit=this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]]
-                        layer.line(this.position.x,this.position.y,cit.position.x*0.5+this.position.x*0.5,cit.position.y*0.5+this.position.y*0.5)
+                        try{
+                            let cit=this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]]
+                            layer.line(this.position.x,this.position.y,cit.position.x*0.5+this.position.x*0.5,cit.position.y*0.5+this.position.y*0.5)
+                        }catch(e){
+                            print(types.city[this.type].connect[a].name)
+                        }
                     }
                 }else{
                     layer.push()

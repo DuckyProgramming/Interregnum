@@ -8,9 +8,9 @@ export class calc{
         this.result={}
         this.terrainSet=[
             {name:'No Terrain',defend:[1,1.2],safe:1,attrition:[1,1]},
-            {name:'River',defend:[1.3,1.3],safe:0.9,attrition:[1,1]},
+            {name:'River',defend:[1.35,1.35],safe:0.9,attrition:[1,1]},
             {name:'Wall',defend:[2.225,2.5],safe:0.6,attrition:[1,0.5]},
-            {name:'Sea',defend:[1.75,1.75],safe:0.7,attrition:[1.5,1.5]},
+            {name:'Sea',defend:[1.8,1.8],safe:0.7,attrition:[1.5,1.5]},
         ]
         this.distSet=[
             {name:'Close',ab:'C',mult:1},

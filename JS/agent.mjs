@@ -24,7 +24,7 @@ export class agent{
             for(let a=0,la=5;a<la;a++){
                 this.sets[0][0].push([floor(random(0,22)),floor(random(0,22))])
             }
-            for(let a=0,la=5;a<la;a++){
+            for(let a=0,la=6;a<la;a++){
                 this.sets[0][1].push([])
                 for(let b=0,lb=10;b<lb;b++){
                     this.sets[0][1][a].push(random(-10,10))
@@ -60,7 +60,7 @@ export class agent{
             }
             for(let c=0,lc=3;c<lc;c++){
                 this.sets[3+c][0].push([])
-                for(let b=0,lb=[6,6,5][c];b<lb;b++){
+                for(let b=0,lb=[6,7,5][c];b<lb;b++){
                     this.sets[3+c][0][0].push(random(-10,10))
                 }
             }

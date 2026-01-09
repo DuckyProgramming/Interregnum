@@ -1,0 +1,11 @@
+AN - Margraviate of Ansbach
+BE - Abbey of Berchtesgaden
+BM - Bishopric of Bamberg
+BY - Margraviate of Bayreuth
+FR - Bishopric of Freising
+NG - County of Nordgau
+PS - Bishopric of Passau
+RE - Bishopric of Regensberg
+SZ - Archbishopric of Salzburg
+
+Nü - Nürnberg
