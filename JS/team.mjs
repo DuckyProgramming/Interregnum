@@ -30,4 +30,11 @@ export class team{
         this.deaths=composite.deaths
         this.deserters=composite.deserters
     }
+    addAlly(other){
+        this.allies.push(other.type)
+        other.allies.push(this.type)
+        if(this==other){
+            throw new Error(`Self Alliance`)
+        }
+    }
 }

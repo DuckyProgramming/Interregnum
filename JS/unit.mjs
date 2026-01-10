@@ -65,6 +65,9 @@ export class unit{
         }
         this.turns++
     }
+    nameSelf(){
+        return `${types.team[this.team].name} ${[`Army`,`Garrison`][this.type]} of ${this.value}`
+    }
     display(layer){
         if(this.fade.main>0){
             if(this.position.x!=0||this.position.y!=0){

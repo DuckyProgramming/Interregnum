@@ -1,5 +1,5 @@
 import {graphics,dev,types,listing,constants,training,options} from './variables.mjs'
-import {findList,findName2,findName,findTerm,distPos,moveTowardVecDynamic,smoothAnim,floor,random,round,last} from './functions.mjs'
+import {findList,findName,findName2,findTerm,distPos,moveTowardVecDynamic,smoothAnim,floor,random,round,last} from './functions.mjs'
 import {calc} from './calc.mjs'
 import {ui} from './ui.mjs'
 import {transitionManager} from './transitionManager.mjs'
@@ -214,7 +214,7 @@ export class operation{
     }
     update(layer){        
         if(this.ui.turn.main!=-1&&!dev.speed&&this.speed.move){
-            this.speed.main=!types.team[this.ui.turn.main].auto||types.team[this.ui.turn.main].name==`Royal Army`||types.team[this.ui.turn.main].name==`Imperial Army`?1:min(this.speed.main+0.1,options.speed?20:6)
+            this.speed.main=!types.team[this.ui.turn.main].auto||types.team[this.ui.turn.main].name==`Royal Army`||types.team[this.ui.turn.main].name==`Imperial Army`?1:min(this.speed.main+0.1,10)
         }
         switch(this.scene){
             case `title`: case `setup`:

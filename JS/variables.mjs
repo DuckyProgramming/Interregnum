@@ -39,7 +39,7 @@ export var types={
             term:`minim`,
             hq:[`Imperial Army`,`hre`],
             stack:false,
-            teamSet:2,
+            teamSet:3,
             constants:{spawn:{base:2500,spend:1000,regen:30,garrison:500}},
             city:[
                 {name:`Frankfurt`,type:2,loc:[1216,24],rule:`Isenberg`,connect:[{name:`Würzburg`,type:1},{name:`Heidelberg`,type:0},{name:`Oppenheim`,type:1}]},
@@ -67,8 +67,8 @@ export var types={
                 {name:`Ecclesiastical`,term:`ecclesiastical`,type:`Major Nobility`,allies:[],quality:0.9,chance:1},
                 {name:`Habsburg`,term:`elder habsburg`,type:`Major Nobility`,allies:[],quality:1,chance:1},
                 {name:`Lorraine`,term:`lorraine`,type:`Middle Nobility`,allies:[],quality:1,chance:1},
-                {name:`League of Cities`,term:`league of cities`,type:`Urban`,allies:[],quality:0.9,chance:1.5},
                 {name:`Wittelsbach`,term:`elder wittelsbach`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
+                {name:`League of Cities`,term:`league of cities`,type:`Urban`,allies:[],quality:0.9,chance:1.5},
             ],
         },{
             name:[`HRE`,`Base`],
@@ -800,10 +800,10 @@ export var dev={
     assemble:false,assemble2:false,//deprecated
 }
 export var training={
-    specific:-1,generations:0,benchmark:0,turns:1000,runs:50,inserter:50000000,
+    specific:-1,generations:0,benchmark:0,turns:1000,runs:100,inserter:50000000,
     map:`arelat+-`,
 }
-export var options={strength:1,strengthEdit:false,hq:true,speed:true}
+export var options={strength:1,strengthEdit:false,hq:false}
 export var graphics={main:0,load:{map:[],city:[],team:[],unit:[]}}
 export var constants={trig:[[],[]],spawn:{},init:false,threshold:1000000,thresholdTick:0}
 export var inputs={mouse:{base:{x:0,y:0},rel:{x:0,y:0},previous:{base:{x:0,y:0},rel:{x:0,y:0}}}}

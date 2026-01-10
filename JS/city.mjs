@@ -1,5 +1,5 @@
 import {types,constants,dev,options,graphics} from './variables.mjs'
-import {findName,smoothAnim,distPos,round,random,max,min,floor} from './functions.mjs'
+import {smoothAnim,distPos,round,random,max,min,floor} from './functions.mjs'
 import {unit} from './unit.mjs'
 export class city{
     constructor(operation,x,y,type){
@@ -105,7 +105,10 @@ export class city{
         this.units.push(new unit(this,team,0,num))
         this[set]=type==0?max(0,this[set]-constants.spawn.spend*[1,1,0.75,1,1.5][type]):this[set]-constants.spawn.spend*[1,1,0.75,1,1.5][type]*(type==1&&types.team[team].auto?2:1)
         if(num==0){
-            throw new Error('SPAWN 0')
+            throw new Error(`Spawn 0`)
+        }
+        if(types.team[team].name==`Royal Army`||types.team[team].name==`Imperial Army`){
+            throw new Error(`Headquarters Spawn`)
         }
     }
     getSpawn(type){
