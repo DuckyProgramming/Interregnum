@@ -1,11 +1,63 @@
+AL - Duchy of Albrechtice
 AN - Margraviate of Ansbach
+BA - Lordship of Barwalde
 BE - Abbey of Berchtesgaden
-BM - Bishopric of Bamberg
-BY - Margraviate of Bayreuth
+BI - Duchy of Bavaria-Ingolstadt
+BL - Lordship of Bielsko
+BN - Duchy of Bruntál
+BO - Lordship of Bohumín
+BR - Margraviate of Bayreuth
+BY - Duchy of Bytom
+CO - Burgraviate of Colditz
+EI - Bishopric of Eichstätt
+FC - Abbey of Frauenchiemsee
 FR - Bishopric of Freising
+FY - Lordship of Fryštát
+HA - Lordship of Halle
+HE - Lordship of Heideck
+IM - Lordship of Imielin
+LE - Landgraviate of Leuchtenberg
+ME - Bishopric of Merseburg
+MI - Princessate of Mirabell
+NA - Lordship of Namysłów
+NB - County of Neuberg
 NG - County of Nordgau
+NM - Bishopric of Naumburg
 PS - Bishopric of Passau
-RE - Bishopric of Regensberg
+RE - Bishopric of Regensburg
+RG - County of Reuß-Gera
+RL - County of Reuß-Lobenstein
+Rß - County of Reuß-Greiz
+SC - Lordship of Schönburg
+SI - Duchy of Siedlisko
+SR - County of Schwarzburg-Rudolstadt
+SU - County of Sulzbach
 SZ - Archbishopric of Salzburg
+SY - Lordship of Syców
+ŚC - Duchy of Ścinawa
+ŚW - Duchy of Świebodzin
+TW - Lordship of Twardogóra
+WA - Duchy of Wartenberg
+WO - Lordship of Wodzisław
+XA - Duchy of Saxe-Altenburg
+XC - Duchy of Saxe-Coburg
+XE - Duchy of Saxe-Eisenberg
+XH - Duchy of Saxe-Hildburghausen
+XI - Duchy of Saxe-Ilmenau
+XJ - Duchy of Saxe-Jena
+XK - Duchy of Saxe-Zwickau
+XL - Duchy of Saxe-Allstedt
+XN - Duchy of Saxe-Neustdt
+XO - Duchy of Saxe-Orlamünde
+XR - Duchy of Saxe-Römhild
+XS - Duchy of Saxe-Saalfeld
+XU - Duchy of Saxe-Suhl
+XW - Duchy of Saxe-Weimar
+XZ - Duchy of Saxe-Zeitz
+Xß - Saxe-Weißenfels
+ŻM - Lordship of Żmigród
 
+Di - Dinkelsbühl
 Nü - Nürnberg
+Re - Regensburg
+Wß - Weißenburg

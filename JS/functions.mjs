@@ -426,6 +426,11 @@ export function modifex(type){
                 agent[0][4][0].forEach(item=>item.push(0))
             }))
         break
+        case 2:
+            agentset.forEach(set=>set.forEach(agent=>{
+                agent[0][2][0].forEach(item=>item.push(0))
+            }))
+        break
     }
 }
 export function play(name){
@@ -443,6 +448,8 @@ export function checkCity(){
     types.map.forEach(map=>{for(let a=1,la=map.city.length;a<la;a++){if(map.city[a].loc[1]<map.city[a-1].loc[1]){print(map.name,map.city[a-1].name,map.city[a].name)}}})
     print(`Checking Self-Reference`)
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{if(connect.name==city.name){print(city.name)}})))
+    print(`Checking Connections`)
+    types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{findName(connect.name,map.city)})))
 }
 export function checkTeam(){
     print(`Checking Vacuous`)

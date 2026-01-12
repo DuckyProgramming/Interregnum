@@ -3,9 +3,6 @@ AM - Lordship of Ammerschweier
 AV - Archbishopric of Avignon
 BB - Lordship of Barbentane
 BE - Abbey of Bellelay
-CB - Ladyship of Château-Bas
-CH - Ladyship of Château-Haut
-CO - Princessate of Commercy
 EI - Abbey of Einsiedeln
 EN - Abbey of Engelberg
 ER - Abbey of Erstein
@@ -14,8 +11,8 @@ GE - Bishopric of Geneva
 GN - Lordship of Grandson
 GR - Republic of Gersau
 GS - Lordship of Grasburg
+GV - County of Geneva
 GW - Village of Gertwiller
-GX - Lordship of Gex
 HÖ - Lordship of Höfe
 HR - Lordship of Horburg
 IK - Imperial Knights of Elsaß
@@ -26,18 +23,15 @@ LD - Abbey of Les-Dames
 LM - Lordship of Lamarche
 LS - Bishopric of Lausanne
 LU - Abbey of Lure
-LV - Lordship of Loveresse
 MC - Lordship of March
 MG - Abbey of Moutier-Grandval
 MI - Village of Miribel-les-Échelles
 MR - Lordship of Murten
-NE - Lordship of Neuveville
 NI - Lordship of Nidau
 NM - Abbey of Niedermünster
 NW - Valley of Nidwalden
 RE - Abbey of Remiremont
 RN - Village of Rheinau
-RO - Lordship of Romont
 RP - Lordship of Rappolstein
 RQ - Lordship of Roquemaure
 SÄ - Abbey of Schänis

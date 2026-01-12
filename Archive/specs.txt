@@ -69,6 +69,7 @@ modes:
     number of mobile troops (/1000)
     number of garrison troops (/1000)
     total allied troops on map (/10000)
+    number of connections from here
 ] -> [5 middle, 5 multiplicative] -> [
     one number: positive = 100 men from garrison to field
     negative: the opposite

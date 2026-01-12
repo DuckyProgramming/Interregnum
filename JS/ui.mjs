@@ -165,17 +165,17 @@ export class ui{
             if(this.turn.total%(training.turns*24*training.runs)==0){
                 for(let a=0,la=this.rings.length;a<la;a++){
                     //print(types.team.some(team=>findName(types.team[a].type,types.teamType)==a))
-                    if(types.team.some(team=>findName(team.type,types.teamType)==a)){
+                    if(types.team.some(team=>findName(team.type,types.teamType)==a)&&(training.grouping.length==0||training.grouping.includes(a))){
                         switch(training.benchmark){
                             case 0: case 1:
                                 let maximal=this.rings[a].reduce((acc,agent)=>max(acc,agent.rewards),0)
-                                this.rings[a].forEach(agent=>{agent.record+=agent.rewards/maximal*5;agent.rewards=0})
+                                this.rings[a].forEach(agent=>{agent.record+=agent.rewards/maximal*training.runs/10;agent.rewards=0})
                                 maximal=this.rings[a].reduce((acc,agent)=>max(acc,agent.punishments),0)
-                                this.rings[a].forEach(agent=>{agent.record-=agent.punishments/maximal*5;agent.punishments=0})
+                                this.rings[a].forEach(agent=>{agent.record-=agent.punishments/maximal*training.runs/10;agent.punishments=0})
                                 this.rings[a].sort((a,b)=>a.record-b.record)
                                 let failures=this.rings[a].splice(0,4)
                                 let len=this.rings[a].length
-                                let newer=this.turn.total<training.inserter&&training.specific==-1
+                                let newer=this.turn.total<training.inserter&&training.specific==-1&&training.grouping.length==0
                                 for(let b=0,lb=newer?3:4;b<lb;b++){
                                     let newSets
                                     let newConstants
@@ -207,6 +207,8 @@ export class ui{
                                 console.log(`${types.teamType[a].name} Average Performance: ${round(total/this.rings[a].length/training.runs*1000)/1000}`)
                             break
                         }
+                    }else{
+                        this.rings[a].forEach(agent=>agent.record=0)
                     }
                 }
                 switch(training.benchmark){
@@ -1149,7 +1151,7 @@ export class ui{
                     layer.text(types.map[groups[a][0]].name[0],0,a*60+610-la*30)
                     for(let b=0,lb=groups[a].length;b<lb;b++){
                         layer.textSize(10)
-                        layer.text(count+1,(b+1)/lb*240-120-20,a*60+595-la*30)
+                        layer.text((count+1)%10,(b+1)/lb*240-120-20,a*60+595-la*30)
                         layer.textSize(12)
                         if(types.map[groups[a][b]].name.length>=2){
                             layer.text(types.map[groups[a][b]].name[1],(b+0.5)/lb*240-120,a*60+628-la*30)
@@ -1194,7 +1196,7 @@ export class ui{
                 layer.textSize(20)
                 layer.text(`Select Random`,-250,rows*30+475)
                 layer.text(`Difficulty: ${options.strength}`,0,rows*30+475)
-                layer.text(`Headqarters Mode`,250,rows*30+475)
+                layer.text(`Headquarters Mode`,250,rows*30+475)
                 layer.text(`Begin`,-125,rows*30+535)
                 layer.text(`Edit Map`,125,rows*30+535)
                 layer.textSize(10)
@@ -2148,7 +2150,7 @@ export class ui{
                                         }
                                     }
                                 }
-                                this.agency.lastResult=types.team[this.turn.main].name==`Royal Army`||types.team[this.turn.main].name==`Imperial Army`?[-round(random(5,15))*100]:this.agents[this.turn.main].execute(2,[
+                                this.agency.lastResult=(types.team[this.turn.main].name==`Royal Army`||types.team[this.turn.main].name==`Imperial Army`?[-round(random(5,15))*100]:this.agents[this.turn.main].execute(2,[
                                     this.turn.count,
                                     totals[0]>0?1:0,
                                     totals[1]>0?1:0,
@@ -2158,7 +2160,8 @@ export class ui{
                                     totals[0]/1000,
                                     totals[1]/1000,
                                     totals[2]/10000,
-                                ])
+                                    cit.data.connect.length,
+                                ])*10)+cit.getUnits(aligned,1).reduce((acc,unit)=>+acc+unit.value,0)
                                 if(this.agency.lastResult[0]>=100){
                                     for(let a=aligned.includes(cit.ruleIndex)?1:0,la=3;a<la;a++){
                                         if(this.agency.lastResult[0]>=100){
@@ -2192,13 +2195,14 @@ export class ui{
                                         }
                                     }
                                 }else if(this.agency.lastResult[0]<=-100){
-                                    for(let a=0,la=2;a<la;a++){
+                                    for(let a=aligned.includes(cit.ruleIndex)?1:0,la=3;a<la;a++){
                                         if(this.agency.lastResult[0]<=-100){
                                             for(let b=0,lb=cit.units.length;b<lb;b++){
                                                 if(
                                                     cit.units[b].type==0&&this.agency.lastResult[0]<=-100&&(
-                                                        a==0&&cit.units[b].team==this.turn.main||
-                                                        a==1&&this.operation.teams[this.turn.main].allies.includes(cit.units[b].team)
+                                                        a==0&&this.operation.teams[this.turn.main].allies.includes(cit.units[b].team)&&cit.units[b].team==cit.ruleIndex||
+                                                        a==1&&cit.units[b].team==this.turn.main||
+                                                        a==2&&this.operation.teams[this.turn.main].allies.includes(cit.units[b].team)
                                                     )
                                                 ){
                                                     this.turn.locked=true
@@ -2566,6 +2570,7 @@ export class ui{
                                         totals[3]+=this.operation.cities[this.select.targetCity].units[a].value
                                     }
                                 }
+                                let reveal=cit.getUnits([playing]).length>0
                                 this.agency.lastResult=this.agents[playing].execute(6,[
                                     this.agency.count,
                                     this.turn.count,
@@ -2580,8 +2585,8 @@ export class ui{
                                     cit.getUnits(newAligned,1).length>0?1:0,
                                     totals[0]/1000,
                                     totals[1]/1000,
-                                    cit.getNotUnitsVisible(newAligned,0).length>0?1:0,
-                                    cit.getNotUnitsVisible(newAligned,1).length>0?1:0,
+                                    (reveal?cit.getNotUnits(newAligned,0):cit.getNotUnitsVisible(newAligned,0).length)>0?1:0,
+                                    (reveal?cit.getNotUnits(newAligned,1):cit.getNotUnitsVisible(newAligned,1).length)>0?1:0,
                                     totals[2]/10000,
                                 ])
                                 if(this.agency.lastResult[0]>0){
@@ -2625,6 +2630,7 @@ export class ui{
                                         totals[3]+=this.operation.cities[this.select.city].units[a].value
                                     }
                                 }
+                                let reveal=cit.getUnits([playing]).length>0
                                 this.agency.lastResult=this.agents[playing].execute(6,[
                                     this.agency.count,
                                     this.turn.count,
@@ -2639,8 +2645,8 @@ export class ui{
                                     totals[1]>0?1:0,
                                     totals[0]/1000,
                                     totals[1]/1000,
-                                    cit.getNotUnitsVisible(newAligned,0).length>0?1:0,
-                                    cit.getNotUnitsVisible(newAligned,1).length>0?1:0,
+                                    (reveal?cit.getNotUnits(newAligned,0):cit.getNotUnitsVisible(newAligned,0).length)>0?1:0,
+                                    (reveal?cit.getNotUnits(newAligned,1):cit.getNotUnitsVisible(newAligned,1).length)>0?1:0,
                                     totals[2]/10000,
                                 ])
                                 if(this.agency.lastResult[0]>0){
@@ -3158,7 +3164,7 @@ export class ui{
         switch(scene){
             case `title`:
                 for(let a=0,la=types.map.length;a<la;a++){
-                    if(key==(a+1).toString()){
+                    if(key==((a+1)%10).toString()){
                         this.operation.transitionManager.begin(`setup`)
                         this.operation.nextMap=a
                         this.select.auto=[]

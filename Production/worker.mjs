@@ -2,7 +2,7 @@ import {parentPort} from "node:worker_threads"
 import {dev} from '../JS/variables.mjs'
 import {outAgents,outTraining,modifex} from '../JS/functions.mjs'
 import {operation} from '../JS/operation.mjs'
-//modifex(1)
+//modifex(2)
 function draw(){
     current.update()
     setImmediate(draw)

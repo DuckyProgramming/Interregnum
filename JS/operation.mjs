@@ -13,7 +13,7 @@ export class operation{
         if(!dev.close){
             this.zoom={position:{x:graphics.load.map[this.map].width*0.5,y:graphics.load.map[this.map].height*0.5},map:0,shift:{position:{x:0,y:0},active:false},dragging:0,scaling:1}
         }
-        this.speed={main:dev.speed?5000:1,move:true}
+        this.speed={main:dev.speed?10000:1,move:true}
         this.cities=[]
         this.teams=[]
         this.scene=`title`
@@ -214,7 +214,7 @@ export class operation{
     }
     update(layer){        
         if(this.ui.turn.main!=-1&&!dev.speed&&this.speed.move){
-            this.speed.main=!types.team[this.ui.turn.main].auto||types.team[this.ui.turn.main].name==`Royal Army`||types.team[this.ui.turn.main].name==`Imperial Army`?1:min(this.speed.main+0.1,10)
+            this.speed.main=!types.team[this.ui.turn.main].auto||types.team[this.ui.turn.main].name==`Royal Army`||types.team[this.ui.turn.main].name==`Imperial Army`?1:min(this.speed.main+0.1,max(10,this.speed.main))
         }
         switch(this.scene){
             case `title`: case `setup`:

@@ -16,7 +16,7 @@ Role of the Church: There are numerous territories ruled by bishops or abbots, a
 
 Duchies: There are no territorial duchies, but there are four ducal titles, corresponding to the regions of Saône, Transjurania, Cisjurania, and Provence. They once carried authority as the preeminent noble in a region, but they have now only exist for prestige.
 
-Women: The kingdom places more power in the hands of women compared to contemporary polities, with important female-only royal offices. It also permits them greater dynastic privileges to inherit noble titles and to possess seats in the diet, which was implemented to prevent noble houses from dying out. There are also a higher quantity of religious organizations and universities that admit women, sometimes eclusively.
+Women: The kingdom places more power in the hands of women compared to contemporary polities, with important female-only royal offices. It also permits them greater dynastic privileges to inherit noble titles and to possess seats in the diet, which was implemented to prevent noble houses from dying out. There are also a higher quantity of religious organizations and universities that admit women.
 
 Major Noble Houses: Savoy (a string of territories between Vaud and Nice), Barcelona (Provence), Rouergue (counties on the Rhône between Valence and Avignon), Andechs (Franche-Comté), Albon (The County Palatine of the Rhône and Forez), Arduinici (Bresse and adjacent regions), Sabran (Forcalquier), Lorraine (Counties of Vosges and Meurthe and adjacent lordships), Zähringen (Swiss lands between Basel and Thun), Thoire (County of Geneva), Habsburg (Aargau and adjacent regions), Hohenzollern (Neuchâtel), Lillebonne (Commercy).
 
@@ -26,13 +26,12 @@ Free Villages: Rheinau, Gertwiller, Stäfa, Miribel-les-Échelles
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Avignon, Lyon, Tarentaise
 Bishoprics: Basel, Lausanne, Geneva, Sion, Viviers, Toul
 Abbeys: Engelberg, Bellelay, Moutier-Grandval, Schänis, Einsiedeln, St. Maurice, Lure, Luxeuil, Les-Dames, Remiremont, St. Marx, Le Beausset, Lérins, Andlau, Niedermünster, Erstein, St. Odile, Murbach
-Counties: Frickgau, Baden, Ober-Aargau, Unter-Aargau, Sundgau, Albon, Forez, Savoy (Duke), Bugey, Vaud, Maurienne, Chablais, Lower Valais, Nice, Briançonnois, Oberland, Valentinois, Diois, Venaissin, Outre-Saône, Bresse, Isère, Vosges, Meurthe, Vaudemont, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Forcalquier, Gruyères, Orange
-Lordships: Zug, Entlebuch, Willisau, Thalwil, Weiler, Grandson, Annonay, Beaujolais, Faucigny, Gex, Romont, Aigle, Lanslebourg, Murten, Grasburg, Nidau, Laufenburg, Urseren, Hasli, Roquemaure, Bollène, Lamarche, St. Dié, Horburg, Villars, Rappolstein, Neuveville, Loveresse, Salins, Auxonne, Barbentane, Höfe, March, Kappel, Landser, Ammerschweier, Sundhausen
+Counties: Frickgau, Baden, Ober-Aargau, Unter-Aargau, Sundgau, Albon, Forez, Savoy (Duke), Bugey, Vaud, Maurienne, Chablais, Lower Valais, Nice, Briançonnois, Oberland, Valentinois, Diois, Venaissin, Arlay, Bresse, Isère, Vosges, Meurthe, Vaudemont, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Neuchâtel, Geneva, Forcalquier, Gruyères, Orange
+Lordships: Zug, Entlebuch, Willisau, Thalwil, Weiler, Grandson, Annonay, Beaujeu, Faucigny, Aigle, Lanslebourg, Murten, Grasburg, Nidau, Laufenburg, Urseren, Hasli, Roquemaure, Bollène, Lamarche, St. Dié, Horburg, Rappolstein, Neuveville, Salins, Seurre, Barbentane, Höfe, March, Kappel, Landser, Ammerschweier, Sundhausen
 Margraviates: Barcelonette, Provence
 Landgraviates: Sisgau, Buchsgau, Aarburgund, Transjurania (Elector, Duke)
 Valleys: Schwyz (Confederate), Uri (Confederate), Obwalden (Confederate), Nidwalden (Confederate), Glarus (Property of Schänis Abbey), Leventina
 Republics: Gersau, The Seven Zenden
-Ladyships: Château-Bas, Château-Haut
 Misc: County Palatine of The Rhône (Elector), Condominium of Freie Ämter, Royal Knights of Elsaß, Princessate of Commercy
 
 I've also attached a map.

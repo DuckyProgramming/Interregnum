@@ -414,7 +414,7 @@ types={state:[
     rule:"Albon",
     prestige:[],
   },{
-    name:"Beaujolais",
+    name:"Beaujeu",
     title:"Lordship",
     district:"Cisjurania",
     rule:"Albon",
@@ -457,18 +457,6 @@ types={state:[
     prestige:[],
   },{
     name:"Faucigny",
-    title:"Lordship",
-    district:"Transjurania",
-    rule:"Savoy",
-    prestige:[],
-  },{
-    name:"Gex",
-    title:"Lordship",
-    district:"Transjurania",
-    rule:"Savoy",
-    prestige:[],
-  },{
-    name:"Romont",
     title:"Lordship",
     district:"Transjurania",
     rule:"Savoy",
@@ -606,7 +594,7 @@ types={state:[
     rule:"Rouergue",
     prestige:[],
   },{
-    name:"Outre-Saône",
+    name:"Arlay",
     title:"County",
     district:"Cisjurania",
     rule:"Arduinici",
@@ -678,22 +666,16 @@ types={state:[
     rule:"Württemberg",
     prestige:[],
   },{
-    name:"Geneva",
-    title:"County",
-    district:"Île-de-Bourgogne",
-    rule:"Thoire",
-    prestige:[],
-  },{
-    name:"Villars",
-    title:"Lordship",
-    district:"Cisjurania",
-    rule:"Thoire",
-    prestige:[],
-  },{
     name:"Neuchâtel",
     title:"County",
     district:"Transjurania",
     rule:"Hohenzollern",
+    prestige:[],
+  },{
+    name:"Geneva",
+    title:"County",
+    district:"Île-de-Bourgogne",
+    rule:"Thoire",
     prestige:[],
   },{
     name:"Freie Ämter",
@@ -720,19 +702,13 @@ types={state:[
     rule:"Minor",
     prestige:[],
   },{
-    name:"Loveresse",
-    title:"Lordship",
-    district:"Transjurania",
-    rule:"Minor",
-    prestige:[],
-  },{
     name:"Salins",
     title:"Lordship",
     district:"Saône",
     rule:"Minor",
     prestige:[],
   },{
-    name:"Auxonne",
+    name:"Seurre",
     title:"Lordship",
     district:"Saône",
     rule:"Minor",
@@ -848,18 +824,6 @@ types={state:[
   },{
     name:"Commercy",
     title:"Princessate",
-    district:"Saône",
-    rule:"Lillebonne",
-    prestige:[],
-  },{
-    name:"Château-Bas",
-    title:"Ladyship",
-    district:"Saône",
-    rule:"Lillebonne",
-    prestige:[],
-  },{
-    name:"Château-Haut",
-    title:"Ladyship",
     district:"Saône",
     rule:"Lillebonne",
     prestige:[],

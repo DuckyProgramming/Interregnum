@@ -47,7 +47,7 @@ export class agent{
             }
             for(let a=0,la=5;a<la;a++){
                 this.sets[2][0].push([])
-                for(let b=0,lb=9;b<lb;b++){
+                for(let b=0,lb=10;b<lb;b++){
                     this.sets[2][0][a].push(random(-10,10))
                 }
             }

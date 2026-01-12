@@ -2,15 +2,15 @@ types.district=[
     {
         name:"Île-de-Bourgogne",
         circle:"Upper",
-        area:64489
+        area:69914
     },{
         name:"Saône",
         circle:"Upper",
-        area:700329,
+        area:700647,
     },{
         name:"Transjurania",
         circle:"Upper",
-        area:643732
+        area:639151
     },{
         name:"Cisjurania",
         circle:"Lower",
