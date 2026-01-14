@@ -1,5 +1,5 @@
 import {types,dev,graphics} from './variables.mjs'
-import {smoothAnim,moveTowardVecDynamic,floor,random,round} from './functions.mjs'
+import {smoothAnim,moveTowardVecDynamic,floor,random,round,findName} from './functions.mjs'
 export class unit{
     constructor(city,team,type,value){
         this.city=city

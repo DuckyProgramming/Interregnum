@@ -43,7 +43,7 @@ export class operation{
     load(result){
         let composite=JSON.parse(result)
 
-        let map=composite.map==undefined?findName(`HRE`,types.map):typeof(composite.map)==`number`?findName(convert[1][composite.map],types.map):typeof(composite.map)==`object`?findName2(composite.map,types.map):findName(composite.map,types.map)
+        let map=composite.map==undefined?findName(`HRE`,types.map):typeof(composite.map)==`number`?findName(convert[1][composite.map],types.map):typeof(composite.map)==`object`?findName2(composite.map,types.map):findTerm(composite.map,types.map)
         let reselect=false
         if(map!=this.map){
             reselect=true

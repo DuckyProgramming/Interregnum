@@ -34,6 +34,8 @@ export var types={
         {name:`Major Nobility`,affinity:[2,2,3,2,1,0,0]},
         {name:`Massive Nobility`,affinity:[0,0,1,0,0,0,0]},
         {name:`Headquarters`,affinity:[0,0,0,0,0,0,0]},
+    ],teamKey:[
+        ['Royal Army','Imperial Army'],
     ],map:[
         {
             name:[`Tiny`,``],
@@ -424,7 +426,7 @@ export var types={
                 {name:`Rouergue`,term:`rouergue`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Savoy`,term:`savoy`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.25,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
             ],
         },{
             name:[`Kingdom of Arles`,`Deluxe`],
@@ -890,7 +892,7 @@ export var dev={
 }
 export var training={
     specific:-1,grouping:[],generations:0,benchmark:0,turns:1000,runs:100,inserter:50000000,
-    map:`wenceslavia`,
+    map:`arelat+-`,
 }
 export var options={strength:1,strengthEdit:false,hq:false}
 export var graphics={main:0,load:{map:[],city:[],team:[],unit:[]}}

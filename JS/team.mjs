@@ -37,4 +37,15 @@ export class team{
             throw new Error(`Self Alliance`)
         }
     }
+    removeAlly(other){
+        if(this.allies.includes(other.type)){
+            this.allies.splice(this.allies.indexOf(other.type))
+        }
+        if(other.allies.includes(this.type)){
+            other.allies.splice(other.allies.indexOf(this.type))
+        }
+        if(this==other){
+            throw new Error(`Self Alliance Removal`)
+        }
+    }
 }

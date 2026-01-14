@@ -1,5 +1,5 @@
 import {types,constants,dev,options,graphics} from './variables.mjs'
-import {smoothAnim,distPos,round,random,max,min,floor} from './functions.mjs'
+import {smoothAnim,distPos,round,random,max,min,floor,last} from './functions.mjs'
 import {unit} from './unit.mjs'
 export class city{
     constructor(operation,x,y,type){
@@ -107,7 +107,7 @@ export class city{
         if(num==0){
             throw new Error(`Spawn 0`)
         }
-        if(types.team[team].name==`Royal Army`||types.team[team].name==`Imperial Army`){
+        if(types.teamKey[0].includes(types.team[team].name)){
             throw new Error(`Headquarters Spawn`)
         }
     }
@@ -175,6 +175,10 @@ export class city{
             }
         }
         return supremum[0]
+    }
+    outUnits(){
+        print(`${this.data.name}:`)
+        this.units.forEach(unit=>print(unit.nameSelf()))
     }
     updateVisibility(turn){
         this.visibility=this.units.some(unit=>{return unit.team==turn&&!unit.remove})||this.data.rule==types.team[turn].name?2:0

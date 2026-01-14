@@ -112,7 +112,7 @@ export class agent{
                                 this.sets[a][b][c][d]=random(-10,10)
                             }else if(floor(random(0,50))==0){
                                 if(c>=5&&b==0&&lb>1){
-                                    this.sets[a][b][c][d]=floor(random(a==0?13:a==1?12:9))
+                                    this.sets[a][b][c][d]=floor(random(a==0?22:a==1?19:16))
                                 }else{
                                     this.sets[a][b][c][d]=floor(random(0,5))==0?-this.sets[a][b][c][d]:constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-10,10)
                                 }
