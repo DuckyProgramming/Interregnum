@@ -122,7 +122,7 @@ export class city{
         this.units.push(new unit(this,team,type,value))
     }
     raided(raider){
-        let num=round(this.recruits/20+10)*10
+        let num=round(this.recruits/20+20)*10
         this.recruits-=num
         let total=0
         let send=[]
