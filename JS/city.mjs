@@ -51,6 +51,9 @@ export class city{
         this.owner=owner
         if(this.owner!=-1){
             team=this.operation.teams[types.teamRef[this.owner]]
+            if(team==undefined){
+                throw new Error(`No Owner: ${this.owner}`)
+            }
             team.cities.push(this)
         }
     }
@@ -69,6 +72,7 @@ export class city{
     newTurn(){
         this.recruits=min(this.recruits+constants.spawn.regen*(this.recruits>=constants.spawn.base*0.8?0.5:this.recruits>=constants.spawn.base*0.6?0.75:1),constants.spawn.base)
         this.mercenaries=min(this.mercenaries+constants.spawn.regen*(this.mercenaries>=constants.spawn.base*0.8?0.4:this.mercenaries>=constants.spawn.base*0.6?0.6:0.8),constants.spawn.base)
+        this.units.forEach(unit=>unit.tempVisible=false)
         this.updateSiege()
     }
     newTurnTick(){
@@ -91,7 +95,7 @@ export class city{
         }else{
             this.sieged=0
         }
-        this.units.forEach(unit=>{unit.tempVisible=false;unit.newTurn()})
+        this.units.forEach(unit=>unit.newTurn())
     }
     minorRegen(){
         this.recruits=min(this.recruits+constants.spawn.regen*10,constants.spawn.base)

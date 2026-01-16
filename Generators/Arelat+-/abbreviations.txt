@@ -1,6 +1,7 @@
 AB - Landgraviate of Aarburgund
 AM - Lordship of Ammerschweier
 AV - Archbishopric of Avignon
+BA - Abbey of Baume-Les-Dames
 BB - Lordship of Barbentane
 BE - Abbey of Bellelay
 CB - Ladyship of Château-Bas
@@ -22,7 +23,6 @@ IK - Imperial Knights of Elsaß
 KP - Lordship of Kappel
 LA - Lordship of Laufenburg
 LB - Abbey of Le Beausset
-LD - Abbey of Les-Dames
 LM - Lordship of Lamarche
 LS - Bishopric of Lausanne
 LU - Abbey of Lure

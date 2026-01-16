@@ -6,15 +6,15 @@ class operation{
     }
     nameColor(name){
         switch(name){
-            case `Barcelona`: case `Provence`:
+            case `Barcelona`: case `Provence`: case `Lower Burgundy`:
                 return [218,106,81]
-            case `Andechs`: case `Saône`:
+            case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`:
                 return [156,142,199]
             case `Hohenzollern`:
                 return [110,148,204]
             case `Thoire`: case `Île-de-Bourgogne`:
                 return [184,54,117]
-            case `Sabran`:
+            case `Sabran`: case 'Forcalquier':
                 return [150,114,229]
             case `Wittelsbach`:
                 return [84,189,126]
@@ -23,35 +23,39 @@ class operation{
             case `Lillebonne`:
                 return [160,65,72]
             case `Zähringen-Savoy`:
-                return [199,106,140,108,173,184]
+                return [199,106,140,49,167,185]
             case `Württemberg`:
                 return [196,154,39]
-            case `Arduinici`:
+            case `Arduinici`: case 'Bresse':
                 return [206,165,158]
-            case `Lorraine`:
+            case `Lorraine`: case `Haut-Lorraine`:
                 return [229,152,152]
-            case `Albon`: case `Cisjurania`:
+            case `Albon`: case `Cisjurania`: case `Dauphiné`:
                 return [228,153,70]
-            case `Rouergue`:
+            case `Rouergue`: case `Drôme`:
                 return [114,142,101]
-            case `Zähringen`: case `Transjurania`:
+            case `Zähringen`: case `Transjurania`: case `Helvetie`:
                 return [199,106,140]
-            case `Republic`:
+            case `Republic`: case `Tellgovie`:
                 return [161,161,161]
             case `Habsburg`:
                 return [229,173,67]
-            case `Savoy`:
+            case `Savoy`: case `Alpes`:
+                return [49,167,185]
+            case `Romandie`:
                 return [108,173,184]
             case `Minor`:
                 return [220,201,166]
-            case `Burghers`:
+            case `Burghers`: case `Alsace`:
                 return [218,24,30]
             case `Ecclesiastical`:
                 return [145,78,154]
             case `La Marck-Arenberg`:
                 return [41,150,163]
-            case `Melun`:
-                return [213,167,137]
+            case `Orange`:
+                return [254,135,133]
+            case `Gruyères`:
+                return [193,144,112]
             default:
                 return [150]
         }
@@ -60,9 +64,9 @@ class operation{
         this.stats={items:[],max:0}
         let sets=[]
         switch(type){
-            case 0: case 1: case 2: case 3: case 7: case 8: case 9:
-                let set=['district','district','rule','title','','','','rule','district','district'][type]
-                let term=['state','state','state','state','','','','diet','diet','diet'][type]
+            case 0: case 1: case 2: case 3: case 7: case 8: case 9: case 10: case 12:
+                let set=['district','district','rule','title','','','','rule','district','district','district','','district'][type]
+                let term=['state','state','state','state','','','','diet','diet','diet','state','','diet'][type]
                 for(let a=0,la=types[term].length;a<la;a++){
                     let account=false
                     for(let b=0,lb=sets.length;b<lb;b++){
@@ -83,14 +87,57 @@ class operation{
                         if(num>=0){
                             let account=false
                             for(let b=0,lb=oversets.length;b<lb;b++){
-                                if(oversets[b].name==types.district[num].circle){
+                                if(oversets[b].name==types.district[num].region){
                                     oversets[b].states+=sets[a].states
                                     account=true
                                     b=lb
                                 }
                             }
                             if(!account){
-                                oversets.push({name:types.district[num].circle,states:sets[a].states})
+                                oversets.push({name:types.district[num].region,states:sets[a].states})
+                            }
+                        }else{
+                            print('Fail',sets[a].name)
+                        }
+                    }
+                    let hypersets=[]
+                    for(let a=0,la=oversets.length;a<la;a++){
+                        let num=findName(oversets[a].name,types.region)
+                        if(num>=0){
+                            let account=false
+                            for(let b=0,lb=hypersets.length;b<lb;b++){
+                                if(hypersets[b].name==types.region[num].circle){
+                                    hypersets[b].states+=oversets[a].states
+                                    account=true
+                                    b=lb
+                                }
+                            }
+                            if(!account){
+                                hypersets.push({name:types.region[num].circle,states:oversets[a].states})
+                            }
+                        }else{
+                            print('Fail',sets[a].name)
+                        }
+                    }
+                    for(let a=0,la=hypersets.length;a<la;a++){
+                        this.stats.items.push({name:hypersets[a].name,base:hypersets[a].states})
+                        this.stats.max=max(this.stats.max,hypersets[a].states)
+                    }
+                }else if(type==10||type==11||type==12){
+                    let oversets=[]
+                    for(let a=0,la=sets.length;a<la;a++){
+                        let num=findName(sets[a].name,types.district)
+                        if(num>=0){
+                            let account=false
+                            for(let b=0,lb=oversets.length;b<lb;b++){
+                                if(oversets[b].name==types.district[num].region){
+                                    oversets[b].states+=sets[a].states
+                                    account=true
+                                    b=lb
+                                }
+                            }
+                            if(!account){
+                                oversets.push({name:types.district[num].region,states:sets[a].states})
                             }
                         }else{
                             print('Fail',sets[a].name)
@@ -122,14 +169,52 @@ class operation{
                 for(let a=0,la=types.district.length;a<la;a++){
                     let account=false
                     for(let b=0,lb=sets.length;b<lb;b++){
-                        if(sets[b].name==types.district[a].circle){
+                        if(sets[b].name==types.district[a].region){
                             sets[b].area+=types.district[a].area
                             account=true
                             b=lb
                         }
                     }
                     if(!account){
-                        sets.push({name:types.district[a].circle,area:types.district[a].area})
+                        sets.push({name:types.district[a].region,area:types.district[a].area})
+                    }
+                }
+                let oversets=[]
+                for(let a=0,la=sets.length;a<la;a++){
+                    let num=findName(sets[a].name,types.region)
+                    if(num>=0){
+                        let account=false
+                        for(let b=0,lb=oversets.length;b<lb;b++){
+                            if(oversets[b].name==types.region[num].circle){
+                                oversets[b].area+=sets[a].area
+                                account=true
+                                b=lb
+                            }
+                        }
+                        if(!account){
+                            oversets.push({name:types.region[num].circle,area:sets[a].area})
+                        }
+                    }else{
+                        print('Fail',sets[a].name)
+                    }
+                }
+                for(let a=0,la=oversets.length;a<la;a++){
+                    this.stats.items.push({name:oversets[a].name,base:oversets[a].area})
+                    this.stats.max=max(this.stats.max,oversets[a].area)
+                }
+            break
+            case 11:
+                for(let a=0,la=types.district.length;a<la;a++){
+                    let account=false
+                    for(let b=0,lb=sets.length;b<lb;b++){
+                        if(sets[b].name==types.district[a].region){
+                            sets[b].area+=types.district[a].area
+                            account=true
+                            b=lb
+                        }
+                    }
+                    if(!account){
+                        sets.push({name:types.district[a].region,area:types.district[a].area})
                     }
                 }
                 for(let a=0,la=sets.length;a<la;a++){
@@ -198,26 +283,29 @@ class operation{
                         this.layer.noFill()
                         this.layer.stroke(0,this.page.anim[a])
                         this.layer.strokeWeight(4)
-                        for(let b=0,lb=5;b<lb;b++){
-                            for(let c=0,lc=b<2?3:b<3?2:1;c<lc;c++){
-                                this.layer.rect(c*180-lc*90+90,b*54-33,160,36,10)
+                        for(let b=0,lb=6;b<lb;b++){
+                            for(let c=0,lc=b<3?3:b<4?2:1;c<lc;c++){
+                                this.layer.rect(c*180-lc*90+90,b*54-83,160,36,10)
                             }
                         }
                         this.layer.noStroke()
                         this.layer.fill(0,this.page.anim[a])
                         this.layer.textSize(48)
-                        this.layer.text('Arelat+- Tool',0,-93)
+                        this.layer.text('Arelat+- Tool',0,-143)
                         this.layer.textSize(20)
-                        this.layer.text('District States',-180,-33)
-                        this.layer.text('District Land',0,-33)
-                        this.layer.text('District Diet',180,-33)
-                        this.layer.text('Circle States',-180,21)
-                        this.layer.text('Circle Land',0,21)
-                        this.layer.text('Circle Diet',180,21)
-                        this.layer.text('Ruler Stats',-90,75)
-                        this.layer.text('Ruler Diet',90,75)
-                        this.layer.text('Title Stats',0,129)
-                        this.layer.text('Level Stats',0,183)
+                        this.layer.text('District States',-180,-83)
+                        this.layer.text('District Land',0,-83)
+                        this.layer.text('District Diet',180,-83)
+                        this.layer.text('Region States',-180,-29)
+                        this.layer.text('Region Land',0,-29)
+                        this.layer.text('Region Diet',180,-29)
+                        this.layer.text('Circle States',-180,25)
+                        this.layer.text('Circle Land',0,25)
+                        this.layer.text('Circle Diet',180,25)
+                        this.layer.text('Ruler Stats',-90,79)
+                        this.layer.text('Ruler Diet',90,79)
+                        this.layer.text('Title Stats',0,133)
+                        this.layer.text('Level Stats',0,187)
                     break
                     case 1:
                         this.layer.noStroke()
@@ -314,34 +402,43 @@ class operation{
         let at={position:{x:(mouse.position.x-this.layer.width/2)/1.5,y:(mouse.position.y-this.layer.height/2)/1.5}}
         switch(this.page.main){
             case 0:
-                if(inPointBox(at,boxify(-180,-33,160,36))){
+                if(inPointBox(at,boxify(-180,-83,160,36))){
                     this.page.main=1
                     this.getStats(0)
-                }else if(inPointBox(at,boxify(0,-33,160,36))){
+                }else if(inPointBox(at,boxify(0,-83,160,36))){
                     this.page.main=1
                     this.getStats(5)
-                }else if(inPointBox(at,boxify(180,-33,160,36))){
+                }else if(inPointBox(at,boxify(180,-83,160,36))){
                     this.page.main=1
                     this.getStats(8)
-                }else if(inPointBox(at,boxify(-180,21,160,36))){
+                }else if(inPointBox(at,boxify(-180,-29,160,36))){
+                    this.page.main=1
+                    this.getStats(10)
+                }else if(inPointBox(at,boxify(0,-29,160,36))){
+                    this.page.main=1
+                    this.getStats(11)
+                }else if(inPointBox(at,boxify(180,-29,160,36))){
+                    this.page.main=1
+                    this.getStats(12)
+                }else if(inPointBox(at,boxify(-180,25,160,36))){
                     this.page.main=1
                     this.getStats(1)
-                }else if(inPointBox(at,boxify(0,21,160,36))){
+                }else if(inPointBox(at,boxify(0,25,160,36))){
                     this.page.main=1
                     this.getStats(6)
-                }else if(inPointBox(at,boxify(180,21,160,36))){
+                }else if(inPointBox(at,boxify(180,25,160,36))){
                     this.page.main=1
                     this.getStats(9)
-                }else if(inPointBox(at,boxify(-90,75,160,36))){
+                }else if(inPointBox(at,boxify(-90,79,160,36))){
                     this.page.main=1
                     this.getStats(2)
-                }else if(inPointBox(at,boxify(90,75,160,36))){
+                }else if(inPointBox(at,boxify(90,79,160,36))){
                     this.page.main=1
                     this.getStats(7)
-                }else if(inPointBox(at,boxify(0,129,160,36))){
+                }else if(inPointBox(at,boxify(0,133,160,36))){
                     this.page.main=1
                     this.getStats(3)
-                }else if(inPointBox(at,boxify(0,183,160,36))){
+                }else if(inPointBox(at,boxify(0,187,160,36))){
                     this.page.main=1
                     this.getStats(4)
                 }

@@ -1,23 +1,55 @@
 types.district=[
     {
-        name:"Île-de-Bourgogne",
-        circle:"Upper",
+        name:`Île-de-Bourgogne`,
+        region:`Île-de-Bourgogne`,
         area:64489
     },{
-        name:"Saône",
-        circle:"Upper",
-        area:700329,
+        name:`Haut-Lorraine`,
+        region:`Saône`,
+        area:200802
     },{
-        name:"Transjurania",
-        circle:"Upper",
-        area:643732
+        name:`Alsace`,
+        region:`Saône`,
+        area:105729
     },{
-        name:"Cisjurania",
-        circle:"Lower",
-        area:674911
+        name:`Franche-Comté`,
+        region:`Saône`,
+        area:357641
     },{
-        name:"Provence",
-        circle:"Lower",
-        area:874340
+        name:`Helvetie`,
+        region:`Transjurania`,
+        area:159963
+    },{
+        name:`Tellgovie`,
+        region:`Transjurania`,
+        area:195850
+    },{
+        name:`Romandie`,
+        region:`Transjurania`,
+        area:263925
+    },{
+        name:`Bresse`,
+        region:`Cisjurania`,
+        area:154868
+    },{
+        name:`Alpes`,
+        region:`Cisjurania`,
+        area:156243
+    },{
+        name:`Dauphiné`,
+        region:`Cisjurania`,
+        area:343139
+    },{
+        name:`Drôme`,
+        region:`Provence`,
+        area:285562
+    },{
+        name:`Forcalquier`,
+        region:`Provence`,
+        area:227140
+    },{
+        name:`Provence`,
+        region:`Provence`,
+        area:336603
     },
 ]

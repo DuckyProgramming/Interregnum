@@ -365,9 +365,9 @@ export class ui{
                     this.agents.push(new agent(...agentset[type][index]))
                     agentset[type].splice(index,1)
                 }
-                this.hq.interval=max(15,[50,40,35,30,25][min(4,this.hq.players-1)]-5*round(max(1,2.5-this.hq.players*0.5)*this.hq.playerCities/this.hq.players/4))
+                this.hq.interval=max(15,[50,40,35,30,25][min(4,this.hq.players-1)]-5*round(max(1,2-(this.hq.players-1)*0.375)*this.hq.playerCities/this.hq.players/4))
                 this.hq.baseInterval=this.hq.interval
-                this.hq.num=this.hq.players*2+this.hq.playerCities
+                this.hq.num=this.hq.players+this.hq.playerCities
                 this.hq.baseNum=this.hq.num
                 this.hq.active=true
                 for(let a=0,la=this.operation.teams.length;a<la;a++){
@@ -388,13 +388,13 @@ export class ui{
             let aligned=[this.turn.main,...this.operation.teams[this.turn.main].allies]
             if(this.hq.num>0){
                 this.hq.num--
-                this.hq.tick+=this.hq.interval
-                this.hq.interval+=round(this.hq.baseInterval/this.hq.baseNum)
+                this.hq.tick+=round(this.hq.interval)
+                this.hq.interval+=this.hq.baseInterval/this.hq.baseNum
             }
             for(let a=0,la=this.operation.cities.length;a<la;a++){
                 if(types.city[a].type==3){
                     let cit=this.operation.cities[a]
-                    let num=round(2*types.city.length*options.strength)*100
+                    let num=12000*options.strength
                     if(cit.getNotUnits(aligned).length<=0){
                         this.turn.pinned=false
                         this.moveTab(5)
@@ -819,7 +819,21 @@ export class ui{
                         let set=this.operation.cities[this.select.targetCity].getNotUnits(aligned)
                         for(let a=0,la=set.length;a<la;a++){
                             let base=set[a]
-                            this.operation.cities[city].units.push(new unit(this.operation.cities[city],base.team,0,base.value))
+                            let mult=1
+                            for(let b=0,lb=types.city[this.select.city].connect.length;b<lb;b++){
+                                if(types.city[this.select.city].connect[b].name==types.city[city].name){
+                                    switch(types.city[this.select.city].connect[b].type){
+                                        case 1:
+                                            mult*=0.95
+                                        break
+                                        case 2:
+                                            mult*=0.75
+                                        break
+                                    }
+                                }
+                            }
+                            let value=ceil(base.value/100*mult)*100
+                            this.operation.cities[city].units.push(new unit(this.operation.cities[city],base.team,0,value))
                             last(this.operation.cities[city].units).position.x=this.operation.cities[this.select.targetCity].position.x-this.operation.cities[city].position.x+base.position.x
                             last(this.operation.cities[city].units).position.y=this.operation.cities[this.select.targetCity].position.y-this.operation.cities[city].position.y+base.position.y
                             last(this.operation.cities[city].units).fade.main=1-base.type
@@ -850,7 +864,21 @@ export class ui{
                         let set=this.operation.cities[this.select.city].getNotUnits(aligned)
                         for(let a=0,la=set.length;a<la;a++){
                             let base=set[a]
-                            this.operation.cities[city].units.push(new unit(this.operation.cities[city],base.team,0,base.value))
+                            let mult=1
+                            for(let b=0,lb=types.city[this.select.city].connect.length;b<lb;b++){
+                                if(types.city[this.select.city].connect[b].name==types.city[city].name){
+                                    switch(types.city[this.select.city].connect[b].type){
+                                        case 1:
+                                            mult*=0.95
+                                        break
+                                        case 2:
+                                            mult*=0.75
+                                        break
+                                    }
+                                }
+                            }
+                            let value=ceil(base.value/100*mult)*100
+                            this.operation.cities[city].units.push(new unit(this.operation.cities[city],base.team,0,value))
                             last(this.operation.cities[city].units).position.x=this.operation.cities[this.select.city].position.x-this.operation.cities[city].position.x+base.position.x
                             last(this.operation.cities[city].units).position.y=this.operation.cities[this.select.city].position.y-this.operation.cities[city].position.y+base.position.y
                             last(this.operation.cities[city].units).fade.main=1-base.type
@@ -1702,6 +1730,11 @@ export class ui{
                                 layer.textSize(18)
                                 layer.text(`Total Turns: ${this.turn.total}`,0,tick+7.5)
                                 tick+=25
+                                if(options.hq){
+                                    layer.textSize(15)
+                                    layer.text(this.hq.num==0?`Headquarters Complete`:`Headquarters: Turn ${this.hq.tick}`,0,tick+7.5)
+                                    tick+=25
+                                }
                                 layer.fill(120)
                                 layer.rect(0,tick+25,160,40,10)
                                 layer.fill(0)
@@ -1978,8 +2011,8 @@ export class ui{
                                 }
                                 this.agency.lastResult=types.teamKey[0].includes(types.team[this.turn.main].name)?[
                                     0,
-                                    cit.getUnits([this.turn.main],0).length>0&&cit.getUnits([this.turn.main],0)[0].value<1000?-1+this.agency.count*0.1:1,
-                                    cit.getUnits([this.turn.main],1).length>0&&cit.getUnits([this.turn.main],1)[0].value<=2000||cit.getUnits(this.operation.teams[this.turn.main].allies).length>0?0:3,
+                                    cit.getUnits([this.turn.main],0).length>0&&cit.getUnits([this.turn.main],0)[0].value<=500?0:cit.getUnits([this.turn.main],0).length>0&&cit.getUnits([this.turn.main],0)[0].value<=2000?-1+this.agency.count*0.1:1,
+                                    cit.getUnits([this.turn.main],1).length>0&&cit.getUnits([this.turn.main],1)[0].value>=2000||cit.getUnits(this.operation.teams[this.turn.main].allies).length<=0&&cit.getUnits([this.turn.main],1).length==0?3:0,
                                     0.25,
                                     floor(random(0.75,2))*2,
                                     cit.getUnits([this.turn.main],1).length>0&&cit.getUnits([this.turn.main],1)[0].value<1000?0:floor(random(0,2))*2,
@@ -3127,6 +3160,9 @@ export class ui{
                 tick=100
                 switch(this.tabs.mapActive){
                     case 0:
+                        if(options.hq){
+                            tick+=25
+                        }
                         if(inPointBox(rel,boxify(0,tick+25,160,40))){
                             this.operation.transitionManager.begin(`main`)
                         }

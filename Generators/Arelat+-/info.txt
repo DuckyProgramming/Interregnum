@@ -25,7 +25,7 @@ Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Bremgarten, Lucerne, Solo
 Free Villages: Rheinau, Gertwiller, Stäfa, Miribel-les-Échelles
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Avignon, Lyon, Tarentaise
 Bishoprics: Basel, Lausanne, Geneva, Sion, Viviers, Toul
-Abbeys: Engelberg, Bellelay, Moutier-Grandval, Schänis, Einsiedeln, St. Maurice, Lure, Luxeuil, Les-Dames, Remiremont, St. Marx, Le Beausset, Lérins, Andlau, Niedermünster, Erstein, St. Odile, Murbach
+Abbeys: Engelberg, Bellelay, Moutier-Grandval, Schänis, Einsiedeln, St. Maurice, Lure, Luxeuil, Baume-Les-Dames, Remiremont, St. Marx, Le Beausset, Lérins, Andlau, Niedermünster, Erstein, St. Odile, Murbach
 Counties: Frickgau, Baden, Ober-Aargau, Unter-Aargau, Sundgau, Albon, Forez, Savoy (Duke), Bugey, Vaud, Maurienne, Chablais, Lower Valais, Nice, Briançonnois, Oberland, Valentinois, Diois, Venaissin, Outre-Saône, Bresse, Isère, Vosges, Meurthe, Vaudemont, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Forcalquier, Gruyères, Orange
 Lordships: Zug, Entlebuch, Willisau, Thalwil, Weiler, Grandson, Annonay, Beaujolais, Faucigny, Gex, Romont, Aigle, Lanslebourg, Murten, Grasburg, Nidau, Laufenburg, Urseren, Hasli, Roquemaure, Bollène, Lamarche, St. Dié, Horburg, Villars, Rappolstein, Neuveville, Loveresse, Salins, Auxonne, Barbentane, Höfe, March, Kappel, Landser, Ammerschweier, Sundhausen
 Margraviates: Barcelonette, Provence

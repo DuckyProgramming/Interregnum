@@ -450,6 +450,8 @@ export function checkCity(){
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{if(connect.name==city.name){print(city.name)}})))
     print(`Checking Connections`)
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{findName(connect.name,map.city)})))
+    print(`Checking Repeats`)
+    types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach((connect,index)=>{if(city.connect.some((connect2,index2)=>index!=index2&&connect.name==connect2.nme)){print(city.name,connect.name)}})))
 }
 export function checkTeam(){
     print(`Checking Vacuous`)

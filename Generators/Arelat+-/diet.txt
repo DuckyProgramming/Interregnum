@@ -13,7 +13,7 @@ There's a total of 84 votes. 72 votes are connected to territories:
 [8] Minor lordships are organized into the following benches with one collective vote each:
 Alsace (Rappolstein, Landser, Sundhausen, Horburg, Ammerschweier, Weiler, [Representative of the royal knights]),
 Lorraine (Lamarche, St. Dié),
-Upper Burgundy (Salins, Auxonne, Gex),
+Saône (Salins, Auxonne, Gex),
 Transjurania (Thalwil, Kappel, Zug, Höfe, March, Willisau, Entlebuch),
 Jura (Laufenburg, Neuveville, Loveresse, Grandson, Murten, Grasburg, Nidau, Romont)
 Rhône (Annonay, Beaujolais, Villars),
@@ -23,7 +23,7 @@ Alpine (Urseren, Hasli, Aigle, Faucigny, Lanslebourg)
 Lower Alsace (Andlau, Erstein, St. Odile, Niedermünster),
 Upper Alsace (Remiremont, Murbach, St. Marx),
 Transjurania (Einsiedeln, Engelberg, Schänis, St. Maurice),
-Saône (Luxeuil, Lure, Les-Dames),
+Saône (Luxeuil, Lure, Baume-Les-Dames),
 Basel (Bellelay, Moutier-Grandval),
 Provence (Lérins, Le Beausset)
 [4] Free royal cities are organized into the following benches with one collective vote each:
@@ -42,6 +42,6 @@ The elected leader of the royal knights is part of the collective bench of Alsat
 [4] The ducal titles each grant an additional vote.
 [1] The Dame d'atour (servant in charge of the royal regalia, a hereditary position held by female members of the House of La Marck-Arenberg) has a vote.
 
-Dynastic Breakdown of Votes: La Marck-Arenberg: 1, Republic (The Swiss Valleys): 1, Württemberg: 1, Hohenzollern: 1, Thoire: 1, Sabran: 1, Lillebonne: 1, Barcelona: 3, Andechs: 3, Arduinici: 3, Minor: 4, Lorraine: 4, Burghers: 4, Albon: 5, Rouergue: 5, Habsburg: 6, Zähringen: 8, Savoy: 11, Ecclesiastical: 21
+Dynastic Breakdown of Votes: La Marck-Arenberg: 1, Republic (The Swiss Valleys): 1, Württemberg: 1, Hohenzollern: 1, Gruyères: 1, Orange:1, Thoire: 1, Sabran: 1, Lillebonne: 1, Minor: 2, Barcelona: 3, Andechs: 3, Arduinici: 3, Lorraine: 4, Burghers: 4, Albon: 5, Rouergue: 5, Habsburg: 6, Zähringen: 8, Savoy: 11, Ecclesiastical: 21
 
 Briefly, do you understand the above information?
