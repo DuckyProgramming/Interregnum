@@ -189,7 +189,7 @@ export class city{
         if(turn>=0){
             if(this.visibility==0){
                 for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
-                    if(this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]].units.some(unit=>{return unit.team==turn&&!unit.remove})){
+                    if(types.city[this.type].connect[a].type!=2&&this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]].units.some(unit=>{return unit.team==turn&&!unit.remove})){
                         this.visibility=1
                     }
                 }

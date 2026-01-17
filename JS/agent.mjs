@@ -105,19 +105,33 @@ export class agent{
     mutate(){
         for(let a=0,la=this.sets.length;a<la;a++){
             if(a==training.specific||training.specific==-1){
-                for(let b=0,lb=this.sets[a].length;b<lb;b++){
-                    for(let c=0,lc=this.sets[a][b].length;c<lc;c++){
-                        for(let d=0,ld=this.sets[a][b][c].length;d<ld;d++){
-                            if(floor(random(0,1000))==0&&!(c>=5&&b==0&&lb>1)){
-                                this.sets[a][b][c][d]=random(-10,10)
-                            }else if(floor(random(0,50))==0){
+                if(floor(random(0,1000))==0){
+                    for(let b=0,lb=this.sets[a].length;b<lb;b++){
+                        for(let c=0,lc=this.sets[a][b].length;c<lc;c++){
+                            for(let d=0,ld=this.sets[a][b][c].length;d<ld;d++){
                                 if(c>=5&&b==0&&lb>1){
                                     this.sets[a][b][c][d]=floor(random(a==0?22:a==1?19:16))
                                 }else{
-                                    this.sets[a][b][c][d]=floor(random(0,5))==0?-this.sets[a][b][c][d]:constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-10,10)
+                                    this.sets[a][b][c][d]=random(-10,10)
                                 }
-                            }else if(floor(random(0,20))==0&&c<5){
-                                this.sets[a][b][c][d]=constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-10,10)
+                            }
+                        }
+                    }
+                }else{
+                    for(let b=0,lb=this.sets[a].length;b<lb;b++){
+                        for(let c=0,lc=this.sets[a][b].length;c<lc;c++){
+                            for(let d=0,ld=this.sets[a][b][c].length;d<ld;d++){
+                                if(floor(random(0,1000))==0&&!(c>=5&&b==0&&lb>1)){
+                                    this.sets[a][b][c][d]=random(-10,10)
+                                }else if(floor(random(0,training.specific!=-1?20:50))==0){
+                                    if(c>=5&&b==0&&lb>1){
+                                        this.sets[a][b][c][d]=floor(random(a==0?22:a==1?19:16))
+                                    }else{
+                                        this.sets[a][b][c][d]=floor(random(0,5))==0?-this.sets[a][b][c][d]:constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-10,10)
+                                    }
+                                }else if(floor(random(0,training.specific!=-1?10:20))==0&&c<5){
+                                    this.sets[a][b][c][d]=constrain(this.sets[a][b][c][d]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-10,10)
+                                }
                             }
                         }
                     }
@@ -126,13 +140,19 @@ export class agent{
         }
         for(let a=0,la=this.constants.length;a<la;a++){
             if(a==training.specific||training.specific==-1){
-                for(let b=0,lb=this.constants[a].length;b<lb;b++){
-                    if(floor(random(0,1000))==0){
+                if(floor(random(0,1000))==0){
+                    for(let b=0,lb=this.constants[a].length;b<lb;b++){
                         this.constants[a][b]=random(-10,10)
-                    }else if(floor(random(0,50))==0){
-                        this.constants[a][b]=floor(random(0,5))==0?-this.constants[a][b]:constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-10,10)
-                    }else if(floor(random(0,20))==0){
-                        this.constants[a][b]=constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-10,10)
+                    }
+                }else{
+                    for(let b=0,lb=this.constants[a].length;b<lb;b++){
+                        if(floor(random(0,1000))==0){
+                            this.constants[a][b]=random(-10,10)
+                        }else if(floor(random(0,training.specific!=-1?20:50))==0){
+                            this.constants[a][b]=floor(random(0,5))==0?-this.constants[a][b]:constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,2):1/random(1,2)),-10,10)
+                        }else if(floor(random(0,training.specific!=-1?10:20))==0){
+                            this.constants[a][b]=constrain(this.constants[a][b]*(floor(random(0,2))==0?random(1,1.2):1/random(1,1.2)),-10,10)
+                        }
                     }
                 }
             }

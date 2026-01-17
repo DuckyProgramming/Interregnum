@@ -31,6 +31,9 @@ export class team{
         this.deserters=composite.deserters
     }
     addAlly(other){
+        if(this.allies.includes(other.type)||other.allies.includes(this.type)){
+            throw new Error(`Repeat Alliance`)
+        }
         this.allies.push(other.type)
         other.allies.push(this.type)
         if(this==other){
