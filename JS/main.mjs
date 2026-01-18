@@ -1,5 +1,5 @@
 import {dev,graphics,constants,inputs,types} from './variables.mjs'
-import {openMap,openGrid,checkCity,checkTeam,see} from './functions.mjs'
+import {openMap,openGrid,openGraph,checkCity,checkTeam,see} from './functions.mjs'
 import {setupGraphics,displayMain} from './graphics.mjs'
 import {operation} from './operation.mjs'
 var current
@@ -45,6 +45,7 @@ window.dev=dev
 window.types=types
 window.openMap=openMap
 window.openGrid=openGrid
+window.openGraph=openGraph
 window.checkCity=checkCity
 window.checkTeam=checkTeam
 window.see=see

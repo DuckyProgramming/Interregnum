@@ -63,7 +63,8 @@ export class city{
     }
     initial(){
         if(this.units.length==0&&this.owner!=-1){
-            this.units.push(new unit(this,types.teamRef[this.owner],1,round(constants.spawn.garrison*random(0.4,2)/100)*100))
+            let mult=types.team[types.teamRef[this.owner]].auto?options.strength:1
+            this.units.push(new unit(this,types.teamRef[this.owner],1,round(constants.spawn.garrison*random(0.4,2)*mult/100)*100))
             if(this.owner!=this.data.rule){
                 this.recruits-=floor(random(15,21))*100
             }
@@ -107,7 +108,7 @@ export class city{
         let mult=types.team[team].auto?options.strength:1
         let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
         this.units.push(new unit(this,team,0,num))
-        this[set]=type==0?max(0,this[set]-constants.spawn.spend*[1,1,0.75,1,1.5][type]):this[set]-constants.spawn.spend*[1,1,0.75,1,1.5][type]*(type==1&&types.team[team].auto?2:1)
+        this[set]=type==0?max(0,this[set]-constants.spawn.spend*[1,1,1.25,0.5,1.5][type]):this[set]-constants.spawn.spend*[1,1,1.25,0.5,1.5][type]
         if(num==0){
             throw new Error(`Spawn 0`)
         }
@@ -126,7 +127,7 @@ export class city{
         this.units.push(new unit(this,team,type,value))
     }
     raided(raider){
-        let num=round(this.recruits/20+20)*10
+        let num=round(this.recruits/20+25)*10
         this.recruits-=num
         let total=0
         let send=[]
@@ -373,12 +374,12 @@ export class city{
         switch(scene){
             case 'main':
                 if(distPos(rel,this)<60){
-                    this.operation.ui.cityClick(layer,mouse,scene,this.type)
+                    this.operation.ui.cityClick(layer,mouse,scene,this.type,false)
                 }
             break
             case 'edit':
                 if(distPos(rel,this)<120){
-                    this.operation.ui.cityClick(layer,mouse,scene,this.type)
+                    this.operation.ui.cityClick(layer,mouse,scene,this.type,false)
                 }
             break
         }

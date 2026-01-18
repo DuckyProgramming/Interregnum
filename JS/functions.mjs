@@ -361,6 +361,66 @@ export function upColor(color,value,key){
 export function mergeColor(color1,color2,value){
 	return [color1[0]*(1-value)+color2[0]*value,color1[1]*(1-value)+color2[1]*value,color1[2]*(1-value)+color2[2]*value]
 }
+export function nameColor(name){
+    switch(name){
+        case `Barcelona`: case `Provence`: case `Lower Burgundy`:
+            return [218,106,81]
+        case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`:
+            return [156,142,199]
+        case `Hohenzollern`:
+            return [110,148,204]
+        case `Thoire`: case `Île-de-Bourgogne`:
+            return [184,54,117]
+        case `Sabran`: case 'Forcalquier':
+            return [150,114,229]
+        case `Wittelsbach`:
+            return [84,189,126]
+        case `Knights`:
+            return [194,154,183]
+        case `Lillebonne`:
+            return [160,65,72]
+        case `Württemberg`:
+            return [196,154,39]
+        case `Arduinici`: case 'Bresse':
+            return [206,165,158]
+        case `Lorraine`: case `Haut-Lorraine`:
+            return [229,152,152]
+        case `Albon`: case `Cisjurania`: case `Dauphiné`:
+            return [228,153,70]
+        case `Rouergue`: case `Drôme`:
+            return [114,142,101]
+        case `Zähringen`: case `Transjurania`: case `Helvetie`:
+            return [199,106,140]
+        case `Republic`: case `Tellgovie`: case `Schwyz`:
+            return [161,161,161]
+        case `Valais`:
+            return [207,207,206]
+        case `Habsburg`:
+            return [229,173,67]
+        case `Savoy`: case `Alpes`: case `Elder Savoy`:
+            return [49,167,185]
+        case `Romandie`: case `Junior Savoy`:
+            return [108,173,184]
+        case `Minor`:
+            return [220,201,166]
+        case `Burghers`: case `Alsace`: case `Geneva`: case `League of Cities`:
+            return [218,24,30]
+        case `Ecclesiastical`:
+            return [145,78,154]
+        case `La Marck-Arenberg`:
+            return [41,150,163]
+        case `Orange`:
+            return [254,135,133]
+        case `Gruyères`:
+            return [193,144,112]
+        case `Free Company`:
+            return [228,77,21]
+        case `Royal Army`:
+            return [0,19,127]
+        default:
+            return [150,150,150]
+    }
+}
 //main
 export function ally(a,b){
     current.teams[a].allies.push(b)
@@ -409,6 +469,9 @@ export function openMap(){
 }
 export function openGrid(){
     current.transitionManager.begin(`ally`)
+}
+export function openGraph(){
+    current.transitionManager.begin(`graph`)
 }
 export function modifex(type){
     switch(type){

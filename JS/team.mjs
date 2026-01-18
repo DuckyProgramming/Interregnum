@@ -8,6 +8,7 @@ export class team{
         this.cities=[]
         this.cores=[]
         this.notif=[]
+        this.history={units:[],cities:[],display:true}
         this.kills=0
         this.deaths=0
         this.deserters=0
@@ -17,6 +18,7 @@ export class team{
             name:this.name,
             allies:this.allies,
             offers:this.offers,
+            history:this.history,
             kills:this.kills,
             deaths:this.deaths,
             deserters:this.deserters,
@@ -26,6 +28,7 @@ export class team{
     load(composite){
         this.allies=composite.allies
         this.offers=composite.offers
+        this.history=composite.history
         this.kills=composite.kills
         this.deaths=composite.deaths
         this.deserters=composite.deserters
