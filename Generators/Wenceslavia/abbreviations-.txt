@@ -1,0 +1,40 @@
+AL - Duchy of Albrechtice
+BA - Lordship of Barwalde
+BL - Lordship of Bielsko
+BN - Duchy of Bruntál
+BO - Lordship of Bohumín
+BY - Duchy of Bytom
+CO - Burgraviate of Colditz
+FY - Lordship of Fryštát
+IM - Lordship of Imielin
+LE - Landgraviate of Leuchtenberg
+ME - Bishopric of Merseburg
+NA - Lordship of Namysłów
+NG - County of Nordgau
+NM - Bishopric of Naumburg
+PS - Bishopric of Passau
+RE - Bishopric of Regensburg
+RG - County of Reuß-Gera
+RL - County of Reuß-Lobenstein
+Rß - County of Reuß-Greiz
+SC - Lordship of Schönburg
+SI - Duchy of Siedlisko
+SU - County of Sulzbach
+SY - Lordship of Syców
+ŚC - Duchy of Ścinawa
+ŚW - Duchy of Świebodzin
+TW - Lordship of Twardogóra
+WO - Lordship of Wodzisław
+XA - Duchy of Saxe-Altenburg
+XE - Duchy of Saxe-Eisenberg
+XJ - Duchy of Saxe-Jena
+XK - Duchy of Saxe-Zwickau
+XN - Duchy of Saxe-Neustadt
+XO - Duchy of Saxe-Orlamünde
+XW - Duchy of Saxe-Weimar
+XZ - Duchy of Saxe-Zeitz
+Xß - Duchy of Saxe-Weißenfels
+ŻM - Lordship of Żmigród
+
+Ch - Cheb
+Re - Regensburg

@@ -232,7 +232,9 @@ export class ui{
                 }
             }
             if(this.turn.total%training.turns==0){
-                this.agents.forEach((agent,index)=>{if(index<this.operation.teams.length){agent.record+=this.operation.cities.reduce((acc,city)=>acc+(city.owner==types.team[index].name?1:0)*types.cityType[city.data.type].value,0)-types.city.reduce((acc,city)=>acc+(city.rule==types.team[index].name?1:0)*types.cityType[city.type].value,0)}})
+                this.agents.forEach((agent,index)=>{if(index<this.operation.teams.length){agent.record+=this.operation.cities.reduce((acc,city)=>acc+(city.owner==types.team[index].name?1:0)*types.cityType[city.data.type].value*(city.data.rule==types.team[index].name?1:1.125),0)-types.city.reduce((acc,city)=>acc+(city.rule==types.team[index].name?1:0)*types.cityType[city.type].value,0)}})
+                //currently am offering a slight bonus to the bots if they choose to prioritize taking cities rather than not losing them
+                //this code may not be valuable in the long run
                 this.operation.initialElements()
                 this.operation.initialComponents()
                 this.agents=[]
@@ -1254,7 +1256,7 @@ export class ui{
                     layer.text(types.map[groups[a][0]].name[0],0,a*60+610-la*30)
                     for(let b=0,lb=groups[a].length;b<lb;b++){
                         layer.textSize(10)
-                        layer.text((count+1)%10,(b+1)/lb*240-120-20,a*60+595-la*30)
+                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count],(b+1)/lb*240-120-20,a*60+595-la*30)
                         layer.textSize(12)
                         if(types.map[groups[a][b]].name.length>=2){
                             layer.text(types.map[groups[a][b]].name[1],(b+0.5)/lb*240-120,a*60+628-la*30)
@@ -2027,13 +2029,13 @@ export class ui{
                 tick+=52
                 count++
                 for(let a=0,la=types.team.length;a<la;a++){
-                    layer.fill(120,120,120)
+                    layer.fill(120,this.operation.teams[a].history.display?200:120,120)
                     layer.rect(0,tick+12.5,160,22,10)
                     layer.fill(0)
                     layer.textSize(12)
                     layer.text(`${types.team[a].name}`,0,tick+12.5)
                     layer.textSize(10)
-                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
+                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],70,tick+10)
                     tick+=30
                     count++
                 }
@@ -2045,7 +2047,7 @@ export class ui{
                 let power=[0.7,1][this.graph.active]
                 let maximalS=maximal**power
                 if(maximal>0){
-                    let bar=1
+                    let bar=10
                     let barTick=0
                     while(bar<this.turn.total){
                         bar*=(barTick%3==2)?2.5:2
@@ -2130,20 +2132,39 @@ export class ui{
                         break
                     }
                     layer.textAlign(LEFT,CENTER)
-                    for(let a=0,la=this.operation.teams.length;a<la;a++){
+                    this.operation.teams.forEach(team=>team.ys=[])
+                    for(let a=0,la=this.operation.teams[0].history[set].length;a<la;a++){
+                        let values=[]
+                        this.operation.teams.forEach(team=>{if(team.history.display){values.push({team:team.type,y:(layer.height-200)*(team.history[set][a]**power)/maximalS})}})
+                        values.sort((a,b)=>a.y-b.y)
+                        values[0].y=max(4,values[0].y)
+                        for(let b=1,lb=values.length;b<lb;b++){
+                            if(values[b].y<values[b-1].y+4){
+                                values[b].y=values[b-1].y+4
+                            }
+                        }
+                        values.forEach(value=>this.operation.teams[value.team].ys.push(value.y))
+                    }
+                    for(let a=0,la=this.operation.teams.length;a<la;a+=ceil(la/500)){
                         if(this.operation.teams[a].history.display){
                             if(last(this.operation.teams[a].history[set])!=0){
+                                let slide=0
+                                for(let b=a+1,lb=la;b<lb;b++){
+                                    if(this.operation.teams[b].history.display&&last(this.operation.teams[a].history[set])==last(this.operation.teams[b].history[set])){
+                                        slide++
+                                    }
+                                }
                                 layer.noStroke()
-                                layer.fill(...nameColor(this.operation.teams[a].name).map(a=>a*0.8))
+                                layer.fill(...(this.operation.teams[a].name==`Valais`?nameColor(this.operation.teams[a].name).map(a=>a*1.2):this.operation.teams[a].name==`Junior Wittelsbach`||this.operation.teams[a].name==`Wittelsbach`||this.operation.teams[a].name==`Ludovingian`?nameColor(this.operation.teams[a].name):nameColor(this.operation.teams[a].name).map(a=>a*0.8)))
                                 layer.textSize(20)
-                                layer.text(this.operation.teams[a].name,layer.width-this.width-160,layer.height-100-(layer.height-200)*(last(this.operation.teams[a].history[set])**power)/maximalS)
+                                layer.text(this.operation.teams[a].name,layer.width-this.width-160,layer.height-100-(layer.height-200)*(last(this.operation.teams[a].history[set])**power)/maximalS+slide*18)
                             }
                             layer.stroke(...nameColor(this.operation.teams[a].name))
                             layer.strokeWeight(4)
-                            for(let b=0,lb=this.operation.teams[a].history[set].length-1;b<lb;b++){
+                            for(let b=0,lb=this.operation.teams[a].ys.length-1;b<lb;b++){
                                 layer.line(
-                                    100+(layer.width-this.width-280)*b/lb,layer.height-100-(layer.height-200)*(this.operation.teams[a].history[set][b]**power)/maximalS,
-                                    100+(layer.width-this.width-280)*(b+1)/lb,layer.height-100-(layer.height-200)*(this.operation.teams[a].history[set][b+1]**power)/maximalS
+                                    100+(layer.width-this.width-280)*b/lb,layer.height-100-this.operation.teams[a].ys[b],
+                                    100+(layer.width-this.width-280)*(b+1)/lb,layer.height-100-this.operation.teams[a].ys[b+1]
                                 )
                             }
                         }
@@ -2152,8 +2173,8 @@ export class ui{
                 }
                 layer.stroke(0)
                 layer.strokeWeight(10)
-                layer.line(100,layer.height-100,layer.width-this.width-180,layer.height-100)
-                layer.line(100,layer.height-100,100,100)
+                layer.line(100-2,layer.height-100+2,layer.width-this.width-180,layer.height-100+2)
+                layer.line(100-2,layer.height-100+2,100,100+2)
             break
         }
     }
@@ -3664,7 +3685,7 @@ export class ui{
         switch(scene){
             case `title`:
                 for(let a=0,la=types.map.length;a<la;a++){
-                    if(key==((a+1)%10).toString()){
+                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
                         this.operation.transitionManager.begin(`setup`)
                         this.operation.nextMap=a
                         this.select.auto=[]

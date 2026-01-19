@@ -363,53 +363,57 @@ export function mergeColor(color1,color2,value){
 }
 export function nameColor(name){
     switch(name){
-        case `Barcelona`: case `Provence`: case `Lower Burgundy`:
+        case `Barcelona`: case `Provence`: case `Lower Burgundy`: case `Auvergne`: case `Babenberg`:
             return [218,106,81]
         case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`:
             return [156,142,199]
         case `Hohenzollern`:
             return [110,148,204]
-        case `Thoire`: case `Île-de-Bourgogne`:
-            return [184,54,117]
-        case `Sabran`: case 'Forcalquier':
+        case `Thoire`: case `Île-de-Bourgogne`: case `Kőszegi`:
+            return [1206,60,131]
+        case `Sabran`: case `Forcalquier`: case `Leuven`:
             return [150,114,229]
-        case `Wittelsbach`:
-            return [84,189,126]
         case `Knights`:
             return [194,154,183]
         case `Lillebonne`:
             return [160,65,72]
         case `Württemberg`:
             return [196,154,39]
-        case `Arduinici`: case 'Bresse':
+        case `Arduinici`: case `Bresse`: case `Arenberg`:
             return [206,165,158]
         case `Lorraine`: case `Haut-Lorraine`:
             return [229,152,152]
         case `Albon`: case `Cisjurania`: case `Dauphiné`:
             return [228,153,70]
-        case `Rouergue`: case `Drôme`:
-            return [114,142,101]
-        case `Zähringen`: case `Transjurania`: case `Helvetie`:
-            return [199,106,140]
-        case `Republic`: case `Tellgovie`: case `Schwyz`:
+        case `Rouergue`: case `Drôme`: case `Ascania`: case `Dampierre`:
+            return [128,159,112]
+        case `Zähringen`: case `Transjurania`: case `Helvetie`: case `Wettin`: case `Vermandois`:
+            return [221,119,156]
+        case `Republic`: case `Tellgovie`: case `Schwyz`: case `Hesse`:
             return [161,161,161]
         case `Valais`:
             return [207,207,206]
-        case `Habsburg`:
+        case `Two Leagues`: case `Three Leagues`:
+            return [190,190,175]
+        case `Habsburg`: case `Junior Habsburg`:
             return [229,173,67]
+        case `Elder Habsburg`:
+            return [235,193,75]
         case `Savoy`: case `Alpes`: case `Elder Savoy`:
             return [49,167,185]
         case `Romandie`: case `Junior Savoy`:
             return [108,173,184]
         case `Minor`:
             return [220,201,166]
-        case `Burghers`: case `Alsace`: case `Geneva`: case `League of Cities`:
+        case `Burghers`: case `Alsace`: case `League of Cities`: case `Cheb`:
             return [218,24,30]
+        case `Geneva`:
+            return [225,44,83]
         case `Ecclesiastical`:
             return [145,78,154]
         case `La Marck-Arenberg`:
             return [41,150,163]
-        case `Orange`:
+        case `Orange`: case `Isenberg`:
             return [254,135,133]
         case `Gruyères`:
             return [193,144,112]
@@ -417,6 +421,44 @@ export function nameColor(name){
             return [228,77,21]
         case `Royal Army`:
             return [0,19,127]
+        case `Imperial Army`:
+            return [255,204,0]
+        case `Bibra`:
+            return [188,142,186]
+        case `Elder Wittelsbach`:
+            return [103,172,140]
+        case `Junior Wittelsbach`: case `Wittelsbach`:
+            return [175,233,198]
+        case `Wiemken`:
+            return [157,172,147]
+        case `Niklot`:
+            return [239,177,90]
+        case `Avesnes`:
+            return [253,235,151]
+        case `Welf`:
+            return [244,185,127]
+        case `Baden`:
+            return [243,174,111]
+        case `Přemyslid`: case `Elder Přemyslid`: case `Luxemburg`:
+            return [198,149,110]
+        case `Junior Přemyslid`:
+            return [237,178,110]
+        case `Nassau`:
+            return [97,112,87]
+        case `Kyburg`:
+            return [167,188,19]
+        case `Toggenburg`:
+            return [32,181,40]
+        case `Wassenberg`: case `Csák`:
+            return [110,161,185]
+        case `Friesland`: case `Vogtland`:
+            return [254,171,78]
+        case `Harcourt`: case `Ludovingian`:
+            return [255,190,206]
+        case `Piast`: case `Elder Piast`:
+            return [251,94,140]
+        case `Junior Piast`:
+            return [231,125,221]
         default:
             return [150,150,150]
     }
@@ -437,7 +479,7 @@ export function outAgents(current){
     let out=`export var agentset=[\n\t`
     current.ui.rings.forEach(ring=>{
         out+=`[`
-        ring.forEach(agent=>out+=`\n\t\t`+JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val})+`,`)
+        ring.forEach(agent=>out+=`\n\t\t`+JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val==`number`?Number(val.toFixed(3)):val})+`,`)
         out+=`\n\t],`
     })
     out+=`\n]`
@@ -448,7 +490,7 @@ export function outTraining(current){
 }
 export function outAgentsOld(){
     let out=``
-    current.ui.agents.forEach(agent=>out+=(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val}))+`,\n\t`)
+    current.ui.agents.forEach(agent=>out+=(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val==`number`?Number(val.toFixed(3)):val}))+`,\n\t`)
     print(out)
 }
 export function topAgents(){
@@ -457,7 +499,7 @@ export function topAgents(){
         .sort((a,b)=>a.sort-b.sort)
         .map(({value})=>value)
     current.ui.agents.splice(0,10)
-    current.ui.agents.forEach(agent=>print(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val=='number'?Number(val.toFixed(3)):val})))
+    current.ui.agents.forEach(agent=>print(JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val==`number`?Number(val.toFixed(3)):val})))
 }
 export function train(){
     noCanvas()

@@ -8,8 +8,8 @@ import {unit} from './unit.mjs'
 import {team} from './team.mjs'
 export class operation{
     constructor(){
-        this.map=0
-        this.nextMap=0
+        this.map=findTerm(dev.training?training.map:`minim`,types.map)
+        this.nextMap=this.map
         if(!dev.close){
             this.zoom={position:{x:graphics.load.map[this.map].width*0.5,y:graphics.load.map[this.map].height*0.5},map:0,shift:{position:{x:0,y:0},active:false},dragging:0,scaling:1}
         }
@@ -18,7 +18,7 @@ export class operation{
         this.teams=[]
         this.scene=`title`
         this.initial()
-        this.loadMap(findTerm(dev.training?training.map:`minim`,types.map))
+        this.loadMap(this.map)
         this.initialComponents()
         this.ui.reset()
     }
@@ -162,6 +162,9 @@ export class operation{
         this.teams.push(new team(types.team.length-1))
         last(types.team).auto=true
         last(types.team).loadIndex=findList(last(types.team).term,listing.team)
+    }
+    outMap(){
+        return types.map[this.map].term
     }
     display(layer){
         switch(this.scene){

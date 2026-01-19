@@ -18,11 +18,12 @@ process.stdin.resume()
 process.stdin.setEncoding('utf8')
 process.stdin.on('data',async (input)=>{
     const trimmed=input.trim()
-    if(trimmed.toLowerCase()=='status'){
-        worker.postMessage({cmd:'status'})
+    const trimmedL=trimmed.toLowerCase()
+    if(trimmedL=='status'||trimmedL=='map'){
+        worker.postMessage({cmd:trimmedL})
         const report=await new Promise(resolve=>{
             worker.once('message',msg=>{
-                if(msg.cmd=='status'){
+                if(msg.cmd==trimmedL){
                     resolve(msg)
                 }
             })

@@ -17,7 +17,9 @@ draw()
 parentPort.on('message',msg=>{
     if(msg.cmd=='output'){
         parentPort.postMessage({cmd:'end',status:`\nFinal Status:\n${outTraining(current)}\n`,data:outAgents(current)})
-    }else if(msg.cmd){
+    }else if(msg.cmd=='status'){
         parentPort.postMessage({cmd:'status',status:`\nCurrent Status:\n${outTraining(current)}`})
+    }else if(msg.cmd=='map'){
+        parentPort.postMessage({cmd:'map',status:`\nCurrent Map:\n${current.outMap()}`})
     }
 })
