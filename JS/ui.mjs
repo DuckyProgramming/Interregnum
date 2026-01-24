@@ -3487,7 +3487,7 @@ export class ui{
                                             if(inPointBox(rel,boxify(0,tick+25,160,40))){
                                                 cit.units.forEach(unit=>{if(unit.team==this.turn.main){
                                                     unit.remove=true
-                                                    let enemy=cit.getNotUnits([unit.team,...this.operation.teams[unit].allies])
+                                                    let enemy=cit.getNotUnits([unit.team,...this.operation.teams[unit.team].allies])
                                                     let totalEnemy=enemy.reduce((acc,enemy)=>acc+enemy.value,0)
                                                     enemy.forEach(enemy=>{
                                                         this.operation.teams[enemy.team].prisoners[unit.team]+=round(unit.value*enemy.value/totalEnemy/100+random(-0.5,0.5))*100
@@ -4047,7 +4047,7 @@ export class ui{
                                             let enemy=cit.getNotUnits(aligned)
                                             cit.units.forEach(unit=>{if(unit.team==this.turn.main){
                                                 unit.remove=true
-                                                let enemy=cit.getNotUnits([unit.team,...this.operation.teams[unit].allies])
+                                                let enemy=cit.getNotUnits([unit.team,...this.operation.teams[unit.team].allies])
                                                 let totalEnemy=enemy.reduce((acc,enemy)=>acc+enemy.value,0)
                                                 enemy.forEach(enemy=>{
                                                     this.operation.teams[enemy.team].prisoners[unit.team]+=round(unit.value*enemy.value/totalEnemy/100+random(-0.5,0.5))*100
