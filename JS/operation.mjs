@@ -217,7 +217,7 @@ export class operation{
     }
     update(layer){        
         if(this.ui.turn.main!=-1&&!dev.speed&&this.speed.move){
-            this.speed.main=!types.team[this.ui.turn.main].auto||types.team[this.ui.turn.main].name==`Royal Army`||types.team[this.ui.turn.main].name==`Imperial Army`?1:min(this.speed.main+0.1,max(10,this.speed.main))
+            this.speed.main=!types.team[this.ui.turn.main].auto||types.teamKey[0].includes(types.team[this.ui.turn.main].name)?1:min(this.speed.main+0.1,max(10,this.speed.main))
         }
         switch(this.scene){
             case `title`: case `setup`:

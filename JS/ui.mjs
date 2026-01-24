@@ -15,6 +15,8 @@ export class ui{
         this.battle={result:0,circumstance:[]}
         this.agents=[]
         this.hq={num:-1,baseNum:0,tick:0,interval:0,baseInterval:0,players:0,playerCities:0,active:false}
+        this.raiders={active:types.city.some(cit=>cit.type==8),tick:floor(random(20,81))}
+        this.releasing={team:0}
         this.graph={active:0}
         /*
         [0,0] - Attacking City
@@ -52,7 +54,7 @@ export class ui{
         }
     }
     initial(){
-        for(let a=0,la=18;a<la;a++){
+        for(let a=0,la=20;a<la;a++){
             this.tabs.anim.push(0)
         }
         for(let a=0,la=2;a<la;a++){
@@ -146,6 +148,27 @@ export class ui{
             }
         }*/
     }
+    mergeAgents(agents,set){
+        let rings=[]
+        for(let a=0,la=types.teamType.length;a<la;a++){
+            rings.push([])
+            for(let b=0,lb=24;b<lb;b++){
+                rings[a].push(new agent())
+                for(let c=0,lc=agents.length;c<lc;c++){
+                    rings[a][b].sets[set[c]]=agents[c][a][b].sets[set[c]]
+                    rings[a][b].constants[set[c]]=agents[c][a][b].constants[set[c]]
+                }
+            }
+        }
+        let out=`export var agentset=[\n\t`
+        rings.forEach(ring=>{
+            out+=`[`
+            ring.forEach(agent=>out+=`\n\t\t`+JSON.stringify([agent.sets,agent.constants],(key,val)=>{return typeof val==`number`?Number(val.toFixed(3)):val})+`,`)
+            out+=`\n\t],`
+        })
+        out+=`\n]`
+        return out
+    }
     moveTab(tab){
         if(this.tabs.active==16){
             this.updateVisibility()
@@ -161,6 +184,7 @@ export class ui{
         this.turn.total=0
         this.turn.count=0
         this.hq={num:-1,tick:0,interval:0,players:0,playerCities:0}
+        this.raiders.active=types.city.some(cit=>cit.type==8)
         this.newTurn()
     }
     newTurn(){
@@ -242,13 +266,16 @@ export class ui{
                     if(training.benchmark==2&&floor(random(0,2))==0){
                         let type=findName(types.team[a].type,types.teamType)
                         this.agents.push(this.static[type][0])
-                        this.static[type].push(this.static[type][0])
-                        this.static[type].splice(0,1)
+                        this.static[type].push(this.static[type].shift())
                     }else{
                         let type=findName(types.team[a].type,types.teamType)
                         this.agents.push(this.rings[type][0])
-                        this.rings[type].push(this.rings[type][0])
-                        this.rings[type].splice(0,1)
+                        this.rings[type].push(this.rings[type].shift())
+                        if(this.turn.total%(training.turns*24)==0){
+                            for(let b=0,lb=a;b<lb;b++){
+                                this.rings[type].push(this.rings[type].shift())
+                            }
+                        }
                     }
                 }
             }
@@ -395,7 +422,6 @@ export class ui{
                 }
             }
             this.turn.main=types.team.length-1
-            let aligned=[this.turn.main,...this.operation.teams[this.turn.main].allies]
             if(this.hq.num>0){
                 this.hq.num--
                 this.hq.tick+=round(this.hq.interval)
@@ -405,83 +431,32 @@ export class ui{
                 if(types.city[a].type==3){
                     let cit=this.operation.cities[a]
                     let num=12000*options.strength
-                    if(cit.getNotUnits(aligned).length<=0){
-                        this.turn.pinned=false
-                        this.moveTab(5)
-                        cit.summonUnit(this.turn.main,0,num)
-                        this.operation.cities.forEach(city=>city.visibility=0)
-                    }else{
-                        this.turn.pinned=true
-                        this.moveTab(8)
-                        this.battle.circumstance=[2]
-                        this.select.city=a
-                        this.select.targetCity=a
-                        if(cit.getUnits(aligned,0).length>0){
-                            cit.summonUnit(this.turn.main,0,num)
-                            cit.updateUnits()
-                            this.select.moved=[]
-                            this.moveTab(10)
-                            this.battle.circumstance[1]=1
-                            let rule=this.operation.cities[this.select.targetCity].ruleIndex
-                            if(rule!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(rule)){
-                                this.operation.cities[this.select.targetCity].raided(this.turn.main)
-                            }
-                            this.agency.time=0
-                        }else if(cit.getUnits(aligned,1).length>0){
-                            cit.summonUnit(this.turn.main,0,num)
-                            cit.updateUnits()
-                            this.select.moved=[]
-                            this.moveTab(9)
-                            this.select.battleCity=this.select.targetCity
-                            for(let a=0,la=this.operation.cities[this.select.targetCity].units.length;a<la;a++){
-                                let unit=this.operation.cities[this.select.targetCity].units[a]
-                                if(!unit.remove){
-                                    let side=aligned.includes(unit.team)?0:1
-                                    let fail=true
-                                    for(let b=0,lb=this.operation.calc.sides[side].force.length;b<lb;b++){
-                                        if(this.operation.calc.sides[side].force[b].team==unit.team&&this.operation.calc.sides[side].force[b].type==unit.type){
-                                            this.operation.calc.sides[side].force[b].number+=unit.value
-                                            fail=false
-                                            break
-                                        }
-                                    }
-                                    if(fail){
-                                        this.operation.calc.sides[side].force.push({team:unit.team,type:unit.type,number:unit.value,dist:0})
-                                    }
-                                }
-                            }
-                            this.operation.calc.sides[1].strategy=1
-                            this.battle.result=this.operation.calc.calc()
-                            this.operation.calc.reset()
-                            this.battle.result.casualties.forEach(set=>set.forEach(item=>item.number=round(item.number/100+random(-0.5,0.5))*100))
-                            this.battle.circumstance[1]=0
-                        }else{
-                            cit.summonUnit(this.turn.main,0,num)
-                            cit.updateUnits()
-                            this.select.moved=[]
-                        }
-                        this.updateVisibility()
-                        this.operation.zoom.shift.position.x=cit.position.x
-                        this.operation.zoom.shift.position.y=cit.position.y
-                        this.operation.zoom.shift.active=true
-                    }
+                    this.instantArmy(cit,this.turn.main,num)
                     break
                 }
             }
             let len=this.operation.cities.filter(city=>{return city.owner==types.team[this.turn.main].name}).length*(types.team[this.turn.main].name==`Ecclesiastical`?0.75:1)
-            this.turn.count=types.teamKey[0].includes(types.team[this.turn.main].name)?floor(random(0.5,3+this.hq.playerCities/this.hq.players*0.5)):len==0?0:floor(random(0.5,len*0.25+2.5))
-            if(!dev.close){
-                let total=[0,0,0]
-                this.operation.cities.forEach(city=>{if(city.data.rule==types.team[this.turn.main].name){total[0]+=city.position.x;total[1]+=city.position.y;total[2]++}})
-                if(total[2]<=0){
-                    this.operation.cities.forEach(city=>{if(city.units.some(unit=>unit.team==this.turn.main)){total[0]+=city.position.x;total[1]+=city.position.y;total[2]++}})
-                }
-                if(total[2]>0){
-                    this.operation.zoom.shift.position.x=total[0]/total[2]
-                    this.operation.zoom.shift.position.y=total[1]/total[2]
-                    this.operation.zoom.shift.active=true
-                }
+            this.turn.count=types.teamKey[0].includes(types.team[this.turn.main].name)?floor(random(0.5,3+this.hq.playerCities/this.hq.players*0.5)):
+                types.teamKey[1].includes(types.team[this.turn.main].name)?floor(random(0.5,3.5)):                
+                len==0?0:
+                floor(random(0.5,len*0.25+2.5))
+            this.operation.cities.forEach(city=>city.newTurnTick())
+        }else if(this.raiders.active&&this.turn.total>=this.raiders.tick){
+            this.raiders.tick+=floor(random(40,161))
+            this.turn.main=types.team.findIndex(team=>types.teamKey[1].includes(team.name))
+            if(this.hq.num>0){
+                this.hq.num--
+                this.hq.tick+=round(this.hq.interval)
+                this.hq.interval+=this.hq.baseInterval/this.hq.baseNum
             }
+            let cit=randin(this.operation.cities.filter(cit=>cit.data.type==8))
+            let num=round(floor(random(20,101))*options.strength)*100
+            this.instantArmy(cit,this.turn.main,num)
+            let len=this.operation.cities.filter(city=>{return city.owner==types.team[this.turn.main].name}).length*(types.team[this.turn.main].name==`Ecclesiastical`?0.75:1)
+            this.turn.count=types.teamKey[0].includes(types.team[this.turn.main].name)?floor(random(0.5,3+this.hq.playerCities/this.hq.players*0.5)):
+                types.teamKey[1].includes(types.team[this.turn.main].name)?floor(random(0.5,3.5)):                
+                len==0?0:
+                floor(random(0.5,len*0.25+2.5))
             this.operation.cities.forEach(city=>city.newTurnTick())
         }else if(this.turn.count>0){
             this.turn.count--
@@ -491,10 +466,13 @@ export class ui{
         }else{
             this.turn.main=this.pickTurn()
             let len=this.operation.cities.filter(city=>{return city.owner==types.team[this.turn.main].name}).length*(types.team[this.turn.main].name==`Ecclesiastical`?0.75:1)
-            this.turn.count=types.teamKey[0].includes(types.team[this.turn.main].name)?floor(random(0.5,3+this.hq.playerCities/this.hq.players)):len==0?0:floor(random(0.5,len*0.25+2.5))
+            this.turn.count=types.teamKey[0].includes(types.team[this.turn.main].name)?floor(random(0.5,3+this.hq.playerCities/this.hq.players)):
+                types.teamKey[1].includes(types.team[this.turn.main].name)?floor(random(0.5,3.5)):                
+                len==0?0:
+                floor(random(0.5,len*0.25+2.5))
             this.operation.cities.forEach(city=>city.visibility=0)
             this.moveTab(5)
-            if(types.team[this.turn.main].auto&&!(types.teamKey[0].includes(types.team[this.turn.main].name))){
+            if(types.team[this.turn.main].auto&&!types.teamKey[0].includes(types.team[this.turn.main].name)&&!types.teamKey[1].includes(types.team[this.turn.main].name)){
                 if(random(0,types.team[this.turn.main].chance*(types.team[this.turn.main].name==`Free Company`?2:4))<1){
                     this.updateVisibility()
                     this.moveTab(4)
@@ -537,7 +515,7 @@ export class ui{
             }
             ticker++
         }
-        if(!this.operation.cities.some(city=>city.ruleIndex==ticker||city.units.some(unit=>unit.team==ticker&&(unit.type==0||!types.teamKey[0].includes(types.team[ticker].name))))){
+        if(!this.operation.cities.some(city=>city.ruleIndex==ticker||city.units.some(unit=>unit.team==ticker&&(unit.type==0||!types.teamKey[0].includes(types.team[ticker].name)||!types.teamKey[1].includes(types.team[ticker].name))))){
             ticker=this.pickTurn()
         }
         return ticker
@@ -629,6 +607,7 @@ export class ui{
                         }else if(!this.select.moved[a].remove){
                             let base=this.select.moved[a]
                             this.operation.cities[this.select.city].units.push(new unit(this.operation.cities[this.select.city],base.team,0,base.value))
+                            last(this.operation.cities[this.select.city].units).target=base.target
                             last(this.operation.cities[this.select.city].units).position.x=this.operation.cities[this.select.targetCity].position.x-this.operation.cities[this.select.city].position.x+base.position.x
                             last(this.operation.cities[this.select.city].units).position.y=this.operation.cities[this.select.targetCity].position.y-this.operation.cities[this.select.city].position.y+base.position.y
                             last(this.operation.cities[this.select.city].units).fade.main=1
@@ -649,9 +628,9 @@ export class ui{
                         this.operation.teams[unit.team].deaths+=unit.value
                         for(let c=0,lc=this.battle.result.casualties[0].length;c<lc;c++){
                             this.operation.teams[this.battle.result.casualties[0][c].team].kills+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
+                            this.operation.teams[this.battle.result.casualties[0][c].team].prisoners[unit.team]+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
                         }
                     })
-                    //flag p for prisoner
                 }
                 this.turn.timer=15
             }
@@ -663,9 +642,9 @@ export class ui{
                         this.operation.teams[unit.team].deaths+=unit.value
                         for(let c=0,lc=this.battle.result.casualties[0].length;c<lc;c++){
                             this.operation.teams[this.battle.result.casualties[0][c].team].kills+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
+                            this.operation.teams[this.battle.result.casualties[0][c].team].prisoners[unit.team]+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
                         }
                     })
-                    //flag p for prisoner
                 }
                 this.turn.timer=15
             }else if(this.battle.circumstance[1]==1){
@@ -703,8 +682,14 @@ export class ui{
                 }
             }else if(this.battle.circumstance[1]==1){
                 if(last(this.battle.result.winner)==1){
-                    this.operation.cities[this.select.targetCity].getNotUnits(aligned).forEach(unit=>unit.remove=true)
-                    //flag p for prisoner
+                    this.operation.cities[this.select.targetCity].getNotUnits(aligned).forEach(unit=>{
+                        unit.remove=true
+                        this.operation.teams[unit.team].deaths+=unit.value
+                        for(let c=0,lc=this.battle.result.casualties[0].length;c<lc;c++){
+                            this.operation.teams[this.battle.result.casualties[0][c].team].kills+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
+                            this.operation.teams[this.battle.result.casualties[0][c].team].prisoners[unit.team]+=round(unit.value*this.battle.result.casualties[0][c].base/totals[0]/100+random(-0.5,0.5))*100
+                        }
+                    })
                 }
                 this.turn.timer=15
             }
@@ -737,6 +722,7 @@ export class ui{
                                     let move=min(base.value,base.edit.num)
                                     base.value-=move
                                     this.operation.cities[city].units.push(new unit(this.operation.cities[city],base.team,0,move))
+                                    last(this.operation.cities[city].units).target=base.target
                                     last(this.operation.cities[city].units).position.x=this.operation.cities[this.select.city].position.x-this.operation.cities[city].position.x+base.position.x
                                     last(this.operation.cities[city].units).position.y=this.operation.cities[this.select.city].position.y-this.operation.cities[city].position.y+base.position.y
                                     last(this.operation.cities[city].units).fade.main=1-base.type
@@ -833,9 +819,13 @@ export class ui{
                             }
                             let set=this.operation.cities[this.select.targetCity].getNotUnits(aligned)
                             for(let a=0,la=set.length;a<la;a++){
-                                if(this.operation.cities[city].getNotUnits([set[a].team,...this.operation.teams[set[a].team].allies]).length>0){
+                                let enemy=this.operation.cities[city].getNotUnits([set[a].team,...this.operation.teams[set[a].team].allies])
+                                let totalEnemy=enemy.reduce((acc,enemy)=>acc+enemy.value,0)
+                                if(enemy.length>0){
                                     set[a].removeMark=true
-                                    //flag p for prisoner
+                                    enemy.forEach(enemy=>{
+                                        this.operation.teams[enemy.team].prisoners[set[a].team]+=round(set[a].value*enemy.value/totalEnemy/100+random(-0.5,0.5))*100
+                                    })
                                 }
                             }
                             for(let a=0,la=set.length;a<la;a++){
@@ -855,6 +845,7 @@ export class ui{
                                 }
                                 let value=ceil(base.value/100*mult)*100
                                 this.operation.cities[city].units.push(new unit(this.operation.cities[city],base.team,0,value))
+                                last(this.operation.cities[city].units).target=base.target
                                 last(this.operation.cities[city].units).position.x=this.operation.cities[this.select.targetCity].position.x-this.operation.cities[city].position.x+base.position.x
                                 last(this.operation.cities[city].units).position.y=this.operation.cities[this.select.targetCity].position.y-this.operation.cities[city].position.y+base.position.y
                                 last(this.operation.cities[city].units).fade.main=1-base.type
@@ -884,9 +875,13 @@ export class ui{
                             }
                             let set=this.operation.cities[this.select.city].getNotUnits(aligned)
                             for(let a=0,la=set.length;a<la;a++){
-                                if(this.operation.cities[city].getNotUnits([set[a].team,...this.operation.teams[set[a].team].allies]).length>0){
+                                let enemy=this.operation.cities[city].getNotUnits([set[a].team,...this.operation.teams[set[a].team].allies])
+                                let totalEnemy=enemy.reduce((acc,enemy)=>acc+enemy.value,0)
+                                if(enemy.length>0){
                                     set[a].removeMark=true
-                                    //flag p for prisoner
+                                    enemy.forEach(enemy=>{
+                                        this.operation.teams[enemy.team].prisoners[set[a].team]+=round(set[a].value*enemy.value/totalEnemy/100+random(-0.5,0.5))*100
+                                    })
                                 }
                             }
                             for(let a=0,la=set.length;a<la;a++){
@@ -906,6 +901,7 @@ export class ui{
                                 }
                                 let value=ceil(base.value/100*mult)*100
                                 this.operation.cities[city].units.push(new unit(this.operation.cities[city],base.team,0,value))
+                                last(this.operation.cities[city].units).target=base.target
                                 last(this.operation.cities[city].units).position.x=this.operation.cities[this.select.city].position.x-this.operation.cities[city].position.x+base.position.x
                                 last(this.operation.cities[city].units).position.y=this.operation.cities[this.select.city].position.y-this.operation.cities[city].position.y+base.position.y
                                 last(this.operation.cities[city].units).fade.main=1-base.type
@@ -928,7 +924,7 @@ export class ui{
                             this.select.city=city
                             let cit=this.operation.cities[this.select.city]
                             let turn=this.turn.main
-                            if(cit.getSpawn(3)>0){
+                            if(cit.data.type!=7&&cit.getSpawn(3)>0){
                                 if(!dev.close){
                                     this.operation.zoom.shift.position.x=cit.position.x
                                     this.operation.zoom.shift.position.y=cit.position.y
@@ -987,6 +983,14 @@ export class ui{
                             }
                             this.updateVisibility()
                         }
+                    }else if(this.tabs.active==19){
+                        if(!this.operation.cities[city].units.some(unit=>!aligned.includes(unit.team)&&unit.team!=this.releasing.team&&!this.operation.teams[this.releasing.team].allies.includes(unit.team))){
+                            this.operation.cities[city].summonUnit(this.releasing.team,0,this.operation.teams[this.turn.main].prisoners[this.releasing.team])
+                        }else{
+                            this.operation.teams[types.teamRef[this.operation.cities[city].owner]].prisoners[this.releasing.team]+=this.operation.teams[this.turn.main].prisoners[this.releasing.team]
+                        }
+                        this.operation.teams[this.turn.main].prisoners[this.releasing.team]=0
+                        this.moveTab(18)
                     }else if(!this.turn.locked&&!this.turn.pinned&&!(this.tabs.active==1&&this.select.city==city)){
                         if(this.tabs.active==5){
                             this.updateVisibility()
@@ -1025,7 +1029,8 @@ export class ui{
         let aligned=[turn,...this.operation.teams[turn].allies]
         if(
             cit.owner==types.team[turn].name&&cit.getNotUnits(aligned).length<=0&&cit.data.type==5&&
-            types.team[turn].auto&&cit.getSpawn(4)>cit.getSpawn(this.spawnVariant(cit,turn))
+            types.team[turn].auto&&cit.getSpawn(4)>cit.getSpawn(this.spawnVariant(cit,turn))&&
+            !types.teamKey[1].includes(types.team[turn].name)
         ){
             cit.spawn(4)
             cit.updateUnits()
@@ -1125,7 +1130,7 @@ export class ui{
             }
         }
     }
-    initializeCombat(type){
+    initializeCombat(type,args){
         let aligned=[this.turn.main,...this.operation.teams[this.turn.main].allies]
         switch(type){
             case 0:
@@ -1202,6 +1207,69 @@ export class ui{
                 this.battle.circumstance=[1,cit.getUnits([this.turn.main],1).length>0?1:0]
             break
         }
+    }
+    instantArmy(cit,turn,num){
+        let aligned=[turn,...this.operation.teams[turn].allies]
+        if(cit.getNotUnits(aligned).length<=0){
+            this.turn.pinned=false
+            this.moveTab(5)
+            cit.summonUnit(turn,0,num)
+            this.operation.cities.forEach(city=>city.visibility=0)
+        }else{
+            this.turn.pinned=true
+            this.moveTab(8)
+            this.battle.circumstance=[2]
+            this.select.city=cit.type
+            this.select.targetCity=cit.type
+            if(cit.getUnits(aligned,0).length>0){
+                cit.summonUnit(turn,0,num)
+                cit.updateUnits()
+                this.select.moved=[]
+                this.moveTab(10)
+                this.battle.circumstance[1]=1
+                let rule=this.operation.cities[this.select.targetCity].ruleIndex
+                if(rule!=turn&&!this.operation.teams[turn].allies.includes(rule)){
+                    this.operation.cities[this.select.targetCity].raided(turn)
+                }
+                this.agency.time=0
+            }else if(cit.getUnits(aligned,1).length>0){
+                cit.summonUnit(turn,0,num)
+                cit.updateUnits()
+                this.select.moved=[]
+                this.moveTab(9)
+                this.select.battleCity=this.select.targetCity
+                for(let a=0,la=this.operation.cities[this.select.targetCity].units.length;a<la;a++){
+                    let unit=this.operation.cities[this.select.targetCity].units[a]
+                    if(!unit.remove){
+                        let side=aligned.includes(unit.team)?0:1
+                        let fail=true
+                        for(let b=0,lb=this.operation.calc.sides[side].force.length;b<lb;b++){
+                            if(this.operation.calc.sides[side].force[b].team==unit.team&&this.operation.calc.sides[side].force[b].type==unit.type){
+                                this.operation.calc.sides[side].force[b].number+=unit.value
+                                fail=false
+                                break
+                            }
+                        }
+                        if(fail){
+                            this.operation.calc.sides[side].force.push({team:unit.team,type:unit.type,number:unit.value,dist:0})
+                        }
+                    }
+                }
+                this.operation.calc.sides[1].strategy=1
+                this.battle.result=this.operation.calc.calc()
+                this.operation.calc.reset()
+                this.battle.result.casualties.forEach(set=>set.forEach(item=>item.number=round(item.number/100+random(-0.5,0.5))*100))
+                this.battle.circumstance[1]=0
+            }else{
+                cit.summonUnit(turn,0,num)
+                cit.updateUnits()
+                this.select.moved=[]
+            }
+            this.updateVisibility()
+        }
+        this.operation.zoom.shift.position.x=cit.position.x
+        this.operation.zoom.shift.position.y=cit.position.y
+        this.operation.zoom.shift.active=true
     }
     updateVisibility(){
         this.operation.cities.forEach(city=>city.updateVisibility(this.turn.main))
@@ -1401,26 +1469,28 @@ export class ui{
                                     tick+=50
                                     count++
                                 }
-                                if(cit.data.rule==types.team[this.turn.main].name){
-                                    layer.fill(120)
-                                    layer.rect(0,tick+25,160,40,10)
-                                    layer.fill(0)
-                                    layer.textSize(15)
-                                    layer.text(cit.getNotUnits(aligned).length>0?`Rebel With ${cit.getSpawn(1)} Troops`:`Recruit ${cit.getSpawn(0)} Troops`,0,tick+25)
-                                    layer.textSize(10)
-                                    layer.text(count,70,tick+15)
-                                    tick+=50
-                                    count++
-                                }else if(cit.owner==types.team[this.turn.main].name&&cit.getNotUnits(aligned).length<=0){
-                                    layer.fill(120)
-                                    layer.rect(0,tick+25,160,40,10)
-                                    layer.fill(0)
-                                    layer.textSize(15)
-                                    layer.text(`Recruit ${cit.getSpawn(2)} Troops`,0,tick+25)
-                                    layer.textSize(10)
-                                    layer.text(count,70,tick+15)
-                                    tick+=50
-                                    count++
+                                if(cit.data.type!=7){
+                                    if(cit.data.rule==types.team[this.turn.main].name){
+                                        layer.fill(120)
+                                        layer.rect(0,tick+25,160,40,10)
+                                        layer.fill(0)
+                                        layer.textSize(15)
+                                        layer.text(cit.getNotUnits(aligned).length>0?`Rebel With ${cit.getSpawn(1)} Troops`:`Recruit ${cit.getSpawn(0)} Troops`,0,tick+25)
+                                        layer.textSize(10)
+                                        layer.text(count,70,tick+15)
+                                        tick+=50
+                                        count++
+                                    }else if(cit.owner==types.team[this.turn.main].name&&cit.getNotUnits(aligned).length<=0){
+                                        layer.fill(120)
+                                        layer.rect(0,tick+25,160,40,10)
+                                        layer.fill(0)
+                                        layer.textSize(15)
+                                        layer.text(`Recruit ${cit.getSpawn(2)} Troops`,0,tick+25)
+                                        layer.textSize(10)
+                                        layer.text(count,70,tick+15)
+                                        tick+=50
+                                        count++
+                                    }
                                 }
                                 if(cit.getUnits([this.turn.main]).length>0){
                                     if(cit.getUnits([this.turn.main],0).length>0){
@@ -1443,6 +1513,17 @@ export class ui{
                                     layer.text(count,70,tick+15)
                                     tick+=50
                                     count++
+                                    if(cit.getNotUnits(aligned).length>0&&cit.getUnits([this.turn.main],1).length>0){
+                                        layer.fill(120)
+                                        layer.rect(0,tick+25,160,40,10)
+                                        layer.fill(0)
+                                        layer.textSize(15)
+                                        layer.text(`Surrender`,0,tick+25)
+                                        layer.textSize(10)
+                                        layer.text(count,70,tick+15)
+                                        tick+=50
+                                        count++
+                                    }
                                 }
                                 if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
                                     layer.fill(120)
@@ -1577,6 +1658,17 @@ export class ui{
                                 layer.text(count,70,tick+15)
                                 tick+=50
                                 count++
+                                if(this.operation.teams.some((team,index)=>this.operation.teams[this.turn.main].prisoners[index]>0&&index!=this.turn.main)){
+                                    layer.fill(120)
+                                    layer.rect(0,tick+25,160,40,10)
+                                    layer.fill(0)
+                                    layer.textSize(15)
+                                    layer.text(`Release Prisoners`,0,tick+25)
+                                    layer.textSize(10)
+                                    layer.text(count,70,tick+15)
+                                    tick+=50
+                                    count++
+                                }
                                 for(let a=0,la=this.operation.teams[this.turn.main].allies.length;a<la;a++){
                                     layer.fill(120)
                                     layer.rect(0,tick+25,160,40,10)
@@ -1757,6 +1849,53 @@ export class ui{
                                 layer.fill(0)
                                 layer.textSize(15)
                                 layer.text(`Siege`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(`Enter`,60,tick+15)
+                                tick+=50
+                                count++
+                            break
+                            case 18:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Release\nPrisoners`,0,40)
+
+                                layer.textSize(18)
+                                layer.text(`Total Held: ${this.operation.teams[this.turn.main].prisoners.reduce((acc,value)=>acc+value,0)}`,0,tick+12.5)
+                                tick+=25
+                                layer.text(`Total Lost: ${this.operation.teams.reduce((acc,team)=>team.prisoners[this.turn.main]+acc,0)}`,0,tick+12.5)
+                                tick+=25
+
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Exit`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(`Enter`,60,tick+15)
+                                tick+=55
+                                for(let a=0,la=types.team.length;a<la;a++){
+                                    if(this.operation.teams[this.turn.main].prisoners[a]>0&&a!=this.turn.main){
+                                        layer.fill(120)
+                                        layer.rect(0,tick+12.5,160,25,10)
+                                        layer.fill(0)
+                                        layer.textSize(12)
+                                        layer.text(`${types.team[a].name}: ${this.operation.teams[this.turn.main].prisoners[a]}`,0,tick+12.5)
+                                        layer.textSize(10)
+                                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
+                                        tick+=35
+                                        count++
+                                    }
+                                }
+                            break
+                            case 19:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Select Release\nLocation`,0,40)
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Exit`,0,tick+25)
                                 layer.textSize(10)
                                 layer.text(`Enter`,60,tick+15)
                                 tick+=50
@@ -1972,7 +2111,7 @@ export class ui{
                 layer.noFill()
                 layer.stroke(0)
                 layer.strokeWeight(15)
-                for(let a=0,la=this.operation.teams.length;a<la;a++){
+                for(let a=0,la=this.operation.teams.length-(this.raiders.active?1:0);a<la;a++){
                     for(let b=0,lb=this.operation.teams[a].allies.length;b<lb;b++){
                         if(a<this.operation.teams[a].allies[b]){
                             layer.bezier(
@@ -1984,7 +2123,7 @@ export class ui{
                         }
                     }
                 }
-                for(let a=0,la=types.team.length;a<la;a++){
+                for(let a=0,la=types.team.length-(this.raiders.active?1:0);a<la;a++){
                     let img=[graphics.load.team[types.team[a].loadIndex],graphics.load.unit[2]]
                     layer.image(img[0],layer.width*0.5-this.width*0.5+lsin((a+1)/la*360)*360,layer.height*0.5-lcos((a+1)/la*360)*360,img[1].width*0.5,img[1].height*0.5)
                     layer.image(img[1],layer.width*0.5-this.width*0.5+lsin((a+1)/la*360)*360,layer.height*0.5-lcos((a+1)/la*360)*360,img[1].width*0.5,img[1].height*0.5)
@@ -2155,7 +2294,7 @@ export class ui{
                                     }
                                 }
                                 layer.noStroke()
-                                layer.fill(...(this.operation.teams[a].name==`Valais`?nameColor(this.operation.teams[a].name).map(a=>a*1.2):this.operation.teams[a].name==`Junior Wittelsbach`||this.operation.teams[a].name==`Wittelsbach`||this.operation.teams[a].name==`Ludovingian`?nameColor(this.operation.teams[a].name):nameColor(this.operation.teams[a].name).map(a=>a*0.8)))
+                                layer.fill(...(this.operation.teams[a].name==`Valais`||this.operation.teams[a].name==`Winterstätten`?nameColor(this.operation.teams[a].name).map(a=>a*1.2):this.operation.teams[a].name==`Junior Wittelsbach`||this.operation.teams[a].name==`Wittelsbach`||this.operation.teams[a].name==`Ludovingian`?nameColor(this.operation.teams[a].name):nameColor(this.operation.teams[a].name).map(a=>a*0.8)))
                                 layer.textSize(20)
                                 layer.text(this.operation.teams[a].name,layer.width-this.width-160,layer.height-100-(layer.height-200)*(last(this.operation.teams[a].history[set])**power)/maximalS+slide*18)
                             }
@@ -2214,11 +2353,14 @@ export class ui{
                                 let possible=[]
                                 for(let a=0,la=this.operation.cities.length;a<la;a++){
                                     if(
-                                        this.operation.cities[a].getUnits([this.turn.main]).length>0&&((types.teamKey[0].includes(types.team[this.turn.main].name))||!(
-                                            this.operation.cities[a].getUnits([this.turn.main],0).length<=0&&
-                                            this.operation.cities[a].getUnits([this.turn.main],1).length<=0||this.operation.cities[a].getUnits([this.turn.main],1).length>0&&this.operation.cities[a].getUnits([this.turn.main],1)[0].value<1000&&
-                                            this.operation.cities[a].getNotUnits(aligned).length<=0
-                                        ))||
+                                        this.operation.cities[a].getUnits([this.turn.main]).length>0&&(
+                                            types.teamKey[0].includes(types.team[this.turn.main].name)||
+                                            types.teamKey[1].includes(types.team[this.turn.main].name)||!(
+                                                this.operation.cities[a].getUnits([this.turn.main],0).length<=0&&
+                                                this.operation.cities[a].getUnits([this.turn.main],1).length<=0||this.operation.cities[a].getUnits([this.turn.main],1).length>0&&this.operation.cities[a].getUnits([this.turn.main],1)[0].value<1000&&
+                                                this.operation.cities[a].getNotUnits(aligned).length<=0
+                                            )
+                                        )||
                                         this.operation.cities[a].data.rule==types.team[this.turn.main].name
                                     ){
                                         possible.push(a)
@@ -2268,6 +2410,13 @@ export class ui{
                                     0.25,
                                     floor(random(0.75,2))*2,
                                     get[1].length>0&&get[1][0].value<1000?0:floor(random(0,2))*2,
+                                ]:types.teamKey[1].includes(types.team[this.turn.main].name)?[
+                                    (floor(random(0,10))==0?0:1)*2,
+                                    1,
+                                    0,
+                                    0.5,
+                                    0,
+                                    0,
                                 ]:this.agents[this.turn.main].execute(0,[
                                     this.agency.count,
                                     this.turn.count,
@@ -2303,22 +2452,24 @@ export class ui{
                                     this.agency.lastResult.splice(maximal[1],1)
                                     switch(maximal[1]){
                                         case 0:
-                                            if(cit.getNotUnits(aligned).reduce((acc,unit)=>acc+unit.value,0)<10000&&!(types.teamKey[0].includes(types.team[this.turn.main].name))){
-                                                if(cit.owner==types.team[this.turn.main].name&&(cit.data.type==4||cit.data.type==6)&&floor(random(0,1.5))==0){
-                                                    this.moveTab(15)
-                                                    c=lc
-                                                    moved=true
-                                                }else if(this.spawn(cit,this.turn.main)){
-                                                    this.agency.time=dev.instant?0:5
-                                                    c=lc
-                                                    moved=true
+                                            if(cit.data.type!=7){
+                                                if(cit.getNotUnits(aligned).reduce((acc,unit)=>acc+unit.value,0)<10000&&!(types.teamKey[0].includes(types.team[this.turn.main].name))){
+                                                    if(cit.owner==types.team[this.turn.main].name&&(cit.data.type==4||cit.data.type==6)&&floor(random(0,1.5))==0){
+                                                        this.moveTab(15)
+                                                        c=lc
+                                                        moved=true
+                                                    }else if(this.spawn(cit,this.turn.main)){
+                                                        this.agency.time=dev.instant?0:5
+                                                        c=lc
+                                                        moved=true
+                                                    }
                                                 }
                                             }
                                         break
                                         case 1:
                                             if(cit.getUnits([this.turn.main],0).length>0){
                                                 this.moveTab(3)
-                                                cit.units.forEach(unit=>{unit.edit.num=unit.type==0&&aligned.includes(unit.team)&&!(unit.team!=this.turn.main&&(types.teamKey[0].includes(types.team[this.turn.main].name)))?unit.value:0;unit.edit.active=false})
+                                                cit.units.forEach(unit=>{unit.edit.num=unit.type==0&&aligned.includes(unit.team)&&!(unit.team!=this.turn.main&&(types.teamKey[0].includes(types.team[this.turn.main].name)||types.teamKey[1].includes(types.team[this.turn.main].name)))?unit.value:0;unit.edit.active=false})
                                                 this.agency.time=dev.instant?0:5
                                                 c=lc
                                                 moved=true
@@ -2341,12 +2492,12 @@ export class ui{
                                                 let possible=[]
                                                 for(let a=0,la=this.operation.cities.length;a<la;a++){
                                                     if(
-                                                        this.select.city!=a&&(
-                                                            this.operation.cities[a].getUnits([this.turn.main]).length>0&&((types.teamKey[0].includes(types.team[this.turn.main].name))||!(
+                                                        this.select.city!=a&&this.operation.cities[a].getUnits([this.turn.main]).length>0&&(
+                                                            types.teamKey[0].includes(types.team[this.turn.main].name)||types.teamKey[1].includes(types.team[this.turn.main].name)||!(
                                                                 this.operation.cities[a].getUnits([this.turn.main],0).length<=0&&
                                                                 this.operation.cities[a].getUnits([this.turn.main],1).length<=0||this.operation.cities[a].getUnits([this.turn.main],1).length>0&&this.operation.cities[a].getUnits([this.turn.main],1)[0].value<1000&&
                                                                 this.operation.cities[a].getNotUnits(aligned).length<=0
-                                                            ))||
+                                                            )||
                                                             this.operation.cities[a].data.rule==types.team[this.turn.main].name
                                                         )
                                                     ){
@@ -2396,7 +2547,7 @@ export class ui{
                                 }
                                 if(!moved){
                                     if(this.agency.count>=20){
-                                        if(types.teamKey[0].includes(types.team[this.turn.main].name)){
+                                        if(types.teamKey[0].includes(types.team[this.turn.main].name)||types.teamKey[1].includes(types.team[this.turn.main].name)){
                                             this.newTurn()
                                         }else{
                                             if(!this.turn.locked&&!this.turn.pinned){
@@ -2433,12 +2584,12 @@ export class ui{
                                         let possible=[]
                                         for(let a=0,la=this.operation.cities.length;a<la;a++){
                                             if(
-                                                this.select.city!=a&&(
-                                                    this.operation.cities[a].getUnits([this.turn.main]).length>0&&((types.teamKey[0].includes(types.team[this.turn.main].name))||!(
+                                                this.select.city!=a&&this.operation.cities[a].getUnits([this.turn.main]).length>0&&(
+                                                    types.teamKey[0].includes(types.team[this.turn.main].name)||types.teamKey[1].includes(types.team[this.turn.main].name)||!(
                                                         this.operation.cities[a].getUnits([this.turn.main],0).length<=0&&
                                                         this.operation.cities[a].getUnits([this.turn.main],1).length<=0||this.operation.cities[a].getUnits([this.turn.main],1).length>0&&this.operation.cities[a].getUnits([this.turn.main],1)[0].value<1000&&
                                                         this.operation.cities[a].getNotUnits(aligned).length<=0
-                                                    ))||
+                                                    )||
                                                     this.operation.cities[a].data.rule==types.team[this.turn.main].name
                                                 )
                                             ){
@@ -2480,18 +2631,20 @@ export class ui{
                                         }
                                     }
                                 }
-                                this.agency.lastResult=(types.teamKey[0].includes(types.team[this.turn.main].name)?[-round(random(5,15))*100]:this.agents[this.turn.main].execute(2,[
-                                    this.turn.count,
-                                    totals[0]>0?1:0,
-                                    totals[1]>0?1:0,
-                                    totals[0]>1000?1:0,
-                                    totals[1]>1000?1:0,
-                                    random(0,1),
-                                    totals[0]/1000,
-                                    totals[1]/1000,
-                                    totals[2]/10000,
-                                    cit.data.connect.length,
-                                ]))
+                                this.agency.lastResult=types.teamKey[0].includes(types.team[this.turn.main].name)?[-round(random(5,15))*100]:
+                                    types.teamKey[1].includes(types.team[this.turn.main].name)?0:
+                                    this.agents[this.turn.main].execute(2,[
+                                        this.turn.count,
+                                        totals[0]>0?1:0,
+                                        totals[1]>0?1:0,
+                                        totals[0]>1000?1:0,
+                                        totals[1]>1000?1:0,
+                                        random(0,1),
+                                        totals[0]/1000,
+                                        totals[1]/1000,
+                                        totals[2]/10000,
+                                        cit.data.connect.length,
+                                    ])
                                 this.agency.lastResult[0]+=cit.getUnits(aligned,1).reduce((acc,unit)=>acc+unit.value,0)
                                 if(this.agency.lastResult[0]>=100){
                                     for(let a=aligned.includes(cit.ruleIndex)?1:0,la=3;a<la;a++){
@@ -2613,7 +2766,14 @@ export class ui{
                             if(types.team[this.turn.main].auto){
                                 let mix=[]
                                 for(let a=0,la=types.team.length;a<la;a++){
-                                    if(a!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(a)&&(!this.operation.teams[this.turn.main].offers.includes(a)||this.operation.teams[a].offers.includes(this.turn.main))&&this.operation.teams[a].name!=`Free Company`&&!types.teamKey[0].includes(this.operation.teams[a].name)){
+                                    if(
+                                        a!=this.turn.main&&
+                                        !this.operation.teams[this.turn.main].allies.includes(a)&&
+                                        (!this.operation.teams[this.turn.main].offers.includes(a)||this.operation.teams[a].offers.includes(this.turn.main))&&
+                                        this.operation.teams[a].name!=`Free Company`&&
+                                        !types.teamKey[0].includes(this.operation.teams[a].name)&&
+                                        !types.teamKey[1].includes(this.operation.teams[a].name)
+                                    ){
                                         let distance=[2500,2500,2500]
                                         for(let b=0,lb=this.operation.teams[this.turn.main].cities.length;b<lb;b++){
                                             for(let c=0,lc=this.operation.teams[a].cities.length;c<lc;c++){
@@ -2667,7 +2827,13 @@ export class ui{
                         case 7:
                             if(types.team[this.turn.main].auto){
                                 cit=this.operation.cities[this.select.targetCity]
+                                let pathfind=0
                                 if(types.teamKey[0].includes(types.team[this.turn.main].name)){
+                                    pathfind=1
+                                }else if(types.teamKey[1].includes(types.team[this.turn.main].name)){
+                                    pathfind=2
+                                }
+                                if(pathfind>0){
                                     cit=this.operation.cities[this.select.city]
                                     this.operation.cities.forEach(cit=>cit.pathfind.num=-1)
                                     cit.pathfind.num=0
@@ -2675,6 +2841,15 @@ export class ui{
                                     let next=[]
                                     let target=[]
                                     let patrol=[]
+                                    let citTarget
+                                    if(cit.getUnits([this.turn.main]).length>0){
+                                        for(let a=0,la=cit.getUnits([this.turn.main])[0].target.length;a<la;a++){
+                                            if(cit.getUnits([this.turn.main])[0].target[a]==cit.type){
+                                                cit.getUnits([this.turn.main])[0].target[a]=floor(random(0,this.operation.cities.length))
+                                            }
+                                        }
+                                        citTarget=cit.getUnits([this.turn.main])[0].target
+                                    }
                                     while(active.length>0&&target.length==0){
                                         active=active
                                             .map(value=>({value,sort:random(0,1)}))
@@ -2687,7 +2862,13 @@ export class ui{
                                                     this.operation.cities[see].pathfind.num=this.operation.cities[active[a]].pathfind.num+1
                                                     this.operation.cities[see].pathfind.predecessor=this.operation.cities[active[a]].type
                                                     next.push(see)
-                                                    if(this.operation.cities[see].owner!=-1&&!types.team[types.teamRef[this.operation.cities[see].owner]].auto||this.operation.cities[see].units.some(unit=>!types.team[unit.team].auto)){
+                                                    if(
+                                                        pathfind==1&&(
+                                                            this.operation.cities[see].owner!=-1&&!types.team[types.teamRef[this.operation.cities[see].owner]].auto||
+                                                            this.operation.cities[see].units.some(unit=>!types.team[unit.team].auto)
+                                                        )||
+                                                        pathfind==2&&citTarget.includes(see)
+                                                    ){
                                                         target.push(see)
                                                     }
                                                     if(this.operation.cities[see].owner!=-1&&types.teamRef[this.operation.cities[see].owner]==this.turn.main){
@@ -2794,15 +2975,17 @@ export class ui{
                                 for(let a=0,la=cit.units.length;a<la;a++){
                                     totals[aligned.includes(cit.units[a].team)?1:0]+=cit.units[a].value
                                 }
-                                this.agency.lastResult=types.teamKey[0].includes(types.team[playing].name)?[1]:this.agents[playing].execute(3,[
-                                    this.turn.count,
-                                    cit.data.rule==types.team[playing].name?1:0,
-                                    this.operation.cities.filter(city=>{return aligned.includes(city.owner)}).length,
-                                    totals[0]/1000,
-                                    totals[1]/1000,
-                                    this.battle.circumstance[0]==2?1:0,
-                                ])
-                                if(this.agency.lastResult[0]>0){
+                                this.agency.lastResult=types.teamKey[0].includes(types.team[playing].name)?[1]:
+                                    types.teamKey[1].includes(types.team[playing].name)?[1]:
+                                    this.agents[playing].execute(3,[
+                                        this.turn.count,
+                                        cit.data.rule==types.team[playing].name?1:0,
+                                        this.operation.cities.filter(city=>{return aligned.includes(city.owner)}).length,
+                                        totals[0]/1000,
+                                        totals[1]/1000,
+                                        this.battle.circumstance[0]==2?1:0,
+                                    ])
+                                if(this.agency.lastResult[0]>0&&!(this.raiders.active&&!types.teamKey[1].includes(types.team[playing].name)&&cit.units.some(unit=>types.teamKey[1].includes(types.team[unit.team].name)&&unit.value>=2000)&&floor(random(0,1.25))==0)){
                                     this.initializeCombat(0)
                                     this.agency.time=dev.instant?0:5
                                 }else{
@@ -2838,15 +3021,17 @@ export class ui{
                                 for(let a=0,la=cit.units.length;a<la;a++){
                                     totals[aligned.includes(cit.units[a].team)?1:0]+=cit.units[a].value
                                 }
-                                this.agency.lastResult=types.teamKey[0].includes(types.team[this.turn.main].name)?[1]:this.agents[this.turn.main].execute(4,[
-                                    this.turn.count,
-                                    cit.data.rule==types.team[this.turn.main].name?1:0,
-                                    this.operation.cities.filter(city=>{return aligned.includes(city.owner)}).length,
-                                    totals[0]/1000,
-                                    totals[1]/1000,
-                                    this.battle.circumstance[0]==2?1:0,
-                                    cit.sieged,
-                                ])
+                                this.agency.lastResult=types.teamKey[0].includes(types.team[this.turn.main].name)?[1]:
+                                    types.teamKey[1].includes(types.team[this.turn.main].name)?[floor(random(0,1.25))]:
+                                    this.agents[this.turn.main].execute(4,[
+                                        this.turn.count,
+                                        cit.data.rule==types.team[this.turn.main].name?1:0,
+                                        this.operation.cities.filter(city=>{return aligned.includes(city.owner)}).length,
+                                        totals[0]/1000,
+                                        totals[1]/1000,
+                                        this.battle.circumstance[0]==2?1:0,
+                                        cit.sieged,
+                                    ])
                                 if(this.agency.lastResult[0]>0){
                                     this.initializeCombat(1)
                                     this.agency.time=dev.instant?0:5
@@ -2864,13 +3049,15 @@ export class ui{
                                 for(let a=0,la=cit.units.length;a<la;a++){
                                     totals[aligned.includes(cit.units[a].team)?1:0]+=cit.units[a].value
                                 }
-                                this.agency.lastResult=types.teamKey[0].includes(types.team[playing].name)?[0]:this.agents[playing].execute(5,[
-                                    this.turn.count,
-                                    cit.data.rule==types.team[playing].name?1:0,
-                                    this.operation.cities.filter(city=>{return aligned.includes(city.owner)}).length,
-                                    totals[0]/1000,
-                                    totals[1]/1000,
-                                ])
+                                this.agency.lastResult=types.teamKey[0].includes(types.team[playing].name)?[0]:
+                                    types.teamKey[1].includes(types.team[playing].name)?[1]:
+                                    this.agents[playing].execute(5,[
+                                        this.turn.count,
+                                        cit.data.rule==types.team[playing].name?1:0,
+                                        this.operation.cities.filter(city=>{return aligned.includes(city.owner)}).length,
+                                        totals[0]/1000,
+                                        totals[1]/1000,
+                                    ])
                                 if(this.agency.lastResult[0]>0){
                                     this.moveTab(17)
                                     this.select.secondaryCity=types.cityRef[randin(types.city[this.select.targetCity].connect).name]
@@ -3012,7 +3199,7 @@ export class ui{
                                 }
                             }
                         break
-                        case 14:
+                        case 14: case 18: case 19:
                             if(types.team[this.turn.main].auto){
                                 this.moveTab(0)
                                 this.agency.time=0
@@ -3027,7 +3214,7 @@ export class ui{
                                         if(
                                             !aligned.includes(types.teamRef[this.operation.cities[cit].owner])&&
                                             !aligned.includes(types.teamRef[this.operation.cities[cit].rule])&&
-                                            this.operation.cities[cit].getSpawn(3)>0
+                                            this.operation.cities[cit].getSpawn(3)>0&&this.operation.cities[cit].data.type!=7
                                         ){
                                             possible.push(cit)
                                         }
@@ -3036,7 +3223,7 @@ export class ui{
                                             if(
                                                 !aligned.includes(types.teamRef[this.operation.cities[cit2].owner])&&
                                                 !aligned.includes(types.teamRef[this.operation.cities[cit2].rule])&&
-                                                this.operation.cities[cit2].getSpawn(3)>0
+                                                this.operation.cities[cit2].getSpawn(3)>0&&this.operation.cities[cit2].data.type!=7
                                             ){
                                                 possible.push(cit2)
                                             }
@@ -3217,7 +3404,7 @@ export class ui{
             break
             case `main`:
                 rel={position:{x:mouse.position.x-layer.width+this.width*0.5,y:mouse.position.y}}
-                if(mouse.position.x<layer.width-this.width&&!this.turn.pinned&&this.tabs.active!=15&&this.tabs.active!=16){
+                if(mouse.position.x<layer.width-this.width&&!this.turn.pinned&&this.tabs.active!=15&&this.tabs.active!=16&&this.tabs.active!=19){
                     if(this.tabs.active==5){
                         this.updateVisibility()
                     }
@@ -3269,11 +3456,13 @@ export class ui{
                                     }
                                     tick+=50
                                 }
-                                if(cit.data.rule==types.team[this.turn.main].name||(cit.owner==types.team[this.turn.main].name&&cit.getNotUnits(aligned).length<=0)){
-                                    if(inPointBox(rel,boxify(0,tick+25,160,40))){
-                                        this.spawn(cit,this.turn.main)
+                                if(cit.data.type!=7){
+                                    if(cit.data.rule==types.team[this.turn.main].name||(cit.owner==types.team[this.turn.main].name&&cit.getNotUnits(aligned).length<=0)){
+                                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                            this.spawn(cit,this.turn.main)
+                                        }
+                                        tick+=50
                                     }
-                                    tick+=50
                                 }
                                 if(cit.getUnits([this.turn.main]).length>0){
                                     if(cit.getUnits([this.turn.main],0).length>0){
@@ -3294,6 +3483,19 @@ export class ui{
                                             this.initializeCombat(2)
                                         }
                                         tick+=50
+                                        if(cit.getNotUnits(aligned).length>0&&cit.getUnits([this.turn.main],1).length>0){
+                                            if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                                cit.units.forEach(unit=>{if(unit.team==this.turn.main){
+                                                    unit.remove=true
+                                                    let enemy=cit.getNotUnits([unit.team,...this.operation.teams[unit].allies])
+                                                    let totalEnemy=enemy.reduce((acc,enemy)=>acc+enemy.value,0)
+                                                    enemy.forEach(enemy=>{
+                                                        this.operation.teams[enemy.team].prisoners[unit.team]+=round(unit.value*enemy.value/totalEnemy/100+random(-0.5,0.5))*100
+                                                    })
+                                                }})
+                                            }
+                                            tick+=50
+                                        }
                                     }
                                 }
                                 if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
@@ -3402,6 +3604,12 @@ export class ui{
                                     this.operation.transitionManager.begin(`ally`)
                                 }
                                 tick+=50
+                                if(this.operation.teams.some((team,index)=>this.operation.teams[this.turn.main].prisoners[index]>0&&index!=this.turn.main)){
+                                    if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                        this.moveTab(18)
+                                    }
+                                    tick+=50
+                                }
                                 for(let a=0,la=this.operation.teams[this.turn.main].allies.length;a<la;a++){
                                     if(inPointBox(rel,boxify(0,tick+25,160,40))){
                                         if(!dev.close){
@@ -3562,6 +3770,32 @@ export class ui{
                                     this.operation.cities[this.select.targetCity].sieged+=2
                                     this.moveTab(10)
                                     this.battle.circumstance[1]=1
+                                }
+                                tick+=50
+                            }
+                        break
+                        case 18:
+                            if(!types.team[this.turn.main].auto||dev.pause){
+                                tick+=50
+                                if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                    this.moveTab(1)
+                                }
+                                tick+=55
+                                for(let a=0,la=types.team.length;a<la;a++){
+                                    if(this.operation.teams[this.turn.main].prisoners[a]>0&&a!=this.turn.main){
+                                        if(inPointBox(rel,boxify(0,tick+12.5,160,25))){
+                                            this.releasing.team=a
+                                            this.moveTab(19)
+                                        }
+                                        tick+=35
+                                    }
+                                }
+                            }
+                        break
+                        case 19:
+                            if(!types.team[this.turn.main].auto||dev.pause){
+                                if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                    this.moveTab(18)
                                 }
                                 tick+=50
                             }
@@ -3781,11 +4015,13 @@ export class ui{
                                 }
                                 count++
                             }
-                            if(cit.data.rule==types.team[this.turn.main].name||(cit.owner==types.team[this.turn.main].name&&cit.getNotUnits(aligned).length<=0)){
-                                if(key==count.toString()){
-                                    this.spawn(cit,this.turn.main)
+                            if(cit.data.type!=7){
+                                if(cit.data.rule==types.team[this.turn.main].name||(cit.owner==types.team[this.turn.main].name&&cit.getNotUnits(aligned).length<=0)){
+                                    if(key==count.toString()){
+                                        this.spawn(cit,this.turn.main)
+                                    }
+                                    count++
                                 }
-                                count++
                             }
                             if(cit.getUnits([this.turn.main]).length>0){
                                 if(cit.getUnits([this.turn.main],0).length>0){
@@ -3806,6 +4042,20 @@ export class ui{
                                         this.initializeCombat(2)
                                     }
                                     count++
+                                    if(cit.getNotUnits(aligned).length>0&&cit.getUnits([this.turn.main],1).length>0){
+                                        if(key==count.toString()){
+                                            let enemy=cit.getNotUnits(aligned)
+                                            cit.units.forEach(unit=>{if(unit.team==this.turn.main){
+                                                unit.remove=true
+                                                let enemy=cit.getNotUnits([unit.team,...this.operation.teams[unit].allies])
+                                                let totalEnemy=enemy.reduce((acc,enemy)=>acc+enemy.value,0)
+                                                enemy.forEach(enemy=>{
+                                                    this.operation.teams[enemy.team].prisoners[unit.team]+=round(unit.value*enemy.value/totalEnemy/100+random(-0.5,0.5))*100
+                                                })
+                                            }})
+                                        }
+                                        count++
+                                    }
                                 }
                             }
                             if(cit.owner==types.team[this.turn.main].name&&cit.data.type==3){
@@ -3889,6 +4139,12 @@ export class ui{
                                 this.operation.transitionManager.begin(`ally`)
                             }
                             count++
+                            if(this.operation.teams.some((team,index)=>this.operation.teams[this.turn.main].prisoners[index]>0&&index!=this.turn.main)){
+                                if(key==count.toString()){
+                                    this.moveTab(18)
+                                }
+                                count++
+                            }
                             for(let a=0,la=this.operation.teams[this.turn.main].allies.length;a<la;a++){
                                 if(key==count.toString()){
                                     if(!dev.close){
@@ -4049,6 +4305,30 @@ export class ui{
                                 this.moveTab(10)
                                 this.battle.circumstance[1]=1
                             }
+                        }
+                    break
+                    case 18:
+                        if(!types.team[this.turn.main].auto||dev.pause){
+                            if(key==`Enter`){
+                                this.moveTab(1)
+                            }
+                            for(let a=0,la=types.team.length;a<la;a++){
+                                if(this.operation.teams[this.turn.main].prisoners[a]>0&&a!=this.turn.main){
+                                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
+                                        this.releasing.team=a
+                                        this.moveTab(19)
+                                    }
+                                    count++
+                                }
+                            }
+                        }
+                    break
+                    case 19:
+                        if(!types.team[this.turn.main].auto||dev.pause){
+                            if(key==`Enter`){
+                                this.moveTab(18)
+                            }
+                            count++
                         }
                     break
                 }

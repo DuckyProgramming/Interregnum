@@ -363,13 +363,13 @@ export function mergeColor(color1,color2,value){
 }
 export function nameColor(name){
     switch(name){
-        case `Barcelona`: case `Provence`: case `Lower Burgundy`: case `Auvergne`: case `Babenberg`:
+        case `Barcelona`: case `Provence`: case `Lower Burgundy`: case `Auvergne`: case `Babenberg`: case `Herse`:
             return [218,106,81]
-        case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`:
+        case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`: case `Feuchtwangen`:
             return [156,142,199]
-        case `Hohenzollern`:
+        case `Hohenzollern`: case `Šurborgs`:
             return [110,148,204]
-        case `Thoire`: case `Île-de-Bourgogne`: case `Kőszegi`:
+        case `Thoire`: case `Île-de-Bourgogne`: case `Kőszegi`: case `Biron`:
             return [1206,60,131]
         case `Sabran`: case `Forcalquier`: case `Leuven`:
             return [150,114,229]
@@ -381,9 +381,9 @@ export function nameColor(name){
             return [196,154,39]
         case `Arduinici`: case `Bresse`: case `Arenberg`:
             return [206,165,158]
-        case `Lorraine`: case `Haut-Lorraine`:
+        case `Lorraine`: case `Haut-Lorraine`: case `Kettler`:
             return [229,152,152]
-        case `Albon`: case `Cisjurania`: case `Dauphiné`:
+        case `Albon`: case `Cisjurania`: case `Dauphiné`: case `Bellingshausen`:
             return [228,153,70]
         case `Rouergue`: case `Drôme`: case `Ascania`: case `Dampierre`:
             return [128,159,112]
@@ -391,7 +391,7 @@ export function nameColor(name){
             return [221,119,156]
         case `Republic`: case `Tellgovie`: case `Schwyz`: case `Hesse`:
             return [161,161,161]
-        case `Valais`:
+        case `Valais`: case `Winterstätten`:
             return [207,207,206]
         case `Two Leagues`: case `Three Leagues`:
             return [190,190,175]
@@ -409,8 +409,8 @@ export function nameColor(name){
             return [218,24,30]
         case `Geneva`:
             return [225,44,83]
-        case `Ecclesiastical`:
-            return [145,78,154]
+        case `Ecclesiastical`: case `Bishop of Ösel-Wiek`: case `Bishop of Dorpat`: case `Bishop of Courland`:
+            return [162,88,172]
         case `La Marck-Arenberg`:
             return [41,150,163]
         case `Orange`: case `Isenberg`:
@@ -425,7 +425,7 @@ export function nameColor(name){
             return [255,204,0]
         case `Bibra`:
             return [188,142,186]
-        case `Elder Wittelsbach`:
+        case `Elder Wittelsbach`: case `Rassburg`:
             return [103,172,140]
         case `Junior Wittelsbach`: case `Wittelsbach`:
             return [175,233,198]
@@ -458,7 +458,15 @@ export function nameColor(name){
         case `Piast`: case `Elder Piast`:
             return [251,94,140]
         case `Junior Piast`:
+            return [203,131,175]
+        case `Middle Piast`:
             return [231,125,221]
+        case `Leventina`:
+            return [165,237,131]
+        case `Russian Raid`:
+            return [0,114,11]
+        case `Archbishop of Riga`:
+            return [112,69,134]
         default:
             return [150,150,150]
     }
@@ -556,7 +564,7 @@ export function checkCity(){
     print(`Checking Connections`)
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{findName(connect.name,map.city)})))
     print(`Checking Repeats`)
-    types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach((connect,index)=>{if(city.connect.some((connect2,index2)=>index!=index2&&connect.name==connect2.nme)){print(city.name,connect.name)}})))
+    types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach((connect,index)=>{if(city.connect.some((connect2,index2)=>index!=index2&&connect.name==connect2.name)){print(city.name,connect.name)}})))
 }
 export function checkTeam(){
     print(`Checking Vacuous`)

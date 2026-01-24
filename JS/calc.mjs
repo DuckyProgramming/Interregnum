@@ -8,8 +8,8 @@ export class calc{
         this.result={}
         this.terrainSet=[
             {name:'No Terrain',defend:[1,1.2],safe:1,attrition:[1,1]},
-            {name:'River',defend:[1.35,1.35],safe:0.9,attrition:[1,1]},
-            {name:'Wall',defend:[2.4,2.4],safe:0.6,attrition:[1,0.5]},
+            {name:'River',defend:[1.35,1.35],safe:0.9,attrition:[1.25,1.25]},
+            {name:'Wall',defend:[2.4,2.4],safe:0.5,attrition:[1,0.5]},
             {name:'Sea',defend:[1.8,1.8],safe:0.7,attrition:[1.5,1.5]},
         ]
         this.distSet=[
@@ -132,7 +132,7 @@ export class calc{
                 result.casualties.push([])
                 let mult=random(1,2)
                 for(let b=0,lb=this.sides[a].force.length;b<lb;b++){
-                    let num=this.sides[a].force[b].number*random(0.01,0.02)*terrainActive.attrition[1]*(1+this.sides[a].salient*0.125)*mult/this.distSet[this.sides[a].force[b].dist].mult
+                    let num=this.sides[a].force[b].number*random(0.01,0.02)*terrainActive.attrition[1]*(1+this.sides[a].salient*0.15)*mult/this.distSet[this.sides[a].force[b].dist].mult
                     result.casualties[a].push({number:num,morale:random(2,6)})
                     if(a==0){
                         winnerCapture+=num*types.team[this.sides[a].force[b].team].morale

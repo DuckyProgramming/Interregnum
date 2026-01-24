@@ -1,0 +1,11 @@
+types.region=[
+    {
+        name:`Île-de-Bourgogne`,
+    },{
+        name:`Transjurania`,
+    },{
+        name:`Cisjurania`,
+    },{
+        name:`Provence`,
+    },
+]

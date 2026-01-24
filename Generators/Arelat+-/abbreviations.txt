@@ -19,7 +19,7 @@ GW - Village of Gertwiller
 GX - Lordship of Gex
 HÖ - Lordship of Höfe
 HR - Lordship of Horburg
-IK - Imperial Knights of Elsaß
+IK - Royal Knights of Elsaß
 KP - Lordship of Kappel
 LA - Lordship of Laufenburg
 LB - Abbey of Le Beausset

@@ -1,0 +1,12 @@
+stage={scene:``}
+constants={trig:[[],[]]}
+transition={trigger:false,anim:0,scene:stage.scene}
+graphics={main:undefined}
+inputs={
+    keys:[
+        [false,false,false,false,false],
+    ],mouse:{
+        base:{x:0,y:0},
+        rel:{x:0,y:0}
+    },
+}

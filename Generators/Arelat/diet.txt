@@ -1,0 +1,36 @@
+Here's my current system for how the diet would work:
+
+The king has the sole power to convene the diet but is legally required to do so every few years. The magnates can petition him informally for a diet, but he isn't forced to. The diet can be convened anywhere, though it usually remains in the major ecclesiastical and political cities. The king also sets the agenda and breaks ties if they arise. If the king is unavailable, the count palatine (in his capacity as Arch-Steward) represents him and assumes these powers. The king is allowed to vote if he holds any existing seats (such as him being a count).
+
+The diet performs the following functions: confirming and establishing laws and privileges, arbitrating feuds and disagreements, funding and recruiting armies during extraordinary circumstances, and deciding on succession of extinct houses and regency when necessary.
+
+There's a total of 72 votes. 60 votes are connected to territories:
+[36] All counties (including the county palatine), landgraviates, and margraviates have their own seats.
+[7] All archbishops have their own seats.
+[5] All territorial bishops have their own seats.
+[6] Minor lordships are organized into the following benches with one collective vote each:
+Doubs (Salins, Auxonne, Gex, Lillebonne, Neuveville, Loveresse, Valangin),
+Aargau (Willisau, Entlebuch, Merenschwand, Nidau),
+Transjurania (Laufenburg, Murten, Grasburg, Romont, Grandson, Échallens),
+Rhône (Annonay, Beaujolais, Villars),
+Arles (Roquemaure, Barbentane, Bollène, Avignon),
+Alpine (Hasli, Aigle, Faucigny, Lanslebourg)
+[3] Territorial abbeys are organized into the following benches with one collective vote each
+Transjurania (Engelberg, St. Maurice, Bellelay, Moutier-Grandval),
+Saône (Luxeuil, Lure, Baume-Les-Dames),
+Provence (Lérins, Le Beausset)
+[2] Free royal cities are organized into the following benches with one collective vote each:
+Transjurania (Basel, Rheinfelden, Solothurn, Bern, Fribourg, Bremgarten, Lucerne),
+Rhône (Geneva, Lyon, Besancon)
+[1] The Advocate of the Royal Valleys (officer representing Unterwalden and the Seven Zenden, appointed by the king but beholden to the constituents) has a vote.
+(For collective votes, only one member must appear in person to represent the others)
+
+12 votes are connected to titles:
+[7] The electors each have an additional vote.
+[3] The ducal titles each grant an additional vote.
+[1] The Architect of Arles (official responsible for the maintenance of fortifications) has a vote.
+[1] The Dame d'atour (servant in charge of the royal regalia, a hereditary position held by female members of the House of La Marck-Arenberg) has a vote.
+
+Dynastic Breakdown of Votes: Minor: 1, Republic: 1, Lillebonne: 1, La Marck-Arenberg: 1, Württemberg: 1, Thoire: 1, Hohenzollern: 1, Gruyères: 1, Orange: 1, Sabran: 1, Burghers: 2, Barcelona: 3, Andechs: 3, Arduinici: 3, Habsburg: 5, Albon: 5, Rouergue: 5, Zähringen: 7, Savoy: 11, Ecclesiastical: 18
+
+Briefly, do you understand the above information?

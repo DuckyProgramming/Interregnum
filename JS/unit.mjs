@@ -16,6 +16,7 @@ export class unit{
         this.removeMark=false
         this.combining=false
         this.turns=0
+        this.target=[floor(random(0,this.city.operation.cities.length)),floor(random(0,this.city.operation.cities.length)),floor(random(0,this.city.operation.cities.length))]
         if(this.city==undefined){
             throw new Error(`Undefined City Fail`)
         }

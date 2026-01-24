@@ -64,7 +64,7 @@ export class city{
     initial(){
         if(this.units.length==0&&this.owner!=-1){
             let mult=types.team[types.teamRef[this.owner]].auto?options.strength:1
-            this.units.push(new unit(this,types.teamRef[this.owner],1,round(constants.spawn.garrison*random(0.4,2)*mult/100)*100))
+            this.units.push(new unit(this,types.teamRef[this.owner],1,round(constants.spawn.garrison*random(0.4,2)*mult*(this.data.type==7?0.5:1)/100)*100))
             if(this.owner!=this.data.rule){
                 this.recruits-=floor(random(15,21))*100
             }
@@ -207,6 +207,7 @@ export class city{
                             this.units[b].turns=(this.units[a].turns*this.units[a].value+this.units[b].turns*this.units[b].value)/(this.units[a].value+this.units[b].value)
                             this.units[b].value+=this.units[a].value
                             this.units[b].edit.num+=this.units[a].edit.num
+                            this.units[b].target=floor(random(0,2))==0?this.units[a].target:this.units[b].target
                         }
                     }
                 }
@@ -274,7 +275,7 @@ export class city{
                 layer.push()
                 layer.translate(this.position.x,this.position.y)
                 this.units.forEach(unit=>unit.display(layer))
-                if(this.number>0){
+                if(this.number>0&&this.data.type!=7){
                     let variant=this.operation.ui.spawnVariant(this,this.operation.ui.turn.main)
                     if(variant>=0){
                         layer.fill(0,this.number)
@@ -348,6 +349,7 @@ export class city{
                                     this.units[b].turns=(this.units[a].turns*this.units[a].value+this.units[b].turns*this.units[b].value)/(this.units[a].value+this.units[b].value)
                                     this.units[b].value+=this.units[a].value
                                     this.units[b].edit.num+=this.units[a].edit.num
+                                    this.units[b].target=floor(random(0,2))==0?this.units[a].target:this.units[b].target
                                 }
                             }
                         }

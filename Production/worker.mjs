@@ -1,6 +1,6 @@
-import {parentPort} from "node:worker_threads"
-import {dev} from '../JS/variables.mjs'
-import {outAgents,outTraining,modifex} from '../JS/functions.mjs'
+import {parentPort,workerData} from "node:worker_threads"
+import {dev,training} from '../JS/variables.mjs'
+import {outAgents,outTraining} from '../JS/functions.mjs'
 import {operation} from '../JS/operation.mjs'
 //modifex(2)
 function draw(){
@@ -11,15 +11,27 @@ dev.instant=true
 dev.training=true
 dev.speed=true
 dev.close=true
+training.specific=workerData.specific
+training.map=workerData.map
 //dev.new=true
 const current=new operation()
 draw()
 parentPort.on('message',msg=>{
-    if(msg.cmd=='output'){
-        parentPort.postMessage({cmd:'end',status:`\nFinal Status:\n${outTraining(current)}\n`,data:outAgents(current)})
-    }else if(msg.cmd=='status'){
-        parentPort.postMessage({cmd:'status',status:`\nCurrent Status:\n${outTraining(current)}`})
-    }else if(msg.cmd=='map'){
-        parentPort.postMessage({cmd:'map',status:`\nCurrent Map:\n${current.outMap()}`})
+    switch(msg.cmd){
+        case 'output':
+            parentPort.postMessage({cmd:'end',status:`\nFinal Status:\n${outTraining(current)}\n`,data:outAgents(current)})
+        break
+        case 'outputM':
+            parentPort.postMessage({cmd:'endM',status:`\nFinal Status:\n${outTraining(current)}\n`,data:current.ui.rings})
+        break
+        case 'status':
+            parentPort.postMessage({cmd:'status',status:`\nCurrent Status:\n${outTraining(current)}`})
+        break
+        case 'map':
+            parentPort.postMessage({cmd:'map',status:`\nCurrent Map:\n${current.outMap()}`})
+        break
+        case 'merge':
+            parentPort.postMessage({cmd:'merged',status:`Agents Merged`,data:current.ui.mergeAgents(msg.data,msg.set)})
+        break
     }
 })

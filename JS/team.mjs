@@ -1,4 +1,5 @@
 import {types} from './variables.mjs'
+import {findName} from './functions.mjs'
 export class team{
     constructor(type){
         this.type=type
@@ -12,6 +13,8 @@ export class team{
         this.kills=0
         this.deaths=0
         this.deserters=0
+        this.prisoners=[]
+        types.team.forEach(team=>this.prisoners.push(0))
     }
     save(){
         let composite={
@@ -22,16 +25,20 @@ export class team{
             kills:this.kills,
             deaths:this.deaths,
             deserters:this.deserters,
+            prisoners:this.prisoners,
         }
         return composite
     }
     load(composite){
+        this.name=composite.name
         this.allies=composite.allies
         this.offers=composite.offers
         this.history=composite.history
         this.kills=composite.kills
         this.deaths=composite.deaths
         this.deserters=composite.deserters
+        this.prisoners=composite.prisoners
+        this.type=findName(this.name,types.team)
     }
     addAlly(other){
         if(this.allies.includes(other.type)||other.allies.includes(this.type)){
@@ -40,6 +47,7 @@ export class team{
         this.allies.push(other.type)
         other.allies.push(this.type)
         if(this==other){
+            console.log(this.name)
             throw new Error(`Self Alliance`)
         }
     }
