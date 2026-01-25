@@ -13,6 +13,10 @@ dev.speed=true
 dev.close=true
 training.specific=workerData.specific
 training.map=workerData.map
+if(workerData.mass){
+    training.mass=true
+    training.parentPort=parentPort
+}
 //dev.new=true
 const current=new operation()
 draw()

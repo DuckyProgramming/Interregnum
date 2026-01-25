@@ -3,8 +3,10 @@ import {writeFile} from "fs/promises"
 var workers=[]
 const set=[0,1,2,6]
 for(let a=0,la=set.length;a<la;a++){
-    workers.push(new Worker("./worker.mjs",{workerData:{specific:set[a],map:process.argv.slice()[2]}}))
+    workers.push(new Worker("./worker.mjs",{workerData:{specific:set[a],map:process.argv.slice()[2],mass:true}}))
 }
+var tick=[0,0]
+var holding=[]
 process.on('SIGINT',async ()=>{
     workers.forEach(worker=>worker.postMessage({cmd:'outputM'}))
     const report=await Promise.all(workers.map(worker=>new Promise(resolve=>{
@@ -41,4 +43,26 @@ process.stdin.on('data',async (input)=>{
         })))
         console.log(report.map(set=>set.status).join(`\n`))
     }
+})
+workers.forEach(worker=>{
+    worker.on('message',msg=>{
+        switch(msg.cmd){
+            case `time`:
+                tick[0]++
+                if(tick[0]>=set.length){
+                    tick[0]=0
+                    console.log(msg.status)
+                }
+            break
+            case `performance`:
+                tick[1]++
+                holding.push(msg.status)
+                if(tick[1]>=set.length){
+                    tick[1]=0
+                    holding.forEach(item=>console.log(item))
+                    holding=[]
+                }
+            break
+        }
+    })
 })

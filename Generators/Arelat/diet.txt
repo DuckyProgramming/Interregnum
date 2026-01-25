@@ -2,35 +2,36 @@ Here's my current system for how the diet would work:
 
 The king has the sole power to convene the diet but is legally required to do so every few years. The magnates can petition him informally for a diet, but he isn't forced to. The diet can be convened anywhere, though it usually remains in the major ecclesiastical and political cities. The king also sets the agenda and breaks ties if they arise. If the king is unavailable, the count palatine (in his capacity as Arch-Steward) represents him and assumes these powers. The king is allowed to vote if he holds any existing seats (such as him being a count).
 
+Each of the three duchies or regions usually (but isn't required to) holds a pre-consultation before regular diet meetings where benches are coordinated and informal agreements might be made.
+
+Women are able to hold diet seats, but it's sometimes looked down upon and varies by region.
+
 The diet performs the following functions: confirming and establishing laws and privileges, arbitrating feuds and disagreements, funding and recruiting armies during extraordinary circumstances, and deciding on succession of extinct houses and regency when necessary.
 
-There's a total of 72 votes. 60 votes are connected to territories:
-[36] All counties (including the county palatine), landgraviates, and margraviates have their own seats.
+There's a total of 60 votes. 50 votes are connected to territories:
+[30] All counties (including the county palatine), landgraviates, and margraviates have their own seats.
 [7] All archbishops have their own seats.
-[5] All territorial bishops have their own seats.
-[6] Minor lordships are organized into the following benches with one collective vote each:
-Doubs (Salins, Auxonne, Gex, Lillebonne, Neuveville, Loveresse, Valangin),
-Aargau (Willisau, Entlebuch, Merenschwand, Nidau),
-Transjurania (Laufenburg, Murten, Grasburg, Romont, Grandson, Échallens),
-Rhône (Annonay, Beaujolais, Villars),
-Arles (Roquemaure, Barbentane, Bollène, Avignon),
-Alpine (Hasli, Aigle, Faucigny, Lanslebourg)
-[3] Territorial abbeys are organized into the following benches with one collective vote each
-Transjurania (Engelberg, St. Maurice, Bellelay, Moutier-Grandval),
-Saône (Luxeuil, Lure, Baume-Les-Dames),
-Provence (Lérins, Le Beausset)
+[3] All bishops with large territories (Viviers, Sion, Basel) their own seats. Smaller territorial bishops and non-territorial bishops attend but cannot vote.
+[5] Minor lordships are organized into the following benches with one collective vote each:
+Doubs (Salins, Auxonne, Lillebonne, Neuveville, Loveresse, Valangin, Grandson),
+Aargau (Frickgau, Baden, Willisau, Entlebuch, Merenschwand, Hasli),
+Transjurania (Laufenburg, Sisgau, Buchsgau, Nidau, Aarburgund, Murten, Grasburg, Romont, Échallens),
+Rhône (Annonay, Beaujolais, Villars, Roquemaure, Barbentane, Bollène),
+Alpine (Aigle, Faucigny, Lanslebourg, Martigny, Gex)
+[2] Territorial abbeys are organized into the following benches with one collective vote each
+Transjurania (Luxeuil, Lure, Baume-Les-Dames, Engelberg, Bellelay, Moutier-Grandval),
+Rhône (Lérins, Le Beausset, St. Maurice)
 [2] Free royal cities are organized into the following benches with one collective vote each:
 Transjurania (Basel, Rheinfelden, Solothurn, Bern, Fribourg, Bremgarten, Lucerne),
 Rhône (Geneva, Lyon, Besancon)
 [1] The Advocate of the Royal Valleys (officer representing Unterwalden and the Seven Zenden, appointed by the king but beholden to the constituents) has a vote.
 (For collective votes, only one member must appear in person to represent the others)
 
-12 votes are connected to titles:
+10 votes are connected to titles:
 [7] The electors each have an additional vote.
 [3] The ducal titles each grant an additional vote.
-[1] The Architect of Arles (official responsible for the maintenance of fortifications) has a vote.
-[1] The Dame d'atour (servant in charge of the royal regalia, a hereditary position held by female members of the House of La Marck-Arenberg) has a vote.
 
-Dynastic Breakdown of Votes: Minor: 1, Republic: 1, Lillebonne: 1, La Marck-Arenberg: 1, Württemberg: 1, Thoire: 1, Hohenzollern: 1, Gruyères: 1, Orange: 1, Sabran: 1, Burghers: 2, Barcelona: 3, Andechs: 3, Arduinici: 3, Habsburg: 5, Albon: 5, Rouergue: 5, Zähringen: 7, Savoy: 11, Ecclesiastical: 18
+Dynastic Breakdown of Votes: Republic: 1, Württemberg: 1, Thoire: 1, Hohenzollern: 1, Gruyères: 1, Orange: 1, Sabran: 1, Minor: 2, Burghers: 2, Habsburg: 3, Barcelona: 3, Andechs: 3, Arduinici: 3, Zähringen: 4, Albon: 4, Rouergue: 4, Savoy: 10, Ecclesiastical: 15
+(Note, however, that different prelates or different branches and appanages of a family often disagree and don't vote as a bloc)
 
 Briefly, do you understand the above information?

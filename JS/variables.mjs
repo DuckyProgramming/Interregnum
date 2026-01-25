@@ -1214,12 +1214,12 @@ export var convert=[
 ]
 export var dev={
     instant:false,training:false,speed:false,new:false,//training
-    road:false,pause:false,close:false,//tool
+    see:false,road:false,pause:false,close:false,//tool
     assemble:false,assemble2:false,//deprecated
 }
 export var training={
-    specific:-1,grouping:[],generations:0,benchmark:0,turns:1000,runs:100,inserter:50000000,
-    map:`arelat+-`,
+    specific:-1,grouping:[],generations:0,benchmark:0,mass:false,parentPort:0,
+    turns:1000,runs:100,inserter:50000000,map:``,
 }
 export var options={strength:1,strengthEdit:false,hq:false}
 export var graphics={main:0,load:{map:[],city:[],team:[],unit:[]}}

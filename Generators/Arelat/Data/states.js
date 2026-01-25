@@ -132,6 +132,12 @@ types={state:[
     rule:`Ecclesiastical`,
     prestige:[],
   },{
+    name:`Avignon`,
+    title:`Bishopric`,
+    district:`Drôme`,
+    rule:`Ecclesiastical`,
+    prestige:[],
+  },{
     name:`Viviers`,
     title:`Bishopric`,
     district:`Drôme`,
@@ -192,18 +198,6 @@ types={state:[
     rule:`Ecclesiastical`,
     prestige:[],
   },{
-    name:`Frickgau`,
-    title:`County`,
-    district:`Helvetie`,
-    rule:`Habsburg`,
-    prestige:[],
-  },{
-    name:`Baden`,
-    title:`County`,
-    district:`Helvetie`,
-    rule:`Habsburg`,
-    prestige:[],
-  },{
     name:`Ober-Aargau`,
     title:`County`,
     district:`Helvetie`,
@@ -212,6 +206,18 @@ types={state:[
   },{
     name:`Unter-Aargau`,
     title:`County`,
+    district:`Helvetie`,
+    rule:`Habsburg`,
+    prestige:[],
+  },{
+    name:`Frickgau`,
+    title:`Lordship`,
+    district:`Helvetie`,
+    rule:`Habsburg`,
+    prestige:[],
+  },{
+    name:`Baden`,
+    title:`Lordship`,
     district:`Helvetie`,
     rule:`Habsburg`,
     prestige:[],
@@ -300,8 +306,8 @@ types={state:[
     rule:`Savoy`,
     prestige:[],
   },{
-    name:`Lower Valais`,
-    title:`County`,
+    name:`Martigny`,
+    title:`Lordship`,
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
@@ -343,7 +349,7 @@ types={state:[
     prestige:[],
   },{
     name:`Barcelonette`,
-    title:`Margraviate`,
+    title:`County`,
     district:`Forcalquier`,
     rule:`Savoy`,
     prestige:[],
@@ -378,24 +384,6 @@ types={state:[
     rule:`Zähringen`,
     prestige:[],
   },{
-    name:`Sisgau`,
-    title:`Landgraviate`,
-    district:`Helvetie`,
-    rule:`Zähringen`,
-    prestige:[],
-  },{
-    name:`Buchsgau`,
-    title:`Landgraviate`,
-    district:`Helvetie`,
-    rule:`Zähringen`,
-    prestige:[],
-  },{
-    name:`Aarburgund`,
-    title:`Landgraviate`,
-    district:`Helvetie`,
-    rule:`Zähringen`,
-    prestige:[],
-  },{
     name:`Transjurania`,
     title:`Landgraviate`,
     district:`Helvetie`,
@@ -403,6 +391,24 @@ types={state:[
     prestige:[`Elector`],
   },{
     name:`Nidau`,
+    title:`Lordship`,
+    district:`Helvetie`,
+    rule:`Zähringen`,
+    prestige:[],
+  },{
+    name:`Sisgau`,
+    title:`Lordship`,
+    district:`Helvetie`,
+    rule:`Zähringen`,
+    prestige:[],
+  },{
+    name:`Buchsgau`,
+    title:`Lordship`,
+    district:`Helvetie`,
+    rule:`Zähringen`,
+    prestige:[],
+  },{
+    name:`Aarburgund`,
     title:`Lordship`,
     district:`Helvetie`,
     rule:`Zähringen`,
@@ -445,12 +451,6 @@ types={state:[
     prestige:[],
   },{
     name:`Roquemaure`,
-    title:`Lordship`,
-    district:`Drôme`,
-    rule:`Rouergue`,
-    prestige:[],
-  },{
-    name:`Avignon`,
     title:`Lordship`,
     district:`Drôme`,
     rule:`Rouergue`,
@@ -580,13 +580,13 @@ types={state:[
     title:`Valley`,
     district:`Helvetie`,
     rule:`Republic`,
-    prestige:[`Confederate`],
+    prestige:[],
   },{
     name:`Nidwalden`,
     title:`Valley`,
     district:`Helvetie`,
     rule:`Republic`,
-    prestige:[`Confederate`],
+    prestige:[],
   },{
     name:`The Seven Zenden`,
     title:`Republic`,
@@ -605,7 +605,7 @@ types={state:[
     name:`Doubs`,
     title:`Lordship Bench`,
     district:`Franche-Comté`,
-    rule:``,
+    rule:`Minor`,
     prestige:[],
   },{
     name:`Aargau`,
@@ -622,14 +622,8 @@ types={state:[
   },{
     name:`Rhône`,
     title:`Lordship Bench`,
-    district:`Dauphiné`,
-    rule:`Albon`,
-    prestige:[],
-  },{
-    name:`Arles`,
-    title:`Lordship Bench`,
     district:`Drôme`,
-    rule:`Rouergue`,
+    rule:`Minor`,
     prestige:[],
   },{
     name:`Alpine`,
@@ -656,13 +650,7 @@ types={state:[
     rule:`Ecclesiastical`,
     prestige:[],
   },{
-    name:`Saône`,
-    title:`Abbey Bench`,
-    district:`Franche-Comté`,
-    rule:`Ecclesiastical`,
-    prestige:[],
-  },{
-    name:`Provence`,
+    name:`Rhône`,
     title:`Abbey Bench`,
     district:`Provence`,
     rule:`Ecclesiastical`,
@@ -733,18 +721,6 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-  },{
-    name:`Arles`,
-    title:`Architect`,
-    district:`Île-de-Bourgogne`,
-    rule:`Lillebonne`,
-    prestige:[],
-  },{
-    name:``,
-    title:`Dame d'atour`,
-    district:`Île-de-Bourgogne`,
-    rule:`La Marck-Arenberg`,
-    prestige:[],
   },
 ]}
-types.state.forEach(state=>{if([`County`,`Landgraviate`,`Margraviate`,`Bishopric`,`Archbishopric`,`County Palatine`,`Princessate`].includes(state.title)){types.diet.push(state)}})
+types.state.forEach(state=>{if([`County`,`Landgraviate`,`Margraviate`,`Archbishopric`,`County Palatine`,`Princessate`].includes(state.title)||state.title==`Bishopric`&&(state.name==`Viviers`||state.name==`Sion`||state.name==`Basel`)){types.diet.push(state)}})

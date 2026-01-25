@@ -63,6 +63,9 @@ function outStates(){
     }
     print(build)
 }
+function outDiet(){
+    types.diet.forEach((diet,index)=>print(`${index+1}: ${diet.title}${diet.name!=``?` of `:``}${diet.name}`))
+}
 function outStats(){
     let build=``
     current.stats.items.forEach((stat,index)=>build+=`${index>0?`, `:``}${stat.name}: ${stat.base}`)

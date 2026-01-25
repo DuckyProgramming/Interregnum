@@ -16,7 +16,7 @@ export class ui{
         this.agents=[]
         this.hq={num:-1,baseNum:0,tick:0,interval:0,baseInterval:0,players:0,playerCities:0,active:false}
         this.raiders={active:types.city.some(cit=>cit.type==8),tick:floor(random(20,81))}
-        this.releasing={team:0}
+        this.releasing={team:0,value:0}
         this.graph={active:0}
         /*
         [0,0] - Attacking City
@@ -231,7 +231,9 @@ export class ui{
                                 let total=0
                                 this.rings[a].forEach(agent=>total+=agent.record)
                                 this.static[a].forEach(agent=>total-=agent.record)
-                                console.log(`${types.teamType[a].name} Average Performance: ${round(total/this.rings[a].length/training.runs*1000)/1000}`)
+                                if(!training.mass){
+                                    console.log(`${types.teamType[a].name} Average Performance: ${round(total/this.rings[a].length/training.runs*1000)/1000}`)
+                                }
                             break
                         }
                     }else{
@@ -250,7 +252,11 @@ export class ui{
                         let total=[0,0]
                         this.rings.forEach(set=>set.forEach(agent=>{total[0]+=agent.record;total[1]++}))
                         this.static.forEach(set=>set.forEach(agent=>{total[0]-=agent.record;agent.record=0}))
-                        console.log(`Total Average Performance: ${round(total[0]/total[1]/training.runs*1000)/1000}`)
+                        if(training.mass){
+                            training.parentPort.postMessage({cmd:`performance`,status:`Total Average Performance: ${round(total[0]/total[1]/training.runs*1000)/1000}`})
+                        }else{
+                            console.log(`Total Average Performance: ${round(total[0]/total[1]/training.runs*1000)/1000}`)
+                        }
                         training.benchmark=0
                     break
                 }
@@ -281,7 +287,11 @@ export class ui{
             }
             if(this.turn.total>=constants.threshold){
                 let nums=[floor(process.uptime().toFixed(3)/3600),floor(process.uptime().toFixed(3)/60)%60,floor(process.uptime().toFixed(3))%60]
-                console.log(`\nTime at ${constants.threshold} Turns: ${nums[0]<10?`0`:``}${nums[0]}:${nums[1]<10?`0`:``}${nums[1]}:${nums[2]<10?`0`:``}${nums[2]}`)
+                if(training.mass){
+                    training.parentPort.postMessage({cmd:`time`,status:`\nTime at ${constants.threshold} Turns: ${nums[0]<10?`0`:``}${nums[0]}:${nums[1]<10?`0`:``}${nums[1]}:${nums[2]<10?`0`:``}${nums[2]}`})
+                }else{
+                    console.log(`\nTime at ${constants.threshold} Turns: ${nums[0]<10?`0`:``}${nums[0]}:${nums[1]<10?`0`:``}${nums[1]}:${nums[2]<10?`0`:``}${nums[2]}`)
+                }
                 constants.threshold*=constants.thresholdTick%3==2?2.5:2
                 constants.thresholdTick++
                 if(training.benchmark==0){
@@ -984,10 +994,14 @@ export class ui{
                             this.updateVisibility()
                         }
                     }else if(this.tabs.active==19){
-                        if(!this.operation.cities[city].units.some(unit=>!aligned.includes(unit.team)&&unit.team!=this.releasing.team&&!this.operation.teams[this.releasing.team].allies.includes(unit.team))){
-                            this.operation.cities[city].summonUnit(this.releasing.team,0,this.operation.teams[this.turn.main].prisoners[this.releasing.team])
+                        let enemy=this.operation.cities[city].units.filter(unit=>!aligned.includes(unit.team)&&unit.team!=this.releasing.team&&!this.operation.teams[this.releasing.team].allies.includes(unit.team))
+                        let totalEnemy=enemy.reduce((acc,enemy)=>acc+enemy.value,0)
+                        if(enemy.length>0){
+                            enemy.forEach(enemy=>{
+                                this.operation.teams[types.teamRef[this.operation.cities[city].owner]].prisoners[this.releasing.team]+=round(this.releasing.value*enemy.value/totalEnemy/100+random(-0.5,0.5))*100
+                            })
                         }else{
-                            this.operation.teams[types.teamRef[this.operation.cities[city].owner]].prisoners[this.releasing.team]+=this.operation.teams[this.turn.main].prisoners[this.releasing.team]
+                            this.operation.cities[city].summonUnit(this.releasing.team,0,this.releasing.value)
                         }
                         this.operation.teams[this.turn.main].prisoners[this.releasing.team]=0
                         this.moveTab(18)
@@ -1874,7 +1888,10 @@ export class ui{
                                 layer.text(`Enter`,60,tick+15)
                                 tick+=55
                                 for(let a=0,la=types.team.length;a<la;a++){
-                                    if(this.operation.teams[this.turn.main].prisoners[a]>0&&a!=this.turn.main){
+                                    if(this.operation.teams[this.turn.main].prisoners[a]>0){
+                                        if(a==this.turn.main){
+                                            throw new Error(`Self Prisoner Fail`)
+                                        }
                                         layer.fill(120)
                                         layer.rect(0,tick+12.5,160,25,10)
                                         layer.fill(0)
@@ -1884,6 +1901,25 @@ export class ui{
                                         layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
                                         tick+=35
                                         count++
+                                    }
+                                }
+                                if(types.team.some((team,index)=>this.operation.teams[this.turn.main].prisoners[index]>0&&this.operation.teams[index].prisoners[this.turn.main]>0&&index!=this.turn.main&&team.auto)){
+                                    layer.textSize(18)
+                                    layer.text(`Exchange:`,0,tick+12.5)
+                                    tick+=25
+
+                                    for(let a=0,la=types.team.length;a<la;a++){
+                                        if(this.operation.teams[this.turn.main].prisoners[a]>0&&this.operation.teams[a].prisoners[this.turn.main]>0&&a!=this.turn.main&&types.team[a].auto){
+                                            layer.fill(120)
+                                            layer.rect(0,tick+12.5,160,25,10)
+                                            layer.fill(0)
+                                            layer.textSize(12)
+                                            layer.text(`${types.team[a].name}: ${min(this.operation.teams[this.turn.main].prisoners[a],this.operation.teams[a].prisoners[this.turn.main])}`,0,tick+12.5)
+                                            layer.textSize(10)
+                                            layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
+                                            tick+=35
+                                            count++
+                                        }
                                     }
                                 }
                             break
@@ -3785,9 +3821,50 @@ export class ui{
                                     if(this.operation.teams[this.turn.main].prisoners[a]>0&&a!=this.turn.main){
                                         if(inPointBox(rel,boxify(0,tick+12.5,160,25))){
                                             this.releasing.team=a
+                                            this.releasing.value=this.operation.teams[this.turn.main].prisoners[this.releasing.team]
                                             this.moveTab(19)
                                         }
                                         tick+=35
+                                    }
+                                }
+                                if(types.team.some((team,index)=>this.operation.teams[this.turn.main].prisoners[index]>0&&this.operation.teams[index].prisoners[this.turn.main]>0&&index!=this.turn.main&&team.auto)){
+                                    tick+=25
+                                    for(let a=0,la=types.team.length;a<la;a++){
+                                        if(this.operation.teams[this.turn.main].prisoners[a]>0&&this.operation.teams[a].prisoners[this.turn.main]>0&&a!=this.turn.main&&types.team[a].auto){
+                                            if(inPointBox(rel,boxify(0,tick+12.5,160,25))){
+                                                let value=min(this.operation.teams[this.turn.main].prisoners[a],this.operation.teams[a].prisoners[this.turn.main])
+                                                let aligned=[a,...this.operation.teams[a].allies]
+                                                let possible=[]
+                                                for(let b=0,lb=this.operation.cities.length;b<lb;b++){
+                                                    if(this.operation.cities[b].getUnits([a]).length>0&&this.operation.cities[b].getNotUnits(aligned).length==0){
+                                                        possible.push(b)
+                                                    }
+                                                }
+                                                if(possible.length>0){
+                                                    this.operation.cities[randin(possible)].summonUnit(a,0,value)
+                                                    this.operation.teams[this.turn.main].prisoners[a]-=value
+                                                    this.operation.teams[a].prisoners[this.turn.main]-=value
+                                                    this.releasing.team=this.turn.main
+                                                    this.releasing.value=value
+                                                    this.moveTab(19)
+                                                }else{
+                                                    for(let b=0,lb=this.operation.cities.length;b<lb;b++){
+                                                        if(this.operation.cities[b].getUnits(aligned).length>0&&this.operation.cities[b].getNotUnits(aligned).length==0){
+                                                            possible.push(b)
+                                                        }
+                                                    }
+                                                    if(possible.length>0){
+                                                        this.operation.cities[randin(possible)].summonUnit(a,0,value)
+                                                        this.operation.teams[this.turn.main].prisoners[a]-=value
+                                                        this.operation.teams[a].prisoners[this.turn.main]-=value
+                                                        this.releasing.team=this.turn.main
+                                                        this.releasing.value=value
+                                                        this.moveTab(19)
+                                                    }
+                                                }
+                                            }
+                                            tick+=35
+                                        }
                                     }
                                 }
                             }
@@ -4319,6 +4396,45 @@ export class ui{
                                         this.moveTab(19)
                                     }
                                     count++
+                                }
+                            }
+                            if(types.team.some((team,index)=>this.operation.teams[this.turn.main].prisoners[index]>0&&this.operation.teams[index].prisoners[this.turn.main]>0&&index!=this.turn.main&&team.auto)){
+                                for(let a=0,la=types.team.length;a<la;a++){
+                                    if(this.operation.teams[this.turn.main].prisoners[a]>0&&this.operation.teams[a].prisoners[this.turn.main]>0&&a!=this.turn.main&&types.team[a].auto){
+                                        if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
+                                            let value=min(this.operation.teams[this.turn.main].prisoners[a],this.operation.teams[a].prisoners[this.turn.main])
+                                            let aligned=[a,...this.operation.teams[a].allies]
+                                            let possible=[]
+                                            for(let b=0,lb=this.operation.cities.length;b<lb;b++){
+                                                if(this.operation.cities[b].getUnits([a]).length>0&&this.operation.cities[b].getNotUnits(aligned).length==0){
+                                                    possible.push(b)
+                                                }
+                                            }
+                                            if(possible.length>0){
+                                                this.operation.cities[randin(possible)].summonUnit(a,0,value)
+                                                this.operation.teams[this.turn.main].prisoners[a]-=value
+                                                this.operation.teams[a].prisoners[this.turn.main]-=value
+                                                this.releasing.team=this.turn.main
+                                                this.releasing.value=value
+                                                this.moveTab(19)
+                                            }else{
+                                                for(let b=0,lb=this.operation.cities.length;b<lb;b++){
+                                                    if(this.operation.cities[b].getUnits(aligned).length>0&&this.operation.cities[b].getNotUnits(aligned).length==0){
+                                                        possible.push(b)
+                                                    }
+                                                }
+                                                if(possible.length>0){
+                                                    this.operation.cities[randin(possible)].summonUnit(a,0,value)
+                                                    this.operation.teams[this.turn.main].prisoners[a]-=value
+                                                    this.operation.teams[a].prisoners[this.turn.main]-=value
+                                                    this.releasing.team=this.turn.main
+                                                    this.releasing.value=value
+                                                    this.moveTab(19)
+                                                }
+                                            }
+                                        }
+                                        count++
+                                    }
                                 }
                             }
                         }

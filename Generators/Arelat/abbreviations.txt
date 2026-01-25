@@ -1,7 +1,8 @@
-AB - Landgraviate of Aarburgund
+AB - Lordship of Aarburgund
 AV - Lordship of Avignon
 BA - Abbey of Baume-Les-Dames
 BB - Lordship of Barbentane
+BD - Lordship of Baden
 BE - Abbey of Bellelay
 ÉC - Lordship of Échallens
 EN - Abbey of Engelberg

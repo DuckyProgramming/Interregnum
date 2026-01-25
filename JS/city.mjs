@@ -320,6 +320,9 @@ export class city{
             case `title`: case `setup`:
                 this.visibility=2
             case 'main':
+                if(dev.see){
+                    this.visibility=2
+                }
                 if(!dev.close){
                     let cap=0
                     for(let a=0,la=this.units.length;a<la;a++){
