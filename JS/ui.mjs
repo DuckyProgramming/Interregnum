@@ -486,6 +486,9 @@ export class ui{
                 if(random(0,types.team[this.turn.main].chance*(types.team[this.turn.main].name==`Free Company`?2:4))<1){
                     this.updateVisibility()
                     this.moveTab(4)
+                }else if(random(0,types.team[this.turn.main].chance*(types.team[this.turn.main].name==`Free Company`?4:10))<1){
+                    this.updateVisibility()
+                    this.moveTab(18)
                 }
             }else{
                 if(!dev.close){
@@ -1719,7 +1722,13 @@ export class ui{
                                 layer.textSize(24)
                                 layer.text(`Make\nAlliances`,0,40)
                                 for(let a=0,la=types.team.length;a<la;a++){
-                                    if(a!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(a)&&this.operation.teams[a].name!=`Free Company`){
+                                    if(
+                                        a!=this.turn.main&&
+                                        !this.operation.teams[this.turn.main].allies.includes(a)&&
+                                        this.operation.teams[a].name!=`Free Company`&&
+                                        !types.teamKey[0].includes(this.operation.teams[a].name)&&
+                                        !types.teamKey[1].includes(this.operation.teams[a].name)
+                                    ){
                                         layer.fill(120)
                                         layer.rect(0,tick+12.5,160,25,10)
                                         layer.fill(0)
@@ -2533,9 +2542,9 @@ export class ui{
                                                                 this.operation.cities[a].getUnits([this.turn.main],0).length<=0&&
                                                                 this.operation.cities[a].getUnits([this.turn.main],1).length<=0||this.operation.cities[a].getUnits([this.turn.main],1).length>0&&this.operation.cities[a].getUnits([this.turn.main],1)[0].value<1000&&
                                                                 this.operation.cities[a].getNotUnits(aligned).length<=0
-                                                            )||
-                                                            this.operation.cities[a].data.rule==types.team[this.turn.main].name
-                                                        )
+                                                            )
+                                                        )||
+                                                        this.operation.cities[a].data.rule==types.team[this.turn.main].name
                                                     ){
                                                         possible.push(a)
                                                     }
@@ -2625,9 +2634,9 @@ export class ui{
                                                         this.operation.cities[a].getUnits([this.turn.main],0).length<=0&&
                                                         this.operation.cities[a].getUnits([this.turn.main],1).length<=0||this.operation.cities[a].getUnits([this.turn.main],1).length>0&&this.operation.cities[a].getUnits([this.turn.main],1)[0].value<1000&&
                                                         this.operation.cities[a].getNotUnits(aligned).length<=0
-                                                    )||
-                                                    this.operation.cities[a].data.rule==types.team[this.turn.main].name
-                                                )
+                                                    )
+                                                )||
+                                                this.operation.cities[a].data.rule==types.team[this.turn.main].name
                                             ){
                                                 possible.push(a)
                                             }
@@ -3235,7 +3244,7 @@ export class ui{
                                 }
                             }
                         break
-                        case 14: case 18: case 19:
+                        case 14: case 19:
                             if(types.team[this.turn.main].auto){
                                 this.moveTab(0)
                                 this.agency.time=0
@@ -3339,6 +3348,67 @@ export class ui{
                                     }
                                     this.agency.time=0
                                 }
+                            }
+                        break
+                        case 18:
+                            if(types.team[this.turn.main].auto){
+                                for(let a=0,la=types.team.length;a<la;a++){
+                                    if(this.operation.teams[this.turn.main].prisoners[a]>0&&this.operation.teams[a].prisoners[this.turn.main]>0&&a!=this.turn.main&&types.team[a].auto){
+                                        if(floor(random(0,10))==0){
+                                            let value=min(this.operation.teams[this.turn.main].prisoners[a],this.operation.teams[a].prisoners[this.turn.main])
+                                            let cits=[]
+
+                                            let aligned=[a,...this.operation.teams[a].allies]
+                                            let possible=[]
+                                            for(let b=0,lb=this.operation.cities.length;b<lb;b++){
+                                                if(this.operation.cities[b].getUnits([a]).length>0&&this.operation.cities[b].getNotUnits(aligned).length==0){
+                                                    possible.push(b)
+                                                }
+                                            }
+                                            if(possible.length>0){
+                                                cits.push(randin(possible))
+                                            }else{
+                                                for(let b=0,lb=this.operation.cities.length;b<lb;b++){
+                                                    if(this.operation.cities[b].getUnits(aligned).length>0&&this.operation.cities[b].getNotUnits(aligned).length==0){
+                                                        possible.push(b)
+                                                    }
+                                                }
+                                                if(possible.length>0){
+                                                    cits.push(randin(possible))
+                                                }
+                                            }
+                                            if(cits.length==1){
+                                                aligned=[this.turn.main,...this.operation.teams[this.turn.main].allies]
+                                                possible=[]
+                                                for(let b=0,lb=this.operation.cities.length;b<lb;b++){
+                                                    if(this.operation.cities[b].getUnits([this.turn.main]).length>0&&this.operation.cities[b].getNotUnits(aligned).length==0){
+                                                        possible.push(b)
+                                                    }
+                                                }
+                                                if(possible.length>0){
+                                                    cits.push(randin(possible))
+                                                }else{
+                                                    for(let b=0,lb=this.operation.cities.length;b<lb;b++){
+                                                        if(this.operation.cities[b].getUnits(aligned).length>0&&this.operation.cities[b].getNotUnits(aligned).length==0){
+                                                            possible.push(b)
+                                                        }
+                                                    }
+                                                    if(possible.length>0){
+                                                        cits.push(randin(possible))
+                                                    }
+                                                }
+                                            }
+                                            if(cits.length==2){
+                                                this.operation.cities[cits[0]].summonUnit(a,0,value)
+                                                this.operation.cities[cits[1]].summonUnit(this.turn.main,0,value)
+                                                this.operation.teams[this.turn.main].prisoners[a]-=value
+                                                this.operation.teams[a].prisoners[this.turn.main]-=value
+                                            }
+                                        }
+                                    }
+                                }
+                                this.moveTab(0)
+                                this.agency.time=0
                             }
                         break
                         
@@ -3673,7 +3743,13 @@ export class ui{
                         case 6:
                             if(!types.team[this.turn.main].auto||dev.pause){
                                 for(let a=0,la=types.team.length;a<la;a++){
-                                    if(a!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(a)&&this.operation.teams[a].name!=`Free Company`){
+                                    if(
+                                        a!=this.turn.main&&
+                                        !this.operation.teams[this.turn.main].allies.includes(a)&&
+                                        this.operation.teams[a].name!=`Free Company`&&
+                                        !types.teamKey[0].includes(this.operation.teams[a].name)&&
+                                        !types.teamKey[1].includes(this.operation.teams[a].name)
+                                    ){
                                         if(inPointBox(rel,boxify(0,tick+12.5,160,25))){
                                             if(this.operation.teams[a].offers.includes(this.turn.main)){
                                                 if(!dev.close){
@@ -4248,8 +4324,14 @@ export class ui{
                     case 6:
                         if(!types.team[this.turn.main].auto||dev.pause){
                             for(let a=0,la=types.team.length;a<la;a++){
-                                if(a!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(a)&&this.operation.teams[a].name!=`Free Company`){
-                                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]&&this.operation.teams[this.turn.main].name!=`Free Company`){
+                                if(
+                                    a!=this.turn.main&&
+                                    !this.operation.teams[this.turn.main].allies.includes(a)&&
+                                    this.operation.teams[a].name!=`Free Company`&&
+                                    !types.teamKey[0].includes(this.operation.teams[a].name)&&
+                                    !types.teamKey[1].includes(this.operation.teams[a].name)
+                                ){
+                                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
                                         if(this.operation.teams[a].offers.includes(this.turn.main)){
                                             if(!dev.close){
                                                 this.operation.teams[a].notif.push(`Alliance Made\nWith ${this.operation.teams[this.turn.main].name}`)

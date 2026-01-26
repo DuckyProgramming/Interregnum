@@ -1,37 +1,26 @@
-AB - Lordship of Aarburgund
-AV - Bishopric of Avignon
 BA - Abbey of Baume-Les-Dames
 BB - Lordship of Barbentane
-BD - Lordship of Baden
+BD - Condominium of Baden
 BE - Abbey of Bellelay
-ÉC - Lordship of Échallens
+ÉC - Condominium of Échallens
 EN - Abbey of Engelberg
 FÄ - Condominium of Freie Ämter
 GE - Bishopric of Geneva
-GN - Lordship of Grandson
-GS - Lordship of Grasburg
-GX - Lordship of Gex
-LA - Lordship of Laufenburg
+GN - Condominium of Grandson
+GS - Condominium of Grasburg
 LB - Abbey of Le Beausset
 LI - Lordship of Lillebonne
-LS - Bishopric of Lausanne
 LU - Abbey of Lure
 LV - Lordship of Loveresse
-ME - Lordship of Merenschwand
 MG - Abbey of Moutier-Grandval
 MI - Village of Miribel-les-Échelles
-MR - Lordship of Murten
+MR - Condominium of Murten
 NE - Lordship of Neuveville
-NI - Lordship of Nidau
 NW - Valley of Nidwalden
-RO - Lordship of Romont
 RQ - Lordship of Roquemaure
-SM - Abbey of St. Maurice
 VA - Lordship of Valangin
-WI - Lordship of Willisau
 
 Ba - Basel
-Be - Bern
 Bç - Besançon
 Bg - Bremgarten
 Fr - Fribourg
