@@ -1009,7 +1009,9 @@ export class ui{
                                     this.select.moved=[last(cit.units)]
                                 }
                             }
-                            this.updateVisibility()
+                            if(!types.team[this.turn.main].auto){
+                                this.updateVisibility()
+                            }
                         }
                     }else if(this.tabs.active==19){
                         let enemy=this.operation.cities[city].units.filter(unit=>!aligned.includes(unit.team)&&unit.team!=this.releasing.team&&!this.operation.teams[this.releasing.team].allies.includes(unit.team))
@@ -1310,9 +1312,7 @@ export class ui{
         this.operation.zoom.shift.active=true
     }
     updateVisibility(){
-        if(this.tabs.active!=8&&this.tabs.active!=11&&this.tabs.active!=12&&this.tabs.active!=13&&this.tabs.active!=17){
-            this.operation.cities.forEach(city=>city.updateVisibility(this.turn.main))
-        }
+        this.operation.cities.forEach(city=>city.updateVisibility(this.turn.main))
     }
     singleVisibility(type){
         this.operation.cities.forEach(city=>city.singleVisibility(type))
