@@ -1,0 +1,24 @@
+AL - Duchy of Albrechtice
+BL - Lordship of Bielsko
+BN - Duchy of Bruntál
+BO - Lordship of Bohumín
+FY - Lordship of Fryštát
+HI - Lordship of Hirschau
+IM - Lordship of Imielin
+JA - Duchy of Jáchymov
+KR - Duchy of Krnov
+LE - Landgraviate of Leuchtenberg
+NA - Lordship of Namysłów
+SI - Duchy of Siedlisko
+SU - County of Sulzbach
+SY - Lordship of Syców
+ŚC - Duchy of Ścinawa
+ŚW - Duchy of Świebodzin
+TW - Lordship of Twardogóra
+VR - Duchy of Vrbno
+WO - Lordship of Wodzisław
+WR - Bishopric of Wrocław
+WŹ - Lordship of Woźniki
+ŻM - Lordship of Żmigród
+
+Ch - Cheb

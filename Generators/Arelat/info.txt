@@ -1,4 +1,4 @@
-I'm working on an alternate history scenario where the Kingdom of Arles (officially the Kingdom of Burgundy, but I prefer the term "Arles" as the kingdom has Frankish origins) survives into the later Middle Ages, staying mostly territorially stable. The kingdom recognizes the title of the Holy Roman Emperor, but otherwise ignores the empire and its authority and functions independently. The kingdom is an elective monarchy with a fairly weak king and competing nobles, as well as many ecclesiastical states and free royal cities. Here are some of the details:  
+I'm working on an alternate history scenario where the Kingdom of Arles (officially the Kingdom of Burgundy, but I prefer the term "Arles" as the kingdom has Frankish rather than Burgundian origins) survives into the later Middle Ages, staying mostly territorially stable, as in this timeline King Rudolph III was much more capable and had an heir. The kingdom recognizes the title of the Holy Roman Emperor, but otherwise ignores the empire and its authority and functions independently. The kingdom is an elective monarchy with a fairly weak king and competing nobles, as well as many ecclesiastical states and free royal cities. Here are some of the details:  
 
 Borders: The borders mostly follow the historical kingdom. The French border runs mostly along the Rhône and Saône, though Arles has some bridgeheads on the western sides of the rivers. The border with Germany runs through the north of Franche-Comté, Basel, Bremgarten, and Engelberg. The Italian border is mostly Alpine, with Valais, Tarentaise, and Briançonnois forming border provinces, and ends at Nice. 
 
@@ -8,15 +8,15 @@ Royal Elections: There are seven electors based on the real-life HRE model, with
 
 Diet: The royal diet has the exclusive power to make laws, arbitrate major disputes, and force nobles to provide levies. Only the king can call it into session, but he is expected to do so fairly often. The diet itself consists of 72 votes, 60 territorial and 12 connected to titles. Counts represent themselves while smaller entities like cities are represented by collective benches.
 
-Army: There is no standing army, and nobles are allowed to levy their own forces, and often establish ad-hoc coalitions. If the diet calls for a general levy, this is carried out by the Constable of Arles, who is appointed by the king, and gains general command over all forces until the diet decides to disband the army. The diet often also allocates funds for the hiring of mercenaries, a task that is also entrusted to the Constable.
+Army: There is no standing army, and nobles are allowed to levy their own forces, and often establish ad-hoc coalitions. If the diet calls for a general levy, the nobles and free cities are expected to recruit soldiers or pay scrutage on their own, and the resources are then gathered by the Constable of Arles, who is appointed by the king, and gains general command over all forces, until the diet decides to disband the army. The diet often also allocates funds for the hiring of mercenaries, a task that is also entrusted to the Constable.
 
 Law: The legal system is officially based on Roman law, but in more rural areas Burgundian customary law is more common. While the king lacks much military or economic power, his ability to arbitrate disputes is one of his main sources of influence.
 
 Role of the Church: There are numerous territories ruled by bishops or abbots, as well as many bishops without territorial authority. The strong position of the church in the kingdom gives individual prelates functional independence from both the king and pope.
 
-Duchies: There are no territorial duchies, but there are three ducal titles, corresponding to the regions of Transjurania, Cisjurania, and Provence. They once carried authority as the preeminent noble in a region, but they have now only exist for prestige.
+Duchies: There are no territorial duchies, but there are three ducal titles, corresponding to the regions of Transjurania, Cisjurania, and Provence. They once carried authority as the preeminent noble in a region, but they have now only exist for prestige. Sometimes the duchies will hold their own consultations or assemblies, where the dukes will exercise some control, but these tend to be informal and non-binding.
 
-Women: The kingdom places more power in the hands of women compared to contemporary polities, with important female-only royal offices. It also permits them greater dynastic privileges to inherit noble titles and to possess seats in the diet, which was implemented to prevent noble houses from dying out. There are also a higher quantity of religious organizations and universities that admit women, sometimes eclusively.
+Women: The kingdom places more power in the hands of women compared to contemporary polities, with a couple important female-only ceremonial offices. It also permits them greater dynastic privileges to inherit noble titles and to possess dynastic seats in the diet, which was implemented to prevent noble houses from dying out. There are also a higher quantity of religious organizations and universities that admit women, sometimes exclusively.
 
 Major Noble Houses: Savoy (a string of territories between Vaud and Nice), Barcelona (Provence), Rouergue (counties on the Rhône between Valence and Avignon), Andechs (Franche-Comté), Albon (The County Palatine of the Rhône and Forez), Arduinici (Bresse and adjacent regions), Sabran (Forcalquier), Zähringen (Swiss lands between Basel and Meiringen), Thoire (County of Geneva), Habsburg (Aargau and adjacent regions)
 
@@ -26,9 +26,11 @@ Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, 
 Bishoprics: Basel, Lausanne, Geneva, Sion, Avignon, Viviers
 Abbeys: Engelberg, Bellelay, Moutier-Grandval, St. Maurice, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Lérins
 Counties: Ober-Aargau, Unter-Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Vaud, Chablais, Barcelonette, Nice, Briançonnois, Oberland, Valentinois, Diois, Venaissin, Outre-Saône, Bresse, Isère, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
-Lordships: Frickgau, Baden, Entlebuch, Willisau, Merenschwand, Grandson, Annonay, Beaujolais, Échallens, Faucigny, Gex, Romont, Aigle, Lanslebourg, Martigny, Murten, Grasburg, Nidau, Sisgau, Buchsgau, Aarburgund, Laufenburg, Hasli, Roquemaure, Bollène, Villars, Neuveville, Loveresse, Valangin, Salins, Auxonne, Barbentane, Lillebonne
-Valleys: Obwalden, Nidwalden
-Misc: Free Village of Miribel-les-Échelles, County Palatine of The Rhône (Elector), Landgraviate of Transjurania (Elector), Margraviate of Provence, Condominium of Freie Ämter, Republic of The Seven Zenden
+Lordships: Frickgau, Baden, Entlebuch, Willisau, Merenschwand, Grandson, Annonay, Beaujolais, Échallens, Faucigny, Gex, Romont, Aigle, Lanslebourg, Martigny, Murten, Grasburg, Nidau, Sisgau, Buchsgau, Aarburgund, Laufenburg, Hasli, Roquemaure, Bollène, Villars, Neuveville, Loveresse, Valangin, Salins, Auxonne, Barbentane, Satigny
+Free Peasant States: Valley of Obwalden, Valley of Nidwalden, Condominium of Freie Ämter, Republic of The Seven Zenden
+Misc: Free Village of Miribel-les-Échelles, County Palatine of The Rhône (Elector), Landgraviate of Transjurania (Elector), Margraviate of Provence
+
+(Ecclesiastical states are listed only if they possess immediate territory, there are many bishops and abbies that exist but without temporal land)
 
 I've also attached a map.
 

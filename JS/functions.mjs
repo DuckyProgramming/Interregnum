@@ -467,6 +467,8 @@ export function nameColor(name){
             return [0,114,11]
         case `Archbishop of Riga`:
             return [112,69,134]
+        case `Táborites`:
+            return [240,144,69]
         default:
             return [150,150,150]
     }

@@ -104,13 +104,21 @@ export class calc{
                 }
                 calc+=value
                 if(this.sides[a].force[b].number>0){
-                    count+=max(1,types.team[this.sides[a].force[b].team].rebel)
+                    let same=false
+                    for(let c=0,lc=b;c<lc;c++){
+                        if(this.sides[a].force[b].team==this.sides[a].force[c].team){
+                            same=true
+                        }
+                    }
+                    if(!same){
+                        count++
+                    }
                 }
             }
             calc*=this.result.command[a]
             calc*=[1,1.125,0.875][this.sides[a].smart]
-            if(this.sides[a].force>1){
-                calc*=(0.975-count*0.01)**(this.sides[a].force-1)
+            if(this.sides[a].force.length>1){
+                calc*=(0.975-count*0.01)**(this.sides[a].force.length-1)
             }
             if(this.sides[a].salient>0){
                 calc*=0.85**this.sides[a].salient

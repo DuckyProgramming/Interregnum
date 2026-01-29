@@ -13,7 +13,6 @@ GS - Lordship of Grasburg
 GX - Lordship of Gex
 LA - Lordship of Laufenburg
 LB - Abbey of Le Beausset
-LI - Lordship of Lillebonne
 LS - Bishopric of Lausanne
 LU - Abbey of Lure
 LV - Lordship of Loveresse
@@ -26,6 +25,7 @@ NI - Lordship of Nidau
 NW - Valley of Nidwalden
 RO - Lordship of Romont
 RQ - Lordship of Roquemaure
+SA - Lordship of Satigny
 SM - Abbey of St. Maurice
 VA - Lordship of Valangin
 WI - Lordship of Willisau

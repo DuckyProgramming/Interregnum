@@ -3,6 +3,14 @@ class operation{
         this.layer=layer
         this.page={main:0,anim:[0,0,0,0,0,0]}
         this.time=0
+        this.menuMap=[
+            [{name:`State Land`,id:13}],
+            [{name:`District States`,id:0},{name:`District Land`,id:5},{name:`District Diet`,id:8}],
+            [{name:`Region States`,id:10},{name:`Region Land`,id:11},{name:`Region Diet`,id:12}],
+            [{name:`Ruler Stats`,id:2},{name:`Ruler Land`,id:14},{name:`Ruler Diet`,id:7}],
+            [{name:`Title Stats`,id:3},{name:`Title Land`,id:15}],
+            [{name:`Level Stats`,id:4}],
+        ]
     }
     nameColor(name){
         switch(name){
@@ -64,20 +72,21 @@ class operation{
         this.stats={items:[],max:0}
         let sets=[]
         switch(type){
-            case 0: case 1: case 2: case 3: case 7: case 8: case 9: case 10: case 12:
-                let set=['district','district','rule','title','','','','rule','district','district','district','','district'][type]
-                let term=['state','state','state','state','','','','diet','diet','diet','state','','diet'][type]
+            case 0: case 1: case 2: case 3: case 7: case 8: case 9: case 10: case 12: case 14: case 15:
+                let set=['district','district','rule','title','','','','rule','district','district','district','','district','','rule','title'][type]
+                let term=['state','state','state','state','','','','diet','diet','diet','state','','diet','','state','state'][type]
                 for(let a=0,la=types[term].length;a<la;a++){
                     let account=false
+                    let value=type==14||type==15?types[term][a].area:1
                     for(let b=0,lb=sets.length;b<lb;b++){
                         if(sets[b].name==types[term][a][set]){
-                            sets[b].states++
+                            sets[b].states+=value
                             account=true
                             b=lb
                         }
                     }
                     if(!account){
-                        sets.push({name:types[term][a][set],states:1})
+                        sets.push({name:types[term][a][set],states:value})
                     }
                 }
                 if(type==1||type==9){
@@ -157,6 +166,8 @@ class operation{
             case 4:
                 this.stats.items.push({name:`States`,base:types.state.length})
                 this.stats.items.push({name:`Diet Seats`,base:types.diet.length})
+                this.stats.items.push({name:`Electors`,base:types.state.filter(state=>state.prestige.includes(`Elector`)).length})
+                this.stats.items.push({name:`Dukes`,base:types.state.filter(state=>state.prestige.includes(`Duke`)).length})
                 this.stats.max=types.state.length
             break
             case 5:
@@ -222,6 +233,12 @@ class operation{
                     this.stats.max=max(this.stats.max,sets[a].area)
                 }
             break
+            case 13:
+                for(let a=0,la=types.state.length;a<la;a++){
+                    this.stats.items.push({name:`${types.state[a].title} of ${types.state[a].name}`,base:types.state[a].area,color:types.state[a].rule})
+                    this.stats.max=max(this.stats.max,types.state[a].area)
+                }
+            break
         }
         this.stats.items.sort((a,b)=>{return a.base-b.base})
 
@@ -239,7 +256,7 @@ class operation{
             let value=this.stats.items[a].base
             if(value>0){
                 tick++
-                let color=this.nameColor(this.stats.items[a].name)
+                let color=this.nameColor(this.stats.items[a].color!=undefined?this.stats.items[a].color:this.stats.items[a].name)
                 switch(color.length){
                     case 1:
                         this.image.fill(color[0]+a%2*30)
@@ -280,83 +297,80 @@ class operation{
             if(this.page.anim[a]>0){
                 switch(a){
                     case 0:
+                        let baseline=20-27*this.menuMap.length
                         this.layer.noFill()
                         this.layer.stroke(0,this.page.anim[a])
                         this.layer.strokeWeight(4)
-                        for(let b=0,lb=5;b<lb;b++){
-                            for(let c=0,lc=b<2?3:b<3?2:1;c<lc;c++){
-                                this.layer.rect(c*180-lc*90+90,b*54-56,160,36,10)
+                        for(let b=0,lb=this.menuMap.length;b<lb;b++){
+                            for(let c=0,lc=this.menuMap[b].length;c<lc;c++){
+                                this.layer.rect(even(c,lc)*180,baseline+60+b*54,160,36,10)
                             }
                         }
                         this.layer.noStroke()
                         this.layer.fill(0,this.page.anim[a])
                         this.layer.textSize(48)
-                        this.layer.text('Arelat Tool',0,-116)
+                        this.layer.text('Arelat Tool',0,baseline)
                         this.layer.textSize(20)
-                        this.layer.text('District States',-180,-56)
-                        this.layer.text('District Land',0,-56)
-                        this.layer.text('District Diet',180,-56)
-                        this.layer.text('Region States',-180,-2)
-                        this.layer.text('Region Land',0,-2)
-                        this.layer.text('Region Diet',180,-2)
-                        this.layer.text('Ruler Stats',-90,52)
-                        this.layer.text('Ruler Diet',90,52)
-                        this.layer.text('Title Stats',0,106)
-                        this.layer.text('Level Stats',0,160)
+                        for(let b=0,lb=this.menuMap.length;b<lb;b++){
+                            for(let c=0,lc=this.menuMap[b].length;c<lc;c++){
+                                this.layer.text(this.menuMap[b][c].name,even(c,lc)*180,baseline+60+b*54)
+                            }
+                        }
                     break
                     case 1:
+                        let bar=this.stats.items.length>=50?10:20
                         this.layer.noStroke()
                         for(let b=0,lb=this.stats.items.length;b<lb;b++){
-                            let color=this.nameColor(this.stats.items[b].name)
+                            let color=this.nameColor(this.stats.items[b].color!=undefined?this.stats.items[b].color:this.stats.items[b].name)
                             switch(color.length){
                                 case 1:
                                     this.layer.fill(color[0],this.page.anim[a])
-                                    this.layer.rect(20*even(b,lb),250-200*this.stats.items[b].base/this.stats.max,17.5,400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.rect(bar*even(b,lb),250-200*this.stats.items[b].base/this.stats.max,bar*0.875,400*this.stats.items[b].base/this.stats.max)
                                 break
                                 case 3:
                                     this.layer.fill(...color,this.page.anim[a])
-                                    this.layer.rect(20*even(b,lb),250-200*this.stats.items[b].base/this.stats.max,17.5,400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.rect(bar*even(b,lb),250-200*this.stats.items[b].base/this.stats.max,bar*0.875,400*this.stats.items[b].base/this.stats.max)
                                 break
                                 case 6:
                                     this.layer.fill(color[0],color[1],color[2],this.page.anim[a])
-                                    this.layer.rect(20*even(b,lb)-4.875,250-200*this.stats.items[b].base/this.stats.max,8.75,400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.rect(bar*even(b,lb)-4.875,250-200*this.stats.items[b].base/this.stats.max,bar*0.4375,400*this.stats.items[b].base/this.stats.max)
                                     this.layer.fill(color[3],color[4],color[5],this.page.anim[a])
-                                    this.layer.rect(20*even(b,lb)+4.875,250-200*this.stats.items[b].base/this.stats.max,8.75,400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.rect(bar*even(b,lb)+4.875,250-200*this.stats.items[b].base/this.stats.max,bar*0.4375,400*this.stats.items[b].base/this.stats.max)
                                 break
                             }
                         }
                         this.layer.fill(0,this.page.anim[a])
-                        this.layer.textSize(14)
+                        this.layer.textSize(2+bar*0.6)
                         let total=[this.stats.items.reduce((acc,item)=>acc+item.base,0)]
                         for(let b=0,lb=this.stats.items.length;b<lb;b++){
                             this.layer.textAlign(LEFT,CENTER)
                             this.layer.push()
                             switch(this.stats.type){
                                 default:
-                                    this.layer.translate(20*even(b,lb),240-400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.translate(bar*even(b,lb),250-bar*0.5-400*this.stats.items[b].base/this.stats.max)
                                 break
                             }
                             this.layer.rotate(-90)
                             this.layer.text(this.stats.items[b].name,0,1)
                             this.layer.pop()
                             this.layer.textAlign(CENTER,CENTER)
-                            if(this.stats.items[b].base>=1000){
+                            if(this.stats.max>=1000){
                                 this.layer.textAlign(RIGHT,CENTER)
                                 this.layer.push()
-                                this.layer.translate(20*even(b,lb),255)
+                                this.layer.translate(bar*even(b,lb),255)
                                 this.layer.rotate(-90)
                                 this.layer.text(round(this.stats.items[b].base/total*10000)/100,0,1)
                                 this.layer.pop()
                                 this.layer.textAlign(CENTER,CENTER)
-                            }else if(this.stats.items[b].base<1000){
-                                this.layer.text(this.stats.items[b].base,20*even(b,lb),265)
+                            }else if(this.stats.max<1000){
+                                this.layer.text(this.stats.items[b].base,bar*even(b,lb),265)
                             }
                         }
                         this.layer.textSize(24)
                         this.layer.text(`${total[0]} Total`,0,-240)
                         this.layer.stroke(0,this.page.anim[a])
                         this.layer.strokeWeight(4)
-                        this.layer.line(-this.stats.items.length*10,250,this.stats.items.length*10,250)
+                        this.layer.line(-this.stats.items.length*bar/2,250,this.stats.items.length*bar/2,250)
                         this.layer.noFill()
                         this.layer.stroke(0,this.page.anim[a])
                         this.layer.strokeWeight(4)
@@ -399,36 +413,14 @@ class operation{
         let at={position:{x:(mouse.position.x-this.layer.width/2)/1.5,y:(mouse.position.y-this.layer.height/2)/1.5}}
         switch(this.page.main){
             case 0:
-                if(inPointBox(at,boxify(-180,-56,160,36))){
-                    this.page.main=1
-                    this.getStats(0)
-                }else if(inPointBox(at,boxify(0,-56,160,36))){
-                    this.page.main=1
-                    this.getStats(5)
-                }else if(inPointBox(at,boxify(180,-56,160,36))){
-                    this.page.main=1
-                    this.getStats(8)
-                }else if(inPointBox(at,boxify(-180,-2,160,36))){
-                    this.page.main=1
-                    this.getStats(10)
-                }else if(inPointBox(at,boxify(0,-2,160,36))){
-                    this.page.main=1
-                    this.getStats(11)
-                }else if(inPointBox(at,boxify(180,-2,160,36))){
-                    this.page.main=1
-                    this.getStats(12)
-                }else if(inPointBox(at,boxify(-90,52,160,36))){
-                    this.page.main=1
-                    this.getStats(2)
-                }else if(inPointBox(at,boxify(90,52,160,36))){
-                    this.page.main=1
-                    this.getStats(7)
-                }else if(inPointBox(at,boxify(0,106,160,36))){
-                    this.page.main=1
-                    this.getStats(3)
-                }else if(inPointBox(at,boxify(0,160,160,36))){
-                    this.page.main=1
-                    this.getStats(4)
+                let baseline=20-27*this.menuMap.length
+                for(let b=0,lb=this.menuMap.length;b<lb;b++){
+                    for(let c=0,lc=this.menuMap[b].length;c<lc;c++){
+                        if(inPointBox(at,boxify(even(c,lc)*180,baseline+60+b*54,160,36))){
+                            this.page.main=1
+                            this.getStats(this.menuMap[b][c].id)
+                        }
+                    }
                 }
             break
             case 1:

@@ -52,7 +52,7 @@ export class city{
         if(this.owner!=-1){
             team=this.operation.teams[types.teamRef[this.owner]]
             if(team==undefined){
-                throw new Error(`No Owner: ${this.owner}`)
+                throw new Error(`No Owner: ${this.owner}, ${this.data.rule}`)
             }
             team.cities.push(this)
         }
@@ -197,6 +197,9 @@ export class city{
             }
         }
     }
+    singleVisibility(type){
+        this.visibility=type==this.type?2:0
+    }
     updateUnits(){
         if(dev.close){
             for(let a=0,la=this.units.length;a<la;a++){
@@ -289,7 +292,7 @@ export class city{
             break
             case `map`: case `edit`:
                 if(dev.road){
-                    layer.strokeWeight(20)
+                    layer.strokeWeight(10)
                     for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
                         layer.stroke(...[[0,0,0],[0,0,100],[0,100,200]][types.city[this.type].connect[a].type])
                         try{

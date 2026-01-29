@@ -13,11 +13,11 @@ There's a total of 60 votes. 50 votes are connected to territories:
 [7] All archbishops have their own seats.
 [3] All bishops with large territories (Viviers, Sion, Basel) their own seats. Smaller territorial bishops and non-territorial bishops attend but cannot vote.
 [5] Minor lordships are organized into the following benches with one collective vote each:
-Doubs (Salins, Auxonne, Lillebonne, Neuveville, Loveresse, Valangin, Grandson),
+Doubs (Salins, Auxonne, Neuveville, Loveresse, Valangin, Grandson),
 Aargau (Frickgau, Baden, Willisau, Entlebuch, Merenschwand, Hasli),
 Transjurania (Laufenburg, Sisgau, Buchsgau, Nidau, Aarburgund, Murten, Grasburg, Romont, Échallens),
 Rhône (Annonay, Beaujolais, Villars, Roquemaure, Barbentane, Bollène),
-Alpine (Aigle, Faucigny, Lanslebourg, Martigny, Gex)
+Alpine (Aigle, Faucigny, Lanslebourg, Martigny, Gex, Satigny)
 [2] Territorial abbeys are organized into the following benches with one collective vote each
 Transjurania (Luxeuil, Lure, Baume-Les-Dames, Engelberg, Bellelay, Moutier-Grandval),
 Rhône (Lérins, Le Beausset, St. Maurice)
