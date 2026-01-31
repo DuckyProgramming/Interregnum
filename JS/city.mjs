@@ -190,7 +190,8 @@ export class city{
         if(turn>=0){
             if(this.visibility==0){
                 for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
-                    if(types.city[this.type].connect[a].type!=2&&this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]].units.some(unit=>{return unit.team==turn&&!unit.remove})){
+                    let cit=this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]]
+                    if(types.city[this.type].connect[a].type!=2&&cit.units.some(unit=>{return unit.team==turn&&(cit.sieged<=0||unit.type==0)&&!unit.remove})){
                         this.visibility=1
                     }
                 }
@@ -310,8 +311,13 @@ export class city{
                     layer.image(img,0,0,img.width,img.height)
                     if(this.owner!=-1){
                         img=[graphics.load.team[types.team[types.teamRef[this.owner]].loadIndex],graphics.load.unit[2]]
-                        layer.image(img[0],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
-                        layer.image(img[1],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
+                        if(this.data.type==7){
+                            layer.image(img[0],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
+                            layer.image(img[1],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
+                        }else{
+                            layer.image(img[0],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
+                            layer.image(img[1],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
+                        }
                     }
                     layer.pop()
                 }

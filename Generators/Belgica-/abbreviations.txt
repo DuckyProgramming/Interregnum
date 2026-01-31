@@ -1,0 +1,11 @@
+BE - Bishopric of Beauvais
+MB - Abbey of Munsterbilzen
+NO - Bishopric of Noyon
+TO - Bishopric of Tournai
+
+An - Antwerp
+At - Attigny
+Ca - Calais
+Me - Mechelen
+Mo - Montreuil
+Ve - Verdun

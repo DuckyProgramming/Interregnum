@@ -561,11 +561,15 @@ export function speed(speed){
 export function checkCity(){
     print(`Checking Order`)
     types.map.forEach(map=>{for(let a=1,la=map.city.length;a<la;a++){if(map.city[a].loc[1]<map.city[a-1].loc[1]){print(map.name,map.city[a-1].name,map.city[a].name)}}})
-    print(`Checking Self-Reference`)
+    print(`\nChecking Self-Reference`)
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{if(connect.name==city.name){print(city.name)}})))
-    print(`Checking Connections`)
+    print(`\nChecking Connections`)
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{findName(connect.name,map.city)})))
-    print(`Checking Repeats`)
+    print(`\nChecking Reversibility`)
+    types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{if(!map.city[findName(connect.name,map.city)].connect.some(connect2=>connect2.name==city.name)){print(city.name,connect.name)}})))
+    print(`\nChecking Connectivity`)
+    types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach(connect=>{if(!map.city[findName(connect.name,map.city)].connect.some(connect2=>connect2.name==city.name&&connect.type==connect2.type)){print(city.name,connect.name)}})))
+    print(`\nChecking Repeats`)
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach((connect,index)=>{if(city.connect.some((connect2,index2)=>index!=index2&&connect.name==connect2.name)){print(city.name,connect.name)}})))
 }
 export function checkTeam(){
