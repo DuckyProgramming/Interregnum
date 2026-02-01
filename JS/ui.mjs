@@ -57,7 +57,7 @@ export class ui{
         for(let a=0,la=20;a<la;a++){
             this.tabs.anim.push(0)
         }
-        for(let a=0,la=2;a<la;a++){
+        for(let a=0,la=3;a<la;a++){
             this.tabs.mapAnim.push(0)
         }
         for(let a=0,la=2;a<la;a++){
@@ -498,8 +498,8 @@ export class ui{
                         this.operation.cities.forEach(city=>{if(city.units.some(unit=>unit.team==this.turn.main)){total[0]+=city.position.x;total[1]+=city.position.y;total[2]++}})
                     }
                     if(total[2]>0){
-                        this.operation.zoom.shift.position.x=total[0]/total[2]
-                        this.operation.zoom.shift.position.y=total[1]/total[2]
+                        this.operation.zoom.shift.position.x=total[0]/total[2]*options.scale
+                        this.operation.zoom.shift.position.y=total[1]/total[2]*options.scale
                         this.operation.zoom.shift.active=true
                     }
                 }
@@ -733,8 +733,8 @@ export class ui{
                             this.select.moved=[]
                             this.select.targetCity=city
                             if(!dev.close){
-                                this.operation.zoom.shift.position.x=types.city[city].loc[0]
-                                this.operation.zoom.shift.position.y=types.city[city].loc[1]
+                                this.operation.zoom.shift.position.x=types.city[city].loc[0]*options.scale
+                                this.operation.zoom.shift.position.y=types.city[city].loc[1]*options.scale
                                 this.operation.zoom.shift.active=true
                             }
                             let leave=false
@@ -838,8 +838,8 @@ export class ui{
                         if(!types.team[playing].auto||bypass){
                             this.select.secondaryCity=city
                             if(!dev.close){
-                                this.operation.zoom.shift.position.x=types.city[city].loc[0]
-                                this.operation.zoom.shift.position.y=types.city[city].loc[1]
+                                this.operation.zoom.shift.position.x=types.city[city].loc[0]*options.scale
+                                this.operation.zoom.shift.position.y=types.city[city].loc[1]*options.scale
                                 this.operation.zoom.shift.active=true
                             }
                             let set=this.operation.cities[this.select.targetCity].getNotUnits(aligned)
@@ -894,8 +894,8 @@ export class ui{
                         if(!types.team[playing].auto||bypass){
                             this.select.targetCity=city
                             if(!dev.close){
-                                this.operation.zoom.shift.position.x=types.city[city].loc[0]
-                                this.operation.zoom.shift.position.y=types.city[city].loc[1]
+                                this.operation.zoom.shift.position.x=types.city[city].loc[0]*options.scale
+                                this.operation.zoom.shift.position.y=types.city[city].loc[1]*options.scale
                                 this.operation.zoom.shift.active=true
                             }
                             let set=this.operation.cities[this.select.city].getNotUnits(aligned)
@@ -951,8 +951,8 @@ export class ui{
                             let turn=this.turn.main
                             if(cit.data.type!=7&&cit.getSpawn(3)>0){
                                 if(!dev.close){
-                                    this.operation.zoom.shift.position.x=cit.position.x
-                                    this.operation.zoom.shift.position.y=cit.position.y
+                                    this.operation.zoom.shift.position.x=cit.position.x*options.scale
+                                    this.operation.zoom.shift.position.y=cit.position.y*options.scale
                                     this.operation.zoom.shift.active=true
                                 }
                                 this.turn.pinned=true
@@ -1032,8 +1032,8 @@ export class ui{
                         this.moveTab(1)
                         this.select.city=city
                         if(!dev.close){
-                            this.operation.zoom.shift.position.x=types.city[city].loc[0]
-                            this.operation.zoom.shift.position.y=types.city[city].loc[1]
+                            this.operation.zoom.shift.position.x=types.city[city].loc[0]*options.scale
+                            this.operation.zoom.shift.position.y=types.city[city].loc[1]*options.scale
                             this.operation.zoom.shift.active=true
                         }
                         this.select.trigger=true
@@ -1307,8 +1307,8 @@ export class ui{
             }
             this.updateVisibility()
         }
-        this.operation.zoom.shift.position.x=cit.position.x
-        this.operation.zoom.shift.position.y=cit.position.y
+        this.operation.zoom.shift.position.x=cit.position.x*options.scale
+        this.operation.zoom.shift.position.y=cit.position.y*options.scale
         this.operation.zoom.shift.active=true
     }
     updateVisibility(){
@@ -2013,6 +2013,15 @@ export class ui{
                                 layer.rect(0,tick+25,160,40,10)
                                 layer.fill(0)
                                 layer.textSize(15)
+                                layer.text(`Settings`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(count,70,tick+15)
+                                tick+=50
+                                count++
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
                                 layer.text(`Stats`,0,tick+25)
                                 layer.textSize(10)
                                 layer.text(count,70,tick+15)
@@ -2075,6 +2084,55 @@ export class ui{
                                     tick+=30
                                     count++
                                 }
+                            break
+                            case 2:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Viewing Map`,0,40)
+                                layer.textSize(18)
+                                layer.text(`Total Turns: ${this.turn.total}`,0,tick+7.5)
+                                tick+=25
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Exit`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(`Enter`,60,tick+15)
+                                tick+=50
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(100)
+                                layer.rect(0,tick+25,3,40)
+                                layer.fill(0)
+                                layer.rect(-55,tick+25,18,2.4)
+                                layer.rect(55,tick+25,18,2.4)
+                                layer.rect(55,tick+25,2.4,18)
+                                layer.textSize(15)
+                                layer.text(`Difficulty: ${options.strength}`,0,tick+25)
+                                tick+=50
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(100)
+                                layer.rect(0,tick+25,3,40)
+                                layer.fill(0)
+                                layer.rect(-55,tick+25,18,2.4)
+                                layer.rect(55,tick+25,18,2.4)
+                                layer.rect(55,tick+25,2.4,18)
+                                layer.textSize(15)
+                                layer.text(`Unit Size: ${options.unitSize}`,0,tick+25)
+                                tick+=50
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(100)
+                                layer.rect(0,tick+25,3,40)
+                                layer.fill(0)
+                                layer.rect(-55,tick+25,18,2.4)
+                                layer.rect(55,tick+25,18,2.4)
+                                layer.rect(55,tick+25,2.4,18)
+                                layer.textSize(15)
+                                layer.text(`Map Size: ${options.scale}`,0,tick+25)
+                                tick+=50
                             break
                         }
                         layer.pop()
@@ -2444,8 +2502,8 @@ export class ui{
                                     this.moveTab(1)
                                     this.select.city=city
                                     if(!dev.close){
-                                        this.operation.zoom.shift.position.x=types.city[city].loc[0]
-                                        this.operation.zoom.shift.position.y=types.city[city].loc[1]
+                                        this.operation.zoom.shift.position.x=types.city[city].loc[0]*options.scale
+                                        this.operation.zoom.shift.position.y=types.city[city].loc[1]*options.scale
                                         this.operation.zoom.shift.active=true
                                     }
                                     this.select.trigger=true
@@ -2582,8 +2640,8 @@ export class ui{
                                                     this.moveTab(1)
                                                     this.select.city=city
                                                     if(!dev.close){
-                                                        this.operation.zoom.shift.position.x=types.city[city].loc[0]
-                                                        this.operation.zoom.shift.position.y=types.city[city].loc[1]
+                                                        this.operation.zoom.shift.position.x=types.city[city].loc[0]*options.scale
+                                                        this.operation.zoom.shift.position.y=types.city[city].loc[1]*options.scale
                                                         this.operation.zoom.shift.active=true
                                                     }
                                                     this.select.trigger=true
@@ -2646,8 +2704,8 @@ export class ui{
                                             if(cit.type!=-1){
                                                 if(cit.getNotUnits(aligned).reduce((acc,unit)=>acc+unit.value,0)<10000&&this.spawn(cit,this.turn.main)){
                                                     if(!dev.close){
-                                                        this.operation.zoom.shift.position.x=types.city[this.select.city].loc[0]
-                                                        this.operation.zoom.shift.position.y=types.city[this.select.city].loc[1]
+                                                        this.operation.zoom.shift.position.x=types.city[this.select.city].loc[0]*options.scale
+                                                        this.operation.zoom.shift.position.y=types.city[this.select.city].loc[1]*options.scale
                                                         this.operation.zoom.shift.active=true
                                                     }
                                                 }else{
@@ -2680,8 +2738,8 @@ export class ui{
                                             this.moveTab(1)
                                             this.select.city=city
                                             if(!dev.close){
-                                                this.operation.zoom.shift.position.x=types.city[city].loc[0]
-                                                this.operation.zoom.shift.position.y=types.city[city].loc[1]
+                                                this.operation.zoom.shift.position.x=types.city[city].loc[0]*options.scale
+                                                this.operation.zoom.shift.position.y=types.city[city].loc[1]*options.scale
                                                 this.operation.zoom.shift.active=true
                                             }
                                             this.select.trigger=true
@@ -2815,12 +2873,15 @@ export class ui{
                         case 4:
                             if(types.team[this.turn.main].auto){
                                 for(let a=0,la=this.operation.teams[this.turn.main].allies.length;a<la;a++){
+                                    if(a>=this.operation.teams[this.turn.main].allies.length){
+                                        throw new Error(`Overallied`)
+                                    }
                                     if(floor(random(0,types.team[this.turn.main].name==`Free Company`?3:types.team[this.turn.main].allies.includes(types.team[this.operation.teams[this.turn.main].allies[a]].name)?15:5))<=1){
                                         if(!dev.close){
                                             this.operation.teams[this.operation.teams[this.turn.main].allies[a]].notif.push(`Alliance Broken\nWith ${this.operation.teams[this.turn.main].name}`)
                                         }
-                                        this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.splice(this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.indexOf(this.turn.main),1)
-                                        this.operation.teams[this.turn.main].allies.splice(a,1)
+                                        let num=this.operation.teams[this.turn.main].allies.length
+                                        this.operation.teams[this.turn.main].removeAlly(this.operation.teams[this.operation.teams[this.turn.main].allies[a]])
                                         a--
                                         la--
                                         this.updateUnits()
@@ -3511,11 +3572,9 @@ export class ui{
                 }
                 if(inPointBox(rel,boxify(-60,rows*30+475,120,50))&&options.strength>0.2){
                     options.strength=round(options.strength*10-1)/10
-                    options.strengthEdit=true
                 }
                 if(inPointBox(rel,boxify(60,rows*30+475,120,50))&&options.strength<2){
                     options.strength=round(options.strength*10+1)/10
-                    options.strengthEdit=true
                 }
                 if(inPointBox(rel,boxify(250,rows*30+475,240,50))){
                     options.hq=!options.hq
@@ -3759,8 +3818,7 @@ export class ui{
                                         if(!dev.close){
                                             this.operation.teams[this.operation.teams[this.turn.main].allies[a]].notif.push(`Alliance Broken\nWith ${this.operation.teams[this.turn.main].name}`)
                                         }
-                                        this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.splice(this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.indexOf(this.turn.main),1)
-                                        this.operation.teams[this.turn.main].allies.splice(a,1)
+                                        this.operation.teams[this.turn.main].removeAlly(this.operation.teams[a])
                                         this.updateUnits()
                                         this.updateSiege()
                                         break
@@ -4011,6 +4069,10 @@ export class ui{
                         }
                         tick+=50
                         if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.tabs.mapActive=2
+                        }
+                        tick+=50
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
                             this.tabs.mapActive=1
                         }
                         tick+=50
@@ -4040,6 +4102,22 @@ export class ui{
                             this.tabs.mapActive=0
                         }
                         tick+=52
+                    break
+                    case 2:
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.tabs.mapActive=0
+                        }
+                        tick+=50
+                        for(let a=0,la=3;a<la;a++){
+                            let set=[`strength`,`unitSize`,`scale`][a]
+                            if(inPointBox(rel,boxify(-40,tick+25,80,50))&&options[set]>0.2){
+                                options[set]=round(options[set]*10-1)/10
+                            }
+                            if(inPointBox(rel,boxify(40,tick+25,80,50))&&options[set]<2){
+                                options[set]=round(options[set]*10+1)/10
+                            }
+                            tick+=50
+                        }
                     break
                 }
             break
@@ -4141,10 +4219,8 @@ export class ui{
                     }
                 }else if(key==`-`&&options.strength>0.2){
                     options.strength=round(options.strength*10-1)/10
-                    options.strengthEdit=true
                 }else if(key==`+`&&options.strength<2){
                     options.strength=round(options.strength*10+1)/10
-                    options.strengthEdit=true
                 }else if(key==`#`){
                     options.hq=!options.hq
                 }else if(key==`Enter`){
@@ -4347,8 +4423,7 @@ export class ui{
                                     if(!dev.close){
                                         this.operation.teams[this.operation.teams[this.turn.main].allies[a]].notif.push(`Alliance Broken\nWith ${this.operation.teams[this.turn.main].name}`)
                                     }
-                                    this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.splice(this.operation.teams[this.operation.teams[this.turn.main].allies[a]].allies.indexOf(this.turn.main),1)
-                                    this.operation.teams[this.turn.main].allies.splice(a,1)
+                                    this.operation.teams[this.turn.main].removeAlly(this.operation.teams[a])
                                     this.updateUnits()
                                     this.updateSiege()
                                     break
@@ -4587,6 +4662,10 @@ export class ui{
                             this.operation.transitionManager.begin(`main`)
                         }
                         if(key==count.toString()){
+                            this.tabs.mapActive=2
+                        }
+                        count++
+                        if(key==count.toString()){
                             this.tabs.mapActive=1
                         }
                         count++
@@ -4612,6 +4691,11 @@ export class ui{
                         count++
                     break
                     case 1:
+                        if(key==`Enter`){
+                            this.tabs.mapActive=0
+                        }
+                    break
+                    case 2:
                         if(key==`Enter`){
                             this.tabs.mapActive=0
                         }

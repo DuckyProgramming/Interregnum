@@ -469,6 +469,8 @@ export function nameColor(name){
             return [112,69,134]
         case `Táborites`:
             return [240,144,69]
+        case `Ziegenhain`:
+            return [110,161,185]
         default:
             return [150,150,150]
     }

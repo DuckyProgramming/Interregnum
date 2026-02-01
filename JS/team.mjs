@@ -53,10 +53,10 @@ export class team{
     }
     removeAlly(other){
         if(this.allies.includes(other.type)){
-            this.allies.splice(this.allies.indexOf(other.type))
+            this.allies.splice(this.allies.indexOf(other.type),1)
         }
         if(other.allies.includes(this.type)){
-            other.allies.splice(other.allies.indexOf(this.type))
+            other.allies.splice(other.allies.indexOf(this.type),1)
         }
         if(this==other){
             throw new Error(`Self Alliance Removal`)

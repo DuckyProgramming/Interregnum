@@ -173,16 +173,21 @@ export class operation{
                 /*if(this.map==2){
                     layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
                 }*/
-                this.cities.forEach((city,index,array)=>array[array.length-1-index].display(layer,this.scene))
+                for(let a=0,la=this.cities.length;a<la;a++){
+                    this.cities[la-1-a].display(layer,this.scene)
+                }
             break
             case `main`:
                 layer.push()
                 layer.translate(layer.width*0.5-this.zoom.position.x,layer.height*0.5-this.zoom.position.y)
+                layer.scale(options.scale)
                 layer.image(graphics.load.map[this.map],graphics.load.map[this.map].width*0.5,graphics.load.map[this.map].height*0.5)
                 /*if(this.map==2){
                     layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
                 }*/
-                this.cities.forEach((city,index,array)=>array[array.length-1-index].display(layer,this.scene))
+                for(let a=0,la=this.cities.length;a<la;a++){
+                    this.cities[la-1-a].display(layer,this.scene)
+                }
                 layer.pop()
             break
             case `map`:
@@ -195,7 +200,9 @@ export class operation{
                 /*if(this.map==2){
                     layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
                 }*/
-                this.cities.forEach((city,index,array)=>array[array.length-1-index].display(layer,this.scene))
+                for(let a=0,la=this.cities.length;a<la;a++){
+                    this.cities[la-1-a].display(layer,this.scene)
+                }
                 layer.pop()
             break
             case `edit`:
@@ -208,7 +215,9 @@ export class operation{
                 /*if(this.map==2){
                     layer.image(graphics.load.map[this.map-1],1000,2250,2000,4500,0,0,2000,4500)
                 }*/
-                this.cities.forEach((city,index,array)=>array[array.length-1-index].display(layer,this.scene))
+                for(let a=0,la=this.cities.length;a<la;a++){
+                    this.cities[la-1-a].display(layer,this.scene)
+                }
                 layer.pop()
             break
         }
@@ -232,8 +241,8 @@ export class operation{
                     this.ui.update(layer,this.scene)
                 }
                 if(this.zoom.shift.active&&!dev.close){
-                    this.zoom.shift.position.x=constrain(this.zoom.shift.position.x,layer.width*0.5,graphics.load.map[this.map].width+this.ui.width-layer.width*0.5)
-                    this.zoom.shift.position.y=constrain(this.zoom.shift.position.y,layer.height*0.5,graphics.load.map[this.map].height-layer.height*0.5)
+                    this.zoom.shift.position.x=constrain(this.zoom.shift.position.x,layer.width*0.5,graphics.load.map[this.map].width*options.scale+this.ui.width-layer.width*0.5)
+                    this.zoom.shift.position.y=constrain(this.zoom.shift.position.y,layer.height*0.5,graphics.load.map[this.map].height*options.scale-layer.height*0.5)
                     if(distPos(this.zoom,this.zoom.shift)<0.5){
                         this.zoom.shift.active=false
                     }else{
@@ -253,7 +262,7 @@ export class operation{
         let rel
         switch(this.scene){
             case `main`:
-                rel={position:{x:mouse.position.x+this.zoom.position.x-layer.width*0.5,y:mouse.position.y+this.zoom.position.y-layer.height*0.5}}
+                rel={position:{x:(mouse.position.x+this.zoom.position.x-layer.width*0.5)/options.scale,y:(mouse.position.y+this.zoom.position.y-layer.height*0.5)/options.scale}}
                 if(this.zoom.dragging<5){
                     this.cities.forEach(city=>city.onClick(layer,mouse,this.scene,rel))
                     this.ui.onClick(layer,mouse,this.scene)
@@ -278,8 +287,8 @@ export class operation{
     onDrag(layer,mouse,previous,button){
         switch(this.scene){
             case `main`:
-                this.zoom.position.x=constrain(this.zoom.position.x-(mouse.position.x-previous.position.x)*(button==`right`?3:1),layer.width*0.5,graphics.load.map[this.map].width+this.ui.width-layer.width*0.5)
-                this.zoom.position.y=constrain(this.zoom.position.y-(mouse.position.y-previous.position.y)*(button==`right`?3:1),layer.height*0.5,graphics.load.map[this.map].height-layer.height*0.5)
+                this.zoom.position.x=constrain(this.zoom.position.x-(mouse.position.x-previous.position.x)*(button==`right`?3:1),layer.width*0.5,graphics.load.map[this.map].width*options.scale+this.ui.width-layer.width*0.5)
+                this.zoom.position.y=constrain(this.zoom.position.y-(mouse.position.y-previous.position.y)*(button==`right`?3:1),layer.height*0.5,graphics.load.map[this.map].height*options.scale-layer.height*0.5)
             break
             case `map`: case `edit`:
                 this.zoom.map=constrain(

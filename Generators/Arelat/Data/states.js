@@ -70,8 +70,8 @@ types={state:[
     prestige:[],
     area:2744,
   },{
-    name:`Miribel-les-Échelles`,
-    title:`Free Village`,
+    name:`Mirabel`,
+    title:`Village Concord`,
     district:`Bresse`,
     rule:`Burghers`,
     prestige:[],

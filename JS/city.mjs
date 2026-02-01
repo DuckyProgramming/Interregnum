@@ -278,6 +278,7 @@ export class city{
             case `main`:
                 layer.push()
                 layer.translate(this.position.x,this.position.y)
+                layer.scale(1/options.scale)
                 this.units.forEach(unit=>unit.display(layer))
                 if(this.number>0&&this.data.type!=7){
                     let variant=this.operation.ui.spawnVariant(this,this.operation.ui.turn.main)
@@ -336,7 +337,7 @@ export class city{
                     let cap=0
                     for(let a=0,la=this.units.length;a<la;a++){
                         if(a!=0&&!this.units[a].remove&&!this.units[a].combining){
-                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].term==`minim`?-1:1)
+                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].term==`minim`?-1:1)*options.unitSize
                         }
                         this.units[a].goal.position.y=cap
                         if(this.units[a].combining){
@@ -369,7 +370,7 @@ export class city{
                             this.units[a].update(this.visibility)
                         }
                         if(!this.units[a].remove&&!this.units[a].combining){
-                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].term==`minim`?-1:1)
+                            cap+=(33-this.units[a].type*9)*(this.data.name==`Ulm`&&types.map[this.operation.map].term==`minim`?-1:1)*options.unitSize
                         }
                     }
                     this.number=smoothAnim(this.number,this.operation.ui.tabs.active==16,0,1,15)

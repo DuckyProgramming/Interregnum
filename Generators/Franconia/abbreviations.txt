@@ -1,0 +1,53 @@
+AN - Margraviate of Ansbach
+BD - Margraviate of Baden-Durlach
+BM - Bishopric of Bamberg
+BY - Margraviate of Bayreuth
+BZ - Lordship of Bretzenheim
+GL - Lordship of Gleichen
+HA - County of Hanau
+HD - Landgraviate of Hesse-Darmstadt
+HL - Lordship of Hohenlimburg
+HK - Landgraviate of Hesse-Kassel
+HO - County of Hohenlohe
+HZ - County of Holzappel
+IT - Lordship of Itter
+KA - County of Katzelnelnbogen
+KF - Abbey of Kaufungen
+KL - Lordship of Klingenburg
+LA - County of Langenburg
+MZ - Archbishopric of Mainz
+NS - County of Nassau
+PH - County Palatine of Sponheim
+PN - County Palatine of Neuberg
+PS - County Palatine of Sulzbach
+PV - County Palatine of Veldenz
+RA - Raugraviate
+RG - Rhinegraviate
+RH - County Palatine of the Rhine
+RL - County of Reichenbach-Lessonitz
+SB - Lordship of Schönborn
+SC - Duchy of Saxe-Coburg
+SH - Lordship of Schmalkalden
+SP - Bishopric of Speyer
+WH - County of Wertheim
+WI - County of Wittgenstein
+WO - Bishopric of Worms
+WP - Duchy of Westphalia
+WÜ - Bishopric of Würzburg
+
+Di - Dinkelsbühl
+Fr - Frankfurt
+Ge - Gelnhausen
+Ha - Hall
+He - Heilbronn
+La - Landau
+Mo - Mosbach
+Nü - Nürnberg
+Ro - Rothenburg
+Sc - Schweinfurt
+Sp - Speyer
+We - Wetzlar
+Wi - Windsheim
+Wm - Wimpfen
+Wo - Worms
+Wß - Weißenburg
