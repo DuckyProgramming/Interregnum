@@ -4,7 +4,7 @@ BA - Abbey of Baume-Les-Dames
 BB - Lordship of Barbentane
 BD - Lordship of Baden
 BE - Abbey of Bellelay
-ÉC - Lordship of Échallens
+CO - Abbey of Cornillon
 EN - Abbey of Engelberg
 FÄ - Condominium of Freie Ämter
 GE - Bishopric of Geneva

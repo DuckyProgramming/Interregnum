@@ -94,7 +94,7 @@ export class city{
         if(differ){
             this.sieged+=differ/10
         }else{
-            this.sieged=0
+            this.sieged=max(0,this.sieged-1)
         }
         this.units.forEach(unit=>unit.newTurn())
     }
@@ -105,7 +105,7 @@ export class city{
     spawn(type){
         let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
         let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
-        let mult=types.team[team].auto?options.strength:1
+        let mult=(types.team[team].auto?options.strength:1)*(this.data.type==9?0.5:1)
         let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
         this.units.push(new unit(this,team,0,num))
         this[set]=type==0?max(0,this[set]-constants.spawn.spend*[1,1,1.25,0.5,1.5][type]):this[set]-constants.spawn.spend*[1,1,1.25,0.5,1.5][type]
@@ -119,7 +119,7 @@ export class city{
     getSpawn(type){
         let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
         let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
-        let mult=types.team[team].auto?options.strength:1
+        let mult=(types.team[team].auto?options.strength:1)*(this.data.type==9?0.5:1)
         let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
         return max(0,num)
     }
@@ -281,7 +281,7 @@ export class city{
                 layer.scale(1/options.scale)
                 this.units.forEach(unit=>unit.display(layer))
                 if(this.number>0&&this.data.type!=7){
-                    let variant=this.operation.ui.spawnVariant(this,this.operation.ui.turn.main)
+                    let variant=this.data.type==10?4:this.operation.ui.spawnVariant(this,this.operation.ui.turn.main)
                     if(variant>=0){
                         layer.fill(0,this.number)
                         layer.stroke(255,this.number)
@@ -312,12 +312,19 @@ export class city{
                     layer.image(img,0,0,img.width,img.height)
                     if(this.owner!=-1){
                         img=[graphics.load.team[types.team[types.teamRef[this.owner]].loadIndex],graphics.load.unit[2]]
-                        if(this.data.type==7){
-                            layer.image(img[0],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
-                            layer.image(img[1],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
-                        }else{
-                            layer.image(img[0],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
-                            layer.image(img[1],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
+                        switch(this.data.type){
+                            case 7:
+                                layer.image(img[0],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
+                                layer.image(img[1],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
+                            break
+                            case 9: case 10:
+                                layer.image(img[0],0,img[1].height*0.25-9,img[1].width*0.45,img[1].height*0.45)
+                                layer.image(img[1],0,img[1].height*0.25-9,img[1].width*0.45,img[1].height*0.45)
+                            break
+                            default:
+                                layer.image(img[0],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
+                                layer.image(img[1],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
+                            break
                         }
                     }
                     layer.pop()

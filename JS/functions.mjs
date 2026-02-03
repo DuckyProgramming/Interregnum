@@ -1,4 +1,4 @@
-import {inputs,training} from './variables.mjs'
+import {inputs,training, types} from './variables.mjs'
 import {agentset} from './agentset.mjs'
 import {lsin,lcos} from './graphics.mjs'
 //calculatory
@@ -365,11 +365,11 @@ export function nameColor(name){
     switch(name){
         case `Barcelona`: case `Provence`: case `Lower Burgundy`: case `Auvergne`: case `Babenberg`: case `Herse`:
             return [218,106,81]
-        case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`: case `Feuchtwangen`:
+        case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`: case `Feuchtwangen`: case `Milly`:
             return [156,142,199]
         case `Hohenzollern`: case `Šurborgs`:
             return [110,148,204]
-        case `Thoire`: case `Île-de-Bourgogne`: case `Kőszegi`: case `Biron`:
+        case `Thoire`: case `Île-de-Bourgogne`: case `Kőszegi`: case `Biron`: case `Rethel`:
             return [1206,60,131]
         case `Sabran`: case `Forcalquier`: case `Leuven`:
             return [150,114,229]
@@ -381,9 +381,9 @@ export function nameColor(name){
             return [196,154,39]
         case `Arduinici`: case `Bresse`: case `Arenberg`:
             return [206,165,158]
-        case `Lorraine`: case `Haut-Lorraine`: case `Kettler`:
+        case `Lorraine`: case `Haut-Lorraine`: case `Kettler`: case `Ibelin`:
             return [229,152,152]
-        case `Albon`: case `Cisjurania`: case `Dauphiné`: case `Bellingshausen`:
+        case `Albon`: case `Cisjurania`: case `Dauphiné`: case `Bellingshausen`: case `Fauquembergues`:
             return [228,153,70]
         case `Rouergue`: case `Drôme`: case `Ascania`: case `Dampierre`:
             return [128,159,112]
@@ -405,7 +405,7 @@ export function nameColor(name){
             return [108,173,184]
         case `Minor`:
             return [220,201,166]
-        case `Burghers`: case `Alsace`: case `League of Cities`: case `Cheb`:
+        case `Burghers`: case `Alsace`: case `League of Cities`: case `Cheb`: case `Riga`:
             return [218,24,30]
         case `Geneva`:
             return [225,44,83]
@@ -471,6 +471,10 @@ export function nameColor(name){
             return [240,144,69]
         case `Ziegenhain`:
             return [110,161,185]
+        case `Hierges`:
+            return [128,196,178]
+        case `Cordano`:
+            return [81,165,97]
         default:
             return [150,150,150]
     }
@@ -583,6 +587,14 @@ export function checkTeam(){
 export function checkTotalStats(){
     let totals=[0,0,0]
     current.teams.forEach(team=>{totals[0]+=team.kills;totals[1]+=team.deaths;totals[2]+=team.deserters})
+    print(totals)
+}
+export function checkPick(){
+    let totals=[]
+    types.team.forEach(team=>totals.push(0))
+    for(let a=0,la=10000;a<la;a++){
+        totals[current.ui.pickTurn()]++
+    }
     print(totals)
 }
 //dev

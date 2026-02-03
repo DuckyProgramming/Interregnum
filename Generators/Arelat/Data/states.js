@@ -224,6 +224,13 @@ types={state:[
     prestige:[],
     area:978,
   },{
+    name:`Cornillon`,
+    title:`Abbey`,
+    district:`Provence`,
+    rule:`Ecclesiastical`,
+    prestige:[],
+    area:533,
+  },{
     name:`Lérins`,
     title:`Abbey`,
     district:`Provence`,
@@ -301,7 +308,7 @@ types={state:[
     prestige:[],
     area:53662,
   },{
-    name:`Annonay`,
+    name:`Tournon`,
     title:`Lordship`,
     district:`Dauphiné`,
     rule:`Albon`,
@@ -363,13 +370,6 @@ types={state:[
     rule:`Savoy`,
     prestige:[],
     area:30727,
-  },{
-    name:`Échallens`,
-    title:`Lordship`,
-    district:`Romandie`,
-    rule:`Savoy`,
-    prestige:[],
-    area:2682,
   },{
     name:`Faucigny`,
     title:`Lordship`,
@@ -565,7 +565,7 @@ types={state:[
     district:`Provence`,
     rule:`Barcelona`,
     prestige:[`Elector`,`Duke`],
-    area:312632,
+    area:311669,
   },{
     name:`Franche-Comté`,
     title:`County`,
