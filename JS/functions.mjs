@@ -580,7 +580,7 @@ export function checkCity(){
 }
 export function checkTeam(){
     print(`Checking Vacuous`)
-    types.map.forEach(map=>map.team.forEach(team=>{if(!map.city.some(city=>city.rule==team.name)){print(map.name,team.name)}}))
+    types.map.forEach(map=>map.team.forEach(team=>{if(!(map.city.some(city=>city.rule==team.name)||map.city.some(city=>city.type==5||city.type==10)&&team.name==`Free Company`||map.city.some(city=>city.type==8)&&team.name==`Russian Raid`)){print(map.name,team.name)}}))
     print(`Checking Type`)
     types.map.forEach(map=>map.team.forEach(team=>{if(team.type==undefined||findName(team.type,types.teamType)==-1){print(map.name,team.name)}}))
 }

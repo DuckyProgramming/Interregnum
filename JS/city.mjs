@@ -106,7 +106,7 @@ export class city{
         let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
         let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
         let mult=(types.team[team].auto?options.strength:1)*(this.data.type==9?0.5:1)
-        let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
+        let num=floor(this[set]/100/[1,4,types.teamKey[1].includes(this.owner)?1.25:2,4,1.25][type]*mult)*100
         this.units.push(new unit(this,team,0,num))
         this[set]=type==0?max(0,this[set]-constants.spawn.spend*[1,1,1.25,0.5,1.5][type]):this[set]-constants.spawn.spend*[1,1,1.25,0.5,1.5][type]
         if(num==0){
@@ -120,7 +120,7 @@ export class city{
         let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
         let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
         let mult=(types.team[team].auto?options.strength:1)*(this.data.type==9?0.5:1)
-        let num=floor(this[set]/100/[1,4,2,4,1.25][type]*mult)*100
+        let num=floor(this[set]/100/[1,4,types.teamKey[1].includes(this.owner)?1.25:2,4,1.25][type]*mult)*100
         return max(0,num)
     }
     summonUnit(team,type,value){

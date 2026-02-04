@@ -53,6 +53,10 @@ export class ui{
             this.hq.num=-2
         }
     }
+    async loadMap(id){
+        let root=INNER_INDEX?`../`:``
+        graphics.load.map[id]=await new Promise((resolve)=>{loadImage(`${root}Assets/map/${types.map[id].term}.png`,img=>resolve(img))})
+    }
     initial(){
         for(let a=0,la=20;a<la;a++){
             this.tabs.anim.push(0)
@@ -1334,7 +1338,7 @@ export class ui{
         switch(scene){
             case `title`:
                 let groups=[]
-                for(let a=1,la=types.map.length;a<la;a++){
+                for(let a=0,la=types.map.length;a<la;a++){
                     if(!types.map[a].stack){
                         groups.push([])
                     }
@@ -1761,7 +1765,7 @@ export class ui{
                                         layer.rect(0,tick+12.5,160,25,10)
                                         layer.fill(0)
                                         layer.textSize(12)
-                                        layer.text(`${this.operation.teams[a].offers.includes(this.turn.main)?`Accept`:this.operation.teams[a].cores.length>0&&!this.operation.teams[a].cores.some(city=>!aligned.includes(types.teamRef[city.owner])||city.units.some(unit=>!aligned.includes(unit.team)))?`Force`:this.operation.teams[this.turn.main].offers.includes(a)?`Pending`:`Offer`}: ${types.team[a].name}`,0,tick+12.5)
+                                        layer.text(`${this.operation.teams[a].offers.includes(this.turn.main)?`Accept`:this.operation.teams[a].cores.length>0&&!this.operation.teams[a].cores.some(city=>city.data.type!=7&&(!aligned.includes(types.teamRef[city.owner])||city.units.some(unit=>!aligned.includes(unit.team))))?`Force`:this.operation.teams[this.turn.main].offers.includes(a)?`Pending`:`Offer`}: ${types.team[a].name}`,0,tick+12.5)
                                         layer.textSize(10)
                                         layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
                                         tick+=35
@@ -2949,7 +2953,7 @@ export class ui{
                                         }
                                         this.operation.teams[roll].addAlly(this.operation.teams[this.turn.main])
                                         this.operation.teams[roll].offers.splice(this.operation.teams[roll].offers.indexOf(this.turn.main),1)
-                                    }else if(this.operation.teams[roll].cores.length>0&&!this.operation.teams[roll].cores.some(city=>!aligned.includes(types.teamRef[city.owner])||city.units.some(unit=>!aligned.includes(unit.team)))){
+                                    }else if(this.operation.teams[roll].cores.length>0&&!this.operation.teams[roll].cores.some(city=>city.data.type!=7&&(!aligned.includes(types.teamRef[city.owner])||city.units.some(unit=>!aligned.includes(unit.team))))){
                                         if(!dev.close){
                                             this.operation.teams[roll].notif.push(`Alliance Forced\nWith ${this.operation.teams[this.turn.main].name}`)
                                         }
@@ -3537,7 +3541,7 @@ export class ui{
             case `title`:
                 rel={position:{x:mouse.position.x-layer.width*0.5,y:mouse.position.y}}
                 let groups=[]
-                for(let a=1,la=types.map.length;a<la;a++){
+                for(let a=0,la=types.map.length;a<la;a++){
                     if(!types.map[a].stack){
                         groups.push([])
                     }
@@ -3546,6 +3550,7 @@ export class ui{
                 for(let a=0,la=groups.length;a<la;a++){
                     for(let b=0,lb=groups[a].length;b<lb;b++){
                         if(inPointBox(rel,boxify((b+0.5)/lb*240-120,a*60+610-la*30,240/lb,50))){
+                            this.loadMap(groups[a][b])
                             this.operation.transitionManager.begin(`setup`)
                             this.operation.nextMap=groups[a][b]
                             this.select.auto=[]
@@ -3858,7 +3863,7 @@ export class ui{
                                                 }
                                                 this.operation.teams[a].addAlly(this.operation.teams[this.turn.main])
                                                 this.operation.teams[a].offers.splice(this.operation.teams[a].offers.indexOf(this.turn.main),1)
-                                            }else if(this.operation.teams[a].cores.length>0&&!this.operation.teams[a].cores.some(city=>!aligned.includes(types.teamRef[city.owner])||city.units.some(unit=>!aligned.includes(unit.team)))){
+                                            }else if(this.operation.teams[a].cores.length>0&&!this.operation.teams[a].cores.some(city=>city.data.type!=7&&(!aligned.includes(types.teamRef[city.owner])||city.units.some(unit=>!aligned.includes(unit.team))))){
                                                 if(!dev.close){
                                                     this.operation.teams[a].notif.push(`Alliance Forced\nWith ${this.operation.teams[this.turn.main].name}`)
                                                 }
@@ -4196,13 +4201,16 @@ export class ui{
         let count=1
         switch(scene){
             case `title`:
-                for(let a=1,la=types.map.length;a<la;a++){
-                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
+                let ticker=0
+                for(let a=0,la=types.map.length;a<la;a++){
+                    if(key==`abcdefghijklmnopqrstuvwxyz`[ticker]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[ticker]){
+                        this.loadMap(a)
                         this.operation.transitionManager.begin(`setup`)
                         this.operation.nextMap=a
                         this.select.auto=[]
                         types.map[a].team.forEach(item=>this.select.auto.push(true))
                     }
+                    ticker++
                 }
             break
             case `setup`:
@@ -4462,7 +4470,7 @@ export class ui{
                                             }
                                             this.operation.teams[a].addAlly(this.operation.teams[this.turn.main])
                                             this.operation.teams[a].offers.splice(this.operation.teams[a].offers.indexOf(this.turn.main),1)
-                                        }else if(this.operation.teams[a].cores.length>0&&!this.operation.teams[a].cores.some(city=>!aligned.includes(types.teamRef[city.owner])||city.units.some(unit=>!aligned.includes(unit.team)))){
+                                        }else if(this.operation.teams[a].cores.length>0&&!this.operation.teams[a].cores.some(city=>city.data.type!=7&&(!aligned.includes(types.teamRef[city.owner])||city.units.some(unit=>!aligned.includes(unit.team))))){
                                             if(!dev.close){
                                                 this.operation.teams[a].notif.push(`Alliance Forced\nWith ${this.operation.teams[this.turn.main].name}`)
                                             }

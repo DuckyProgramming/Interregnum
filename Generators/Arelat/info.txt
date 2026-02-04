@@ -28,7 +28,7 @@ Abbeys: Engelberg, Bellelay, Moutier-Grandval, St. Maurice, Lure, Luxeuil, Baume
 Counties: Ober-Aargau, Unter-Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Vaud, Chablais, Barcelonette, Nice, Briançonnois, Oberland, Valentinois, Diois, Venaissin, Outre-Saône, Bresse, Isère, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
 Lordships: Frickgau, Baden, Entlebuch, Willisau, Merenschwand, Grandson, Tournon, Beaujolais, Faucigny, Gex, Romont, Aigle, Lanslebourg, Martigny, Murten, Grasburg, Nidau, Sisgau, Buchsgau, Aarburgund, Laufenburg, Hasli, Roquemaure, Bollène, Villars, Neuveville, Loveresse, Valangin, Salins, Auxonne, Barbentane, Satigny
 Free Peasant States: Valley of Obwalden, Valley of Nidwalden, Condominium of Freie Ämter, Republic of The Seven Zenden
-Misc: Village Concord of Mirabel, County Palatine of The Rhône (Elector), Landgraviate of Transjurania (Elector), Margraviate of Provence
+Misc: Village Concord of Mirabel (An alliance consisting of seven small villages near the Rhône named Mirabel or similar), County Palatine of The Rhône (Elector), Landgraviate of Transjurania (Elector), Margraviate of Provence
 
 (Ecclesiastical states are listed only if they possess immediate territory, there are many bishops and abbies that exist but without temporal land)
 
