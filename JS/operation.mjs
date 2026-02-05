@@ -16,6 +16,12 @@ export class operation{
         this.speed={main:dev.speed?10000:1,move:true}
         this.cities=[]
         this.teams=[]
+        this.records=[
+            {name:`Biggest Stack`,value:0,team:[]},
+            {name:`Biggest Army`,value:0,team:[]},
+            {name:`Most Cities`,value:0,team:[]},
+            {name:`Largest Battle`,value:[0,0],team:[]},
+        ]
         this.scene=`title`
         this.initial()
         this.loadMap(this.map)
@@ -120,7 +126,7 @@ export class operation{
         this.ui.initialAgents()
     }
     initial(){
-        this.calc=new calc()
+        this.calc=new calc(this)
         this.ui=new ui(this)
         this.transitionManager=new transitionManager(this)
         constants.init=true

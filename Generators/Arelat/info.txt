@@ -1,6 +1,6 @@
-I'm working on an alternate history scenario where the Kingdom of Arles (officially the Kingdom of Burgundy, but I prefer the term "Arles" as the kingdom has Frankish rather than Burgundian origins) survives into the later Middle Ages, staying mostly territorially stable, as in this timeline King Rudolph III was much more capable and had an heir. The kingdom recognizes the title of the Holy Roman Emperor, but otherwise ignores the empire and its authority and functions independently. The kingdom is an elective monarchy with a fairly weak king and competing nobles, as well as many ecclesiastical states and free royal cities. Here are some of the details:  
+I'm working on an alternate history scenario where the Kingdom of Arles (officially the Kingdom of Burgundy, but I prefer the term "Arles" as the kingdom has Frankish rather than Burgundian origins) survives into the later Middle Ages, staying mostly territorially stable, as in this timeline King Rudolph III was much more capable and had an heir. The kingdom recognizes the title of the Holy Roman Emperor but otherwise ignores the empire and its authority and functions independently. The kingdom is an elective monarchy with a fairly weak king and competing nobles, as well as many ecclesiastical states and free royal cities. Here are some of the details:
 
-Borders: The borders mostly follow the historical kingdom. The French border runs mostly along the Rhône and Saône, though Arles has some bridgeheads on the western sides of the rivers. The border with Germany runs through the north of Franche-Comté, Basel, Bremgarten, and Engelberg. The Italian border is mostly Alpine, with Valais, Tarentaise, and Briançonnois forming border provinces, and ends at Nice. 
+Borders: The borders mostly follow the historical kingdom. The French border runs mostly along the Rhône and Saône, though Arles has some bridgeheads on the western sides of the rivers. The border with Germany runs through the north of Franche-Comté, Basel, Bremgarten, and Engelberg. The Italian border is mostly Alpine, with Valais, Tarentaise, and Briançonnois forming border provinces, and ends at Nice.
 
 Capital: Arles remains the legal and spiritual capital of the kingdom, but it's difficult to defend and distant from the northern parts of the kingdom. As the king's personal domain is the County of Geneva, and he has good relations with the city's burghers and bishop, the administration has mostly moved there.
 
@@ -28,10 +28,8 @@ Abbeys: Engelberg, Bellelay, Moutier-Grandval, St. Maurice, Lure, Luxeuil, Baume
 Counties: Ober-Aargau, Unter-Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Vaud, Chablais, Barcelonette, Nice, Briançonnois, Oberland, Valentinois, Diois, Venaissin, Outre-Saône, Bresse, Isère, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
 Lordships: Frickgau, Baden, Entlebuch, Willisau, Merenschwand, Grandson, Tournon, Beaujolais, Faucigny, Gex, Romont, Aigle, Lanslebourg, Martigny, Murten, Grasburg, Nidau, Sisgau, Buchsgau, Aarburgund, Laufenburg, Hasli, Roquemaure, Bollène, Villars, Neuveville, Loveresse, Valangin, Salins, Auxonne, Barbentane, Satigny
 Free Peasant States: Valley of Obwalden, Valley of Nidwalden, Condominium of Freie Ämter, Republic of The Seven Zenden
-Misc: Village Concord of Mirabel (An alliance consisting of seven small villages near the Rhône named Mirabel or similar), County Palatine of The Rhône (Elector), Landgraviate of Transjurania (Elector), Margraviate of Provence
+Misc: Village Concord of Mirabel (An alliance consisting of eight small villages near the Rhône named Mirabel, Miribel, or Mirabelle), County Palatine of The Rhône (Elector), Landgraviate of Transjurania (Elector), Margraviate of Provence
 
 (Ecclesiastical states are listed only if they possess immediate territory, there are many bishops and abbies that exist but without temporal land)
-
-I've also attached a map.
 
 Briefly, do you understand the above information?

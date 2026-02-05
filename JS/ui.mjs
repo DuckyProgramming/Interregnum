@@ -1,5 +1,5 @@
 import {dev,types,options,constants,graphics,training} from './variables.mjs'
-import {findName,last,distPos,randin,inPointBox,boxify,smoothAnim,floor,ceil,random,min,max,round,constrain,nameColor} from './functions.mjs'
+import {findName,last,distPos,randin,inPointBox,boxify,smoothAnim,floor,ceil,random,min,max,round,constrain,nameColor,even} from './functions.mjs'
 import {lsin,lcos} from './graphics.mjs'
 import {agent} from './agent.mjs'
 import {agentset} from './agentset.mjs'
@@ -61,7 +61,7 @@ export class ui{
         for(let a=0,la=20;a<la;a++){
             this.tabs.anim.push(0)
         }
-        for(let a=0,la=3;a<la;a++){
+        for(let a=0,la=4;a<la;a++){
             this.tabs.mapAnim.push(0)
         }
         for(let a=0,la=2;a<la;a++){
@@ -2037,6 +2037,15 @@ export class ui{
                                 layer.rect(0,tick+25,160,40,10)
                                 layer.fill(0)
                                 layer.textSize(15)
+                                layer.text(`Records`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(count,70,tick+15)
+                                tick+=50
+                                count++
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
                                 layer.text(`Graph`,0,tick+25)
                                 layer.textSize(10)
                                 layer.text(count,70,tick+15)
@@ -2139,6 +2148,40 @@ export class ui{
                                 layer.textSize(15)
                                 layer.text(`Map Size: ${options.scale}`,0,tick+25)
                                 tick+=50
+                            break
+                            case 3:
+                                layer.fill(0)
+                                layer.textSize(24)
+                                layer.text(`Viewing Map`,0,40)
+                                layer.textSize(18)
+                                layer.text(`Total Turns: ${this.turn.total}`,0,tick+7.5)
+                                tick+=25
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Exit`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(`Enter`,60,tick+15)
+                                tick+=50
+                                for(let a=0,la=this.operation.records.length;a<la;a++){
+                                    layer.fill(120)
+                                    layer.rect(0,tick+35,160,60,10)
+                                    layer.fill(0)
+                                    layer.textSize(15)
+                                    layer.text(this.operation.records[a].name,0,tick+17.5)
+                                    if(typeof this.operation.records[a].value==`number`){
+                                        layer.text(this.operation.records[a].value,0,tick+32.5)
+                                    }else{
+                                        layer.text(`${this.operation.records[a].value[0]} vs ${this.operation.records[a].value[1]}`,0,tick+32.5)
+                                    }
+                                    for(let b=0,lb=this.operation.records[a].team.length;b<lb;b++){
+                                        let img=[graphics.load.team[types.team[this.operation.records[a].team[b]].loadIndex],graphics.load.unit[2]]
+                                        layer.image(img[0],even(b,lb)*36,tick+50,img[1].width*0.18,img[1].height*0.18)
+                                        layer.image(img[1],even(b,lb)*36,tick+50,img[1].width*0.18,img[1].height*0.18)
+                                    }
+                                    tick+=70
+                                }
                             break
                         }
                         layer.pop()
@@ -4087,6 +4130,10 @@ export class ui{
                         }
                         tick+=50
                         if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.tabs.mapActive=3
+                        }
+                        tick+=50
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
                             this.operation.transitionManager.begin(`graph`)
                         }
                         tick+=50
@@ -4107,7 +4154,7 @@ export class ui{
                         }
                         tick+=50
                     break
-                    case 1:
+                    case 1: case 3:
                         if(inPointBox(rel,boxify(0,tick+25,160,40))){
                             this.tabs.mapActive=0
                         }
@@ -4683,6 +4730,10 @@ export class ui{
                         }
                         count++
                         if(key==count.toString()){
+                            this.tabs.mapActive=3
+                        }
+                        count++
+                        if(key==count.toString()){
                             this.operation.transitionManager.begin(`graph`)
                         }
                         count++
@@ -4703,12 +4754,7 @@ export class ui{
                         }
                         count++
                     break
-                    case 1:
-                        if(key==`Enter`){
-                            this.tabs.mapActive=0
-                        }
-                    break
-                    case 2:
+                    case 1: case 2: case 3:
                         if(key==`Enter`){
                             this.tabs.mapActive=0
                         }

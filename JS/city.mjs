@@ -55,6 +55,10 @@ export class city{
                 throw new Error(`No Owner: ${this.owner}, ${this.data.rule}`)
             }
             team.cities.push(this)
+            if(team.cities.length>this.operation.records[2].value){
+                this.operation.records[2].value=team.cities.length
+                this.operation.records[2].team=[team.type]
+            }
         }
     }
     setCore(owner){
@@ -115,6 +119,7 @@ export class city{
         if(types.teamKey[0].includes(types.team[team].name)){
             throw new Error(`Headquarters Spawn`)
         }
+        this.updateRecords(team)
     }
     getSpawn(type){
         let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
@@ -125,6 +130,16 @@ export class city{
     }
     summonUnit(team,type,value){
         this.units.push(new unit(this,team,type,value))
+        this.updateRecords(team)
+    }
+    updateRecords(team){
+        if(!dev.close){
+            let total=this.operation.cities.reduce((acc,city)=>acc+city.units.reduce((acc2,unit)=>acc2+(unit.team==team?unit.value:0),0),0)
+            if(total>this.operation.records[1].value){
+                this.operation.records[1].value=total
+                this.operation.records[1].team=[team]
+            }
+        }
     }
     raided(raider){
         let num=round(this.recruits/20+25)*10
@@ -370,6 +385,10 @@ export class city{
                                     this.units[b].value+=this.units[a].value
                                     this.units[b].edit.num+=this.units[a].edit.num
                                     this.units[b].target=floor(random(0,2))==0?this.units[a].target:this.units[b].target
+                                    if(this.units[b].value>this.operation.records[0].value){
+                                        this.operation.records[0].value=this.units[b].value
+                                        this.operation.records[0].team=[this.units[b].team]
+                                    }
                                 }
                             }
                         }

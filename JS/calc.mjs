@@ -1,7 +1,8 @@
 import {types} from './variables.mjs'
 import {constrain,random,floor,min,max,round} from './functions.mjs'
 export class calc{
-    constructor(){
+    constructor(operation){
+        this.operation=operation
         this.variant=0
         this.terrain={list:[],select:0}
         this.sides=[{stack:false,strategy:0,smart:0,salient:0,force:[]},{stack:false,strategy:0,smart:0,salient:0,force:[]}]
@@ -33,6 +34,15 @@ export class calc{
         this.terrain.list=[]
     }
     calc(){
+        if(!dev.close){
+            let total=this.sides.reduce((acc,side)=>acc+side.force.reduce((acc2,force)=>acc2+force.number,0),0)
+            if(total>this.operation.records[3].value[0]+this.operation.records[3].value[1]){
+                this.operation.records[3].value[0]=this.sides[0].force.reduce((acc,force)=>acc+force.number,0)
+                this.operation.records[3].value[1]=this.sides[1].force.reduce((acc,force)=>acc+force.number,0)
+                this.operation.records[3].team=[]
+                this.sides.forEach(side=>side.force.forEach(force=>{if(!this.operation.records[3].team.includes(force.team)){this.operation.records[3].team.push(force.team)}}))
+            }
+        }
         this.sides.forEach(side=>{if(side.force.length==0){throw new Error('Fight 0')}})
         this.sides.forEach(side=>side.force.forEach(force=>force.dist=constrain(force.dist,0,this.distSet.length-1)))
         this.result.winner=[]
