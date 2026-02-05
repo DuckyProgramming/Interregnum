@@ -1,4 +1,4 @@
-import {types} from './variables.mjs'
+import {types,dev} from './variables.mjs'
 import {constrain,random,floor,min,max,round} from './functions.mjs'
 export class calc{
     constructor(operation){

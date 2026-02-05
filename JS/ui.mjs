@@ -2544,7 +2544,39 @@ export class ui{
                                         possible.push(a)
                                     }
                                 }
-                                if(possible.length==0){
+                                if(possible.includes(this.select.city)){
+                                    this.moveTab(1)
+                                    if(!dev.close){
+                                        this.operation.zoom.shift.position.x=types.city[this.select.city].loc[0]*options.scale
+                                        this.operation.zoom.shift.position.y=types.city[this.select.city].loc[1]*options.scale
+                                        this.operation.zoom.shift.active=true
+                                    }
+                                    this.select.trigger=true
+                                    this.agency.time=dev.instant?0:5
+                                    this.agency.count++
+                                }else if(possible.includes(this.select.targetCity)){
+                                    this.moveTab(1)
+                                    this.select.city=this.select.targetCity
+                                    if(!dev.close){
+                                        this.operation.zoom.shift.position.x=types.city[this.select.city].loc[0]*options.scale
+                                        this.operation.zoom.shift.position.y=types.city[this.select.city].loc[1]*options.scale
+                                        this.operation.zoom.shift.active=true
+                                    }
+                                    this.select.trigger=true
+                                    this.agency.time=dev.instant?0:5
+                                    this.agency.count++
+                                }else if(possible.includes(this.select.secondaryCity)){
+                                    this.moveTab(1)
+                                    this.select.city=this.select.secondaryCity
+                                    if(!dev.close){
+                                        this.operation.zoom.shift.position.x=types.city[this.select.city].loc[0]*options.scale
+                                        this.operation.zoom.shift.position.y=types.city[this.select.city].loc[1]*options.scale
+                                        this.operation.zoom.shift.active=true
+                                    }
+                                    this.select.trigger=true
+                                    this.agency.time=dev.instant?0:5
+                                    this.agency.count++
+                                }else if(possible.length==0){
                                     this.newTurn()
                                 }else{
                                     let city=possible[floor(random(0,possible.length))]
