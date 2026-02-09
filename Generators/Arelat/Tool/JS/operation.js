@@ -64,6 +64,8 @@ class operation{
                 return [254,135,133]
             case `Gruyères`:
                 return [193,144,112]
+            case `Ivrea`:
+                return [231,125,221]
             default:
                 return [150]
         }

@@ -65,6 +65,20 @@ export class city{
         let team=this.operation.teams[types.teamRef[owner]]
         team.cores.push(this)
     }
+    modifCore(owner){
+        this.setCore(owner)
+        this.data.rule=owner
+        this.ruleIndex=types.teamRef[this.data.rule]
+    }
+    editCore(core){
+        let team=this.operation.teams[types.teamRef[this.data.rule]]
+        if(team.cores.includes(this)){
+            team.cores.splice(team.cores.indexOf(this),1)
+        }
+        this.data.rule=core
+        this.ruleIndex=types.teamRef[this.data.rule]
+        this.setCore(core)
+    }
     initial(){
         if(this.units.length==0&&this.owner!=-1){
             let mult=types.team[types.teamRef[this.owner]].auto?options.strength:1

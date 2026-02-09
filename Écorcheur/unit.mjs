@@ -1,0 +1,104 @@
+import {types,graphics,options} from './variables.mjs'
+import {distPos,smoothAnim,moveTowardVec} from './functions.mjs'
+export class unit{
+    constructor(operation,player,x,y,team,type,value){
+        this.operation=operation
+        this.player=player
+        this.position={x:x,y:y}
+        this.team=team
+        this.type=type
+        this.value=value
+        this.goal={position:{x:x,y:y},city:-1,time:0}
+        this.retreat={speed:1}
+        this.remove=false
+        this.fade={main:0,trigger:true}
+        this.speed={main:0,max:[0,5,4,3,2][type]*(this.player?1.5:1)}
+        this.time=0
+    }
+    save(){
+        let composite={
+            player:this.player,
+            team:this.team,
+            type:this.type,
+            value:this.value,
+            position:this.position,
+            goal:this.goal,
+            retreat:this.retreat,
+            remove:this.remove,
+            speed:this.speed,
+            time:this.time,
+        }
+        return composite
+    }
+    load(composite){
+        this.player=composite.player
+        this.team=composite.team
+        this.type=composite.type
+        this.value=composite.value
+        this.position=composite.position
+        this.goal=composite.goal
+        this.retreat=composite.retreat
+        this.remove=composite.remove
+        this.speed=composite.speed
+        this.time=composite.time
+    }
+    display(layer,scene){
+        switch(scene){
+            case `main`:
+                if(this.fade.main>0){
+                    layer.push()
+                    layer.translate(this.position.x,this.position.y)
+                    let img=[graphics.load.team[types.team[this.team].loadIndex],graphics.load.unit[this.type]]
+                    layer.image(img[0],0,0,(img[1].width*options.unitSize*0.5-0.5)*this.fade.main,(img[1].height*options.unitSize*0.5-0.5)*this.fade.main)
+                    layer.image(img[1],0,0,img[1].width*options.unitSize*0.5*this.fade.main,img[1].height*options.unitSize*0.5*this.fade.main)
+                    layer.noStroke()
+                    layer.fill(0,this.fade.main)
+                    layer.textSize(15)
+                    layer.text(this.value,0,[20,26,29,32,35][this.type]*options.unitSize+3)
+                    layer.pop()
+                }
+            break
+        }
+    }
+    update(){
+        this.time++
+        this.fade.main=smoothAnim(this.fade.main,this.fade.trigger,0,1,30)
+        if(this.fade.main<=0&&!this.fade.trigger){
+            this.remove=true
+        }
+        let distGoal=distPos(this,this.goal)
+        if(this.speed.max>0){
+            if(distGoal>1){
+                this.speed.main=smoothAnim(this.speed.main,true,0,this.speed.max,this.speed.max/15)
+                this.position=moveTowardVec(this,this.goal,this.speed.main*this.retreat.speed)
+                if(this.player){
+                    this.operation.time.active=true
+                }
+            }else{
+                this.speed.main=smoothAnim(this.speed.main,false,0,this.speed.max,this.speed.max/15)
+                if(this.player){
+                    this.operation.time.active=false
+                }
+            }
+        }
+        if(this.player){
+            this.operation.zoom.position.x=this.position.x
+            this.operation.zoom.position.y=this.position.y
+        }else{
+            switch(this.type){
+                case 1:
+                    if(distGoal<=1){
+                        this.goal.time++
+                    }
+                    if(this.goal.city==-1||this.goal.time>=30){
+                        this.goal.time=0
+                        this.goal.city=this.goal.nodes[this.goal.tick]
+                        this.goal.tick=1-this.goal.tick
+                        this.goal.position.x=this.goal.city.position.x
+                        this.goal.position.y=this.goal.city.position.y+60
+                    }
+                break
+            }
+        }
+    }
+}

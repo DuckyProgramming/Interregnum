@@ -2,42 +2,42 @@ types.district=[
     {
         name:`Île-de-Bourgogne`,
         region:`Île-de-Bourgogne`,
-        area:161784,
+        area:64489
     },{
         name:`Franche-Comté`,
         region:`Transjurania`,
-        area:839540,
+        area:346704
     },{
         name:`Helvetie`,
         region:`Transjurania`,
-        area:498553,
+        area:282948
     },{
         name:`Romandie`,
         region:`Transjurania`,
-        area:733951,
+        area:263932
     },{
         name:`Bresse`,
         region:`Cisjurania`,
-        area:317515,
+        area:163908
     },{
         name:`Alpes`,
         region:`Cisjurania`,
-        area:396714,
+        area:156243
     },{
         name:`Dauphiné`,
         region:`Cisjurania`,
-        area:792094,
+        area:343139
     },{
         name:`Drôme`,
         region:`Provence`,
-        area:663190,
+        area:285562
     },{
         name:`Forcalquier`,
         region:`Provence`,
-        area:522459,
+        area:227140
     },{
         name:`Provence`,
         region:`Provence`,
-        area:797340,
+        area:336603
     },
 ]
