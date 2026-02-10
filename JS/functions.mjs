@@ -383,7 +383,7 @@ export function nameColor(name){
             return [194,154,183]
         case `Lillebonne`:
             return [160,65,72]
-        case `Württemberg`:
+        case `Württemberg`: case `Montfaucon`:
             return [196,154,39]
         case `Arduinici`: case `Bresse`: case `Arenberg`:
             return [206,165,158]

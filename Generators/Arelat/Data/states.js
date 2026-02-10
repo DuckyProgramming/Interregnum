@@ -532,7 +532,7 @@ types={state:[
     prestige:[],
     area:12156,
   },{
-    name:`Bollène`,
+    name:`Tricastin`,
     title:`Lordship`,
     district:`Drôme`,
     rule:`Rouergue`,

@@ -23,11 +23,6 @@ export function mouseClicked(){
         current.onClick(graphics.main,{position:{...inputs.mouse.rel}})
     }
 }
-export function mouseDragged(){
-    if(constants.init){
-        current.onDrag(graphics.main,{position:{...inputs.mouse.rel}},{position:{...inputs.mouse.previous.rel}},mouseButton)
-    }
-}
 export function keyPressed(){
     if(constants.init){
         current.onKey(graphics.main,key)
@@ -37,7 +32,6 @@ window.setup=setup
 window.draw=draw
 window.windowResized=windowResized
 window.mouseClicked=mouseClicked
-window.mouseDragged=mouseDragged
 window.keyPressed=keyPressed
 
 window.types=types

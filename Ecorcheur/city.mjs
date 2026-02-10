@@ -43,6 +43,8 @@ export class city{
         this.operation.teams[this.rule].cities.push(this)
         this.operation.teams[this.rule].cores.push(this)
     }
+    tick(){
+    }
     display(layer,scene){
         switch(scene){
             case `main`:
@@ -60,10 +62,8 @@ export class city{
                     layer.image(img,0,0,img.width*0.1,img.height*0.1)
                 }
                 layer.fill(255)
-                layer.textSize(img.height*0.04)
-                layer.textAlign(LEFT,CENTER)
-                layer.text(this.name,img.width*0.05,img.height*0.004)
-                layer.textAlign(CENTER,CENTER)
+                layer.textSize(img.height*0.02)
+                layer.text(this.name,0,img.height*0.04)
                 layer.pop()
             break
         }

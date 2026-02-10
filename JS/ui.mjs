@@ -386,7 +386,7 @@ export class ui{
             if(options.respawn){
                 this.operation.teams.forEach(team=>{
                     let aligned=[team.type,...team.allies]
-                    if(!this.operation.cities.some(city=>city.getUnits(aligned).length>0||city.getNotUnits(aligned).length<=0)&&!team.cores.some(city=>city.owner==-1||city.owner==team.name)&&!types.teamKey[0].includes(team.name)&&!types.teamKey[1].includes(team.name)&&team.name!=`Free Company`){
+                    if(!this.operation.cities.some(city=>city.getUnits([team.type]).length>0)&&!team.cores.some(city=>city.owner==-1||city.owner==team.name||city.getNotUnits(aligned).length<=0)&&!types.teamKey[0].includes(team.name)&&!types.teamKey[1].includes(team.name)&&team.name!=`Free Company`){
                         let total=0
                         team.cores.forEach(core=>{
                             total++

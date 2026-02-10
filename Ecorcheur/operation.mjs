@@ -10,9 +10,11 @@ export class operation{
     constructor(){
         this.map=0
         this.nextMap=this.map
-        this.zoom={position:{x:graphics.load.map[this.map].width*0.5,y:graphics.load.map[this.map].height*0.5}}
-        this.time={active:0,total:36000}
+        this.zoom={position:{x:graphics.load.map[this.map][0].width*0.5,y:graphics.load.map[this.map][0].height*0.5}}
+        this.time={active:false,total:36000,base:36000,pass:0}
         this.resources={money:1000,food:500}
+        this.prisoners={lost:0,gained:0}
+        this.edge={x:0,y:0}
         this.id={city:0}
         this.cities=[]
         this.units=[]
@@ -110,6 +112,9 @@ export class operation{
 
         types.team.forEach(team=>team.loadIndex=findList(team.term,listing.team))
         this.initialElements()
+
+        this.edge.x=graphics.load.map[this.map][0].width*this.scale,
+        this.edge.y=graphics.load.map[this.map][0].height*this.scale
     }
     initial(){
         this.calc=new calc(this)
@@ -125,33 +130,30 @@ export class operation{
         for(let a=0,la=types.city[0].length;a<la;a++){
             this.addCity(types.city[0][a],true)
         }
-        let leftover=[]
         let groups=[]
-        for(let a=0,la=types.city[1].length;a<la;a++){
-            for(let b=0,lb=groups.length+1;b<lb;b++){
-                if(b==lb-1){
-                    groups.push({cities:[types.city[1][a]],rule:types.city[1][a].rule})
-                }else if(groups[b].rule==types.city[1][a].rule){
-                    groups[b].cities.push(types.city[1][a])
-                    break
+        let leftover=[]
+        for(let a=0,la=2;a<la;a++){
+            leftover=[]
+            groups.push([])
+            for(let b=0,lb=types.city[a+1].length;b<lb;b++){
+                for(let c=0,lc=groups[a].length+1;c<lc;c++){
+                    if(c==lc-1){
+                        groups[a].push({cities:[types.city[a+1][b]],rule:types.city[a+1][b].rule})
+                    }else if(groups[a][c].rule==types.city[a+1][b].rule){
+                        groups[a][c].cities.push(types.city[a+1][b])
+                        break
+                    }
                 }
             }
-        }
-        for(let a=0,la=groups.length;a<la;a++){
-            this.addCity(groups[a].cities.splice(randindex(groups[a].cities),1)[0],true)
-            leftover.push(...groups[a].cities)
-        }
-        for(let a=0,la=60-this.cities.length;a<la;a++){
-            this.addCity(leftover.splice(randindex(leftover),1)[0],true)
-        }
-        for(let a=0,la=types.city[2].length;a<la;a++){
-            this.addCity(types.city[2][a],true)
-        }
-        for(let a=0,la=121-this.cities.length;a<la;a++){
-            this.addCity(types.city[3].splice(randindex(types.city[3]),1)[0],floor(random(0,2))==0)
-        }
-        for(let a=0,la=125-this.cities.length;a<la;a++){
-            this.addCity(types.city[4].splice(randindex(types.city[4]),1)[0],floor(random(0,2))==0)
+            for(let b=0,lb=groups[a].length;b<lb;b++){
+                if(a==0||!groups[0].some(group=>group.rule==groups[a][b].rule)){
+                    this.addCity(groups[a][b].cities.splice(randindex(groups[a][b].cities),1)[0],true)
+                }
+                leftover.push(...groups[a][b].cities)
+            }
+            for(let b=0,lb=60+a*80-this.cities.length;b<lb;b++){
+                this.addCity(leftover.splice(randindex(leftover),1)[0],a==1?floor(random(0,2))==0:true)
+            }
         }
     }
     initialComponents(){
@@ -164,7 +166,7 @@ export class operation{
         }
         let interp=[random(0.2,0.8),random(0.2,0.8)]
         let loc=mapVec(mapVec(cit[0].position,cit[1].position,interp[0]),cit[2].position,interp[1])
-        while(this.units.some(unit=>distPos(unit,{position:loc})<50)){
+        while(this.units.some(unit=>distPos(unit,{position:loc})<100)){
             cit=[randin(this.cities),randin(this.cities),randin(this.cities)]
             while(cit[0].id==cit[1].id||cit[0].id==cit[2].id||cit[1].id==cit[2].id){
                 cit=[randin(this.cities),randin(this.cities),randin(this.cities)]
@@ -173,6 +175,8 @@ export class operation{
             loc=mapVec(mapVec(cit[0].position,cit[1].position,interp[0]),cit[2].position,interp[1])
         }
         this.units.splice(0,0,new unit(this,true,loc.x,loc.y,this.ref.team[`Player`],2,2000))
+        this.zoom.position.x=loc.x
+        this.zoom.position.y=loc.y
 
         this.units.forEach(unit=>unit.fade.main=1)
     }
@@ -183,21 +187,21 @@ export class operation{
     outMap(){
         return types.map[this.map].term
     }
+    halt(){
+        this.units[0].goal.position.x=this.units[0].position.x
+        this.units[0].goal.position.y=this.units[0].position.y
+        this.time.pass=0
+    }
     display(layer){
         switch(this.scene){
             case `main`:
                 layer.push()
                 layer.translate(layer.width*0.5-this.zoom.position.x,layer.height*0.5-this.zoom.position.y)
                 layer.scale(options.scale)
-                layer.image(
-                    graphics.load.map[this.map],
-                    graphics.load.map[this.map].width*0.5*this.scale,
-                    graphics.load.map[this.map].height*0.5*this.scale,
-                    graphics.load.map[this.map].width*this.scale,
-                    graphics.load.map[this.map].height*this.scale
-                )
+                layer.image(graphics.load.map[this.map][0],this.edge.x*0.5,this.edge.y*0.5,this.edge.x,this.edge.y)
                 this.cities.forEach(city=>city.display(layer,this.scene))
                 this.units.forEach(unit=>unit.display(layer,this.scene))
+                this.units.forEach(unit=>unit.displayInfo(layer,this.scene))
                 layer.pop()
             break
         }
@@ -209,8 +213,9 @@ export class operation{
             case `main`:
                 this.cities.forEach(city=>city.update(layer,this.scene))
                 for(let a=0,la=this.units.length;a<la;a++){
+                    this.units[a].update(layer,this.scene)
                     if(this.units[a].player||this.time.active){
-                        this.units[a].update(layer,this.scene)
+                        this.units[a].operate(layer,this.scene)
                     }
                     if(this.units[a].remove){
                         this.units.splice(a,1)
@@ -222,9 +227,17 @@ export class operation{
                 this.ui.update(layer,this.scene)
                 if(this.time.active){
                     this.time.total--
+                    if(this.time.total%150==0){
+                        this.resources.food=max(0,this.resources.food-round(this.units[0].value/100))
+                        this.cities.forEach(city=>city.tick())
+                        this.teams.forEach(team=>team.tick())
+                    }
                 }
-                this.zoom.position.x=constrain(this.zoom.position.x,layer.width*0.5,graphics.load.map[this.map].width*options.scale*this.scale+this.ui.width-layer.width*0.5)
-                this.zoom.position.y=constrain(this.zoom.position.y,layer.height*0.5,graphics.load.map[this.map].height*options.scale*this.scale-layer.height*0.5)
+                if(this.time.pass>0){
+                    this.time.pass--
+                }
+                this.zoom.position.x=constrain(this.zoom.position.x,layer.width*0.5,this.edge.x*options.scale+this.ui.width-layer.width*0.5)
+                this.zoom.position.y=constrain(this.zoom.position.y,layer.height*0.5,this.edge.y*options.scale-layer.height*0.5)
             break
             default:
                 this.ui.update(layer,this.scene)
