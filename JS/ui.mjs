@@ -383,26 +383,27 @@ export class ui{
                 if(types.teamRef[city.owner]>=0){this.operation.teams[types.teamRef[city.owner]].history.cities[this.operation.teams[types.teamRef[city.owner]].history.cities.length-1]++};
                 city.units.forEach(unit=>this.operation.teams[unit.team].history.units[this.operation.teams[unit.team].history.units.length-1]+=unit.value)
             })
-            if(options.respawn){
-                this.operation.teams.forEach(team=>{
-                    let aligned=[team.type,...team.allies]
-                    if(!this.operation.cities.some(city=>city.getUnits([team.type]).length>0)&&!team.cores.some(city=>city.owner==-1||city.owner==team.name||city.getNotUnits(aligned).length<=0)&&!types.teamKey[0].includes(team.name)&&!types.teamKey[1].includes(team.name)&&team.name!=`Free Company`){
-                        let total=0
-                        team.cores.forEach(core=>{
-                            total++
-                            core.modifCore(core.owner)
-                        })
-                        team.cores=[]
-                        total=max(total,1)
-                        let cit=randin(this.operation.cities)
-                        for(let a=0,la=total;a<la;a++){
-                            cit.editCore(team.name)
-                            cit.units.forEach(unit=>unit.team=team.type)
-                            cit=this.operation.cities[types.cityRef[randin(types.city[cit.type].connect).name]]
-                        }
+        }
+        if(options.respawn&&this.turn.total%5==0){
+            this.operation.teams.forEach(team=>{
+                let aligned=[team.type,...team.allies]
+                if(!this.operation.cities.some(city=>city.getUnits([team.type]).length>0)&&!team.cores.some(city=>city.owner==team.name||city.getUnits(aligned).length>0)&&!types.teamKey[0].includes(team.name)&&!types.teamKey[1].includes(team.name)&&team.name!=`Free Company`){
+                    let total=0
+                    team.cores.forEach(core=>{
+                        total++
+                        let adj=this.operation.cities[types.cityRef[randin(types.city[core.type].connect).name]].owner
+                        core.modifCore(core.owner==-1?(adj==-1?randin(this.operation.cities.filter(cit=>cit.owner!=-1)):adj):core.owner)
+                    })
+                    team.cores=[]
+                    total=max(total,1)
+                    let cit=randin(this.operation.cities)
+                    for(let a=0,la=total;a<la;a++){
+                        cit.editCore(team.name)
+                        cit.units.forEach(unit=>unit.team=team.type)
+                        cit=this.operation.cities[types.cityRef[randin(types.city[cit.type].connect).name]]
                     }
-                })
-            }
+                }
+            })
         }
         if(options.hq&&this.hq.num==-1){
             this.hq.players=types.team.filter(team=>!team.auto).length

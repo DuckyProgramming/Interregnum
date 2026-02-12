@@ -239,7 +239,7 @@ export function inBoxBox(box1,box2){
     return box1.position.x>box2.position.x-box1.width/2-box2.width/2&&box1.position.x<box2.position.x+box1.width/2+box2.width/2&&box1.position.y>box2.position.y-box1.height/2-box2.height/2&&box1.position.y<box2.position.y+box1.height/2+box2.height/2
 }
 export function basicCollideBoxBox(nonmobile,mobile){
-    return abs(nonmobile.poition.y-mobile.position.y)/abs(nonmobile.poition.x-mobile.position.x)>nonmobile.height/nonmobile.width?(mobile.position.y>nonmobile.position.y?0:2):(mobile.position.x>nonmobile.position.x?1:3)
+    return abs(nonmobile.position.y-mobile.position.y)/abs(nonmobile.position.x-mobile.position.x)>nonmobile.height/nonmobile.width?(mobile.position.y>nonmobile.position.y?0:1):(mobile.position.x>nonmobile.position.x?2:3)
 }
 export function collideBoxBox(nonmobile,mobile){
     for(let a=0,la=nonmobile.boundary.length;a<la;a++){

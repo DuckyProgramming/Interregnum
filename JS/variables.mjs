@@ -859,7 +859,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:8,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:20/3,garrison:500},raid:1},
             city:[
                 {name:`Basel`,type:5,loc:[2465,1022],rule:`Zähringen`,connect:[{name:`Aarau`,type:0},{name:`Solothurn`,type:0},{name:`Porrentruy`,type:0}]},
                 {name:`Vesoul`,type:0,loc:[1655,1081],rule:`Andechs`,connect:[{name:`Gray`,type:0},{name:`Montbéliard`,type:1},{name:`Besançon`,type:1}]},
