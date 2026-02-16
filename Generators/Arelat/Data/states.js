@@ -65,10 +65,10 @@ types={state:[
   },{
     name:`Geneva`,
     title:`Free City`,
-    district:`Île-de-Bourgogne`,
+    district:`Léman`,
     rule:`Burghers`,
     prestige:[],
-    area:1895,
+    area:2499,
   },{
     name:`Mirabel`,
     title:`Village Concord`,
@@ -100,14 +100,14 @@ types={state:[
   },{
     name:`Embrun`,
     title:`Archbishopric`,
-    district:`Forcalquier`,
+    district:`Cottia`,
     rule:`Ecclesiastical`,
     prestige:[],
     area:56686,
   },{
     name:`Aix`,
     title:`Archbishopric`,
-    district:`Forcalquier`,
+    district:`Cottia`,
     rule:`Ecclesiastical`,
     prestige:[],
     area:34747,
@@ -138,14 +138,14 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:9337,
+    area:9404,
   },{
     name:`Geneva`,
     title:`Bishopric`,
-    district:`Île-de-Bourgogne`,
+    district:`Léman`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:6607,
+    area:6532,
   },{
     name:`Sion`,
     title:`Bishopric`,
@@ -229,7 +229,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:875,
+    area:3199,
   },{
     name:`Le Beausset`,
     title:`Abbey`,
@@ -299,14 +299,14 @@ types={state:[
     district:`Romandie`,
     rule:`Habsburg`,
     prestige:[],
-    area:5404,
+    area:5483,
   },{
     name:`The Rhône`,
     title:`County Palatine`,
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[`Elector`],
-    area:236122,
+    area:241973,
   },{
     name:`Albon`,
     title:`County`,
@@ -362,7 +362,7 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:108716,
+    area:108318,
   },{
     name:`Chablais`,
     title:`County`,
@@ -401,14 +401,14 @@ types={state:[
   },{
     name:`Barcelonette`,
     title:`County`,
-    district:`Forcalquier`,
+    district:`Cottia`,
     rule:`Savoy`,
     prestige:[],
     area:54096,
   },{
     name:`Nice`,
     title:`County`,
-    district:`Forcalquier`,
+    district:`Cottia`,
     rule:`Savoy`,
     prestige:[],
     area:127861,
@@ -418,7 +418,7 @@ types={state:[
     district:`Alpes`,
     rule:`Savoy`,
     prestige:[],
-    area:67993,
+    area:61879,
   },{
     name:`Murten`,
     title:`Lordship`,
@@ -518,19 +518,12 @@ types={state:[
     prestige:[],
     area:78901,
   },{
-    name:`Roquemaure`,
-    title:`Lordship`,
-    district:`Drôme`,
-    rule:`Rouergue`,
-    prestige:[],
-    area:9286,
-  },{
     name:`Beaucaire`,
     title:`Lordship`,
     district:`Provence`,
     rule:`Rouergue`,
     prestige:[],
-    area:12156,
+    area:21442,
   },{
     name:`Tricastin`,
     title:`Lordship`,
@@ -579,7 +572,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:582561,
+    area:578783,
   },{
     name:`Montbéliard`,
     title:`County`,
@@ -604,7 +597,7 @@ types={state:[
   },{
     name:`Geneva`,
     title:`County`,
-    district:`Île-de-Bourgogne`,
+    district:`Léman`,
     rule:`Thoire`,
     prestige:[],
     area:149669,
@@ -658,6 +651,13 @@ types={state:[
     prestige:[],
     area:11675,
   },{
+    name:`Raron`,
+    title:`Lordship`,
+    district:`Romandie`,
+    rule:`Raron`,
+    prestige:[],
+    area:13539,
+  },{
     name:`Freie Ämter`,
     title:`Condominium`,
     district:`Helvetie`,
@@ -667,7 +667,7 @@ types={state:[
   },{
     name:`Forcalquier`,
     title:`County`,
-    district:`Forcalquier`,
+    district:`Cottia`,
     rule:`Sabran`,
     prestige:[],
     area:239358,
@@ -691,11 +691,11 @@ types={state:[
     district:`Romandie`,
     rule:`Republic`,
     prestige:[],
-    area:153532,
+    area:135839,
   },{
     name:`Satigny`,
     title:`Lordship`,
-    district:`Île-de-Bourgogne`,
+    district:`Léman`,
     rule:`Lillebonne`,
     prestige:[],
     area:996,
@@ -740,7 +740,7 @@ types={state:[
   },{
     name:`Rhône`,
     title:`City Bench`,
-    district:`Île-de-Bourgogne`,
+    district:`Léman`,
     rule:`Burghers`,
     prestige:[],
   },{

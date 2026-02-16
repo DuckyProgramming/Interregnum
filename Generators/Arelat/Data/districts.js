@@ -1,8 +1,8 @@
 types.district=[
     {
-        name:`Île-de-Bourgogne`,
-        region:`Île-de-Bourgogne`,
-        area:161784,
+        name:`Léman`,
+        region:`Léman`,
+        area:162711,
     },{
         name:`Franche-Comté`,
         region:`Transjurania`,
@@ -14,7 +14,7 @@ types.district=[
     },{
         name:`Romandie`,
         region:`Transjurania`,
-        area:733951,
+        area:732953,
     },{
         name:`Bresse`,
         region:`Cisjurania`,
@@ -32,7 +32,7 @@ types.district=[
         region:`Provence`,
         area:663190,
     },{
-        name:`Forcalquier`,
+        name:`Cottia`,
         region:`Provence`,
         area:522459,
     },{
