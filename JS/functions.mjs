@@ -389,7 +389,7 @@ export function nameColor(name){
             return [206,165,158]
         case `Lorraine`: case `Haut-Lorraine`: case `Kettler`: case `Ibelin`:
             return [229,152,152]
-        case `Albon`: case `Cisjurania`: case `Dauphiné`: case `Bellingshausen`: case `Fauquembergues`:
+        case `Albon`: case `Cisjurania`: case `Dauphiné`: case `Bellingshausen`: case `Fauquembergues`: case `Elder Albon`:
             return [228,153,70]
         case `Rouergue`: case `Drôme`: case `Ascania`: case `Dampierre`:
             return [128,159,112]
@@ -419,7 +419,7 @@ export function nameColor(name){
             return [162,88,172]
         case `La Marck-Arenberg`:
             return [41,150,163]
-        case `Orange`: case `Isenberg`:
+        case `Isenberg`:
             return [254,135,133]
         case `Gruyères`:
             return [193,144,112]
@@ -481,6 +481,10 @@ export function nameColor(name){
             return [128,196,178]
         case `Cordano`:
             return [81,165,97]
+        case `Junior Albon`:
+            return [255,150,128]
+        case `Orange`:
+            return [238,110,37]
         default:
             return [150,150,150]
     }

@@ -138,21 +138,21 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:9404,
+    area:11553,
   },{
     name:`Geneva`,
     title:`Bishopric`,
     district:`Léman`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:6532,
+    area:8991,
   },{
     name:`Sion`,
     title:`Bishopric`,
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:22346,
+    area:22282,
   },{
     name:`Avignon`,
     title:`Bishopric`,
@@ -362,7 +362,7 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:108318,
+    area:101025,
   },{
     name:`Chablais`,
     title:`County`,
@@ -371,7 +371,7 @@ types={state:[
     prestige:[],
     area:43047,
   },{
-    name:`Martigny`,
+    name:`Rosses`,
     title:`Lordship`,
     district:`Romandie`,
     rule:`Savoy`,
@@ -448,13 +448,6 @@ types={state:[
     prestige:[`Elector`],
     area:85671,
   },{
-    name:`Nidau`,
-    title:`Lordship`,
-    district:`Helvetie`,
-    rule:`Zähringen`,
-    prestige:[],
-    area:6617,
-  },{
     name:`Sisgau`,
     title:`Lordship`,
     district:`Helvetie`,
@@ -474,7 +467,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:18643,
+    area:24895,
   },{
     name:`Laufen`,
     title:`Lordship`,
@@ -614,7 +607,7 @@ types={state:[
     district:`Romandie`,
     rule:`Hohenzollern`,
     prestige:[],
-    area:22181,
+    area:18239,
   },{
     name:`Neuchâtel`,
     title:`County`,
@@ -635,7 +628,7 @@ types={state:[
     district:`Romandie`,
     rule:`Gruyères`,
     prestige:[],
-    area:40247,
+    area:44027,
   },{
     name:`Salins`,
     title:`Lordship`,
@@ -656,7 +649,14 @@ types={state:[
     district:`Romandie`,
     rule:`Raron`,
     prestige:[],
-    area:13539,
+    area:13392,
+  },{
+    name:`Arconciellens`,
+    title:`Lordship`,
+    district:`Romandie`,
+    rule:`Raron`,
+    prestige:[],
+    area:2680,
   },{
     name:`Freie Ämter`,
     title:`Condominium`,
@@ -691,7 +691,7 @@ types={state:[
     district:`Romandie`,
     rule:`Republic`,
     prestige:[],
-    area:135839,
+    area:135286,
   },{
     name:`Satigny`,
     title:`Lordship`,

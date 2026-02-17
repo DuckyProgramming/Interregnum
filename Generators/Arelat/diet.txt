@@ -15,9 +15,9 @@ There's a total of 60 votes. 50 votes are connected to territories:
 [5] Minor lordships are organized into the following benches with one collective vote each:
 Doubs (Salins, Auxonne, Neuveville, Loveresse, Valangin, Grandson),
 Aargau (Frickgau, Baden, Willisau, Entlebuch, Hasli),
-Transjurania (Laufen, Sisgau, Buchsgau, Nidau, Aarburgund, Murten, Grasburg, Romont),
+Transjurania (Laufen, Sisgau, Buchsgau, Aarburgund, Murten, Grasburg, Romont, Arconciellens),
 Rhône (Tournon, Beaujolais, Villars, Beaucaire, Tricastin),
-Alpine (Aigle, Faucigny, Martigny, Gex, Satigny, Raron)
+Alpine (Aigle, Faucigny, Rosses, Gex, Satigny, Raron)
 [3] Territorial abbeys are organized into the following benches with one collective vote each
 Transjurania (Luxeuil, Lure, Baume-Les-Dames, Bellelay, Moutier-Grandval),
 Alpine (St. Maurice, La Déserte, Lanslebourg, Engelberg)
