@@ -66,6 +66,8 @@ class operation{
                 return [193,144,112]
             case `Ivrea`:
                 return [231,125,221]
+            case `Thoire-Republic`:
+                return [184,54,117,161,161,161]
             default:
                 return [150]
         }
@@ -324,20 +326,21 @@ class operation{
                         this.layer.noStroke()
                         for(let b=0,lb=this.stats.items.length;b<lb;b++){
                             let color=this.nameColor(this.stats.items[b].color!=undefined?this.stats.items[b].color:this.stats.items[b].name)
+                            let height=this.stats.items.length>=50?400*sqrt(this.stats.items[b].base)/sqrt(this.stats.max):400*this.stats.items[b].base/this.stats.max
                             switch(color.length){
                                 case 1:
                                     this.layer.fill(color[0],this.page.anim[a])
-                                    this.layer.rect(bar*even(b,lb),250-200*this.stats.items[b].base/this.stats.max,bar*0.875,400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.rect(bar*even(b,lb),250-height/2,bar*0.875,height)
                                 break
                                 case 3:
                                     this.layer.fill(...color,this.page.anim[a])
-                                    this.layer.rect(bar*even(b,lb),250-200*this.stats.items[b].base/this.stats.max,bar*0.875,400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.rect(bar*even(b,lb),250-height/2,bar*0.875,height)
                                 break
                                 case 6:
                                     this.layer.fill(color[0],color[1],color[2],this.page.anim[a])
-                                    this.layer.rect(bar*even(b,lb)-4.875,250-200*this.stats.items[b].base/this.stats.max,bar*0.4375,400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.rect(bar*even(b,lb)-bar*0.21875,250-height/2,bar*0.4375,height)
                                     this.layer.fill(color[3],color[4],color[5],this.page.anim[a])
-                                    this.layer.rect(bar*even(b,lb)+4.875,250-200*this.stats.items[b].base/this.stats.max,bar*0.4375,400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.rect(bar*even(b,lb)+bar*0.21875,250-height/2,bar*0.4375,height)
                                 break
                             }
                         }
@@ -347,9 +350,10 @@ class operation{
                         for(let b=0,lb=this.stats.items.length;b<lb;b++){
                             this.layer.textAlign(LEFT,CENTER)
                             this.layer.push()
+                            let height=this.stats.items.length>=50?400*sqrt(this.stats.items[b].base)/sqrt(this.stats.max):400*this.stats.items[b].base/this.stats.max
                             switch(this.stats.type){
                                 default:
-                                    this.layer.translate(bar*even(b,lb),250-bar*0.5-400*this.stats.items[b].base/this.stats.max)
+                                    this.layer.translate(bar*even(b,lb),250-bar*0.5-height)
                                 break
                             }
                             this.layer.rotate(-90)

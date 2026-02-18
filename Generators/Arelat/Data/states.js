@@ -40,7 +40,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Burghers`,
     prestige:[],
-    area:1359,
+    area:323,
   },{
     name:`Lucerne`,
     title:`Free City`,
@@ -138,7 +138,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:11553,
+    area:15147,
   },{
     name:`Geneva`,
     title:`Bishopric`,
@@ -194,7 +194,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:8532,
+    area:21517,
   },{
     name:`Lanslebourg`,
     title:`Abbey`,
@@ -278,7 +278,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Habsburg`,
     prestige:[],
-    area:14308,
+    area:16213,
   },{
     name:`Entlebuch`,
     title:`Lordship`,
@@ -306,7 +306,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[`Elector`],
-    area:241973,
+    area:241637,
   },{
     name:`Albon`,
     title:`County`,
@@ -362,7 +362,7 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:101025,
+    area:95941,
   },{
     name:`Chablais`,
     title:`County`,
@@ -376,7 +376,7 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:62225,
+    area:44976,
   },{
     name:`Faucigny`,
     title:`Lordship`,
@@ -467,7 +467,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:24895,
+    area:24382,
   },{
     name:`Laufen`,
     title:`Lordship`,
@@ -579,7 +579,7 @@ types={state:[
     district:`Romandie`,
     rule:`Montfaucon`,
     prestige:[],
-    area:3380,
+    area:3522,
   },{
     name:`Loveresse`,
     title:`Lordship`,
@@ -602,7 +602,7 @@ types={state:[
     prestige:[],
     area:30315,
   },{
-    name:`Romont`,
+    name:`Montagny`,
     title:`Lordship`,
     district:`Romandie`,
     rule:`Hohenzollern`,
@@ -628,7 +628,7 @@ types={state:[
     district:`Romandie`,
     rule:`Gruyères`,
     prestige:[],
-    area:44027,
+    area:41559,
   },{
     name:`Salins`,
     title:`Lordship`,
@@ -651,26 +651,26 @@ types={state:[
     prestige:[],
     area:13392,
   },{
-    name:`Arconciellens`,
+    name:`Arconciel`,
     title:`Lordship`,
     district:`Romandie`,
     rule:`Raron`,
     prestige:[],
-    area:2680,
+    area:4029,
   },{
     name:`Freie Ämter`,
     title:`Condominium`,
     district:`Helvetie`,
-    rule:`Thoire`,
+    rule:`Thoire-Republic`,
     prestige:[],
-    area:10096,
+    area:9406,
   },{
     name:`Forcalquier`,
     title:`County`,
     district:`Cottia`,
     rule:`Sabran`,
     prestige:[],
-    area:239358,
+    area:239253,
   },{
     name:`Obwalden`,
     title:`Valley`,
