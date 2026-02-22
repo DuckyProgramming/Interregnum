@@ -42,10 +42,10 @@ function outStates(){
             titles.push({name:types.state[a].title,names:[conv(types.state[a])]})
         }
     }
-    let misc=[]
+    let misc=[[],[]]
     for(let a=0,la=titles.length;a<la;a++){
         if(titles[a].names.length==1){
-            misc.push(titles[a].name+` of `+titles[a].names[0])
+            misc[[`Valley`,`Escarton`,`Republic`,`Condominium`].includes(titles[a].name)?0:1].push(titles[a].name+` of `+titles[a].names[0])
             titles.splice(a,1)
             a--
             la--
@@ -58,8 +58,11 @@ function outStates(){
         }
         build+=`${last(titles[a].name)==`y`&&titles[a].name.slice(-2)!=`ey`?`${titles[a].name.slice(0,-1)}ies`:`${titles[a].name}s`}: ${titles[a].names.join(`, `)}`
     }
-    if(misc.length>0){
-        build+=`\nMisc: ${misc.join(`, `)}`
+    if(misc[0].length>0){
+        build+=`\nFree Peasants: ${misc[0].join(`, `)}`
+    }
+    if(misc[1].length>0){
+        build+=`\nMisc: ${misc[1].join(`, `)}`
     }
     print(build)
 }

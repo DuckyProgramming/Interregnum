@@ -44,6 +44,13 @@ export function pl(value){
 export function spinControl(base){
 	return base<-180?base+360:base>180?base-360:base
 }
+export function spinClose(base,goal,speed){
+    return abs(base-goal)<speed||
+		abs(base-goal-360)<speed||
+		abs(base-goal+360)<speed||
+		abs(base-goal-720)<speed||
+		abs(base-goal+720)<speed
+}
 export function spinDirection(base,goal,speed){
 	if(
 		abs(base-goal)<speed||
@@ -373,7 +380,7 @@ export function nameColor(name){
             return [218,106,81]
         case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`: case `Feuchtwangen`: case `Milly`:
             return [156,142,199]
-        case `Hohenzollern`: case `Šurborgs`:
+        case `Hohenzollern`: case `Šurborgs`: case `Fenis`:
             return [110,148,204]
         case `Thoire`: case `Île-de-Bourgogne`: case `Kőszegi`: case `Biron`: case `Rethel`:
             return [1206,60,131]
@@ -395,7 +402,7 @@ export function nameColor(name){
             return [128,159,112]
         case `Zähringen`: case `Transjurania`: case `Helvetie`: case `Wettin`: case `Vermandois`:
             return [221,119,156]
-        case `Republic`: case `Tellgovie`: case `Schwyz`: case `Hesse`: case `Unterwalden`:
+        case `Republic`: case `Tellgovie`: case `Schwyz`: case `Hesse`: case `Unterwalden`: case `Obwalden`:
             return [161,161,161]
         case `Valais`: case `Winterstätten`:
             return [207,207,206]

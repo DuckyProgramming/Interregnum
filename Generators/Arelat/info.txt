@@ -40,7 +40,7 @@ Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, 
 Bishoprics: Basel, Lausanne, Geneva, Sion, Avignon, Viviers
 Abbeys: Engelberg, Bellelay, Moutier-Grandval, St. Maurice, Lanslebourg, La Déserte, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Cornillon, Lérins
 Counties: Ober-Aargau, Unter-Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Vaud, Chablais, Barcelonette, Nice, Briançonnois, Oberland, Valentinois, Diois, Venaissin, Michaille, Bresse, Voiron, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
-Lordships: Frickgau, Baden, Entlebuch, Willisau, Grandson, Tournon, Beaujolais, Rosses, Faucigny, Gex, Aigle, Murten, Grasburg, Sisgau, Buchsgau, Aarburgund, Laufen, Hasli, Raron, Arconciellens, Beaucaire, Tricastin, Auxonne, Neuveville, Loveresse, Villars, Salins, Romont, Valangin, Satigny
+Lordships: Frickgau, Baden, Entlebuch, Willisau, Grandson, Tournon, Beaujolais, Rosses, Faucigny, Gex, Aigle, Murten, Grasburg, Sisgau, Buchsgau, Aarburgund, Laufen, Hasli, Raron, Arconciellens, Échallens, Tricastin, Auxonne, Neuveville, Loveresse, Villars, Salins, Romont, Valangin, Satigny
 Free Peasants: Valley of Obwalden, Valley of Nidwalden, Condominium of Freie Ämter, Republic of The Seven Zenden
 Misc: Village Concord of Mirabel (An alliance consisting of ten small villages, mostly in the south named Mirabel, Miribel, Mirabelle, or Méribel), County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Margraviate of Provence
 

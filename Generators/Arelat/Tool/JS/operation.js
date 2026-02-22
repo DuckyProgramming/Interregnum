@@ -18,11 +18,11 @@ class operation{
                 return [218,106,81]
             case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`:
                 return [156,142,199]
-            case `Hohenzollern`:
+            case `Hohenzollern`: case `Fenis`:
                 return [110,148,204]
-            case `Thoire`: case `Île-de-Bourgogne`:
+            case `Thoire`: case `Île-de-Bourgogne`: case `Léman`:
                 return [184,54,117]
-            case `Sabran`: case 'Forcalquier':
+            case `Sabran`: case `Forcalquier`: case `Cottia`:
                 return [150,114,229]
             case `Wittelsbach`:
                 return [84,189,126]
@@ -32,31 +32,31 @@ class operation{
                 return [160,65,72]
             case `Zähringen-Savoy`:
                 return [199,106,140,49,167,185]
-            case `Württemberg`:
+            case `Württemberg`: case `Montfaucon`:
                 return [196,154,39]
             case `Arduinici`: case 'Bresse':
                 return [206,165,158]
             case `Lorraine`: case `Haut-Lorraine`:
                 return [229,152,152]
-            case `Albon`: case `Cisjurania`: case `Dauphiné`:
+            case `Albon`: case `Cisjurania`: case `Dauphiné`: case `County Palatine`:
                 return [228,153,70]
             case `Rouergue`: case `Drôme`:
                 return [114,142,101]
-            case `Zähringen`: case `Transjurania`: case `Helvetie`:
+            case `Zähringen`: case `Transjurania`: case `Helvetie`: case `Landgraviate`:
                 return [199,106,140]
-            case `Republic`: case `Tellgovie`:
+            case `Republic`: case `Tellgovie`: case `Valley`: 
                 return [161,161,161]
             case `Habsburg`:
                 return [229,173,67]
-            case `Savoy`: case `Alpes`:
+            case `Savoy`: case `Alpes`: case `Margraviate`:
                 return [49,167,185]
             case `Romandie`:
                 return [108,173,184]
             case `Minor`:
                 return [220,201,166]
-            case `Burghers`: case `Alsace`:
+            case `Burghers`: case `Alsace`: case `Free City`: case `Village Concord`:
                 return [218,24,30]
-            case `Ecclesiastical`:
+            case `Ecclesiastical`: case `Archbishopric`: case `Bishopric`: case `Abbey`:
                 return [145,78,154]
             case `La Marck-Arenberg`:
                 return [41,150,163]
@@ -66,8 +66,14 @@ class operation{
                 return [193,144,112]
             case `Ivrea`:
                 return [231,125,221]
-            case `Thoire-Republic`:
+            case `Thoire-Republic`: case `Condominium`:
                 return [184,54,117,161,161,161]
+            case `Albon-Republic`: case `Escarton`:
+                return [228,153,70,161,161,161]
+            case `Raron`:
+                return [234,109,125]
+            case `La Baume`:
+                return [103,100,162]
             default:
                 return [150]
         }

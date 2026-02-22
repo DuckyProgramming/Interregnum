@@ -20,6 +20,7 @@ export class city{
     save(){
         let composite={
             name:this.data.name,
+            position:this.position,
             owner:this.owner,
             recruits:this.recruits,
             mercenaries:this.mercenaries,
@@ -296,6 +297,59 @@ export class city{
             }
         }
     }
+    displayUnder(layer,scene){
+        switch(scene){
+            case `main`:
+                layer.noFill()
+                layer.strokeWeight(3)
+                layer.strokeCap(SQUARE)
+                for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
+                    if(types.city[this.type].connect[a].first){
+                        layer.stroke(0,0,50,0.2)
+                        let cit=this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]]
+                        layer.bezier(
+                            this.position.x,this.position.y,
+                            this.position.x*0.8+cit.position.x*0.2+(cit.position.y-this.position.y)*types.city[this.type].connect[a].nudge*0.1,this.position.y*0.8+cit.position.y*0.2+(this.position.x-cit.position.x)*types.city[this.type].connect[a].nudge*0.1,
+                            this.position.x*0.2+cit.position.x*0.8+(cit.position.y-this.position.y)*types.city[this.type].connect[a].nudge*0.1,this.position.y*0.2+cit.position.y*0.8+(this.position.x-cit.position.x)*types.city[this.type].connect[a].nudge*0.1,
+                            cit.position.x,cit.position.y
+                        )
+                    }
+                }
+                layer.strokeCap(ROUND)
+            break
+            case `main2`:
+                layer.push()
+                layer.translate(this.position.x,this.position.y)
+                let img=graphics.load.city[types.cityType[this.data.type].term]
+                layer.image(img,0,0,img.width*0.4,img.height*0.4)
+                layer.fill(255)
+                layer.noStroke()
+                layer.textSize(img.width*0.18+3)
+                layer.textAlign(LEFT,CENTER)
+                layer.text(this.data.name,img.width*0.11+2,img.width*0.008+1)
+                layer.textAlign(CENTER,CENTER)
+                layer.pop()
+            break
+            case `map`: case `edit`:
+                layer.noFill()
+                layer.strokeWeight(6)
+                layer.strokeCap(SQUARE)
+                for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
+                    if(types.city[this.type].connect[a].first){
+                        layer.stroke(0,0,50,0.2)
+                        let cit=this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]]
+                        layer.bezier(
+                            this.position.x,this.position.y,
+                            this.position.x*0.8+cit.position.x*0.2+(cit.position.y-this.position.y)*types.city[this.type].connect[a].nudge*0.1,this.position.y*0.8+cit.position.y*0.2+(this.position.x-cit.position.x)*types.city[this.type].connect[a].nudge*0.1,
+                            this.position.x*0.2+cit.position.x*0.8+(cit.position.y-this.position.y)*types.city[this.type].connect[a].nudge*0.1,this.position.y*0.2+cit.position.y*0.8+(this.position.x-cit.position.x)*types.city[this.type].connect[a].nudge*0.1,
+                            cit.position.x,cit.position.y
+                        )
+                    }
+                }
+                layer.strokeCap(ROUND)
+            break
+        }
+    }
     display(layer,scene){
         switch(scene){
             case `title`: case `setup`:
@@ -340,20 +394,22 @@ export class city{
                     let img=graphics.load.city[types.cityType[this.data.type].term]
                     layer.image(img,0,0,img.width,img.height)
                     if(this.owner!=-1){
-                        img=[graphics.load.team[types.team[types.teamRef[this.owner]].loadIndex],graphics.load.unit[2]]
-                        switch(this.data.type){
-                            case 7:
-                                layer.image(img[0],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
-                                layer.image(img[1],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
-                            break
-                            case 9: case 10:
-                                layer.image(img[0],0,img[1].height*0.25-9,img[1].width*0.45,img[1].height*0.45)
-                                layer.image(img[1],0,img[1].height*0.25-9,img[1].width*0.45,img[1].height*0.45)
-                            break
-                            default:
-                                layer.image(img[0],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
-                                layer.image(img[1],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
-                            break
+                        img=[graphics.load.team[this.operation.map][types.team[types.teamRef[this.owner]].loadIndex],graphics.load.unit[2]]
+                        if(img[0]!=undefined){
+                            switch(this.data.type){
+                                case 7:
+                                    layer.image(img[0],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
+                                    layer.image(img[1],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)
+                                break
+                                case 9: case 10:
+                                    layer.image(img[0],0,img[1].height*0.25-9,img[1].width*0.45,img[1].height*0.45)
+                                    layer.image(img[1],0,img[1].height*0.25-9,img[1].width*0.45,img[1].height*0.45)
+                                break
+                                default:
+                                    layer.image(img[0],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
+                                    layer.image(img[1],0,img[1].height*0.25-10,img[1].width*0.5,img[1].height*0.5)
+                                break
+                            }
                         }
                     }
                     layer.pop()

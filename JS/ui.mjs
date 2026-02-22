@@ -53,8 +53,12 @@ export class ui{
             this.hq.num=-2
         }
     }
-    async loadMap(id){
+    async loadMap(id,set){
         let root=INNER_INDEX?`../`:``
+        if(id!=0){
+            graphics.load.team[id]=[]
+            set.forEach(async (team,index)=>graphics.load.team[id][index]=await new Promise((resolve)=>{loadImage(`${root}Assets/team/${team.term}.png`,img=>resolve(img))}))
+        }
         graphics.load.map[id]=await new Promise((resolve)=>{loadImage(`${root}Assets/map/${types.map[id].term}.png`,img=>resolve(img))})
     }
     initial(){
@@ -1402,7 +1406,7 @@ export class ui{
                     layer.text(types.map[groups[a][0]].name[0],0,a*60+610-la*30)
                     for(let b=0,lb=groups[a].length;b<lb;b++){
                         layer.textSize(10)
-                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count],(b+1)/lb*300-150-20,a*60+595-la*30)
+                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count],(b+1)/lb*300-150-20,a*60+595-la*30)
                         layer.textSize(12)
                         if(types.map[groups[a][b]].name.length>=2){
                             layer.text(types.map[groups[a][b]].name[1],(b+0.5)/lb*300-150,a*60+628-la*30)
@@ -1427,9 +1431,9 @@ export class ui{
                     layer.rect(-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+445,240,50,10)
                     layer.fill(0)
                     layer.textSize(20)
-                    layer.text(`${types.map[this.operation.nextMap].team[a].name}`,-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+445)
+                    layer.text(types.map[this.operation.nextMap].name[1]==`Randomized`?types.holdTeam[a].name:types.map[this.operation.nextMap].team[a].name,-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+445)
                     layer.textSize(10)
-                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],100-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+430)
+                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[a],100-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+430)
                 }
                 layer.fill(120)
                 layer.rect(-250,rows*30+475,240,50,10)
@@ -1476,7 +1480,7 @@ export class ui{
                     layer.textSize(20)
                     layer.text(`${types.team[a].name}`,-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+475)
                     layer.textSize(10)
-                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],100-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+460)
+                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[a],100-125*(min(set,la-floor(a/set)*set)-1)+250*(a%set),floor(a/set)*60-rows*30+460)
                 }
                 layer.fill(120)
                 layer.rect(-125,rows*30+505,240,50,10)
@@ -1506,7 +1510,7 @@ export class ui{
                         switch(index){
                             case 0:
                                 layer.fill(0)
-                                layer.textSize(24)
+                                layer.textSize(types.team[this.turn.main].name.length>20?20:24)
                                 layer.text(`Current Player:\n${types.team[this.turn.main].name}`,0,40)
 
                                 layer.textSize(18)
@@ -1527,10 +1531,10 @@ export class ui{
                             case 1:
                                 cit=this.operation.cities[this.select.city]
                                 layer.fill(0)
-                                layer.textSize(24)
+                                layer.textSize(cit.data.name.length>20?20:24)
                                 layer.text(`Selected City:\n${cit.data.name}`,0,40)
 
-                                layer.textSize(18)
+                                layer.textSize(cit.owner!=-1&&cit.owner.length>20?14:cit.owner!=-1&&cit.owner.length>16?16:18)
                                 layer.text(`Owner: ${cit.owner==-1?`None`:cit.owner}`,0,tick+12.5)
                                 tick+=25
                                 if(
@@ -1761,7 +1765,7 @@ export class ui{
                             break
                             case 5:
                                 layer.fill(0)
-                                layer.textSize(24)
+                                layer.textSize(types.team[this.turn.main].name.length>20?20:24)
                                 layer.text(`Next Player:\n${types.team[this.turn.main].name}`,0,40)
 
                                 layer.fill(120)
@@ -1796,7 +1800,7 @@ export class ui{
                                         layer.textSize(12)
                                         layer.text(`${this.operation.teams[a].offers.includes(this.turn.main)?`Accept`:this.operation.teams[a].cores.length>0&&!this.operation.teams[a].cores.some(city=>city.data.type!=7&&(!aligned.includes(types.teamRef[city.owner])||city.units.some(unit=>!aligned.includes(unit.team))))?`Force`:this.operation.teams[this.turn.main].offers.includes(a)?`Pending`:`Offer`}: ${types.team[a].name}`,0,tick+12.5)
                                         layer.textSize(10)
-                                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
+                                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count-1],70,tick+10)
                                         tick+=35
                                         count++
                                     }
@@ -1899,7 +1903,7 @@ export class ui{
                                         layer.textSize(12)
                                         layer.text(`Delegate: ${types.team[a].name}`,0,tick+12.5)
                                         layer.textSize(10)
-                                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count],70,tick+10)
+                                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count],70,tick+10)
                                         tick+=35
                                         count++
                                     }
@@ -1968,7 +1972,7 @@ export class ui{
                                         layer.textSize(12)
                                         layer.text(`${types.team[a].name}: ${this.operation.teams[this.turn.main].prisoners[a]}`,0,tick+12.5)
                                         layer.textSize(10)
-                                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
+                                        layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count-1],70,tick+10)
                                         tick+=35
                                         count++
                                     }
@@ -1986,7 +1990,7 @@ export class ui{
                                             layer.textSize(12)
                                             layer.text(`${types.team[a].name}: ${min(this.operation.teams[this.turn.main].prisoners[a],this.operation.teams[a].prisoners[this.turn.main])}`,0,tick+12.5)
                                             layer.textSize(10)
-                                            layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
+                                            layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count-1],70,tick+10)
                                             tick+=35
                                             count++
                                         }
@@ -2122,7 +2126,7 @@ export class ui{
                                     layer.textAlign(RIGHT,CENTER)
                                     layer.text(`${this.operation.teams[a].kills}/${this.operation.teams[a].deaths}/${this.operation.teams[a].deserters}`,75,tick+12.5)
                                     layer.textAlign(CENTER,CENTER)
-                                    let img=[graphics.load.team[types.team[a].loadIndex],graphics.load.unit[2]]
+                                    let img=[graphics.load.team[this.operation.map][types.team[a].loadIndex],graphics.load.unit[2]]
                                     layer.image(img[0],-64,tick+12.5,img[1].width*0.15,img[1].height*0.15)
                                     layer.image(img[1],-64,tick+12.5,img[1].width*0.15,img[1].height*0.15)
                                     tick+=30
@@ -2214,7 +2218,7 @@ export class ui{
                                         layer.text(`${this.operation.records[a].value[0]} vs ${this.operation.records[a].value[1]}`,0,tick+32.5)
                                     }
                                     for(let b=0,lb=this.operation.records[a].team.length;b<lb;b++){
-                                        let img=[graphics.load.team[types.team[this.operation.records[a].team[b]].loadIndex],graphics.load.unit[2]]
+                                        let img=[graphics.load.team[this.operation.map][types.team[this.operation.records[a].team[b]].loadIndex],graphics.load.unit[2]]
                                         layer.image(img[0],even(b,lb)*36,tick+50,img[1].width*0.18,img[1].height*0.18)
                                         layer.image(img[1],even(b,lb)*36,tick+50,img[1].width*0.18,img[1].height*0.18)
                                     }
@@ -2294,7 +2298,7 @@ export class ui{
                                     layer.textSize(12)
                                     layer.text(`${types.team[a].name}`,0,tick+12.5)
                                     layer.textSize(10)
-                                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1],70,tick+10)
+                                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count-1],70,tick+10)
                                     tick+=30
                                     count++
                                 }
@@ -2340,7 +2344,7 @@ export class ui{
                     }
                 }
                 for(let a=0,la=types.team.length-(this.raiders.active?1:0);a<la;a++){
-                    let img=[graphics.load.team[types.team[a].loadIndex],graphics.load.unit[2]]
+                    let img=[graphics.load.team[this.operation.map][types.team[a].loadIndex],graphics.load.unit[2]]
                     layer.image(img[0],layer.width*0.5-this.width*0.5+lsin((a+1)/la*360)*360,layer.height*0.5-lcos((a+1)/la*360)*360,img[1].width*0.5,img[1].height*0.5)
                     layer.image(img[1],layer.width*0.5-this.width*0.5+lsin((a+1)/la*360)*360,layer.height*0.5-lcos((a+1)/la*360)*360,img[1].width*0.5,img[1].height*0.5)
                 }
@@ -2390,7 +2394,7 @@ export class ui{
                     layer.textSize(12)
                     layer.text(`${types.team[a].name}`,0,tick+12.5)
                     layer.textSize(10)
-                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a],70,tick+10)
+                    layer.text(`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[a],70,tick+10)
                     tick+=30
                     count++
                 }
@@ -3664,11 +3668,17 @@ export class ui{
                 for(let a=0,la=groups.length;a<la;a++){
                     for(let b=0,lb=groups[a].length;b<lb;b++){
                         if(inPointBox(rel,boxify((b+0.5)/lb*300-150,a*60+610-la*30,300/lb,50))){
-                            this.loadMap(groups[a][b])
                             this.operation.transitionManager.begin(`setup`)
                             this.operation.nextMap=groups[a][b]
                             this.select.auto=[]
-                            types.map[groups[a][b]].team.forEach(item=>this.select.auto.push(true))
+                            if(types.map[groups[a][b]].name[1]==`Randomized`){
+                                this.operation.randomizeMap(groups[a][b])
+                                types.holdTeam.forEach(item=>this.select.auto.push(true))
+                                this.loadMap(groups[a][b],types.holdTeam)
+                            }else{
+                                types.map[groups[a][b]].team.forEach(item=>this.select.auto.push(true))
+                                this.loadMap(groups[a][b],types.map[groups[a][b]].team)
+                            }
                         }
                     }
                 }
@@ -4325,19 +4335,25 @@ export class ui{
             case `title`:
                 let ticker=0
                 for(let a=0,la=types.map.length;a<la;a++){
-                    if(key==`abcdefghijklmnopqrstuvwxyz`[ticker]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[ticker]){
-                        this.loadMap(a)
+                    if(key==`abcdefghijklmnopqrstuvwxyz`[ticker]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[ticker]){
                         this.operation.transitionManager.begin(`setup`)
                         this.operation.nextMap=a
                         this.select.auto=[]
-                        types.map[a].team.forEach(item=>this.select.auto.push(true))
+                        if(types.map[a].name[1]==`Randomized`){
+                            this.operation.randomizeMap(a)
+                            types.holdTeam.forEach(item=>this.select.auto.push(true))
+                            this.loadMap(a,types.holdTeam)
+                        }else{
+                            types.map[a].team.forEach(item=>this.select.auto.push(true))
+                            this.loadMap(a,types.map[a].team)
+                        }
                     }
                     ticker++
                 }
             break
             case `setup`:
                 for(let a=0,la=this.select.auto.length;a<la;a++){
-                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
+                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[a]){
                         this.select.auto[a]=!this.select.auto[a]
                     }
                 }
@@ -4368,7 +4384,7 @@ export class ui{
             break
             case `pick`:
                 for(let a=0,la=types.team.length;a<la;a++){
-                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
+                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[a]){
                         types.team[a].auto=!types.team[a].auto
                     }
                 }
@@ -4585,7 +4601,7 @@ export class ui{
                                     !types.teamKey[0].includes(this.operation.teams[a].name)&&
                                     !types.teamKey[1].includes(this.operation.teams[a].name)
                                 ){
-                                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
+                                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count-1]){
                                         if(this.operation.teams[a].offers.includes(this.turn.main)){
                                             if(!dev.close){
                                                 this.operation.teams[a].notif.push(`Alliance Made\nWith ${this.operation.teams[this.turn.main].name}`)
@@ -4687,7 +4703,7 @@ export class ui{
                         if(!types.team[this.turn.main].auto||dev.pause){
                             for(let a=0,la=types.team.length;a<la;a++){
                                 if(a!=this.turn.main){
-                                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
+                                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count-1]){
                                         let ct=this.turn.count
                                         this.turn.count=0
                                         this.newTurn()
@@ -4732,7 +4748,7 @@ export class ui{
                             }
                             for(let a=0,la=types.team.length;a<la;a++){
                                 if(this.operation.teams[this.turn.main].prisoners[a]>0&&a!=this.turn.main){
-                                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
+                                    if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count-1]){
                                         this.releasing.team=a
                                         this.moveTab(19)
                                     }
@@ -4742,7 +4758,7 @@ export class ui{
                             if(types.team.some((team,index)=>this.operation.teams[this.turn.main].prisoners[index]>0&&this.operation.teams[index].prisoners[this.turn.main]>0&&index!=this.turn.main&&team.auto)){
                                 for(let a=0,la=types.team.length;a<la;a++){
                                     if(this.operation.teams[this.turn.main].prisoners[a]>0&&this.operation.teams[a].prisoners[this.turn.main]>0&&a!=this.turn.main&&types.team[a].auto){
-                                        if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[count-1]){
+                                        if(key==`abcdefghijklmnopqrstuvwxyz`[count-1]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[count-1]){
                                             let value=min(this.operation.teams[this.turn.main].prisoners[a],this.operation.teams[a].prisoners[this.turn.main])
                                             let aligned=[a,...this.operation.teams[a].allies]
                                             let possible=[]
@@ -4868,7 +4884,7 @@ export class ui{
                             this.tabs.editActive=0
                         }
                         for(let a=0,la=types.team.length;a<la;a++){
-                            if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
+                            if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[a]){
                                 this.select.edit=a
                                 this.tabs.editActive=0
                             }
@@ -4894,7 +4910,7 @@ export class ui{
                 }
                 count++
                 for(let a=0,la=types.team.length;a<la;a++){
-                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
+                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`[a]){
                         this.operation.teams[a].history.display=!this.operation.teams[a].history.display
                     }
                 }

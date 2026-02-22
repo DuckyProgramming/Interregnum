@@ -75,7 +75,7 @@ export class unit{
                 layer.push()
                 layer.translate(this.position.x,this.position.y)
             }
-            let img=[graphics.load.team[types.team[this.team].loadIndex],graphics.load.unit[this.type]]
+            let img=[graphics.load.team[this.city.operation.map][types.team[this.team].loadIndex],graphics.load.unit[this.type]]
             layer.image(img[0],0,0,img[1].width*this.fade.main*options.unitSize-0.5,img[1].height*this.fade.main*options.unitSize-0.5)
             layer.image(img[1],0,0,img[1].width*this.fade.main*options.unitSize,img[1].height*this.fade.main*options.unitSize)
             layer.noStroke()

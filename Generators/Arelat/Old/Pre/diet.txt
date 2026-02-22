@@ -13,14 +13,14 @@ There's a total of 60 votes. 50 votes are connected to territories:
 [7] All archbishops have their own seats.
 [2] All bishops with large territories (Viviers, Basel) their own seats. Smaller territorial bishops and non-territorial bishops attend but cannot vote.
 [5] Minor lordships are organized into the following benches with one collective vote each:
-Jura (Salins, Auxonne, Neuveville, Loveresse, Valangin, Grandson)
-Helvetia (Frickgau, Entlebuch, Willisau, Buchsgau, Sisgau, Nidau, Aarburgund, Laufen, Hasli)
-Romandy (Murten, Grasburg, Échallens, Montagny, Arconciel, Satigny)
-Rhône (Tricastin, Tournon, Beaujolais, Villars)
-Alpine (Rosses, Faucigny, Gex, Aigle, Raron)
+Doubs (Salins, Auxonne, Neuveville, Loveresse, Valangin, Grandson),
+Aargau (Frickgau, Baden, Willisau, Entlebuch, Hasli),
+Transjurania (Laufen, Sisgau, Buchsgau, Aarburgund, Murten, Grasburg, Romont, Arconciel, Échallens),
+Rhône (Tournon, Beaujolais, Villars, Tricastin),
+Alpine (Aigle, Faucigny, Rosses, Gex, Satigny, Raron)
 [3] Territorial abbeys are organized into the following benches with one collective vote each
 Transjurania (Luxeuil, Lure, Baume-Les-Dames, Bellelay, Moutier-Grandval),
-Alpine (St. Maurice, La Déserte, Lanslebourg, Interlaken)
+Alpine (St. Maurice, La Déserte, Lanslebourg, Engelberg)
 Provence (Lérins, Le Beausset, Cornillon)
 [2] Free royal cities are organized into the following benches with one collective vote each:
 Transjurania (Basel, Rheinfelden, Solothurn, Bern, Fribourg, Bremgarten, Lucerne),
@@ -33,7 +33,7 @@ The Village Concord of Mirabel shares one collective position on the Rhône benc
 [7] The electors each have an additional vote.
 [3] The ducal titles each grant an additional vote.
 
-Dynastic Breakdown of Votes: Republic: 1, Thoire: 1, Fenis: 1, Gruyères: 1, Orange: 1, Sabran: 1, Montfaucon: 2, Burghers: 2, Habsburg: 2, Barcelona: 3, Andechs: 3, Arduinici: 3, Zähringen: 4, Rouergue: 4, Albon: 5, Savoy: 11, Ecclesiastical: 15
+Dynastic Breakdown of Votes: Republic: 1, Thoire: 1, Hohenzollern: 1, Gruyères: 1, Orange: 1, Sabran: 1, Montfaucon: 2, Burghers: 2, Habsburg: 3, Barcelona: 3, Andechs: 3, Arduinici: 3, Zähringen: 4, Rouergue: 4, Albon: 5, Savoy: 10, Ecclesiastical: 15
 (Note, however, that different prelates or different branches and appanages of a family often disagree and don't vote as a bloc)
 
 Briefly, do you understand the above information?
