@@ -2148,6 +2148,15 @@ export class ui{
                                 layer.textSize(10)
                                 layer.text(`Enter`,60,tick+15)
                                 tick+=50
+                                layer.fill(120)
+                                layer.rect(0,tick+25,160,40,10)
+                                layer.fill(0)
+                                layer.textSize(15)
+                                layer.text(`Edit Player`,0,tick+25)
+                                layer.textSize(10)
+                                layer.text(count,70,tick+15)
+                                tick+=50
+                                count++
                                 layer.fill(120,options.respawn?200:120,120)
                                 layer.rect(0,tick+25,160,40,10)
                                 layer.fill(0)
@@ -4247,6 +4256,10 @@ export class ui{
                         }
                         tick+=50
                         if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            this.operation.transitionManager.begin(`pick`)
+                        }
+                        tick+=50
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
                             options.respawn=!options.respawn
                         }
                         tick+=50
@@ -4855,6 +4868,10 @@ export class ui{
                         if(key==`Enter`){
                             this.tabs.mapActive=0
                         }
+                        if(key==count.toString()){
+                            this.operation.transitionManager.begin(`pick`)
+                        }
+                        count++
                         if(key==count.toString()){
                             options.respawn=!options.respawn
                         }

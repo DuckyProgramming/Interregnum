@@ -478,7 +478,7 @@ export function nameColor(name){
             return [165,237,131]
         case `Russian Raid`:
             return [0,114,11]
-        case `Archbishop of Riga`:
+        case `Archbishop of Riga`: case `Archbishop of Besançon`: case `Archbishop of Vienne`: case `Archbishop of Arles`:
             return [112,69,134]
         case `Táborites`:
             return [240,144,69]
@@ -582,6 +582,7 @@ export function speed(speed){
     current.speed.main=speed
 }
 export function checkCity(){
+    types.map=types.map.filter(map=>map.name[1]!=`Randomized`)
     print(`Checking Order`)
     types.map.forEach(map=>{for(let a=1,la=map.city.length;a<la;a++){if(map.city[a].loc[1]<map.city[a-1].loc[1]){print(map.name,map.city[a-1].name,map.city[a].name)}}})
     print(`\nChecking Self-Reference`)

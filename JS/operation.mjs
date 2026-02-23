@@ -66,13 +66,13 @@ export class operation{
         this.zoom=composite.zoom
         this.scene=composite.scene
         if(types.map[map].name[1]==`Randomized`){
-            if(composite.cities!=undefined){
-                this.cities=[]
-                composite.cities.forEach((cit,index)=>{this.cities.push(new city(this,cit.position.x,cit.position.y,index));last(this.cities).load(cit)})
-            }
             if(composite.teams!=undefined){
                 this.teams=[]
                 composite.teams.forEach((tea,index)=>{this.teams.push(new team(index));last(this.teams).load(tea)})
+            }
+            if(composite.cities!=undefined){
+                this.cities=[]
+                composite.cities.forEach((cit,index)=>{this.cities.push(new city(this,cit.position.x,cit.position.y,index));last(this.cities).load(cit)})
             }
         }else{
             if(composite.cities!=undefined){

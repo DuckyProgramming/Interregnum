@@ -6,4 +6,4 @@ RI - Archbishopric of Riga
 SO - Advocacy of Soneburg
 WI - Commandery of Windau
 
-Na - Narva
+Ri - Riga

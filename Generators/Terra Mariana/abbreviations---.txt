@@ -2,7 +2,6 @@ CO - Bishopric of Courland
 FM - Domain of the Field Marshal
 GM - Domain of the Grand Master
 RI - Archbishopric of Riga
-SO - Advocacy of Soneburg
 WI - Commandery of Windau
 
 Ri - Riga
