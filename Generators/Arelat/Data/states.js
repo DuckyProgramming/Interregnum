@@ -152,7 +152,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:22282,
+    area:25858,
   },{
     name:`Avignon`,
     title:`Bishopric`,
@@ -677,7 +677,7 @@ types={state:[
     district:`Romandie`,
     rule:`Republic`,
     prestige:[],
-    area:135413,
+    area:130867,
   },{
     name:`Châteaudauphin`,
     title:`Escarton`,

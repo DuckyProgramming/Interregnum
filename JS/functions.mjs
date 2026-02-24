@@ -380,11 +380,11 @@ export function nameColor(name){
             return [218,106,81]
         case `Andechs`: case `Saône`: case `Franche-Comté`: case `Upper Burgundy`: case `Feuchtwangen`: case `Milly`:
             return [156,142,199]
-        case `Hohenzollern`: case `Šurborgs`: case `Fenis`:
+        case `Hohenzollern`: case `Šurborgs`: case `Fenis`: case `Ezerites`:
             return [110,148,204]
-        case `Thoire`: case `Île-de-Bourgogne`: case `Kőszegi`: case `Biron`: case `Rethel`:
+        case `Thoire`: case `Île-de-Bourgogne`: case `Kőszegi`: case `Biron`: case `Rethel`: case `Zaccaria`:
             return [1206,60,131]
-        case `Sabran`: case `Forcalquier`: case `Leuven`:
+        case `Sabran`: case `Forcalquier`: case `Leuven`: case `La Roche`:
             return [150,114,229]
         case `Knights`:
             return [194,154,183]
@@ -396,9 +396,9 @@ export function nameColor(name){
             return [206,165,158]
         case `Lorraine`: case `Haut-Lorraine`: case `Kettler`: case `Ibelin`:
             return [229,152,152]
-        case `Albon`: case `Cisjurania`: case `Dauphiné`: case `Bellingshausen`: case `Fauquembergues`: case `Elder Albon`:
+        case `Albon`: case `Cisjurania`: case `Dauphiné`: case `Bellingshausen`: case `Fauquembergues`: case `Elder Albon`: case `Villehardouin`:
             return [228,153,70]
-        case `Rouergue`: case `Drôme`: case `Ascania`: case `Dampierre`:
+        case `Rouergue`: case `Drôme`: case `Ascania`: case `Dampierre`: case `Carceri`:
             return [128,159,112]
         case `Zähringen`: case `Transjurania`: case `Helvetie`: case `Wettin`: case `Vermandois`:
             return [221,119,156]
@@ -492,6 +492,16 @@ export function nameColor(name){
             return [255,150,128]
         case `Orange`:
             return [238,110,37]
+        case `Raron`: case `Cornaro`:
+            return [234,109,125]
+        case `La Baume`:
+            return [103,100,162]
+        case `Freie Ämter`:
+            return [193,120,155]
+        case `Mirabel`:
+            return [245,127,110]
+        case `Bures`:
+            return [136,122,169]
         default:
             return [150,150,150]
     }
@@ -597,6 +607,7 @@ export function checkCity(){
     types.map.forEach(map=>map.city.forEach(city=>city.connect.forEach((connect,index)=>{if(city.connect.some((connect2,index2)=>index!=index2&&connect.name==connect2.name)){print(city.name,connect.name)}})))
 }
 export function checkTeam(){
+    types.map=types.map.filter(map=>map.name[1]!=`Randomized`)
     print(`Checking Vacuous`)
     types.map.forEach(map=>map.team.forEach(team=>{if(!(map.city.some(city=>city.rule==team.name)||map.city.some(city=>city.type==5||city.type==10)&&team.name==`Free Company`||map.city.some(city=>city.type==8)&&team.name==`Russian Raid`)){print(map.name,team.name)}}))
     print(`Checking Type`)
