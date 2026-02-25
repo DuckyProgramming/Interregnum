@@ -2,7 +2,7 @@ types.district=[
     {
         name:`Léman`,
         region:`Léman`,
-        area:162385,
+        area:162372,
     },{
         name:`Franche-Comté`,
         region:`Transjurania`,
@@ -14,7 +14,7 @@ types.district=[
     },{
         name:`Romandie`,
         region:`Transjurania`,
-        area:733881,
+        area:733759,
     },{
         name:`Bresse`,
         region:`Cisjurania`,
