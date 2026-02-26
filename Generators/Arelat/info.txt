@@ -22,7 +22,7 @@ Major Noble Houses:
 Savoy (A string of territories between Vaud and Nice),
 Barcelona (Provence),
 Albon (The County Palatine of the Rhône, Forez, Beaujolais),
-Rouergue (Margraviate of Provence, counties on the Rhône between Valence and Avignon),
+Rouergue (Marquisate of Provence),
 Andechs (Franche-Comté),
 Arduinici (Bresse and adjacent regions),
 Sabran (Forcalquier),
@@ -37,12 +37,12 @@ Thoire (County of Geneva)
 Full List of States:
 Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Bremgarten, Lucerne, Solothurn, Besançon, Geneva
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Lyon, Tarentaise
-Bishoprics: Basel, Lausanne, Geneva, Sion, Avignon, Viviers
+Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers
 Abbeys: Interlaken, Bellelay, Moutier-Grandval, St. Maurice, Lanslebourg, La Déserte, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Cornillon, Lérins
 Counties: Ober-Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Vaud, Chablais, Barcelonette, Nice, Briançonnois, Oberland, Valentinois, Diois, Baronnies, Venaissin, Michaille, Bresse, Voironnais, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
 Lordships: Ruswil, Frickgau, Entlebuch, Willisau, Grandson, Royanez, Tournon, Beaujolais, Rosses, Faucigny, Gex, Aigle, Murten, Buchsgau, Sisgau, Aarburgund, Laufen, Hasli, Tricastin, Auxonne, Neuveville, Loveresse, Échallens, Villars, Montagny, Valangin, Salins, Raron, Arconciel, Satigny
 Free Peasants: Valley of Obwalden, Republic of The Seven Zenden, Escarton of Queyras, Condominium of Freie Ämter
-Misc: Village Concord of Mirabel, County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Margraviate of Provence
+Misc: Village Concord of Mirabel, County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Marquisate of Provence
 
 (Ecclesiastical states are listed only if they possess immediate territory, there are many bishops and abbies that exist but without royally immediate temporal land)
 

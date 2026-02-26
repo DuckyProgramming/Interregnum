@@ -154,12 +154,12 @@ types={state:[
     prestige:[],
     area:16673,
   },{
-    name:`Avignon`,
+    name:`Belley`,
     title:`Bishopric`,
     district:`Drôme`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:3092,
+    area:25192,
   },{
     name:`Viviers`,
     title:`Bishopric`,
@@ -341,14 +341,14 @@ types={state:[
     district:`Alpes`,
     rule:`Savoy`,
     prestige:[`Duke`],
-    area:82712,
+    area:63793,
   },{
     name:`Bugey`,
     title:`County`,
     district:`Alpes`,
     rule:`Savoy`,
     prestige:[],
-    area:43735,
+    area:34120,
   },{
     name:`Maurienne`,
     title:`County`,
@@ -481,7 +481,7 @@ types={state:[
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:114802,
+    area:114741,
   },{
     name:`Diois`,
     title:`County`,
@@ -495,14 +495,14 @@ types={state:[
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:47735,
+    area:101821,
   },{
     name:`Provence`,
-    title:`Margraviate`,
+    title:`Marquisate`,
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:51214,
+    area:3084,
   },{
     name:`Venaissin`,
     title:`County`,
@@ -744,19 +744,13 @@ types={state:[
     rule:`Burghers`,
     prestige:[],
   },{
-    name:`Transjurania`,
+    name:`Upper Burgundy`,
     title:`Abbey Bench`,
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[],
   },{
-    name:`Alpine`,
-    title:`Abbey Bench`,
-    district:`Romandie`,
-    rule:`Ecclesiastical`,
-    prestige:[],
-  },{
-    name:`Provence`,
+    name:`Lower Burgundy`,
     title:`Abbey Bench`,
     district:`Provence`,
     rule:`Ecclesiastical`,
@@ -829,4 +823,4 @@ types={state:[
     prestige:[`Elector`,`Duke`],
   },
 ]}
-types.state.forEach(state=>{if([`County`,`Landgraviate`,`Margraviate`,`Archbishopric`,`County Palatine`,`Princessate`].includes(state.title)||state.title==`Bishopric`&&(state.name==`Viviers`||state.name==`Basel`)){types.diet.push(state)}})
+types.state.forEach(state=>{if([`County`,`Landgraviate`,`Margraviate`,`Marquisate`,`Archbishopric`,`County Palatine`,`Princessate`].includes(state.title)||state.title==`Bishopric`&&(state.name==`Viviers`||state.name==`Basel`||state.name==`Belley`)){types.diet.push(state)}})
