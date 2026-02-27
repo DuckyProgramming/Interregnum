@@ -38,13 +38,13 @@ Gruyères (Gruyères and Salins)
 Orange (County of Orange)
 Thoire (County of Geneva)
 
+Full List of States:
 Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Bremgarten, Lucerne, Solothurn, Besançon, Geneva
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Lyon, Tarentaise
 Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers
 Abbeys: Interlaken, Bellelay, Moutier-Grandval, St. Maurice, Lanslebourg, La Déserte, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Cornillon, Lérins
-Counties: Ober-Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Vaud, Chablais, Barcelonette, Nice, Briançonnois, Oberland, Venaissin, Tricastin, Michaille, Bresse, Turripinois, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
-Lordships: Ruswil, Frickgau, Entlebuch, Willisau, Grandson, Royanez, Tournon, Beaujolais, Rosses, Faucigny, Gex, Aigle, Murten, Buchsgau, Sisgau, Aarburgund, Hasli, Auxonne, Neuveville, Loveresse, Échallens, Villars, Montagny, Valangin, Raron, Arconciel, Satigny
-Baronies: Montauban, Mévouillon, Salins
+Counties: Ober-Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Vaud, Chablais, Barcelonette, Nice, Briançonnois, Oberland, Valentinois, Diois, Baronnies, Venaissin, Michaille, Bresse, Voironnais, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
+Lordships: Ruswil, Frickgau, Entlebuch, Willisau, Grandson, Royanez, Tournon, Beaujolais, Rosses, Faucigny, Gex, Aigle, Murten, Buchsgau, Sisgau, Aarburgund, Laufen, Hasli, Tricastin, Auxonne, Neuveville, Loveresse, Échallens, Villars, Montagny, Valangin, Salins, Raron, Arconciel, Satigny
 Free Peasants: Valley of Obwalden, Republic of The Seven Zenden, Escarton of Queyras, Condominium of Freie Ämter
 Misc: Village Concord of Mirabel (An alliance of ten small villages named Mirabel or similar), County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Marquisate of Provence
 

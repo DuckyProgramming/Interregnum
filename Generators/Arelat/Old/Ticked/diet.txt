@@ -12,11 +12,11 @@ There's a total of 60 votes. 50 votes are connected to territories:
 [30] All counties (including the county palatine), landgraviates, and marquisates have their own seats.
 [7] All archbishops have their own seats.
 [3] All bishops with large territories (Viviers, Basel, Belley) have their own seats. Smaller territorial bishops and non-territorial bishops attend but cannot vote.
-[5] Minor lordships and baronies are organized into the following benches with one collective vote each:
+[5] Minor lordships are organized into the following benches with one collective vote each:
 Jura (Salins, Auxonne, Neuveville, Loveresse, Valangin, Grandson)
-Helvetia (Frickgau, Entlebuch, Willisau, Ruswil, Buchsgau, Sisgau, Nidau, Aarburgund, Hasli)
+Helvetia (Frickgau, Entlebuch, Willisau, Ruswil, Buchsgau, Sisgau, Nidau, Aarburgund, Laufen, Hasli)
 Romandy (Murten, Échallens, Montagny, Arconciel, Satigny)
-Rhône (Tournon, Beaujolais, Villars, Montauban, Mévouillon)
+Rhône (Tricastin, Tournon, Beaujolais, Villars)
 Alpine (Rosses, Faucigny, Gex, Aigle, Raron)
 [2] Territorial abbeys are organized into the following benches with one collective vote each
 Upper Burgundy (Luxeuil, Lure, Baume-Les-Dames, Bellelay, Moutier-Grandval, St. Maurice, Interlaken),

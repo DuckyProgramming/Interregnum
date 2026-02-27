@@ -74,6 +74,10 @@ class operation{
                 return [234,109,125]
             case `La Baume`:
                 return [103,100,162]
+            case `Poitiers`:
+                return [184,196,84]
+            case `Queyras`:
+                return [206,168,228]
             default:
                 return [150]
         }

@@ -131,14 +131,14 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:39366,
+    area:36120,
   },{
     name:`Lausanne`,
     title:`Bishopric`,
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:16091,
+    area:16053,
   },{
     name:`Geneva`,
     title:`Bishopric`,
@@ -152,7 +152,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:25289,
+    area:16673,
   },{
     name:`Belley`,
     title:`Bishopric`,
@@ -376,7 +376,7 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:49718,
+    area:53548,
   },{
     name:`Faucigny`,
     title:`Lordship`,
@@ -425,7 +425,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen-Savoy`,
     prestige:[],
-    area:10422,
+    area:10625,
   },{
     name:`Oberland`,
     title:`County`,
@@ -439,7 +439,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:25465,
+    area:23922,
   },{
     name:`Klein-Burgund`,
     title:`Landgraviate`,
@@ -453,7 +453,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:16574,
+    area:16435,
   },{
     name:`Aarburgund`,
     title:`Lordship`,
@@ -462,6 +462,13 @@ types={state:[
     prestige:[],
     area:29947,
   },{
+    name:`Laufen`,
+    title:`Lordship`,
+    district:`Helvetie`,
+    rule:`Zähringen`,
+    prestige:[],
+    area:4398,
+  },{
     name:`Hasli`,
     title:`Lordship`,
     district:`Helvetie`,
@@ -469,19 +476,12 @@ types={state:[
     prestige:[],
     area:25699,
   },{
-    name:`Montauban`,
-    title:`Barony`,
+    name:`Baronnies`,
+    title:`County`,
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:68486,
-  },{
-    name:`Mévouillon`,
-    title:`Barony`,
-    district:`Drôme`,
-    rule:`Rouergue`,
-    prestige:[],
-    area:31150,
+    area:101821,
   },{
     name:`Provence`,
     title:`Marquisate`,
@@ -498,7 +498,7 @@ types={state:[
     area:78901,
   },{
     name:`Tricastin`,
-    title:`County`,
+    title:`Lordship`,
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
@@ -518,7 +518,7 @@ types={state:[
     prestige:[],
     area:148855,
   },{
-    name:`Turripinois`,
+    name:`Voironnais`,
     title:`County`,
     district:`Bresse`,
     rule:`Arduinici`,
@@ -579,7 +579,7 @@ types={state:[
     district:`Romandie`,
     rule:`Montfaucon`,
     prestige:[],
-    area:12021,
+    area:13331,
   },{
     name:`Échallens`,
     title:`Lordship`,
@@ -631,7 +631,7 @@ types={state:[
     area:40953,
   },{
     name:`Salins`,
-    title:`Barony`,
+    title:`Lordship`,
     district:`Franche-Comté`,
     rule:`Gruyères`,
     prestige:[],
@@ -677,7 +677,7 @@ types={state:[
     district:`Romandie`,
     rule:`Republic`,
     prestige:[],
-    area:124079,
+    area:129499,
   },{
     name:`Queyras`,
     title:`Escarton`,
