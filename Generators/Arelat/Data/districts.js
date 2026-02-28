@@ -10,23 +10,23 @@ types.district=[
     },{
         name:`Helvetie`,
         region:`Transjurania`,
-        area:455476,
+        area:563458,
     },{
         name:`Romandie`,
         region:`Transjurania`,
-        area:736162,
+        area:596685,
     },{
         name:`Bresse`,
         region:`Cisjurania`,
-        area:317023,
+        area:396518,
     },{
         name:`Alpes`,
         region:`Cisjurania`,
-        area:395899,
+        area:387179,
     },{
         name:`Dauphiné`,
         region:`Cisjurania`,
-        area:790670,
+        area:705166,
     },{
         name:`Drôme`,
         region:`Provence`,

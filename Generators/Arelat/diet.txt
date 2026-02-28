@@ -8,31 +8,26 @@ Women are able to hold diet seats, both temporal and ecclesiastical, but their p
 
 The diet performs the following functions: confirming and establishing laws and privileges, arbitrating feuds and disagreements, funding and recruiting armies during extraordinary circumstances, and deciding on succession of extinct houses and regency when necessary.
 
-There's a total of 60 votes. 50 votes are connected to territories:
-[30] All counties (including the county palatine), landgraviates, and marquisates have their own seats.
+There are a total of 50 votes. 40 votes are connected to territories:
+[25] All counties (including the county palatine), landgraviates, and marquisates have their own seats.
 [7] All archbishops have their own seats.
-[3] All bishops with large territories (Viviers, Basel, Belley) have their own seats. Smaller territorial bishops and non-territorial bishops attend but cannot vote.
-[5] Minor lordships and baronies are organized into the following benches with one collective vote each:
-Jura (Salins, Auxonne, Neuveville, Loveresse, Valangin, Grandson)
-Helvetia (Frickgau, Entlebuch, Willisau, Ruswil, Buchsgau, Sisgau, Nidau, Aarburgund, Hasli)
-Romandy (Murten, Échallens, Montagny, Arconciel, Satigny)
-Rhône (Tournon, Beaujolais, Villars, Montauban, Mévouillon)
-Alpine (Rosses, Faucigny, Gex, Aigle, Raron)
-[2] Territorial abbeys are organized into the following benches with one collective vote each
-Upper Burgundy (Luxeuil, Lure, Baume-Les-Dames, Bellelay, Moutier-Grandval, St. Maurice, Interlaken),
-Lower Burgundy (Lérins, Le Beausset, Cornillon, La Déserte, Lanslebourg)
+[2] All bishops who are also counts (Viviers, Basel) have their own seats.
 [2] Free royal cities are organized into the following benches with one collective vote each:
 Transjurania (Basel, Rheinfelden, Solothurn, Bern, Fribourg, Bremgarten, Lucerne),
 Rhône (Geneva, Lyon, Besançon)
 The Village Concord of Mirabel shares one collective position on the Rhône bench.
-[1] The Advocate of the Royal Valleys (officer representing the free peasant states, appointed by the king but beholden to the constituents) has a vote.
+[4] The advocates, officers representing various states, appointed by the king but beholden to constituents, have a vote each:
+Advocate of the northern lordships (minor lordships and baronies in the north)
+Advocate of the southern lordships (minor lordships and baronies in the south)
+Advocate of the royal abbies (royally immediate abbeys)
+Advocate of the royal vallies (the free peasant states).
 (For collective votes, only one member must appear in person to represent the others)
 
 10 votes are connected to titles:
 [7] The electors each have an additional vote.
 [3] The ducal titles each grant an additional vote.
 
-Dynastic Breakdown of Votes: Republic: 1, Habsburg: 1, Thoire: 1, Fenis: 1, Gruyères: 1, Orange: 1, Sabran: 1, Montfaucon: 2, Burghers: 2, Poitiers: 2, Rouergue: 3, Barcelona: 3, Andechs: 3, Arduinici: 3, Zähringen: 4, Albon: 5, Savoy: 11, Ecclesiastical: 15
+Dynastic Breakdown of Votes: Republic: 1, Habsburg: 1, Montfaucon: 1, Thoire: 1, Fenis: 1, Gruyères: 1, Orange: 1, Sabran: 1, Burghers: 2, Arduinici: 2, Poitiers: 2, Rouergue: 3, Zähringen: 3, Barcelona: 3, Andechs: 3, Albon: 4, Savoy: 7, Ecclesiastical: 13
 (Note, however, that different prelates or different branches and appanages of a family often disagree and don't vote as a bloc)
 
 Briefly, do you understand the above information?

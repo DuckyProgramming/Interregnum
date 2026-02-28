@@ -19,7 +19,7 @@ Duchies: There are no territorial duchies, but there are three ducal titles, cor
 Women: The kingdom places more power in the hands of women compared to contemporary polities, with a couple important female-only offices, some ceremonial, some with decent power. It also permits them greater dynastic privileges to inherit noble titles and to possess dynastic seats (and ecclesiastical bench membership for some abbesses) in the diet, which was implemented to prevent noble houses from dying out, and because a previous queen regent proved a very successful ruler. There are also a higher quantity of religious organizations and universities that admit women, sometimes exclusively.
 
 Current State: It is the year 1252, and the kingdom is in a state of interregnum following the death of King Peter I, from the house of Thoire. He was a poor ruler, not because of inaction or inefficacy, but because of his ability to get into constant conflicts with his nobles, which resulted in his reign being marked by a series of rebellions.
-Furthermore, other than the disputed royal succession, another crisis presents itself in the form of King Peter's mercenary army, which has split into four distinct groups: the loyal forces, demanding pay from the diet, the loose soldiers, wandering around and looking for work, the free companies, who have seized numerous forts, and the most dangerous, the écorcheurs, raiders known for robbing their victims until they are naked.
+Furthermore, other than the disputed royal succession, another crisis presents itself in the form of King Peter's mercenary army, which has split into four distinct groups: the loyal forces, demanding pay from the diet, the loose soldiers, wandering around and looking for work, the free companies, who in small groups have seized numerous castles and forts, and the most dangerous, the écorcheurs, raiders known for robbing their victims of everything, down to their very undergarments.
 
 Major Noble Houses:
 Savoy (A string of territories between Vaud and Nice),
@@ -42,10 +42,11 @@ Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Bremgarten, Lucerne, Solo
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Lyon, Tarentaise
 Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers
 Abbeys: Interlaken, Bellelay, Moutier-Grandval, St. Maurice, Lanslebourg, La Déserte, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Cornillon, Lérins
-Counties: Ober-Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Vaud, Chablais, Barcelonette, Nice, Briançonnois, Oberland, Venaissin, Tricastin, Michaille, Bresse, Turripinois, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
-Lordships: Ruswil, Frickgau, Entlebuch, Willisau, Grandson, Royanez, Tournon, Beaujolais, Rosses, Faucigny, Gex, Aigle, Murten, Buchsgau, Sisgau, Aarburgund, Hasli, Auxonne, Neuveville, Loveresse, Échallens, Villars, Montagny, Valangin, Raron, Arconciel, Satigny
-Baronies: Montauban, Mévouillon, Salins
-Free Peasants: Valley of Obwalden, Republic of The Seven Zenden, Escarton of Queyras, Condominium of Freie Ämter
+Counties: Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Nice, Oberland, Venaissin, Bresse, Michaille, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
+Lordships: Ruswil, Frickgau, Entlebuch, Willisau, Grandson, Royanez, Tournon, Beaujolais, Rosses, Faucigny, Gex, Aigle, Barcelonette, Murten, Buchsgau, Sisgau, Hasli, Tricastin, La Tour-du-Pin, Auxonne, Neuveville, Loveresse, Échallens, Villars, Montagny, Valangin, Montjoie, Raron, Arconciel, Satigny
+Baronies: Vaud, Aarburgund, Montauban, Mévouillon, Salins
+Escartons: Briançon, Queyras
+Free Peasants: Republic of The Seven Zenden, Condominium of Freie Ämter
 Misc: Village Concord of Mirabel (An alliance of ten small villages named Mirabel or similar), County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Marquisate of Provence
 
 (Ecclesiastical states are listed only if they possess immediate territory, there are many bishops and abbies that exist but without royally immediate temporal land)
