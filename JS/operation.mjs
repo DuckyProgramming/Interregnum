@@ -156,7 +156,12 @@ export class operation{
                 }
             }
         }
-        types.holdCity.forEach(city=>{city.connect=[]})
+        types.holdCity.forEach(city=>{
+            city.connect=[]
+            if(typeof city.rule==`object`){
+                city.rule=randin(city.rule)
+            }
+        })
         types.holdTeam=types.map[map].team.filter(team=>team.name==`Free Company`||types.holdCity.some(city=>city.rule==team.name))
         types.holdCity=types.holdCity
             .map(value=>({value,sort:random(0,1)}))

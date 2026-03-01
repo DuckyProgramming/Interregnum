@@ -78,6 +78,8 @@ class operation{
                 return [184,196,84]
             case `Queyras`:
                 return [206,168,228]
+            case `Montjoie`:
+                return [153,60,97]
             default:
                 return [150]
         }
