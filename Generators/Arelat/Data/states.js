@@ -131,7 +131,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:38755,
+    area:38118,
   },{
     name:`Lausanne`,
     title:`Bishopric`,
@@ -383,7 +383,7 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:81465,
+    area:76255,
   },{
     name:`Gex`,
     title:`Lordship`,
@@ -586,7 +586,7 @@ types={state:[
     district:`Léman`,
     rule:`Thoire`,
     prestige:[],
-    area:149676,
+    area:152643,
   },{
     name:`Villars`,
     title:`Lordship`,
