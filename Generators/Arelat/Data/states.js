@@ -89,7 +89,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:84084,
+    area:78756,
   },{
     name:`Arles`,
     title:`Archbishopric`,
@@ -523,7 +523,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Arduinici`,
     prestige:[],
-    area:34914,
+    area:22501,
   },{
     name:`Valentinois`,
     title:`County`,
@@ -551,7 +551,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:582088,
+    area:585417,
   },{
     name:`Montbéliard`,
     title:`County`,
