@@ -75,7 +75,7 @@ types={state:[
     district:`Bresse`,
     rule:`Burghers`,
     prestige:[],
-    area:5230,
+    area:7982,
   },{
     name:`Vienne`,
     title:`Archbishopric`,
@@ -124,7 +124,7 @@ types={state:[
     district:`Alpes`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:85590,
+    area:83003,
   },{
     name:`Basel`,
     title:`Bishopric`,
@@ -152,7 +152,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:25289,
+    area:25441,
   },{
     name:`Belley`,
     title:`Bishopric`,
@@ -201,7 +201,7 @@ types={state:[
     district:`Alpes`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:3677,
+    area:2693,
   },{
     name:`La Déserte`,
     title:`Abbey`,
@@ -327,7 +327,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:210582,
+    area:208232,
   },{
     name:`Beaujolais`,
     title:`Lordship`,
@@ -355,7 +355,7 @@ types={state:[
     district:`Alpes`,
     rule:`Savoy`,
     prestige:[],
-    area:102488,
+    area:100377,
   },{
     name:`Chablais`,
     title:`County`,
@@ -376,7 +376,7 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:49718,
+    area:49406,
   },{
     name:`Faucigny`,
     title:`Lordship`,
@@ -404,7 +404,7 @@ types={state:[
     district:`Cottia`,
     rule:`Savoy`,
     prestige:[],
-    area:127861,
+    area:119382,
   },{
     name:`Barcelonette`,
     title:`Lordship`,
@@ -544,7 +544,7 @@ types={state:[
     district:`Provence`,
     rule:`Barcelona`,
     prestige:[`Elector`,`Duke`],
-    area:734293,
+    area:740366,
   },{
     name:`Franche-Comté`,
     title:`County`,
