@@ -89,7 +89,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:78756,
+    area:85326,
   },{
     name:`Arles`,
     title:`Archbishopric`,
@@ -131,7 +131,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:38118,
+    area:39333,
   },{
     name:`Lausanne`,
     title:`Bishopric`,
@@ -327,14 +327,14 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:208232,
+    area:195383,
   },{
     name:`Beaujolais`,
     title:`Lordship`,
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:46723,
+    area:44080,
   },{
     name:`Savoy`,
     title:`County`,
@@ -369,7 +369,7 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:88690,
+    area:91740,
   },{
     name:`Rosses`,
     title:`Lordship`,
@@ -418,7 +418,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen-Savoy`,
     prestige:[],
-    area:10619,
+    area:10626,
   },{
     name:`Oberland`,
     title:`County`,
@@ -432,7 +432,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:25497,
+    area:24699,
   },{
     name:`Klein-Burgund`,
     title:`Landgraviate`,
@@ -446,14 +446,14 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:16574,
+    area:16848,
   },{
     name:`Aarburgund`,
-    title:`Barony`,
+    title:`Lordship`,
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:28694,
+    area:25092,
   },{
     name:`Hasli`,
     title:`Lordship`,
@@ -551,7 +551,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:585417,
+    area:577993,
   },{
     name:`Montbéliard`,
     title:`County`,
@@ -565,7 +565,7 @@ types={state:[
     district:`Romandie`,
     rule:`Montfaucon`,
     prestige:[],
-    area:2608,
+    area:2461,
   },{
     name:`Loveresse`,
     title:`Lordship`,
@@ -595,19 +595,12 @@ types={state:[
     prestige:[],
     area:30315,
   },{
-    name:`Montagny`,
-    title:`Lordship`,
-    district:`Romandie`,
-    rule:`Fenis`,
-    prestige:[],
-    area:8434,
-  },{
     name:`Neuchâtel`,
     title:`County`,
     district:`Romandie`,
     rule:`Fenis`,
     prestige:[],
-    area:20730,
+    area:46041,
   },{
     name:`Valangin`,
     title:`Lordship`,
@@ -684,7 +677,14 @@ types={state:[
     district:`Alpes`,
     rule:`Republic`,
     prestige:[],
-    area:24119,
+    area:17805,
+  },{
+    name:`Châteaudauphin`,
+    title:`Escarton`,
+    district:`Alpes`,
+    rule:`Republic`,
+    prestige:[],
+    area:5801,
   },{
     name:`Freie Ämter`,
     title:`Condominium`,
