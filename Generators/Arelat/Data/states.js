@@ -33,14 +33,14 @@ types={state:[
     district:`Romandie`,
     rule:`Burghers`,
     prestige:[],
-    area:15414,
+    area:2886,
   },{
     name:`Bremgarten`,
     title:`Free City`,
     district:`Helvetie`,
     rule:`Burghers`,
     prestige:[],
-    area:323,
+    area:325,
   },{
     name:`Lucerne`,
     title:`Free City`,
@@ -257,14 +257,14 @@ types={state:[
     district:`Helvetie`,
     rule:`Habsburg`,
     prestige:[],
-    area:27613,
+    area:47377,
   },{
     name:`Ruswil`,
     title:`Lordship`,
     district:`Helvetie`,
     rule:`Habsburg`,
     prestige:[],
-    area:25136,
+    area:24162,
   },{
     name:`Frickgau`,
     title:`Lordship`,
@@ -273,19 +273,12 @@ types={state:[
     prestige:[],
     area:10286,
   },{
-    name:`Entlebuch`,
-    title:`Lordship`,
-    district:`Helvetie`,
-    rule:`Habsburg`,
-    prestige:[],
-    area:20313,
-  },{
     name:`Willisau`,
     title:`Lordship`,
     district:`Helvetie`,
     rule:`Habsburg`,
     prestige:[],
-    area:16771,
+    area:18120,
   },{
     name:`Grandson`,
     title:`Lordship`,
@@ -341,7 +334,7 @@ types={state:[
     district:`Alpes`,
     rule:`Savoy`,
     prestige:[`Duke`],
-    area:63860,
+    area:61184,
   },{
     name:`Bugey`,
     title:`County`,
@@ -455,6 +448,13 @@ types={state:[
     prestige:[],
     area:25092,
   },{
+    name:`Vivy`,
+    title:`Lordship`,
+    district:`Helvetie`,
+    rule:`Zähringen`,
+    prestige:[],
+    area:11483,
+  },{
     name:`Hasli`,
     title:`Lordship`,
     district:`Helvetie`,
@@ -502,14 +502,14 @@ types={state:[
     district:`Bresse`,
     rule:`Arduinici`,
     prestige:[],
-    area:134111,
+    area:129519,
   },{
     name:`Michaille`,
     title:`County`,
     district:`Bresse`,
     rule:`Arduinici`,
     prestige:[],
-    area:49769,
+    area:53742,
   },{
     name:`La Tour-du-Pin`,
     title:`Lordship`,
@@ -586,7 +586,7 @@ types={state:[
     district:`Léman`,
     rule:`Thoire`,
     prestige:[],
-    area:152643,
+    area:150598,
   },{
     name:`Villars`,
     title:`Lordship`,
@@ -689,9 +689,9 @@ types={state:[
     name:`Freie Ämter`,
     title:`Condominium`,
     district:`Helvetie`,
-    rule:`Thoire-Republic`,
+    rule:`Habsburg-Republic`,
     prestige:[],
-    area:10232,
+    area:10334,
   },{
     name:`Satigny`,
     title:`Lordship`,
@@ -728,7 +728,7 @@ types={state:[
   },{
     name:`the Royal Abbies`,
     title:`Advocate`,
-    district:`Léman`,
+    district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
   },{

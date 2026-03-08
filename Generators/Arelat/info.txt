@@ -44,7 +44,7 @@ Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, 
 Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers
 Abbeys: Interlaken, Bellelay, Moutier-Grandval, St. Maurice, Lanslebourg, La Déserte, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Cornillon, Lérins
 Counties: Aargau, Albon, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Nice, Oberland, Venaissin, Bresse, Michaille, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Geneva, Neuchâtel, Gruyères, Orange, Forcalquier
-Lordships: Ruswil, Frickgau, Entlebuch, Willisau, Grandson, Royanez, Tournon, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Buchsgau, Sisgau, Aarburgund, Hasli, Tricastin, La Tour-du-Pin, Auxonne, Neuveville, Loveresse, Échallens, Villars, Valangin, Montjoie, Raron, Arconciel, Satigny
+Lordships: Ruswil, Frickgau, Willisau, Grandson, Royanez, Tournon, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Buchsgau, Sisgau, Vivy, Aarburgund, Hasli, Tricastin, La Tour-du-Pin, Auxonne, Neuveville, Loveresse, Échallens, Villars, Valangin, Montjoie, Raron, Arconciel, Satigny
 Baronies: Vaud, Montauban, Mévouillon, Salins
 Escartons: Briançon, Queyras, Châteaudauphin
 Free Peasants: Republic of The Seven Zenden, Condominium of Freie Ämter

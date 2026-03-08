@@ -47,7 +47,7 @@ class operation{
             case `Republic`: case `Tellgovie`: case `Valley`: 
                 return [161,161,161]
             case `Habsburg`:
-                return [229,173,67]
+                return [255,193,75]
             case `Savoy`: case `Alpes`: case `Margraviate`:
                 return [49,167,185]
             case `Romandie`:
@@ -66,9 +66,11 @@ class operation{
                 return [193,144,112]
             case `Ivrea`:
                 return [231,125,221]
-            case `Thoire-Republic`: case `Condominium`:
+            case `Habsburg-Republic`: case `Condominium`:
+                return [255,193,75,161,161,161]
+            case `Thoire-Republic`:
                 return [184,54,117,161,161,161]
-            case `Albon-Republic`: case `Escarton`:
+            case `Albon-Republic`:
                 return [228,153,70,161,161,161]
             case `Raron`:
                 return [234,109,125]
@@ -76,7 +78,7 @@ class operation{
                 return [103,100,162]
             case `Poitiers`:
                 return [184,196,84]
-            case `Queyras`:
+            case `Queyras`: case `Escarton`:
                 return [206,168,228]
             case `Montjoie`:
                 return [153,60,97]
