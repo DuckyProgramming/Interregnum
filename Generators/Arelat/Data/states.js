@@ -12,7 +12,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Burghers`,
     prestige:[],
-    area:1171,
+    area:880,
   },{
     name:`Rheinfelden`,
     title:`Free City`,
@@ -61,7 +61,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Burghers`,
     prestige:[],
-    area:3316,
+    area:4585,
   },{
     name:`Geneva`,
     title:`Free City`,
@@ -72,7 +72,7 @@ types={state:[
   },{
     name:`Mirabel`,
     title:`Village Concord`,
-    district:`Bresse`,
+    district:`Dauphiné`,
     rule:`Burghers`,
     prestige:[],
     area:7982,
@@ -89,14 +89,14 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:85326,
+    area:15710,
   },{
     name:`Arles`,
     title:`Archbishopric`,
     district:`Provence`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:42961,
+    area:43816,
   },{
     name:`Embrun`,
     title:`Archbishopric`,
@@ -439,7 +439,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:17884,
+    area:17993,
   },{
     name:`Aarburgund`,
     title:`Lordship`,
@@ -488,7 +488,7 @@ types={state:[
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:78822,
+    area:76393,
   },{
     name:`Tricastin`,
     title:`Lordship`,
@@ -551,7 +551,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:575541,
+    area:644161,
   },{
     name:`Montbéliard`,
     title:`County`,
@@ -628,7 +628,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Gruyères`,
     prestige:[],
-    area:41078,
+    area:41032,
   },{
     name:`Orange`,
     title:`County`,
