@@ -69,6 +69,52 @@ function outStates(){
 function outDiet(){
     types.diet.forEach((diet,index)=>print(`${index+1}: ${diet.title}${diet.name!=``?` of `:``}${diet.name}`))
 }
+function outDietDistrict(){
+    let key=`district`
+    let term=`diet`
+    let sets=[]
+    for(let a=0,la=types[term].length;a<la;a++){
+        let account=false
+        for(let b=0,lb=sets.length;b<lb;b++){
+            if(sets[b][0][key]==types[term][a][key]){
+                sets[b].push(types[term][a])
+                account=true
+                b=lb
+            }
+        }
+        if(!account){
+            sets.push([types[term][a]])
+        }
+    }
+    sets.sort((a,b)=>a.length-b.length)
+    sets.forEach(set=>{
+        print(`\n${set[0][key]}:`)
+        set.forEach((diet,index)=>print(`${index+1}: ${diet.title}${diet.name!=``?` of `:``}${diet.name}`))
+    })
+}
+function outDietRegion(){
+    let key=[`district`,`region`]
+    let term=[`diet`,`district`]
+    let sets=[]
+    for(let a=0,la=types[term[0]].length;a<la;a++){
+        let account=false
+        for(let b=0,lb=sets.length;b<lb;b++){
+            if(types[term[1]][findName(sets[b][0][key[0]],types[term[1]])][key[1]]==types[term[1]][findName(types[term[0]][a][key[0]],types[term[1]])][key[1]]){
+                sets[b].push(types[term[0]][a])
+                account=true
+                b=lb
+            }
+        }
+        if(!account){
+            sets.push([types[term[0]][a]])
+        }
+    }
+    sets.sort((a,b)=>a.length-b.length)
+    sets.forEach(set=>{
+        print(`\n${types[term[1]][findName(set[0][key[0]],types[term[1]])][key[1]]}:`)
+        set.forEach((diet,index)=>print(`${index+1}: ${diet.title}${diet.name!=``?` of `:``}${diet.name}`))
+    })
+}
 function outStats(){
     let build=``
     current.stats.items.forEach((stat,index)=>build+=`${index>0?`, `:``}${stat.name}: ${stat.base}`)

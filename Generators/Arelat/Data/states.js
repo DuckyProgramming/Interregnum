@@ -2,7 +2,7 @@ types={state:[
   {
     name:`Lyon`,
     title:`Free City`,
-    district:`Dauphiné`,
+    district:`Bresse`,
     rule:`Burghers`,
     prestige:[],
     area:4022,
@@ -114,7 +114,7 @@ types={state:[
   },{
     name:`Lyon`,
     title:`Archbishopric`,
-    district:`Dauphiné`,
+    district:`Bresse`,
     rule:`Ecclesiastical`,
     prestige:[],
     area:71090,
@@ -205,7 +205,7 @@ types={state:[
   },{
     name:`La Déserte`,
     title:`Abbey`,
-    district:`Dauphiné`,
+    district:`Bresse`,
     rule:`Ecclesiastical`,
     prestige:[],
     area:1976,
@@ -722,13 +722,19 @@ types={state:[
   },{
     name:`the Southern Lordships`,
     title:`Advocate`,
-    district:`Drôme`,
+    district:`Dauphiné`,
     rule:`Rouergue`,
     prestige:[],
   },{
-    name:`the Royal Abbies`,
+    name:`the Northern Abbies`,
     title:`Advocate`,
     district:`Romandie`,
+    rule:`Ecclesiastical`,
+    prestige:[],
+  },{
+    name:`the Southern Abbies`,
+    title:`Advocate`,
+    district:`Provence`,
     rule:`Ecclesiastical`,
     prestige:[],
   },{
@@ -799,4 +805,12 @@ types={state:[
     prestige:[`Elector`,`Duke`],
   },
 ]}
-types.state.forEach(state=>{if([`County`,`Landgraviate`,`Margraviate`,`Marquisate`,`Archbishopric`,`County Palatine`,`Princessate`].includes(state.title)||state.title==`Bishopric`&&(state.name==`Viviers`||state.name==`Basel`)){types.diet.push(state)}})
+types.state.forEach(state=>{
+  if(
+    [`County`,`Landgraviate`,`Margraviate`,`Marquisate`,`County Palatine`,`Princessate`].includes(state.title)||
+    state.title==`Bishopric`&&(state.name==`Viviers`||state.name==`Basel`)||
+    state.title==`Archbishopric`&&state.name!=`Besançon`
+  ){
+    types.diet.push(state)
+  }
+})
