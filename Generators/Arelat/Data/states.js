@@ -89,14 +89,14 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:15710,
+    area:16938,
   },{
     name:`Arles`,
     title:`Archbishopric`,
     district:`Provence`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:43816,
+    area:46784,
   },{
     name:`Embrun`,
     title:`Archbishopric`,
@@ -107,10 +107,10 @@ types={state:[
   },{
     name:`Aix`,
     title:`Archbishopric`,
-    district:`Cottia`,
+    district:`Provence`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:34747,
+    area:9163,
   },{
     name:`Lyon`,
     title:`Archbishopric`,
@@ -131,7 +131,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:39333,
+    area:47154,
   },{
     name:`Lausanne`,
     title:`Bishopric`,
@@ -229,7 +229,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:4247,
+    area:3795,
   },{
     name:`Le Beausset`,
     title:`Abbey`,
@@ -425,7 +425,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:23110,
+    area:21278,
   },{
     name:`Klein-Burgund`,
     title:`Landgraviate`,
@@ -439,7 +439,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:17993,
+    area:9331,
   },{
     name:`Aarburgund`,
     title:`Lordship`,
@@ -544,14 +544,14 @@ types={state:[
     district:`Provence`,
     rule:`Barcelona`,
     prestige:[`Elector`,`Duke`],
-    area:740366,
+    area:721473,
   },{
     name:`Franche-Comté`,
     title:`County`,
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:644161,
+    area:641450,
   },{
     name:`Montbéliard`,
     title:`County`,
@@ -656,14 +656,14 @@ types={state:[
     district:`Cottia`,
     rule:`Sabran`,
     prestige:[],
-    area:239253,
+    area:274668,
   },{
     name:`The Seven Zenden`,
     title:`Republic`,
     district:`Romandie`,
     rule:`Republic`,
     prestige:[],
-    area:124079,
+    area:122042,
   },{
     name:`Briançon`,
     title:`Escarton`,
@@ -716,7 +716,7 @@ types={state:[
   },{
     name:`the Northern Lordships`,
     title:`Advocate`,
-    district:`Helvetie`,
+    district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
   },{
@@ -726,13 +726,7 @@ types={state:[
     rule:`Rouergue`,
     prestige:[],
   },{
-    name:`the Northern Abbies`,
-    title:`Advocate`,
-    district:`Romandie`,
-    rule:`Ecclesiastical`,
-    prestige:[],
-  },{
-    name:`the Southern Abbies`,
+    name:`the Royal Abbies`,
     title:`Advocate`,
     district:`Provence`,
     rule:`Ecclesiastical`,
@@ -807,9 +801,8 @@ types={state:[
 ]}
 types.state.forEach(state=>{
   if(
-    [`County`,`Landgraviate`,`Margraviate`,`Marquisate`,`County Palatine`,`Princessate`].includes(state.title)||
-    state.title==`Bishopric`&&(state.name==`Viviers`||state.name==`Basel`)||
-    state.title==`Archbishopric`&&state.name!=`Besançon`
+    [`County`,`Landgraviate`,`Margraviate`,`Marquisate`,`County Palatine`,`Archbishopric`].includes(state.title)||
+    state.title==`Bishopric`&&(state.name==`Viviers`||state.name==`Basel`)
   ){
     types.diet.push(state)
   }

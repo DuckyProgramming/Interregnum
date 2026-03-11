@@ -34,7 +34,7 @@ class operation{
                 return [199,106,140,49,167,185]
             case `Württemberg`: case `Montfaucon`:
                 return [196,154,39]
-            case `Arduinici`: case 'Bresse':
+            case `Arduinici`: case `Bresse`: case `Bâgé`:
                 return [206,165,158]
             case `Lorraine`: case `Haut-Lorraine`:
                 return [229,152,152]
