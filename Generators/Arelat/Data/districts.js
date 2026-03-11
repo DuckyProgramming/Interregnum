@@ -26,7 +26,7 @@ types.district=[
     },{
         name:`Dauphiné`,
         region:`Cisjurania`,
-        area:671948,
+        area:669613,
     },{
         name:`Drôme`,
         region:`Provence`,
@@ -34,7 +34,7 @@ types.district=[
     },{
         name:`Cottia`,
         region:`Provence`,
-        area:509416,
+        area:507371,
     },{
         name:`Provence`,
         region:`Provence`,

@@ -320,7 +320,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:192897,
+    area:189281,
   },{
     name:`Chamelet`,
     title:`Lordship`,

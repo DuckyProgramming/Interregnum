@@ -1815,12 +1815,12 @@ export class ui{
                                 layer.fill(0)
                                 layer.textSize(24)
                                 layer.text(`Pick Defender\nStrategy`,0,40)
-                                for(let a=0,la=2;a<la;a++){
+                                for(let a=0,la=3;a<la;a++){
                                     layer.fill(120)
                                     layer.rect(0,tick+25,160,40,10)
                                     layer.fill(0)
                                     layer.textSize(15)
-                                    layer.text([`Battle`,`Siege`][a],0,tick+25)
+                                    layer.text([`Battle`,`Siege`,`Retreat`][a],0,tick+25)
                                     layer.textSize(10)
                                     layer.text(count,70,tick+15)
                                     tick+=50
@@ -3248,7 +3248,7 @@ export class ui{
                                 for(let a=0,la=cit.units.length;a<la;a++){
                                     totals[aligned.includes(cit.units[a].team)?1:0]+=cit.units[a].value
                                 }
-                                this.agency.lastResult=types.teamKey[0].includes(types.team[playing].name)?[1]:
+                                this.agency.lastResult=types.teamKey[0].includes(types.team[playing].name)?[1,0,0]:
                                     types.teamKey[1].includes(types.team[playing].name)?[1]:
                                     this.agents[playing].execute(3,[
                                         this.turn.count,
@@ -3258,10 +3258,11 @@ export class ui{
                                         totals[1]/1000,
                                         this.battle.circumstance[0]==2?1:0,
                                     ])
-                                if(this.agency.lastResult[0]>0&&!(this.raiders.active&&!types.teamKey[1].includes(types.team[playing].name)&&cit.units.some(unit=>types.teamKey[1].includes(types.team[unit.team].name)&&unit.value>=2000)&&floor(random(0,1.25))==0)){
+                                let maximal=max(this.agency.lastResult[0],this.agency.lastResult[1],this.agency.lastResult[2])
+                                if(this.agency.lastResult[0]==maximal&&!(this.raiders.active&&!types.teamKey[1].includes(types.team[playing].name)&&cit.units.some(unit=>types.teamKey[1].includes(types.team[unit.team].name)&&unit.value>=2000)&&floor(random(0,1.25))==0)){
                                     this.initializeCombat(0)
                                     this.agency.time=dev.instant?0:5
-                                }else{
+                                }else if(this.agency.lastResult[1]==maximal){
                                     for(let a=0,la=this.operation.cities[this.select.targetCity].units.length;a<la;a++){
                                         let uni=this.operation.cities[this.select.targetCity].units[a]
                                         if(uni.type==0&&!aligned.includes(uni.team)&&!uni.remove){
@@ -3277,6 +3278,14 @@ export class ui{
                                     if(rule!=this.turn.main&&!this.operation.teams[this.turn.main].allies.includes(rule)){
                                         this.operation.cities[this.select.targetCity].raided(this.turn.main)
                                     }
+                                    this.agency.time=0
+                                }else{
+                                    this.moveTab(17)
+                                    if(types.team[this.turn.main].auto){
+                                        this.singleVisibility(this.select.targetCity)
+                                    }
+                                    this.select.secondaryCity=types.cityRef[randin(types.city[this.select.targetCity].connect).name]
+                                    this.agency.count=0
                                     this.agency.time=0
                                 }
                             }
@@ -4039,6 +4048,14 @@ export class ui{
                                     }
                                 }
                                 tick+=50
+                                if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                                    this.moveTab(17)
+                                    if(types.team[this.turn.main].auto){
+                                        this.singleVisibility(this.select.targetCity)
+                                    }
+                                    this.select.secondaryCity=types.cityRef[randin(types.city[this.select.targetCity].connect).name]
+                                }
+                                tick+=50
                             }
                         break
                         case 9:
@@ -4068,7 +4085,6 @@ export class ui{
                                         this.singleVisibility(this.select.targetCity)
                                     }
                                     this.select.secondaryCity=types.cityRef[randin(types.city[this.select.targetCity].connect).name]
-                                    this.agency.count=0
                                 }
                                 tick+=50
                                 if(inPointBox(rel,boxify(0,tick+25,160,40))){
@@ -4664,6 +4680,14 @@ export class ui{
                                 }
                             }
                             count++
+                            if(key==count.toString()){
+                                this.moveTab(17)
+                                if(types.team[this.turn.main].auto){
+                                    this.singleVisibility(this.select.targetCity)
+                                }
+                                this.select.secondaryCity=types.cityRef[randin(types.city[this.select.targetCity].connect).name]
+                            }
+                            count++
                         }
                     break
                     case 9:
@@ -4693,7 +4717,6 @@ export class ui{
                                     this.singleVisibility(this.select.targetCity)
                                 }
                                 this.select.secondaryCity=types.cityRef[randin(types.city[this.select.targetCity].connect).name]
-                                this.agency.count=0
                             }
                             count++
                             if(key==count.toString()){

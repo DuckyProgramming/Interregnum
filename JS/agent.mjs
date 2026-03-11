@@ -4,9 +4,10 @@ export class agent{
     constructor(sets=[],constants=[]){
         this.sets=sets
         this.constants=constants
+
+        let inputLen=[22,19,10,6,7,5,16]
+        let outputLen=[6,1,1,3,1,1,1]
         if(this.sets.length==0||this.constants.length==0){
-            let inputLen=[22,19,10,6,7,5,16]
-            let outputLen=[6,1,1,1,1,1,1]
             this.sets=[
                 [[],[]],
                 [[],[]],
@@ -49,11 +50,11 @@ export class agent{
                         this.constants[a][1].push(random(-10,10))
                     }
                 }else{
-                    this.sets[a][0].push([])
-                    for(let b=0,lb=inputLen[a];b<lb;b++){
-                        this.sets[a][0][0].push(random(-10,10))
-                    }
                     for(let b=0,lb=outputLen[a];b<lb;b++){
+                        this.sets[a][0].push([])
+                        for(let c=0,lc=inputLen[a];c<lc;c++){
+                            this.sets[a][0][b].push(random(-10,10))
+                        }
                         this.constants[a][0].push(random(-10,10))
                     }
                 }
@@ -61,6 +62,53 @@ export class agent{
         }else{
             this.sets.forEach(module=>module.forEach(layer=>layer.forEach(keyvalue=>keyvalue.forEach(mult=>{if(mult==null){throw new Error(`Null Agent Value`)}}))))
             this.constants.forEach(module=>module.forEach(mult=>{if(mult==null){throw new Error(`Null Agent Value`)}}))
+            for(let a=0,la=this.sets.length;a<la;a++){
+                if(this.sets[a].length==2){
+                    for(let b=0,lb=5;b<lb;b++){
+                        if(this.sets[a][0].length<=b){
+                            this.sets[a][0].push([])
+                        }
+                        for(let c=0,lc=inputLen[a]-this.sets[a][0][b].length;c<lc;c++){
+                            this.sets[a][0][b].push(random(-10,10))
+                        }
+                    }
+                    for(let b=0,lb=5;b<lb;b++){
+                        if(this.sets[a][0].length<=b){
+                            this.sets[a][0].push([floor(random(0,inputLen[a])),floor(random(0,inputLen[a]))])
+                        }
+                    }
+                    for(let b=0,lb=outputLen[a];b<lb;b++){
+                        if(this.sets[a][1].length<=b){
+                            this.sets[a][1].push([])
+                        }
+                        for(let c=0,lc=10-this.sets[a][1][b].length;c<lc;c++){
+                            this.sets[a][1][b].push(random(-10,10))
+                        }
+                    }
+                    for(let b=0,lb=10;b<lb;b++){
+                        if(this.constants[a][0].length<=b){
+                            this.constants[a][0].push(random(-10,10))
+                        }
+                    }
+                    for(let b=0,lb=outputLen[a];b<lb;b++){
+                        if(this.constants[a][0].length<=b){
+                            this.constants[a][1].push(random(-10,10))
+                        }
+                    }
+                }else{
+                    for(let b=0,lb=outputLen[a];b<lb;b++){
+                        if(this.sets[a][0].length<=b){
+                            this.sets[a][0].push([])
+                        }
+                        for(let c=0,lc=inputLen[a]-this.sets[a][0][b].length;c<lc;c++){
+                            this.sets[a][0][b].push(random(-10,10))
+                        }
+                        if(this.constants[a][0].length<=b){
+                            this.constants[a][0].push(random(-10,10))
+                        }
+                    }
+                }
+            } 
         }
         this.record=0
         this.rewards=0
@@ -76,7 +124,7 @@ export class agent{
                 summa.push(a==0&&la==2&&b>=5?1:0)
                 for(let c=0,lc=this.sets[mode][a][b].length;c<lc;c++){
                     if(lc!=working.length&&!(a==0&&la==2&&b>=5)){
-                        print(mode,a,this.sets[mode][a][b],working)
+                        console.log(mode,a,this.sets[mode][a][b],working)
                         throw new Error(`Execute Fail`)
                     }
                     if(a==0&&la==2&&b>=5){

@@ -86,6 +86,8 @@ modes:
     rebelling?
 ] -> [
     battle
+    siege
+    retreat
 ]
 
 4 - pick attacker strategy
