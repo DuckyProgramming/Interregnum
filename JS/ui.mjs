@@ -400,11 +400,17 @@ export class ui{
                     })
                     team.cores=[]
                     total=max(total,1)
+                    let cits=[]
                     let cit=randin(this.operation.cities)
                     for(let a=0,la=total;a<la;a++){
                         cit.editCore(team.name)
+                        cits.push(cit)
                         cit.units.forEach(unit=>unit.team=team.type)
-                        cit=this.operation.cities[types.cityRef[randin(types.city[cit.type].connect).name]]
+                        let conn=types.city[cit.type].connect.filter(connect=>!cits.some(cit2=>connect.name==cit2.name))
+                        if(conn.length==0){
+                            break
+                        }
+                        cit=this.operation.cities[types.cityRef[randin(conn).name]]
                     }
                 }
             })
@@ -925,6 +931,7 @@ export class ui{
                             this.turn.timer=30
                             this.operation.cities[this.select.targetCity].updateUnits()
                             this.operation.cities[this.select.secondaryCity].updateUnits()
+                            this.updateVisibility()
                         }
                     }else if(this.tabs.active==13&&types.city[this.select.city].connect.some(connection=>{return connection.name==types.city[city].name})){
                         playing=this.operation.cities[this.select.city].getMostNotUnit(aligned)
@@ -980,6 +987,7 @@ export class ui{
                             this.turn.timer=30
                             this.operation.cities[this.select.city].updateUnits()
                             this.operation.cities[this.select.targetCity].updateUnits()
+                            this.updateVisibility()
                         }
                     }else if(this.tabs.active==15){
                         if(!types.team[this.turn.main].auto||bypass){

@@ -221,7 +221,12 @@ export class city{
             if(this.visibility==0){
                 for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
                     let cit=this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]]
-                    if(types.city[this.type].connect[a].type!=2&&cit.units.some(unit=>{return unit.team==turn&&(cit.sieged<=0||unit.type==0)&&!unit.remove})){
+                    let aligned=[]
+                    if(cit.owner!=-1){
+                        let own=types.teamRef[cit.owner]
+                        aligned=[own,...this.operation.teams[own].allies]
+                    }
+                    if(types.city[this.type].connect[a].type!=2&&(cit.units.some(unit=>unit.team==turn&&(cit.sieged<=0||unit.type==0)&&!unit.remove)||!cit.units.some(unit=>!aligned.includes(unit.team))&&cit.units.some(unit=>unit.team==turn))){
                         this.visibility=1
                     }
                 }
