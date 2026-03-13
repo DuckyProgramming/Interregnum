@@ -1588,7 +1588,7 @@ export var types={
                     {name:`Vassieux`,type:9,loc:[1497,3275],rule:`Poitiers`},
                     {name:`Ristolans`,type:9,loc:[2365,3286],rule:`Escartons`},
                     {name:`Chabeuil`,type:9,loc:[1286,3293],rule:`Poitiers`},
-                    {name:`L'Argentières`,type:9,loc:[2167,3301],rule:`Archbishop of Arles`},
+                    {name:`L'Argentière`,type:9,loc:[2167,3301],rule:`Archbishop of Arles`},
                     {name:`Soyons`,type:9,loc:[1187,3303],rule:`Poitiers`},
                     {name:`Corps`,type:9,loc:[1855,3307],rule:`Elder Albon`},
                     {name:`Clelles`,type:9,loc:[1654,3317],rule:`Elder Albon`},
