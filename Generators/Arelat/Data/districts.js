@@ -6,7 +6,7 @@ types.district=[
     },{
         name:`Franche-Comté`,
         region:`Transjurania`,
-        area:823676,
+        area:813190,
     },{
         name:`Helvetie`,
         region:`Transjurania`,

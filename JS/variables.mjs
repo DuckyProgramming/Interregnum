@@ -1261,7 +1261,7 @@ export var types={
                     {name:`Hyères`,type:0,loc:[2110,4675],rule:`Barcelona`},
                     //chance cities
                 ],[
-                    {name:`Fougerolles`,type:9,loc:[1831,856],rule:`Andechs`},
+                    {name:`Fougerolles`,type:9,loc:[1831,856],rule:`Archbishop of Besançon`},
                     {name:`Vauvillers`,type:9,loc:[1651,858],rule:`Andechs`},
                     {name:`Faucogney`,type:9,loc:[1905,889],rule:`Andechs`},
                     {name:`Luxeuil`,type:9,loc:[1783,915],rule:`Archbishop of Besançon`},
@@ -1287,7 +1287,7 @@ export var types={
                     {name:`Bure`,type:9,loc:[2159,1159],rule:`Archbishop of Besançon`},
                     {name:`Olten`,type:9,loc:[2646,1163],rule:`Archbishop of Besançon`},
                     {name:`Dampierre`,type:9,loc:[1410,1165],rule:`Andechs`},
-                    {name:`Beinwil`,type:9,loc:[2493,1169],rule:`Archbishop of Besançon`},
+                    {name:`Beinwil`,type:9,loc:[2493,1169],rule:`Zähringen`},
                     {name:`Rougemont`,type:9,loc:[1789,1175],rule:`Andechs`},
                     {name:`Delémont`,type:9,loc:[2354,1186],rule:`Archbishop of Besançon`},
                     {name:`Muri`,type:9,loc:[2893,1201],rule:`Freie Ämter`},
