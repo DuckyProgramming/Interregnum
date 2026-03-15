@@ -82,14 +82,14 @@ types={state:[
     district:`Dauphiné`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:59875,
+    area:59075,
   },{
     name:`Besançon`,
     title:`Archbishopric`,
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:17058,
+    area:17444,
   },{
     name:`Arles`,
     title:`Archbishopric`,
@@ -166,7 +166,7 @@ types={state:[
     district:`Drôme`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:189806,
+    area:163106,
   },{
     name:`Interlaken`,
     title:`Abbey`,
@@ -215,7 +215,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:10860,
+    area:11059,
   },{
     name:`Luxeuil`,
     title:`Abbey`,
@@ -229,7 +229,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:3102,
+    area:3303,
   },{
     name:`Le Beausset`,
     title:`Abbey`,
@@ -299,7 +299,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:44555,
+    area:44517,
   },{
     name:`Sermorens`,
     title:`County`,
@@ -308,19 +308,19 @@ types={state:[
     prestige:[],
     area:51441,
   },{
-    name:`Tournon`,
+    name:`Annonay`,
     title:`Lordship`,
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:33399,
+    area:35564,
   },{
     name:`Forez`,
     title:`County`,
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:189281,
+    area:182579,
   },{
     name:`Chamelet`,
     title:`Lordship`,
@@ -369,14 +369,14 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:45698,
+    area:45701,
   },{
     name:`Faucigny`,
     title:`Lordship`,
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:76255,
+    area:72358,
   },{
     name:`Gex`,
     title:`Lordship`,
@@ -505,7 +505,7 @@ types={state:[
     area:130134,
   },{
     name:`Michaille`,
-    title:`Lordship`,
+    title:`Barony`,
     district:`Bresse`,
     rule:`Bâgé`,
     prestige:[],
@@ -516,7 +516,7 @@ types={state:[
     district:`Bresse`,
     rule:`Bâgé`,
     prestige:[],
-    area:80130,
+    area:82572,
   },{
     name:`Auxonne`,
     title:`Lordship`,
@@ -530,7 +530,7 @@ types={state:[
     district:`Drôme`,
     rule:`Poitiers`,
     prestige:[],
-    area:114741,
+    area:104672,
   },{
     name:`Diois`,
     title:`County`,
@@ -538,6 +538,13 @@ types={state:[
     rule:`Poitiers`,
     prestige:[],
     area:103208,
+  },{
+    name:`Tournon`,
+    title:`Lordship`,
+    district:`Drôme`,
+    rule:`Poitiers`,
+    prestige:[],
+    area:22489,
   },{
     name:`Provence`,
     title:`County`,
@@ -551,7 +558,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:633708,
+    area:631554,
   },{
     name:`Montbéliard`,
     title:`County`,
@@ -678,13 +685,6 @@ types={state:[
     rule:`Republic`,
     prestige:[],
     area:17805,
-  },{
-    name:`Châteaudauphin`,
-    title:`Escarton`,
-    district:`Alpes`,
-    rule:`Republic`,
-    prestige:[],
-    area:5801,
   },{
     name:`Freie Ämter`,
     title:`Condominium`,
