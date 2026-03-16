@@ -977,8 +977,8 @@ export var types={
                 {name:`Brignoles`,type:0,loc:[2039,3035],rule:`Barcelona`,connect:[{name:`Riez`,type:1},{name:`Aix`,type:1},{name:`Draguignan`,type:1},{name:`Toulon`,type:0}]},
                 {name:`Fraxinetum`,type:0,loc:[2261,3076],rule:`Barcelona`,connect:[{name:`Draguignan`,type:1},{name:`Fréjus`,type:0},{name:`Hyères`,type:0}]},
                 {name:`Martigues`,type:0,loc:[1453,3108],rule:`Barcelona`,connect:[{name:`Aix`,type:0},{name:`Istres`,type:2},{name:`Marseille`,type:2}]},
-                {name:`Marseille`,type:0,loc:[1647,3166],rule:`Barcelona`,connect:[{name:`Toulon`,type:0},{name:`Aix`,type:0},{name:`Martigues`,type:2}]},
-                {name:`Toulon`,type:1,loc:[1983,3241],rule:`Barcelona`,connect:[{name:`Brignoles`,type:0},{name:`Marseille`,type:0},{name:`Hyères`,type:0}]},
+                {name:`Marseille`,type:1,loc:[1647,3166],rule:`Barcelona`,connect:[{name:`Toulon`,type:0},{name:`Aix`,type:0},{name:`Martigues`,type:2}]},
+                {name:`Toulon`,type:0,loc:[1983,3241],rule:`Barcelona`,connect:[{name:`Brignoles`,type:0},{name:`Marseille`,type:0},{name:`Hyères`,type:0}]},
                 {name:`Hyères`,type:0,loc:[2110,3275],rule:`Barcelona`,connect:[{name:`Fraxinetum`,type:0},{name:`Toulon`,type:0}]},
             ],team:[
                 {name:`Lyon`,term:`lyon`,type:`Urban`,allies:[],quality:0.95,chance:0.5},
@@ -1102,8 +1102,8 @@ export var types={
                 {name:`Brignoles`,type:0,loc:[2039,4435],rule:`Barcelona`,connect:[{name:`Riez`,type:1},{name:`Aix`,type:1},{name:`Draguignan`,type:1},{name:`Toulon`,type:0}]},
                 {name:`Fraxinetum`,type:0,loc:[2261,4476],rule:`Barcelona`,connect:[{name:`Draguignan`,type:1},{name:`Fréjus`,type:0},{name:`Hyères`,type:0}]},
                 {name:`Martigues`,type:0,loc:[1453,4508],rule:`Barcelona`,connect:[{name:`Aix`,type:0},{name:`Istres`,type:2},{name:`Marseille`,type:2}]},
-                {name:`Marseille`,type:0,loc:[1647,4566],rule:`Barcelona`,connect:[{name:`Toulon`,type:0},{name:`Aix`,type:0},{name:`Martigues`,type:2}]},
-                {name:`Toulon`,type:1,loc:[1983,4641],rule:`Barcelona`,connect:[{name:`Brignoles`,type:0},{name:`Marseille`,type:0},{name:`Hyères`,type:0}]},
+                {name:`Marseille`,type:1,loc:[1647,4566],rule:`Barcelona`,connect:[{name:`Toulon`,type:0},{name:`Aix`,type:0},{name:`Martigues`,type:2}]},
+                {name:`Toulon`,type:0,loc:[1983,4641],rule:`Barcelona`,connect:[{name:`Brignoles`,type:0},{name:`Marseille`,type:0},{name:`Hyères`,type:0}]},
                 {name:`Hyères`,type:0,loc:[2110,4675],rule:`Barcelona`,connect:[{name:`Fraxinetum`,type:0},{name:`Toulon`,type:0}]},
             ],team:[
                 {name:`Geneva`,term:`geneva`,type:`Urban`,allies:[`Thoire`],quality:0.95,chance:0.5},
