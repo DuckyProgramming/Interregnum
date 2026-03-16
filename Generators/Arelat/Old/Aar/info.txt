@@ -29,10 +29,10 @@ Albon (The County Palatine of the Rhône, Forez, Beaujolais),
 Andechs (Franche-Comté),
 Rouergue (Marquisate of Provence),
 Poitiers (Valentinois and Diois)
-Arduinici (Bresse and adjacent territories),
+Arduinici (Bresse and adjacent regions),
 Sabran (Forcalquier),
-Zähringen (Klein-Burgund and adjacent territories),
-Habsburg (Frickgau)
+Zähringen (Swiss lands between Basel and Meiringen),
+Habsburg (Aargau)
 Montfaucon (Montbéliard and Neuveville)
 Hohenzollern (Neuchâtel)
 Gruyères (Gruyères and Salins)
@@ -40,15 +40,15 @@ Orange (County of Orange)
 Thoire (County of Geneva)
 
 Full List of Immediate States:
-Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Solothurn, Besançon, Geneva
+Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Bremgarten, Lucerne, Solothurn, Besançon, Geneva
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Lyon, Tarentaise
 Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers
 Abbeys: Interlaken, Bellelay, Moutier-Grandval, St. Maurice, Lanslebourg, La Déserte, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Cornillon, Lérins
-Lordships: Kastelen, Grandson, Annonay, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Sisgau, Buchsgau, Ringgenberg, Unspunnen, Frutingen, Weissenburg, Mannenberg, Aarburgund, Vivy, Tricastin, La Tour-du-Pin, Auxonne, Tournon, Neuveville, Loveresse, Échallens, Villars, Valangin, Montjoie, Raron, Arconciel, Satigny
-Counties: Frickgau, Albon, Sermorens, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Romont, Nice, Venaissin, Bresse, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Genevois, Neuchâtel, Gruyères, Orange, Forcalquier
+Counties: Aargau, Albon, Sermorens, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Nice, Oberland, Venaissin, Bresse, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Genevois, Neuchâtel, Gruyères, Orange, Forcalquier
+Lordships: Entlebuch, Frickgau, Willisau, Grandson, Annonay, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Buchsgau, Sisgau, Aarburgund, Vivy, Hasli, Tricastin, La Tour-du-Pin, Auxonne, Tournon, Neuveville, Loveresse, Échallens, Villars, Valangin, Montjoie, Raron, Arconciel, Satigny
 Baronies: Vaud, Montauban, Mévouillon, Michaille, Salins
 Escartons: Briançon, Queyras
-Free Peasants: Republic of The Seven Zenden, Amt of Leuggern
+Free Peasants: Republic of The Seven Zenden, Condominium of Freie Ämter
 Misc: Village Concord of Mirabel (An alliance of ten small villages named Mirabel or similar), County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Marquisate of Provence
 
 (Ecclesiastical states are listed only if they possess immediate territory, there are many bishops and abbies that exist but without royally immediate temporal land)

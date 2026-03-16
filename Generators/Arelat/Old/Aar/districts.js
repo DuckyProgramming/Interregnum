@@ -6,19 +6,19 @@ types.district=[
     },{
         name:`Franche-Comté`,
         region:`Transjurania`,
-        area:812641,
+        area:813596,
     },{
         name:`Helvetie`,
         region:`Transjurania`,
-        area:403250,
+        area:542182,
     },{
         name:`Romandie`,
         region:`Transjurania`,
-        area:598391,
+        area:598583,
     },{
         name:`Bresse`,
         region:`Cisjurania`,
-        area:406932,
+        area:406129,
     },{
         name:`Alpes`,
         region:`Cisjurania`,
@@ -34,7 +34,7 @@ types.district=[
     },{
         name:`Cottia`,
         region:`Provence`,
-        area:508148,
+        area:507371,
     },{
         name:`Provence`,
         region:`Provence`,

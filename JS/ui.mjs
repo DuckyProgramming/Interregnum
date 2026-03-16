@@ -396,7 +396,8 @@ export class ui{
                     team.cores.forEach(core=>{
                         total++
                         let adj=this.operation.cities[types.cityRef[randin(types.city[core.type].connect).name]].owner
-                        core.modifCore(core.owner==-1?(adj==-1?randin(this.operation.cities.filter(cit=>cit.owner!=-1)):adj):core.owner)
+                        let set=this.operation.cities.filter(cit=>cit.owner!=-1)
+                        core.modifCore(core.owner==-1?(adj==-1?(set.length==0?randin(this.operation.teams).name:randin(set).owner):adj):core.owner)
                     })
                     team.cores=[]
                     total=max(total,1)

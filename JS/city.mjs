@@ -67,7 +67,9 @@ export class city{
         team.cores.push(this)
     }
     modifCore(owner){
-        this.setCore(owner)
+        if(owner!=-1){
+            this.setCore(owner)
+        }
         this.data.rule=owner
         this.ruleIndex=types.teamRef[this.data.rule]
     }

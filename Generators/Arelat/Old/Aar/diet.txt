@@ -13,7 +13,7 @@ There are a total of 50 votes. 40 votes are connected to territories:
 [7] All archbishops have their own seats, except for that of Besançon (who holds only very smalll temporal lands but still gets an additional vote as an elector).
 [2] All bishops who are also counts (Viviers, Basel) have their own seats.
 [2] Free royal cities are organized into the following benches with one collective vote each:
-Transjurania (Basel, Rheinfelden, Solothurn, Bern, Fribourg),
+Transjurania (Basel, Rheinfelden, Solothurn, Bern, Fribourg, Bremgarten, Lucerne),
 Rhône (Geneva, Lyon, Besançon)
 The Village Concord of Mirabel shares one collective position on the Rhône bench.
 [4] The advocates, officers representing various states, appointed by the king but beholden to constituents, have a vote each:
@@ -27,7 +27,7 @@ Advocate of the royal vallies (the free peasant states).
 [7] The electors each have an additional vote.
 [3] The ducal titles each grant an additional vote.
 
-Dynastic Breakdown of Votes: Republic: 1, Habsburg: 1, Bâgé: 1, Montfaucon: 1, Thoire: 1, Fenis: 1, Gruyères: 1, Orange: 1, Sabran: 1, Burghers: 2, Zähringen: 2, Poitiers: 2, Rouergue: 3, Barcelona: 3, Andechs: 3, Albon: 5, Savoy: 8, Ecclesiastical: 13
+Dynastic Breakdown of Votes: Republic: 1, Habsburg: 1, Bâgé: 1, Montfaucon: 1, Thoire: 1, Fenis: 1, Gruyères: 1, Orange: 1, Sabran: 1, Burghers: 2, Poitiers: 2, Rouergue: 3, Zähringen: 3, Barcelona: 3, Andechs: 3, Albon: 5, Savoy: 7, Ecclesiastical: 13
 (Note, however, that different prelates or different branches and appanages of a family often disagree and don't vote as a bloc)
 
 Briefly, do you understand the above information?
