@@ -1602,7 +1602,7 @@ export var types={
                     {name:`La Voulte`,type:9,loc:[1181,3373],rule:`Poitiers`},
                     {name:`Guillestre`,type:9,loc:[2209,3394],rule:`Archbishop of Arles`},
                     {name:`Orciéres`,type:9,loc:[2039,3403],rule:`Elder Albon`},
-                    {name:`Marcols`,type:9,loc:[937,3405],rule:`Archbishop of Arles`},
+                    {name:`Mézilhac`,type:9,loc:[937,3405],rule:`Archbishop of Arles`},
                     {name:`Mirabel-et-Blacons`,type:9,loc:[1366,3406],rule:`Mirabel`},
                     {name:`Livron`,type:9,loc:[1185,3415],rule:`Poitiers`},
                     {name:`Dévoluy`,type:9,loc:[1859,3420],rule:`Sabran`},
@@ -1620,7 +1620,7 @@ export var types={
                     {name:`Savines`,type:9,loc:[2099,3513],rule:`Sabran`},
                     {name:`Chorges`,type:9,loc:[2034,3515],rule:`Sabran`},
                     {name:`Cruas`,type:9,loc:[1155,3523],rule:`Archbishop of Arles`},
-                    {name:`Thueyts`,type:9,loc:[834,3527],rule:`Archbishop of Arles`},
+                    {name:`Mayres`,type:9,loc:[834,3527],rule:`Archbishop of Arles`},
                     {name:`Manteyer`,type:9,loc:[1879,3530],rule:`Sabran`},
                     {name:`Beaurières`,type:9,loc:[1646,3536],rule:`Poitiers`},
                     {name:`St. Nazaire`,type:9,loc:[1460,3540],rule:`Poitiers`},
@@ -2785,7 +2785,7 @@ export var training={
     specific:-1,grouping:[],generations:0,benchmark:0,mass:false,parentPort:0,
     turns:1000,runs:100,inserter:50000000,map:``,
 }
-export var options={strength:1,unitSize:1,scale:1,hq:false,respawn:false}
+export var options={strength:1,unitSize:1,scale:1,hq:false,respawn:false,core:false}
 export var graphics={main:0,load:{map:[],city:[],team:[],unit:[]}}
 export var constants={trig:[[],[]],spawn:{},init:false,threshold:100000,thresholdTick:0}
 export var inputs={mouse:{base:{x:0,y:0},rel:{x:0,y:0},previous:{base:{x:0,y:0},rel:{x:0,y:0}}}}

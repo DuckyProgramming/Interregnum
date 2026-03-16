@@ -399,7 +399,10 @@ export class city{
                     let img=graphics.load.city[types.cityType[this.data.type].term]
                     layer.image(img,0,0,img.width,img.height)
                     if(this.owner!=-1){
-                        img=[graphics.load.team[this.operation.map][types.team[types.teamRef[this.owner]].loadIndex],graphics.load.unit[2]]
+                        img=[
+                            options.core?graphics.load.team[this.operation.map][types.team[types.teamRef[this.data.rule]].loadIndex]:graphics.load.team[this.operation.map][types.team[types.teamRef[this.owner]].loadIndex],
+                            graphics.load.unit[2]
+                        ]
                         if(img[0]!=undefined){
                             switch(this.data.type){
                                 case 7:

@@ -37,5 +37,8 @@ parentPort.on('message',msg=>{
         case 'merge':
             parentPort.postMessage({cmd:'merged',status:`Agents Merged`,data:current.ui.mergeAgents(msg.data,msg.set)})
         break
+        case 'save':
+            parentPort.postMessage({cmd:'save',status:`\nSave Status:\n${outTraining(current)}\n`,data:outAgents(current)})
+        break
     }
 })

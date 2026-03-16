@@ -2056,60 +2056,17 @@ export class ui{
                                 layer.textSize(10)
                                 layer.text(`Enter`,60,tick+15)
                                 tick+=50
-                                layer.fill(120)
-                                layer.rect(0,tick+25,160,40,10)
-                                layer.fill(0)
-                                layer.textSize(15)
-                                layer.text(`Settings`,0,tick+25)
-                                layer.textSize(10)
-                                layer.text(count,70,tick+15)
-                                tick+=50
-                                count++
-                                layer.fill(120)
-                                layer.rect(0,tick+25,160,40,10)
-                                layer.fill(0)
-                                layer.textSize(15)
-                                layer.text(`Stats`,0,tick+25)
-                                layer.textSize(10)
-                                layer.text(count,70,tick+15)
-                                tick+=50
-                                count++
-                                layer.fill(120)
-                                layer.rect(0,tick+25,160,40,10)
-                                layer.fill(0)
-                                layer.textSize(15)
-                                layer.text(`Records`,0,tick+25)
-                                layer.textSize(10)
-                                layer.text(count,70,tick+15)
-                                tick+=50
-                                count++
-                                layer.fill(120)
-                                layer.rect(0,tick+25,160,40,10)
-                                layer.fill(0)
-                                layer.textSize(15)
-                                layer.text(`Graph`,0,tick+25)
-                                layer.textSize(10)
-                                layer.text(count,70,tick+15)
-                                tick+=50
-                                count++
-                                layer.fill(120)
-                                layer.rect(0,tick+25,160,40,10)
-                                layer.fill(0)
-                                layer.textSize(15)
-                                layer.text(`Save`,0,tick+25)
-                                layer.textSize(10)
-                                layer.text(count,70,tick+15)
-                                tick+=50
-                                count++
-                                layer.fill(120)
-                                layer.rect(0,tick+25,160,40,10)
-                                layer.fill(0)
-                                layer.textSize(15)
-                                layer.text(`Load`,0,tick+25)
-                                layer.textSize(10)
-                                layer.text(count,70,tick+15)
-                                tick+=50
-                                count++
+                                for(let a=0,la=6;a<la;a++){
+                                    layer.fill(120,a==0&&options.core?200:120,120)
+                                    layer.rect(0,tick+25,160,40,10)
+                                    layer.fill(0)
+                                    layer.textSize(15)
+                                    layer.text([`View Cores`,`Settings`,`Stats`,`Records`,`Graph`,`Save`,`Load`][a],0,tick+25)
+                                    layer.textSize(10)
+                                    layer.text(count,70,tick+15)
+                                    tick+=50
+                                    count++
+                                }
                             break
                             case 1:
                                 layer.fill(0)
@@ -4236,6 +4193,10 @@ export class ui{
                         }
                         tick+=50
                         if(inPointBox(rel,boxify(0,tick+25,160,40))){
+                            options.core=!options.core
+                        }
+                        tick+=50
+                        if(inPointBox(rel,boxify(0,tick+25,160,40))){
                             this.tabs.mapActive=2
                         }
                         tick+=50
@@ -4857,6 +4818,10 @@ export class ui{
                         if(key==`Enter`){
                             this.operation.transitionManager.begin(`main`)
                         }
+                        if(key==count.toString()){
+                            options.core=!options.core
+                        }
+                        count++
                         if(key==count.toString()){
                             this.tabs.mapActive=2
                         }

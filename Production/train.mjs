@@ -32,6 +32,17 @@ if(process.argv.slice()[2]==undefined){
                 })
             })
             console.log(report.status)
+        }else if(trimmedL=='save'){
+            worker.postMessage({cmd:'save'})
+            const report=await new Promise(resolve=>{
+                worker.once('message',msg=>{
+                    if(msg.cmd=='save'){
+                        resolve(msg)
+                    }
+                })
+            })
+            console.log(report.status)
+            await writeFile('agentset.mjs',report.data,{encoding:'utf8'})
         }
     })
 }
