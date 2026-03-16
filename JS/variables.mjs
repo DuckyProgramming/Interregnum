@@ -1149,8 +1149,8 @@ export var types={
                         {name:`Besançon`,type:1,loc:[1657,1375],rule:`Besançon`},
                         {name:`Pontarlier`,type:1,loc:[1864,1595],rule:`Archbishop of Besançon`},
                     ],[
+                        {name:`Lyon`,type:1,loc:[1137,2616],rule:`Lyon`},
                         {name:`Vienne`,type:1,loc:[1163,2822],rule:`Archbishop of Vienne`},
-                        {name:`Beaurepaire`,type:1,loc:[1266,2956],rule:`Archbishop of Vienne`},
                     ],[
                         {name:`Aix`,type:1,loc:[1667,4376],rule:`Archbishop of Arles`},
                         {name:`Marseille`,type:1,loc:[1647,4566],rule:`Barcelona`},
@@ -1167,7 +1167,7 @@ export var types={
                         {name:`Neuchâtel`,type:2,loc:[2172,1515],rule:`Fenis`},
                         {name:`Lausanne`,type:2,loc:[2047,1913],rule:`Archbishop of Besançon`},
                     ],[
-                        {name:`Lyon`,type:2,loc:[1137,2616],rule:`Lyon`},
+                        {name:`Bourg`,type:2,loc:[1310,2243],rule:`Bâgé`},
                         {name:`Chambéry`,type:2,loc:[1751,2719],rule:`Elder Savoy`},
                     ],[
                         {name:`Nyons`,type:2,loc:[1397,3732],rule:`Rouergue`},
@@ -1206,7 +1206,6 @@ export var types={
                     {name:`Thonon`,type:0,loc:[1961,2065],rule:`Junior Savoy`},
                     {name:`St. Claude`,type:0,loc:[1624,2092],rule:`Andechs`},
                     {name:`Martigny`,type:0,loc:[2331,2219],rule:`Archbishop of Besançon`},
-                    {name:`Bourg`,type:0,loc:[1310,2243],rule:`Bâgé`},
                     {name:`Bonneville`,type:0,loc:[1970,2290],rule:`Junior Savoy`},
                     {name:`Villefranche`,type:0,loc:[1029,2442],rule:`Junior Albon`},
                     {name:`Varey`,type:0,loc:[1447,2386],rule:`Bâgé`},
@@ -1219,6 +1218,7 @@ export var types={
                     {name:`La Tour-du-Pin`,type:0,loc:[1484,2761],rule:`Bâgé`},
                     {name:`St. Étienne`,type:0,loc:[915,2925],rule:`Junior Albon`},
                     {name:`St. Jean`,type:0,loc:[2001,2936],rule:`Elder Savoy`},
+                    {name:`Beaurepaire`,type:0,loc:[1266,2956],rule:`Archbishop of Vienne`},
                     {name:`Vinay`,type:0,loc:[1483,2998],rule:`Elder Albon`},
 
                     {name:`Annonay`,type:0,loc:[1070,3061],rule:`Junior Albon`},
@@ -1398,7 +1398,7 @@ export var types={
                     {name:`Oron`,type:9,loc:[2152,1863],rule:`Junior Savoy`},
                     {name:`Adelboden`,type:9,loc:[2583,1865],rule:`Zähringen`},
                     {name:`Doucier`,type:9,loc:[1582,1867],rule:`Andechs`},
-                    {name:`Bellwald`,type:9,loc:[2889,1892],rule:`Valais`},
+                    {name:`Bellwald`,type:9,loc:[2889,1892],rule:`Raron`},
                     {name:`Saanen`,type:9,loc:[2379,1897],rule:`Gruyères`},
                     {name:`Albeuve`,type:9,loc:[2272,1898],rule:`Archbishop of Besançon`},
                     {name:`La Chaux`,type:9,loc:[1657,1902],rule:`Andechs`},
@@ -1462,7 +1462,7 @@ export var types={
                     {name:`La Roche`,type:9,loc:[1911,2316],rule:`Thoire`},
                     {name:`Varax`,type:9,loc:[1268,2318],rule:`Thoire`},
                     {name:`Poncin`,type:9,loc:[1399,2326],rule:`Bâgé`},
-                    {name:`La Clusaz`,type:9,loc:[2007,2340],rule:`Thoire`},
+                    {name:`La Clusaz`,type:9,loc:[2007,2430],rule:`Thoire`},
                     {name:`Magland`,type:9,loc:[2107,2343],rule:`Junior Savoy`},
                     {name:`Cruseilles`,type:9,loc:[1799,2344],rule:`Thoire`},
                     {name:`Belleville`,type:9,loc:[1049,2350],rule:`Junior Albon`},
@@ -1572,7 +1572,7 @@ export var types={
                     {name:`Dunières`,type:9,loc:[959,3087],rule:`Junior Albon`},
                     {name:`Vif`,type:9,loc:[1649,3130],rule:`Elder Albon`},
                     {name:`Pont`,type:9,loc:[1469,3131],rule:`Elder Albon`},
-                    {name:`Tournon`,type:9,loc:[1160,3154],rule:`Junior Albon`},
+                    {name:`Tournon`,type:9,loc:[1160,3154],rule:`Poitiers`},
                     {name:`St. Félicien`,type:9,loc:[1032,3158],rule:`Junior Albon`},
                     {name:`Névache`,type:9,loc:[2210,3168],rule:`Escartons`},
                     {name:`Romans`,type:9,loc:[1296,3176],rule:`Elder Albon`},

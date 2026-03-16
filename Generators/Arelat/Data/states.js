@@ -152,7 +152,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:27479,
+    area:28490,
   },{
     name:`Belley`,
     title:`Bishopric`,
@@ -649,7 +649,7 @@ types={state:[
     district:`Romandie`,
     rule:`Raron`,
     prestige:[],
-    area:14082,
+    area:13986,
   },{
     name:`Arconciel`,
     title:`Lordship`,
@@ -670,7 +670,7 @@ types={state:[
     district:`Romandie`,
     rule:`Republic`,
     prestige:[],
-    area:122042,
+    area:120933,
   },{
     name:`Briançon`,
     title:`Escarton`,
@@ -722,7 +722,7 @@ types={state:[
   },{
     name:`the Southern Lordships`,
     title:`Advocate`,
-    district:`Dauphiné`,
+    district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
   },{
