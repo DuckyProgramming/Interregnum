@@ -446,7 +446,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:26232,
+    area:26233,
   },{
     name:`Aarburgund`,
     title:`Lordship`,

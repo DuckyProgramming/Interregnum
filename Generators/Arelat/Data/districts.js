@@ -10,7 +10,7 @@ types.district=[
     },{
         name:`Helvetie`,
         region:`Transjurania`,
-        area:432387,
+        area:432388,
     },{
         name:`Romandie`,
         region:`Transjurania`,
