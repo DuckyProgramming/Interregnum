@@ -50,19 +50,7 @@ Counties: Albon, Sermorens, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Rom
 Baronies: Vaud, Montauban, Mévouillon, Salins
 Escartons: Briançon, Queyras
 Free Peasants: Republic of The Seven Zenden, Amt of Leuggern
-Misc: Village Concord of Mirabel (An alliance of ten small villages named Mirabel or similar), County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Marquisate of Provence, Zend Lordship of Fées (A lordship subject to the Seven Zenden)
-
-Full List of Immediate States:
-Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Solothurn, Besançon, Geneva
-Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Lyon, Tarentaise
-Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers
-Abbeys: Interlaken, Bellelay, Moutier-Grandval, St. Maurice, Lanslebourg, La Déserte, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Cornillon, Lérins
-Lordships: Kastelen, Grandson, Annonay, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Sisgau, Buchsgau, Ringgenberg, Unspunnen, Frutingen, Weissenburg, Mannenberg, Aarburgund, Vivy, Tricastin, La Tour-du-Pin, Auxonne, Tournon, Neuveville, Loveresse, Échallens, Villars, Valangin, Montjoie, Raron, Arconciel, Satigny
-Counties: Frickgau, Albon, Sermorens, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Romont, Nice, Venaissin, Bresse, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Genevois, Neuchâtel, Gruyères, Orange, Forcalquier
-Baronies: Vaud, Montauban, Mévouillon, Michaille, Salins
-Escartons: Briançon, Queyras
-Free Peasants: Republic of The Seven Zenden, Amt of Leuggern
-Misc: Village Concord of Mirabe, County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Marquisate of Provence
+Misc: Village Concord of Mirabel (An alliance of ten small villages named Mirabel or similar), County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Marquisate of Provence, Zend Lordship of Fées (A lordship both subject to and component of the Seven Zenden)
 
 (Ecclesiastical states are listed only if they possess immediate territory, there are many bishops and abbies that exist but without royally immediate temporal land)
 

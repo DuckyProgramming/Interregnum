@@ -40,7 +40,7 @@ class operation{
                 return [229,152,152]
             case `Albon`: case `Cisjurania`: case `Dauphiné`: case `County Palatine`:
                 return [228,153,70]
-            case `Rouergue`: case `Drôme`:
+            case `Rouergue`: case `Drôme`: case `Marquisate`:
                 return [114,142,101]
             case `Zähringen`: case `Transjurania`: case `Helvetie`: case `Landgraviate`:
                 return [199,106,140]
@@ -66,13 +66,13 @@ class operation{
                 return [193,144,112]
             case `Ivrea`:
                 return [231,125,221]
-            case `Habsburg-Republic`: case `Condominium`:
+            case `Habsburg-Republic`: case `Condominium`: case `Amt`:
                 return [255,193,75,161,161,161]
             case `Thoire-Republic`:
                 return [184,54,117,161,161,161]
             case `Albon-Republic`:
                 return [228,153,70,161,161,161]
-            case `La Baume-Republic`:
+            case `La Baume-Republic`: case `Zend Lordship`:
                 return [103,100,162,161,161,161]
             case `Raron`:
                 return [234,109,125]

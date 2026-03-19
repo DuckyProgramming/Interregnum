@@ -728,7 +728,7 @@ types={state:[
   },{
     name:`the Royal Abbies`,
     title:`Advocate`,
-    district:`Provence`,
+    district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
   },{
