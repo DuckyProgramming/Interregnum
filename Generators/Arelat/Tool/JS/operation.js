@@ -72,6 +72,8 @@ class operation{
                 return [184,54,117,161,161,161]
             case `Albon-Republic`:
                 return [228,153,70,161,161,161]
+            case `La Baume-Republic`:
+                return [103,100,162,161,161,161]
             case `Raron`:
                 return [234,109,125]
             case `La Baume`:
