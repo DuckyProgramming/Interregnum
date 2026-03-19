@@ -45,12 +45,12 @@ Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Solothurn, Besançon, Gen
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Lyon, Tarentaise
 Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers
 Abbeys: Interlaken, Bellelay, Moutier-Grandval, St. Maurice, Lanslebourg, La Déserte, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Cornillon, Lérins
-Lordships: Kastelen, Frickgau, Grandson, Annonay, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Sisgau, Buchsgau, Ringgenberg, Unspunnen, Frutingen, Weissenburg, Oberhasli, Aarburgund, Vivy, Tricastin, La Tour-du-Pin, Auxonne, Tournon, Diesse, Erguel, Échallens, Villars, Valangin, Montjoie, Raron, Satigny
+Lordships: Kastelen, Frickgau, Grandson, Annonay, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Sisgau, Buchsgau, Ringgenberg, Unspunnen, Frutingen, Weissenburg, Oberhasli, Aarburgund, Vivy, Tricastin, La Tour-du-Pin, Auxonne, Tournon, Diesse, Erguel, Échallens, Villars, Valangin, Montjoie, Anniviers, Satigny
 Counties: Albon, Sermorens, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Romont, Nice, Venaissin, Bresse, Michaille, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Genevois, Neuchâtel, Gruyères, Orange, Forcalquier
 Baronies: Vaud, Montauban, Mévouillon, Salins
 Escartons: Briançon, Queyras
 Free Peasants: Republic of The Seven Zenden, Amt of Leuggern
-Misc: Village Concord of Mirabel (An alliance of ten small villages named Mirabel or similar), County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Marquisate of Provence, Zend Lordship of Fées (A lordship both subject to and component of the Seven Zenden)
+Misc: Village Concord of Mirabel (An alliance of ten small villages named Mirabel or similar), County Palatine of The Rhône (Elector), Landgraviate of Klein-Burgund (Elector), Marquisate of Provence, Zend Lordship of Raron (A lordship both subject to and component of the Seven Zenden)
 
 (Ecclesiastical states are listed only if they possess immediate territory, there are many bishops and abbies that exist but without royally immediate temporal land)
 

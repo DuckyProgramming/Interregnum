@@ -138,7 +138,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:28763,
+    area:34685,
   },{
     name:`Belley`,
     title:`Bishopric`,
@@ -427,7 +427,7 @@ types={state:[
     prestige:[],
     area:19122,
   },{
-    name:`Frutingen`,
+    name:`Frutigen`,
     title:`Lordship`,
     district:`Helvetie`,
     rule:`Zähringen`,
@@ -518,13 +518,6 @@ types={state:[
     prestige:[],
     area:82572,
   },{
-    name:`Auxonne`,
-    title:`Lordship`,
-    district:`Franche-Comté`,
-    rule:`Bâgé`,
-    prestige:[],
-    area:22501,
-  },{
     name:`Valentinois`,
     title:`County`,
     district:`Drôme`,
@@ -607,7 +600,7 @@ types={state:[
     district:`Romandie`,
     rule:`Fenis`,
     prestige:[],
-    area:34482,
+    area:32984,
   },{
     name:`Valangin`,
     title:`Lordship`,
@@ -630,13 +623,6 @@ types={state:[
     prestige:[],
     area:40370,
   },{
-    name:`Salins`,
-    title:`Barony`,
-    district:`Franche-Comté`,
-    rule:`Gruyères`,
-    prestige:[],
-    area:41032,
-  },{
     name:`Orange`,
     title:`County`,
     district:`Drôme`,
@@ -644,12 +630,12 @@ types={state:[
     prestige:[],
     area:11675,
   },{
-    name:`Raron`,
+    name:`Anniviers`,
     title:`Lordship`,
     district:`Romandie`,
     rule:`Raron`,
     prestige:[],
-    area:13986,
+    area:14352,
   },{
     name:`Forcalquier`,
     title:`County`,
@@ -663,7 +649,21 @@ types={state:[
     district:`Romandie`,
     rule:`Republic`,
     prestige:[],
-    area:112543,
+    area:109114,
+  },{
+    name:`Auxonne`,
+    title:`Lordship`,
+    district:`Franche-Comté`,
+    rule:`Chalon`,
+    prestige:[],
+    area:22501,
+  },{
+    name:`Salins`,
+    title:`Barony`,
+    district:`Franche-Comté`,
+    rule:`Chalon`,
+    prestige:[],
+    area:41032,
   },{
     name:`Briançon`,
     title:`Escarton`,
@@ -686,12 +686,12 @@ types={state:[
     prestige:[],
     area:1104,
   },{
-    name:`Fées`,
+    name:`Raron`,
     title:`Zend Lordship`,
     district:`Romandie`,
-    rule:`La Baume-Republic`,
+    rule:`Raron-Republic`,
     prestige:[],
-    area:2181,
+    area:2812,
   },{
     name:`Satigny`,
     title:`Lordship`,

@@ -84,6 +84,8 @@ class operation{
                 return [206,168,228]
             case `Montjoie`:
                 return [153,60,97]
+            case `Chalon`:
+                return [184,125,156]
             default:
                 return [150]
         }
