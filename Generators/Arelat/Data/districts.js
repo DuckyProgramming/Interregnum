@@ -18,7 +18,7 @@ types.district=[
     },{
         name:`Bresse`,
         region:`Cisjurania`,
-        area:406932,
+        area:413684,
     },{
         name:`Alpes`,
         region:`Cisjurania`,
@@ -26,7 +26,7 @@ types.district=[
     },{
         name:`Dauphiné`,
         region:`Cisjurania`,
-        area:652990,
+        area:631338,
     },{
         name:`Drôme`,
         region:`Provence`,

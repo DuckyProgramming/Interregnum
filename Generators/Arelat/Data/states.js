@@ -103,7 +103,7 @@ types={state:[
     district:`Bresse`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:71090,
+    area:77839,
   },{
     name:`Tarentaise`,
     title:`Archbishopric`,
@@ -292,14 +292,14 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:182579,
+    area:163604,
   },{
     name:`Chamelet`,
     title:`Lordship`,
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:26357,
+    area:23470,
   },{
     name:`Savoy`,
     title:`County`,
