@@ -13,6 +13,18 @@ class operation{
         ]
     }
     nameColor(name){
+        if(typeof name==`object`&&name.length==2){
+            if(name[1].includes(`Archbishopric`)){
+                return [112,69,134]
+            }else if(name[1].includes(`Abbey`)){
+                return [162,88,172,243,28,35]
+            }else if(name[1].includes(`Village Concord`)){
+                return [246,225,185,243,28,35]
+            }else if(name[1].includes(`Escarton`)){
+                return [206,168,228]
+            }
+            name=name[0]
+        }
         switch(name){
             case `Barcelona`: case `Provence`: case `Lower Burgundy`:
                 return [218,106,81]
@@ -55,9 +67,9 @@ class operation{
             case `Minor`:
                 return [220,201,166]
             case `Burghers`: case `Alsace`: case `Free City`: case `Village Concord`:
-                return [218,24,30]
+                return [243,28,35]
             case `Ecclesiastical`: case `Archbishopric`: case `Bishopric`: case `Abbey`:
-                return [145,78,154]
+                return [162,88,172]
             case `La Marck-Arenberg`:
                 return [41,150,163]
             case `Orange`:
@@ -72,8 +84,10 @@ class operation{
                 return [184,54,117,161,161,161]
             case `Albon-Republic`:
                 return [228,153,70,161,161,161]
-            case `La Baume-Republic`: case `Zend Lordship`:
+            case `La Baume-Republic`:
                 return [103,100,162,161,161,161]
+            case `Raron-Republic`: case `Zend Lordship`:
+                return [234,109,125,161,161,161]
             case `Raron`:
                 return [234,109,125]
             case `La Baume`:
@@ -343,7 +357,7 @@ class operation{
                         let bar=this.stats.items.length>=50?10:20
                         this.layer.noStroke()
                         for(let b=0,lb=this.stats.items.length;b<lb;b++){
-                            let color=this.nameColor(this.stats.items[b].color!=undefined?this.stats.items[b].color:this.stats.items[b].name)
+                            let color=this.nameColor(this.stats.items[b].color!=undefined?[this.stats.items[b].color,this.stats.items[b].name]:this.stats.items[b].name)
                             let height=this.stats.items.length>=50?400*sqrt(this.stats.items[b].base)/sqrt(this.stats.max):400*this.stats.items[b].base/this.stats.max
                             switch(color.length){
                                 case 1:

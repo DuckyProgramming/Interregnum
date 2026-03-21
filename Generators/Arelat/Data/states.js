@@ -243,14 +243,14 @@ types={state:[
     district:`Helvetie`,
     rule:`Habsburg`,
     prestige:[],
-    area:7015,
+    area:6915,
   },{
     name:`Frickgau`,
     title:`Lordship`,
     district:`Helvetie`,
     rule:`Habsburg`,
     prestige:[],
-    area:10285,
+    area:10262,
   },{
     name:`Grandson`,
     title:`Lordship`,
@@ -411,7 +411,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:21328,
+    area:21970,
   },{
     name:`Ringgenberg`,
     title:`Lordship`,
@@ -425,7 +425,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:19122,
+    area:23997,
   },{
     name:`Frutigen`,
     title:`Lordship`,
@@ -523,7 +523,7 @@ types={state:[
     district:`Drôme`,
     rule:`Poitiers`,
     prestige:[],
-    area:104672,
+    area:104682,
   },{
     name:`Diois`,
     title:`County`,
