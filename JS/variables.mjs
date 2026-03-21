@@ -1260,7 +1260,7 @@ export var types={
                     {name:`Hyères`,type:0,loc:[2110,4675],rule:`Barcelona`,district:`Provence`},
                     //chance cities
                 ],[
-                    {name:`Fougerolles`,type:9,loc:[1831,856],rule:`Archbishop of Besançon`,district:`Franche-Comté`},
+                    {name:`Fougerolles`,type:9,loc:[1831,858],rule:`Archbishop of Besançon`,district:`Franche-Comté`},
                     {name:`Vauvillers`,type:9,loc:[1651,858],rule:`Andechs`,district:`Franche-Comté`},
                     {name:`Faucogney`,type:9,loc:[1905,889],rule:`Andechs`,district:`Franche-Comté`},
                     {name:`Luxeuil`,type:9,loc:[1783,915],rule:`Archbishop of Besançon`,district:`Franche-Comté`},
