@@ -418,7 +418,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:4610,
+    area:12370,
   },{
     name:`Unspunnen`,
     title:`Lordship`,
@@ -432,7 +432,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:28851,
+    area:20085,
   },{
     name:`Weissenburg`,
     title:`Lordship`,
