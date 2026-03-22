@@ -46,7 +46,7 @@ Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Solothurn, Besançon, Gen
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Lyon, Tarentaise
 Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers
 Abbeys: Interlaken, Bellelay, Moutier-Grandval, St. Maurice, Lanslebourg, La Déserte, Lure, Luxeuil, Baume-Les-Dames, Le Beausset, Cornillon, Lérins
-Lordships: Kastelen, Frickgau, Grandson, Annonay, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Sisgau, Buchsgau, Ringgenberg, Unspunnen, Frutingen, Weissenburg, Oberhasli, Aarburgund, Vivy, Tricastin, La Tour-du-Pin, Auxonne, Tournon, Diesse, Erguel, Échallens, Villars, Valangin, Montjoie, Anniviers, Satigny
+Lordships: Kastelen, Frickgau, Grandson, Annonay, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Sisgau, Buchsgau, Ringgenberg, Unspunnen, Frutingen, Weissenburg, Oberhasli, Aarburgund, Vivy, Tricastin, La Tour-du-Pin, Auxonne, Tournon, Diesse, Erguel, Échallens, Dombes, Valangin, Montjoie, Anniviers, Satigny
 Counties: Albon, Sermorens, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Romont, Nice, Venaissin, Bresse, Michaille, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Genevois, Neuchâtel, Gruyères, Orange, Forcalquier
 Baronies: Vaud, Montauban, Mévouillon, Salins
 Escartons: Briançon, Queyras
