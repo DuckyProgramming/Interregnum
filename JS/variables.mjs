@@ -904,7 +904,7 @@ export var types={
                 {name:`Laufenburg`,term:`laufenburg`,type:`Minor Nobility`,allies:[`Zähringen`],quality:1,chance:0.5},
                 {name:`Zähringen`,term:`zahringen`,type:`Middle Nobility`,allies:[`Laufenburg`],quality:1,chance:1},
                 {name:`Savoy`,term:`grandson`,type:`Major Nobility`,allies:[],quality:1,chance:1},
-                {name:`Andechs`,term:`andechs`,type:`Massive Nobility`,allies:[],quality:1,chance:1.5},
+                {name:`Andechs`,term:`andechs`,type:`Massive Nobility`,allies:[],quality:1,chance:1.5},w
                 {name:`Ecclesiastical`,term:`ecclesiastical7`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
                 {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
             ],

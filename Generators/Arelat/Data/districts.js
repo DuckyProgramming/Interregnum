@@ -6,7 +6,7 @@ types.district=[
     },{
         name:`Franche-Comté`,
         region:`Transjurania`,
-        area:812641,
+        area:811084,
     },{
         name:`Helvetie`,
         region:`Transjurania`,
@@ -26,7 +26,7 @@ types.district=[
     },{
         name:`Dauphiné`,
         region:`Cisjurania`,
-        area:622531,
+        area:620862,
     },{
         name:`Drôme`,
         region:`Provence`,

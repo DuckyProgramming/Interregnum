@@ -292,7 +292,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:162633,
+    area:161523,
   },{
     name:`Chamelet`,
     title:`Lordship`,
@@ -551,7 +551,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:631554,
+    area:630235,
   },{
     name:`Montbéliard`,
     title:`County`,
