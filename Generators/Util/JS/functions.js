@@ -66,6 +66,126 @@ function outStates(){
     }
     print(build)
 }
+function outStatesDistrict(){
+    let key=`district`
+    let term=`state`
+    let sets=[]
+    for(let a=0,la=types[term].length;a<la;a++){
+        let account=false
+        for(let b=0,lb=sets.length;b<lb;b++){
+            if(sets[b][0][key]==types[term][a][key]){
+                sets[b].push(types[term][a])
+                account=true
+                b=lb
+            }
+        }
+        if(!account){
+            sets.push([types[term][a]])
+        }
+    }
+    sets.sort((a,b)=>a.length-b.length)
+    let conv=(state)=>{
+        return `${state.name}${state.prestige.length>0?` (`:``}${state.prestige.join(`, `)}${state.prestige.length>0?`)`:``}`
+    }
+    sets.forEach(set=>{
+        let titles=[]
+        for(let a=0,la=set.length;a<la;a++){
+            let fail=true
+            for(let b=0,lb=titles.length;b<lb;b++){
+                if(titles[b].name==set[a].title){
+                    titles[b].names.push(conv(set[a]))
+                    fail=false
+                }
+            }
+            if(fail){
+                titles.push({name:set[a].title,names:[conv(set[a])]})
+            }
+        }
+        let misc=[[],[]]
+        for(let a=0,la=titles.length;a<la;a++){
+            if(titles[a].names.length==1){
+                misc[[`Valley`,`Escarton`,`Republic`,`Condominium`,`Amt`].includes(titles[a].name)?0:1].push(titles[a].name+` of `+titles[a].names[0])
+                titles.splice(a,1)
+                a--
+                la--
+            }
+        }
+        let build=``
+        for(let a=0,la=titles.length;a<la;a++){
+            if(a>0){
+                build+=`\n`
+            }
+            build+=`${last(titles[a].name)==`y`&&titles[a].name.slice(-2)!=`ey`?`${titles[a].name.slice(0,-1)}ies`:`${titles[a].name}s`}: ${titles[a].names.join(`, `)}`
+        }
+        if(misc[0].length>0){
+            build+=`\nFree Peasants: ${misc[0].join(`, `)}`
+        }
+        if(misc[1].length>0){
+            build+=`\nMisc: ${misc[1].join(`, `)}`
+        }
+        print(`${set[0][key]} (${set.length}):\n${build}`)
+    })
+}
+function outStatesRegion(){
+    let key=[`district`,`region`]
+    let term=[`state`,`district`]
+    let sets=[]
+    for(let a=0,la=types[term[0]].length;a<la;a++){
+        let account=false
+        for(let b=0,lb=sets.length;b<lb;b++){
+            if(types[term[1]][findName(sets[b][0][key[0]],types[term[1]])][key[1]]==types[term[1]][findName(types[term[0]][a][key[0]],types[term[1]])][key[1]]){
+                sets[b].push(types[term[0]][a])
+                account=true
+                b=lb
+            }
+        }
+        if(!account){
+            sets.push([types[term[0]][a]])
+        }
+    }
+    sets.sort((a,b)=>a.length-b.length)
+    let conv=(state)=>{
+        return `${state.name}${state.prestige.length>0?` (`:``}${state.prestige.join(`, `)}${state.prestige.length>0?`)`:``}`
+    }
+    sets.forEach(set=>{
+        let titles=[]
+        for(let a=0,la=set.length;a<la;a++){
+            let fail=true
+            for(let b=0,lb=titles.length;b<lb;b++){
+                if(titles[b].name==set[a].title){
+                    titles[b].names.push(conv(set[a]))
+                    fail=false
+                }
+            }
+            if(fail){
+                titles.push({name:set[a].title,names:[conv(set[a])]})
+            }
+        }
+        let misc=[[],[]]
+        for(let a=0,la=titles.length;a<la;a++){
+            if(titles[a].names.length==1){
+                misc[[`Valley`,`Escarton`,`Republic`,`Condominium`,`Amt`].includes(titles[a].name)?0:1].push(titles[a].name+` of `+titles[a].names[0])
+                titles.splice(a,1)
+                a--
+                la--
+            }
+        }
+        let build=``
+        for(let a=0,la=titles.length;a<la;a++){
+            if(a>0){
+                build+=`\n`
+            }
+            build+=`${last(titles[a].name)==`y`&&titles[a].name.slice(-2)!=`ey`?`${titles[a].name.slice(0,-1)}ies`:`${titles[a].name}s`}: ${titles[a].names.join(`, `)}`
+        }
+        if(misc[0].length>0){
+            build+=`\nFree Peasants: ${misc[0].join(`, `)}`
+        }
+        if(misc[1].length>0){
+            build+=`\nMisc: ${misc[1].join(`, `)}`
+        }
+        print(`${types[term[1]][findName(set[0][key[0]],types[term[1]])][key[1]]} (${set.length}):\n${build}`)
+    })
+}
 function outDiet(){
     types.diet.forEach((diet,index)=>print(`${index+1}: ${diet.title}${diet.name!=``?` of `:``}${diet.name}`))
 }

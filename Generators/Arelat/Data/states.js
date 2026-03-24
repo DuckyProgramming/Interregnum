@@ -82,7 +82,7 @@ types={state:[
     district:`Provence`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:46784,
+    area:46044,
   },{
     name:`Embrun`,
     title:`Archbishopric`,
@@ -145,7 +145,7 @@ types={state:[
     district:`Drôme`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:15412,
+    area:23043,
   },{
     name:`Viviers`,
     title:`Bishopric`,
@@ -153,6 +153,13 @@ types={state:[
     rule:`Ecclesiastical`,
     prestige:[],
     area:163106,
+  },{
+    name:`Sisteron`,
+    title:`Bishopric`,
+    district:`Cottia`,
+    rule:`Ecclesiastical`,
+    prestige:[],
+    area:531,
   },{
     name:`Interlaken`,
     title:`Abbey`,
@@ -217,26 +224,19 @@ types={state:[
     prestige:[],
     area:3303,
   },{
-    name:`Le Beausset`,
+    name:`St. Césaire`,
     title:`Abbey`,
     district:`Provence`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:1189,
-  },{
-    name:`Cornillon`,
-    title:`Abbey`,
-    district:`Provence`,
-    rule:`Ecclesiastical`,
-    prestige:[],
-    area:450,
+    area:1905,
   },{
     name:`Lérins`,
     title:`Abbey`,
     district:`Provence`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:735,
+    area:273,
   },{
     name:`Kastelen`,
     title:`Lordship`,
@@ -376,7 +376,7 @@ types={state:[
     district:`Cottia`,
     rule:`Savoy`,
     prestige:[],
-    area:120048,
+    area:73163,
   },{
     name:`Barcelonette`,
     title:`Lordship`,
@@ -502,7 +502,7 @@ types={state:[
     district:`Bresse`,
     rule:`Bâgé`,
     prestige:[],
-    area:122771,
+    area:122941,
   },{
     name:`Michaille`,
     title:`County`,
@@ -516,7 +516,7 @@ types={state:[
     district:`Bresse`,
     rule:`Bâgé`,
     prestige:[],
-    area:82505,
+    area:73067,
   },{
     name:`Valentinois`,
     title:`County`,
@@ -551,7 +551,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:630212,
+    area:628916,
   },{
     name:`Montbéliard`,
     title:`County`,
@@ -642,7 +642,7 @@ types={state:[
     district:`Cottia`,
     rule:`Sabran`,
     prestige:[],
-    area:275249,
+    area:273971,
   },{
     name:`The Seven Zenden`,
     title:`Republic`,
