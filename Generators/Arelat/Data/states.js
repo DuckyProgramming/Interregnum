@@ -117,7 +117,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:46981,
+    area:46405,
   },{
     name:`Lausanne`,
     title:`Bishopric`,
@@ -404,14 +404,14 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:8463,
+    area:10901,
   },{
     name:`Buchsgau`,
     title:`Lordship`,
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:21970,
+    area:18708,
   },{
     name:`Ringgenberg`,
     title:`Lordship`,
@@ -614,7 +614,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Fenis`,
     prestige:[],
-    area:2132,
+    area:2734,
   },{
     name:`Gruyères`,
     title:`County`,
