@@ -54,7 +54,7 @@ types={state:[
     district:`Léman`,
     rule:`Burghers`,
     prestige:[],
-    area:2047,
+    area:2504,
   },{
     name:`Mirabel`,
     title:`Village Concord`,
@@ -68,7 +68,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:59075,
+    area:59570,
   },{
     name:`Besançon`,
     title:`Archbishopric`,
@@ -103,7 +103,7 @@ types={state:[
     district:`Bresse`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:78354,
+    area:78295,
   },{
     name:`Tarentaise`,
     title:`Archbishopric`,
@@ -117,7 +117,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:46405,
+    area:46321,
   },{
     name:`Lausanne`,
     title:`Bishopric`,
@@ -152,7 +152,7 @@ types={state:[
     district:`Drôme`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:163106,
+    area:183898,
   },{
     name:`Sisteron`,
     title:`Bishopric`,
@@ -292,7 +292,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:161523,
+    area:160367,
   },{
     name:`Chamelet`,
     title:`Lordship`,
@@ -411,7 +411,7 @@ types={state:[
     district:`Helvetie`,
     rule:`Zähringen`,
     prestige:[],
-    area:18708,
+    area:18760,
   },{
     name:`Ringgenberg`,
     title:`Lordship`,
@@ -467,7 +467,7 @@ types={state:[
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:66151,
+    area:63415,
   },{
     name:`Mévouillon`,
     title:`Barony`,
@@ -481,7 +481,7 @@ types={state:[
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:3084,
+    area:6685,
   },{
     name:`Venaissin`,
     title:`County`,
@@ -551,7 +551,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:628260,
+    area:629524,
   },{
     name:`Montbéliard`,
     title:`County`,
@@ -656,14 +656,14 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Chalon`,
     prestige:[],
-    area:22501,
+    area:22247,
   },{
     name:`Salins`,
     title:`Barony`,
     district:`Franche-Comté`,
     rule:`Chalon`,
     prestige:[],
-    area:41032,
+    area:37239,
   },{
     name:`Briançon`,
     title:`Escarton`,
@@ -698,7 +698,7 @@ types={state:[
     district:`Léman`,
     rule:`Lillebonne`,
     prestige:[],
-    area:1547,
+    area:982,
   },
 ],diet:[
   {
