@@ -1572,7 +1572,7 @@ export var types={
                     {name:`Montrond`,type:9,loc:[829,2810],rule:`Junior Albon`,district:`Dauphiné`},
                     {name:`Biol`,type:9,loc:[1452,2822],rule:`Bâgé`,district:`Bresse`},
                     {name:`Miribel-les-Échelles`,type:9,loc:[1644,2822],rule:`Mirabel`,district:`Dauphiné`},
-                    {name:`Méribel`,type:9,loc:[2081,2823],rule:`Archbishop of Vienne`,district:`Alpes`},
+                    {name:`Méribel`,type:9,loc:[2081,2823],rule:`Mirabel`,district:`Dauphiné`},
                     {name:`Savas`,type:9,loc:[1260,2832],rule:`Archbishop of Vienne`,district:`Dauphiné`},
                     {name:`Rive`,type:9,loc:[1020,2834],rule:`Archbishop of Vienne`,district:`Bresse`},
                     {name:`Voiron`,type:9,loc:[1595,2845],rule:`Bâgé`,district:`Bresse`},
