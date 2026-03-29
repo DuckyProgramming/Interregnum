@@ -61,14 +61,14 @@ types={state:[
     district:`Dauphiné`,
     rule:`Burghers`,
     prestige:[],
-    area:7982,
+    area:10618,
   },{
     name:`Vienne`,
     title:`Archbishopric`,
     district:`Dauphiné`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:59570,
+    area:61377,
   },{
     name:`Besançon`,
     title:`Archbishopric`,
@@ -89,7 +89,7 @@ types={state:[
     district:`Cottia`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:56890,
+    area:57681,
   },{
     name:`Aix`,
     title:`Archbishopric`,
@@ -145,14 +145,14 @@ types={state:[
     district:`Drôme`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:23043,
+    area:23701,
   },{
     name:`Viviers`,
     title:`Bishopric`,
     district:`Drôme`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:183898,
+    area:183831,
   },{
     name:`Sisteron`,
     title:`Bishopric`,
@@ -189,12 +189,12 @@ types={state:[
     prestige:[],
     area:21946,
   },{
-    name:`Lanslebourg`,
+    name:`Bettonet`,
     title:`Abbey`,
     district:`Alpes`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:2693,
+    area:1618,
   },{
     name:`La Déserte`,
     title:`Abbey`,
@@ -264,7 +264,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[`Elector`],
-    area:230401,
+    area:232586,
   },{
     name:`Albon`,
     title:`County`,
@@ -278,7 +278,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:54763,
+    area:50352,
   },{
     name:`Annonay`,
     title:`Lordship`,
@@ -306,7 +306,7 @@ types={state:[
     district:`Alpes`,
     rule:`Savoy`,
     prestige:[`Duke`],
-    area:77574,
+    area:76834,
   },{
     name:`Bugey`,
     title:`County`,
@@ -320,14 +320,14 @@ types={state:[
     district:`Alpes`,
     rule:`Savoy`,
     prestige:[],
-    area:100026,
+    area:97636,
   },{
     name:`Chablais`,
     title:`County`,
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:47059,
+    area:41626,
   },{
     name:`Vaud`,
     title:`Barony`,
@@ -488,7 +488,7 @@ types={state:[
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:78468,
+    area:79874,
   },{
     name:`Tricastin`,
     title:`Lordship`,
@@ -502,7 +502,7 @@ types={state:[
     district:`Bresse`,
     rule:`Bâgé`,
     prestige:[],
-    area:122941,
+    area:121451,
   },{
     name:`Michaille`,
     title:`County`,
@@ -516,7 +516,7 @@ types={state:[
     district:`Bresse`,
     rule:`Bâgé`,
     prestige:[],
-    area:73067,
+    area:70431,
   },{
     name:`Valentinois`,
     title:`County`,
@@ -551,7 +551,7 @@ types={state:[
     district:`Franche-Comté`,
     rule:`Andechs`,
     prestige:[`Elector`,`Duke`],
-    area:629524,
+    area:627648,
   },{
     name:`Montbéliard`,
     title:`County`,
@@ -628,7 +628,7 @@ types={state:[
     district:`Drôme`,
     rule:`Orange`,
     prestige:[],
-    area:11675,
+    area:9440 ,
   },{
     name:`Anniviers`,
     title:`Lordship`,
@@ -642,7 +642,7 @@ types={state:[
     district:`Cottia`,
     rule:`Sabran`,
     prestige:[],
-    area:273971,
+    area:274079,
   },{
     name:`The Seven Zenden`,
     title:`Republic`,
@@ -670,7 +670,7 @@ types={state:[
     district:`Alpes`,
     rule:`Republic`,
     prestige:[],
-    area:34490,
+    area:37209,
   },{
     name:`Queyras`,
     title:`Escarton`,

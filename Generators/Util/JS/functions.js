@@ -42,7 +42,7 @@ function outStates(){
             titles.push({name:types.state[a].title,names:[conv(types.state[a])]})
         }
     }
-    let misc=[[],[]]
+        let misc=[[],[]]
     for(let a=0,la=titles.length;a<la;a++){
         if(titles[a].names.length==1){
             misc[[`Valley`,`Escarton`,`Republic`,`Condominium`,`Amt`].includes(titles[a].name)?0:1].push(titles[a].name+` of `+titles[a].names[0])
