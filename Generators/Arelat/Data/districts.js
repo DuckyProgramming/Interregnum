@@ -14,7 +14,7 @@ types.district=[
     },{
         name:`Romandie`,
         region:`Transjurania`,
-        area:624730,
+        area:623583,
     },{
         name:`Bresse`,
         region:`Cisjurania`,
@@ -26,11 +26,11 @@ types.district=[
     },{
         name:`Dauphiné`,
         region:`Cisjurania`,
-        area:624775,
+        area:624264,
     },{
         name:`Drôme`,
         region:`Provence`,
-        area:659647,
+        area:659443,
     },{
         name:`Cottia`,
         region:`Provence`,
@@ -38,6 +38,6 @@ types.district=[
     },{
         name:`Provence`,
         region:`Provence`,
-        area:762915,
+        area:762026,
     },
 ]

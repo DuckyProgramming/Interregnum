@@ -117,7 +117,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:46321,
+    area:45174,
   },{
     name:`Lausanne`,
     title:`Bishopric`,
@@ -152,7 +152,7 @@ types={state:[
     district:`Drôme`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:184950,
+    area:180163,
   },{
     name:`Sisteron`,
     title:`Bishopric`,
@@ -285,7 +285,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:35564,
+    area:35016,
   },{
     name:`Forez`,
     title:`County`,
@@ -481,7 +481,7 @@ types={state:[
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:5800,
+    area:7836,
   },{
     name:`Venaissin`,
     title:`County`,
@@ -537,14 +537,14 @@ types={state:[
     district:`Drôme`,
     rule:`Poitiers`,
     prestige:[],
-    area:22489,
+    area:22670,
   },{
     name:`Provence`,
     title:`County`,
     district:`Provence`,
     rule:`Barcelona`,
     prestige:[`Elector`,`Duke`],
-    area:697660,
+    area:697261,
   },{
     name:`Franche-Comté`,
     title:`County`,
