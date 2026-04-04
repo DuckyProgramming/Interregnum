@@ -61,7 +61,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Burghers`,
     prestige:[],
-    area:10618,
+    area:10230,
   },{
     name:`Vienne`,
     title:`Archbishopric`,
@@ -82,7 +82,7 @@ types={state:[
     district:`Provence`,
     rule:`Ecclesiastical`,
     prestige:[`Elector`],
-    area:39759,
+    area:38524,
   },{
     name:`Embrun`,
     title:`Archbishopric`,
@@ -138,7 +138,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:34795,
+    area:34564,
   },{
     name:`Belley`,
     title:`Bishopric`,
@@ -187,7 +187,7 @@ types={state:[
     district:`Romandie`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:21759,
+    area:21537,
   },{
     name:`Bettonet`,
     title:`Abbey`,
@@ -229,7 +229,7 @@ types={state:[
     district:`Provence`,
     rule:`Ecclesiastical`,
     prestige:[],
-    area:1905,
+    area:1929,
   },{
     name:`Lérins`,
     title:`Abbey`,
@@ -292,7 +292,7 @@ types={state:[
     district:`Dauphiné`,
     rule:`Albon`,
     prestige:[],
-    area:158607,
+    area:157102,
   },{
     name:`Chamelet`,
     title:`Lordship`,
@@ -320,14 +320,14 @@ types={state:[
     district:`Alpes`,
     rule:`Savoy`,
     prestige:[],
-    area:91924,
+    area:91788,
   },{
     name:`Chablais`,
     title:`County`,
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:41626,
+    area:41556,
   },{
     name:`Vaud`,
     title:`Barony`,
@@ -348,14 +348,14 @@ types={state:[
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:46496,
+    area:46343,
   },{
     name:`Faucigny`,
     title:`Lordship`,
     district:`Romandie`,
     rule:`Savoy`,
     prestige:[],
-    area:77600,
+    area:77177,
   },{
     name:`Gex`,
     title:`Lordship`,
@@ -376,14 +376,14 @@ types={state:[
     district:`Cottia`,
     rule:`Savoy`,
     prestige:[],
-    area:94013,
+    area:101106,
   },{
     name:`Barcelonette`,
     title:`Lordship`,
     district:`Cottia`,
     rule:`Savoy`,
     prestige:[],
-    area:57692,
+    area:56458,
   },{
     name:`Morat`,
     title:`Lordship`,
@@ -481,7 +481,7 @@ types={state:[
     district:`Drôme`,
     rule:`Rouergue`,
     prestige:[],
-    area:8703,
+    area:5800,
   },{
     name:`Venaissin`,
     title:`County`,
