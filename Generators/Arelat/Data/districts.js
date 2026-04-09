@@ -2,42 +2,42 @@ types.district=[
     {
         name:`Léman`,
         region:`Léman`,
-        area:148454,
+        area:133354,
     },{
         name:`Franche-Comté`,
         region:`Transjurania`,
-        area:802201,
+        area:782602,
     },{
         name:`Helvetie`,
         region:`Transjurania`,
-        area:426029,
+        area:420425,
     },{
         name:`Romandie`,
         region:`Transjurania`,
-        area:623583,
+        area:631696,
     },{
         name:`Bresse`,
         region:`Cisjurania`,
-        area:366988,
+        area:364047,
     },{
         name:`Alpes`,
         region:`Cisjurania`,
-        area:389210,
+        area:397226,
     },{
         name:`Dauphiné`,
         region:`Cisjurania`,
-        area:624264,
+        area:616995,
     },{
         name:`Drôme`,
         region:`Provence`,
-        area:659443,
+        area:659585,
     },{
         name:`Cottia`,
         region:`Provence`,
-        area:481220,
+        area:472745,
     },{
         name:`Provence`,
         region:`Provence`,
-        area:762026,
+        area:760455,
     },
 ]
