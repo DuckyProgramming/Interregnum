@@ -42,10 +42,10 @@ Gruyères (Gruyères)
 Orange (County of Orange)
 Thoire (County of Geneva)
 
-Free Cities: Lyon, Basel, Rheinfelden, Bern, Fribourg, Solothurn, Besançon, Geneva
+Free Cities: Basel, Rheinfelden, Bern, Fribourg, Solothurn, Besançon, Geneva, Payerne
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Lyon, Tarentaise
 Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers, Sisteron
-Abbies: Interlaken, Bellelay, Moutier-Grandval, St. Maurice, Bettonet, La Déserte, Lure, Luxeuil, Baume-Les-Dames, St. Césaire, Lérins
+Abbies: St. Claude, Bellelay, Moutier-Grandval, St. Maurice, Bettonet, La Déserte, Lure, Luxeuil, Baume-Les-Dames, St. Césaire, Lérins
 Lordships: Kastelen, Frickgau, Grandson, Annonay, Chamelet, Rosses, Faucigny, Gex, Aigle, Barcelonette, Morat, Sisgau, Buchsgau, Ringgenberg, Unspunnen, Frutigen, Weissenburg, Oberhasli, Aarburgund, Vivy, Tricastin, La Tour-du-Pin, Tournon, Diesse, Erguel, Échallens, Dombes, Valangin, Montjoie, Anniviers, Auxonne, Satigny
 Counties: Albon, Sermorens, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Romont, Nice, Venaissin, Bresse, Michaille, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Genevois, Neuchâtel, Gruyères, Orange, Forcalquier
 Baronies: Vaud, Montauban, Mévouillon, Salins

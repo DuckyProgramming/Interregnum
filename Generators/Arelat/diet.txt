@@ -13,13 +13,13 @@ There are a total of 50 votes. 40 votes are connected to territories:
 [7] All archbishops have their own seats, except for that of Besançon (who holds only very smalll temporal lands but still gets an additional vote as an elector).
 [2] All bishops who are also counts (Viviers, Basel) have their own seats.
 [2] Free royal cities are organized into the following benches with one collective vote each:
-Transjurania (Basel, Rheinfelden, Solothurn, Bern, Fribourg),
-Rhône (Geneva, Lyon, Besançon)
+Transjurania (Basel, Rheinfelden, Solothurn, Bern, Fribourg, Payerne),
+Rhône (Geneva, Besançon)
 The Village Concord of Mirabel shares one collective position on the Rhône bench.
 [4] The advocates, officers representing various states, appointed by the king but beholden to constituents, have a vote each:
 Advocate of the northern lordships (minor lordships and baronies in the north)
 Advocate of the southern lordships (minor lordships and baronies in the south)
-Advocate of the royal abbies (royally immediate abbeys)
+Advocate of the royal abbies (royally immediate abbies)
 Advocate of the royal vallies (the free peasant states).
 (For collective votes, only one member must appear in person to represent the others)
 
