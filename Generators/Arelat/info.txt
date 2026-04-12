@@ -44,8 +44,8 @@ Thoire (County of Geneva)
 
 Free Cities: Basel, Rheinfelden, Bern, Fribourg, Solothurn, Besançon, Geneva, Nice
 Archbishoprics: Vienne (Elector), Besançon (Elector), Arles (Elector), Embrun, Aix, Lyon, Tarentaise
-Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers, Sisteron
-Abbies: St. Claude, Bellelay, Moutier-Grandval, St. Maurice, Bettonet, Payerne, Lure, Luxeuil, Baume-Les-Dames, St. Césaire, Lérins
+Bishoprics: Basel, Lausanne, Geneva, Sion, Belley, Viviers, Valence, Sisteron
+Abbies: St. Claude, Bellelay, Moutier-Grandval, St. Maurice, Payerne, Lure, Luxeuil, Baume-Les-Dames, St. Césaire, Lérins
 Lordships: Kastelen, Frickgau, Grandson, Annonay, Chamelet, Rosses, Faucigny, Gex, Tarentaise, Barcelonette, Morat, Sisgau, Buchsgau, Ringgenberg, Unspunnen, Frutigen, Weissenburg, Oberhasli, Aarburgund, Vivy, Tricastin, La Tour-du-Pin, Tournon, Diesse, Erguel, Échallens, Dombes, Valangin, Montjoie, Anniviers, Auxonne, Satigny
 Counties: Albon, Sermorens, Forez, Savoy (Duke), Bugey, Maurienne, Chablais, Romont, Nice, Venaissin, Bresse, Michaille, Valentinois, Diois, Provence (Elector, Duke), Franche-Comté (Elector, Duke), Montbéliard, Genevois, Neuchâtel, Gruyères, Orange, Forcalquier
 Baronies: Vaud, Montauban, Mévouillon, Salins
