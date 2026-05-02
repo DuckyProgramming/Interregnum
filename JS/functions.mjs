@@ -508,6 +508,8 @@ export function nameColor(name){
             return [206,168,228]
         case `Montjoie`:
             return [153,60,97]
+        case `Grandson`:
+            return [218,196,147]
         default:
             return [150,150,150]
     }

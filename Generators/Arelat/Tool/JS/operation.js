@@ -100,6 +100,8 @@ class operation{
                 return [153,60,97]
             case `Chalon`:
                 return [184,125,156]
+            case `Grandson`:
+                return [218,196,147]
             default:
                 return [150]
         }
