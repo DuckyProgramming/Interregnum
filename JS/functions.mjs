@@ -458,7 +458,7 @@ export function nameColor(name){
             return [237,178,110]
         case `Nassau`:
             return [97,112,87]
-        case `Kyburg`:
+        case `Kyburg`: case `Laufenburg`:
             return [167,188,19]
         case `Toggenburg`:
             return [32,181,40]
@@ -510,6 +510,10 @@ export function nameColor(name){
             return [153,60,97]
         case `Grandson`:
             return [218,196,147]
+        case `Besançon`:
+            return [225,144,83]
+        case `Chalon`:
+            return [184,124,156]
         default:
             return [150,150,150]
     }
