@@ -10,7 +10,8 @@ export class calc{
         this.terrainSet=[
             {name:'No Terrain',defend:[1,1.2],safe:1,attrition:[1,1]},
             {name:'River',defend:[1.35,1.35],safe:0.9,attrition:[1.25,1.25]},
-            {name:'Wall',defend:[2.4,2.4],safe:0.5,attrition:[1,0.5]},
+            //{name:'Wall',defend:[2.4,2.4],safe:0.5,attrition:[1,0.5]},
+            {name:'Wall',defend:[3,3],safe:0.5,attrition:[1,0.5]},
             {name:'Sea',defend:[1.8,1.8],safe:0.7,attrition:[1.5,1.5]},
         ]
         this.distSet=[

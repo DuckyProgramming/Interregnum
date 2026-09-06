@@ -41,7 +41,7 @@ export var types={
             hq:[`Imperial Army`,`hre`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:30,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:30,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Frankfurt`,type:2,loc:[1216,24],rule:`Isenberg`,connect:[{name:`Würzburg`,type:1},{name:`Heidelberg`,type:0},{name:`Oppenheim`,type:1}]},
                 {name:`Simmern`,type:0,loc:[887,83],rule:`Wittelsbach`,connect:[{name:`Trier`,type:0},{name:`Oppenheim`,type:0}]},
@@ -77,7 +77,7 @@ export var types={
             hq:[`Imperial Army`,`hre`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Arnsberg`,type:0,loc:[631,320],rule:`Welf`,connect:[{name:`Fredeburg`,type:0},{name:`Arolsen`,type:1}]},
                 {name:`Arolsen`,type:0,loc:[972,341],rule:`Welf`,connect:[{name:`Arnsberg`,type:1},{name:`Fredeburg`,type:0},{name:`Kassel`,type:0},{name:`Ziegenhain`,type:1}]},
@@ -140,7 +140,7 @@ export var types={
             hq:[`Imperial Army`,`hre`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Rostock`,type:0,loc:[2399,437],rule:`Niklot`,connect:[{name:`Schwerin`,type:0},{name:`Lübeck`,type:2},{name:`Waren`,type:0}]},
                 {name:`Lübeck`,type:0,loc:[2024,539],rule:`Ascania`,connect:[{name:`Schwerin`,type:0},{name:`Lüneburg`,type:1},{name:`Glückstadt`,type:0},{name:`Rostock`,type:2}]},
@@ -238,7 +238,7 @@ export var types={
             hq:[`Imperial Army`,`hre`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Rostock`,type:0,loc:[2399,437],rule:`Niklot`,connect:[{name:`Schwerin`,type:0},{name:`Lübeck`,type:2},{name:`Waren`,type:0}]},
                 {name:`Lübeck`,type:0,loc:[2024,539],rule:`Ascania`,connect:[{name:`Schwerin`,type:0},{name:`Lüneburg`,type:1},{name:`Glückstadt`,type:0},{name:`Rostock`,type:2}]},
@@ -349,7 +349,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:15,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:15,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Basel`,type:5,loc:[1651,691],rule:`Ecclesiastical`,connect:[{name:`Aarau`,type:0},{name:`Montbéliard`,type:0},{name:`Bern`,type:0},{name:`Neuchâtel`,type:0}]},
                 {name:`Vesoul`,type:0,loc:[1137,704],rule:`Andechs`,connect:[{name:`Montbéliard`,type:0},{name:`Dole`,type:0},{name:`Besançon`,type:0}]},
@@ -408,7 +408,7 @@ export var types={
                 {name:`Ecclesiastical`,term:`ecclesiastical2`,type:`Major Nobility`,allies:[],quality:0.95,chance:1.5},
                 {name:`Rouergue`,term:`rouergue`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },/*{
             name:[`Kingdom of Arles`,`+ Vosges`],
@@ -416,7 +416,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Toul`,type:0,loc:[1001,639],rule:`Lillebonne`,connect:[{name:`Épinal`,type:0},{name:`Lamarche`,type:0},{name:`Lunéville`,type:1}]},
                 {name:`Lunéville`,type:0,loc:[1209,661],rule:`Lorraine`,connect:[{name:`Épinal`,type:0},{name:`Toul`,type:1}]},
@@ -489,7 +489,7 @@ export var types={
                 {name:`Rouergue`,term:`rouergue`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Savoy`,term:`savoy`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },*//*{
             name:[`Kingdom of Arles`,`1618`],
@@ -497,7 +497,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:11.25,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:11.25,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Basel`,type:5,loc:[1650,691],rule:`Schwyz`,connect:[{name:`Aarau`,type:0},{name:`Bern`,type:0},{name:`Porrentruy`,type:0}]},
                 {name:`Vesoul`,type:0,loc:[1136,704],rule:`Andechs`,connect:[{name:`Dole`,type:0},{name:`Besançon`,type:0},{name:`Pontarlier`,type:1},{name:`Montbéliard`,type:0}]},
@@ -566,7 +566,7 @@ export var types={
                 {name:`Savoy`,term:`savoy`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Albon`,term:`albon`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },*/{
             name:[`Kingdom of Arles`,`Base`],
@@ -574,7 +574,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Basel`,type:5,loc:[1650,691],rule:`Zähringen`,connect:[{name:`Aarau`,type:0},{name:`Bern`,type:0},{name:`Porrentruy`,type:0}]},
                 {name:`Vesoul`,type:0,loc:[1136,704],rule:`Andechs`,connect:[{name:`Dole`,type:0},{name:`Besançon`,type:0},{name:`Montbéliard`,type:0}]},
@@ -655,7 +655,7 @@ export var types={
                 {name:`Andechs`,term:`andechs`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Elder Savoy`,term:`savoy`,type:`Major Nobility`,allies:[`Junior Savoy`],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },{
             name:[`Kingdom of Arles`,`Deluxe`],
@@ -663,7 +663,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Toul`,type:0,loc:[1001,639],rule:`Lillebonne`,connect:[{name:`Épinal`,type:0},{name:`Lamarche`,type:0},{name:`Lunéville`,type:1}]},
                 {name:`Lunéville`,type:0,loc:[1203,661],rule:`Lorraine`,connect:[{name:`Épinal`,type:0},{name:`Toul`,type:1}]},
@@ -746,7 +746,7 @@ export var types={
                 {name:`Andechs`,term:`andechs`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Elder Savoy`,term:`savoy`,type:`Major Nobility`,allies:[`Junior Savoy`],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },{
             name:[`Kingdom of Arles`,`+ 3 Leagues`],
@@ -754,7 +754,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Toul`,type:0,loc:[1001,639],rule:`Lillebonne`,connect:[{name:`Épinal`,type:0},{name:`Lamarche`,type:0},{name:`Lunéville`,type:1}]},
                 {name:`Lunéville`,type:0,loc:[1203,661],rule:`Lorraine`,connect:[{name:`Épinal`,type:0},{name:`Toul`,type:1}]},
@@ -843,7 +843,7 @@ export var types={
                 {name:`Andechs`,term:`andechs`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Elder Savoy`,term:`savoy`,type:`Major Nobility`,allies:[`Junior Savoy`],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },
         /*{
@@ -852,7 +852,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Laufenburg`,type:0,loc:[2120,997],rule:`Laufenburg`,connect:[{name:`Basel`,type:0},{name:`Solothurn`,type:0}]},
                 {name:`Lure`,type:0,loc:[1256,1023],rule:`Ecclesiastical`,connect:[{name:`Vesoul`,type:0},{name:`Montbéliard`,type:0}]},
@@ -909,7 +909,7 @@ export var types={
                 {name:`Savoy`,term:`grandson`,type:`Major Nobility`,allies:[],quality:1,chance:1},
                 {name:`Andechs`,term:`andechs`,type:`Massive Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Ecclesiastical`,term:`ecclesiastical7`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },{
             name:[`Jumbo Kingdom of Arles`,`Lower`],
@@ -917,7 +917,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Bourg`,type:0,loc:[1295,843],rule:`Bâgé`,connect:[{name:`Varey`,type:0},{name:`Villefranche`,type:0}]},
                 {name:`Varey`,type:0,loc:[1447,986],rule:`Bâgé`,connect:[{name:`Belley`,type:0},{name:`Valbonne`,type:0},{name:`Bourg`,type:0}]},
@@ -994,7 +994,7 @@ export var types={
                 {name:`Barcelona`,term:`barcelona`,type:`Massive Nobility`,allies:[],quality:1,chance:2},
                 {name:`Archbishop of Vienne`,term:`ecclesiastical2`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
                 {name:`Archbishop of Arles`,term:`ecclesiastical6`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },*/
         {
@@ -1003,7 +1003,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:15,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:15,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Laufenburg`,type:0,loc:[2120,997],rule:`Laufenburg`,connect:[{name:`Basel`,type:0},{name:`Solothurn`,type:0}]},
                 {name:`Lure`,type:0,loc:[1256,1023],rule:`Ecclesiastical`,connect:[{name:`Vesoul`,type:0},{name:`Montbéliard`,type:0}]},
@@ -1057,7 +1057,7 @@ export var types={
                 {name:`Savoy`,term:`junior savoy`,type:`Major Nobility`,allies:[],quality:1,chance:1},
                 {name:`Ecclesiastical`,term:`ecclesiastical7`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
                 {name:`Andechs`,term:`andechs`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },{
             name:[`Jumbo Kingdom of Arles`,`Lower`],
@@ -1065,7 +1065,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Bourg`,type:0,loc:[1295,843],rule:`Bâgé`,connect:[{name:`Varey`,type:0},{name:`Villefranche`,type:0}]},
                 {name:`Varey`,type:0,loc:[1447,986],rule:`Bâgé`,connect:[{name:`Belley`,type:0},{name:`Valbonne`,type:0},{name:`Bourg`,type:0}]},
@@ -1145,7 +1145,7 @@ export var types={
                 {name:`Archbishop of Arles`,term:`ecclesiastical6`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
                 {name:`Andechs`,term:`andechs`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Massive Nobility`,allies:[],quality:1,chance:2},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },{
             name:[`Jumbo Kingdom of Arles`,`Base`],
@@ -1153,7 +1153,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:20/3,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:20/3,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Laufenburg`,type:0,loc:[2720,997],rule:`Laufenburg`,connect:[{name:`Basel`,type:0},{name:`Solothurn`,type:0}]},
                 {name:`Lure`,type:0,loc:[1856,1023],rule:`Archbishop of Besançon`,connect:[{name:`Vesoul`,type:0},{name:`Montbéliard`,type:0}]},
@@ -1282,7 +1282,7 @@ export var types={
                 {name:`Archbishop of Arles`,term:`ecclesiastical6`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
                 {name:`Andechs`,term:`andechs`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Barcelona`,term:`barcelona`,type:`Massive Nobility`,allies:[],quality:1,chance:2},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },{
             name:[`Kingdom of Arles`,`Randomized`],
@@ -1290,7 +1290,7 @@ export var types={
             hq:[`Royal Army`,`arles`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:20/3,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:20/3,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 [
                     [
@@ -2131,15 +2131,15 @@ export var types={
                 {name:`Archbishop of Besançon`,term:`ecclesiastical7`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
                 {name:`Archbishop of Vienne`,term:`ecclesiastical2`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
                 {name:`Archbishop of Arles`,term:`ecclesiastical6`,type:`Major Nobility`,allies:[],quality:0.95,chance:1},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
-        },{
+        },/*{
             name:[`Arelatisches Reich`,``],
             term:`arelat+`,
             hq:[`Imperial Army`,`arles`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Koblenz`,type:0,loc:[1483,474],rule:`Ecclesiastical`,connect:[{name:`Cochem`,type:0},{name:`Simmern`,type:0}]},
                 {name:`Cochem`,type:0,loc:[1312,570],rule:`Ecclesiastical`,connect:[{name:`Simmern`,type:1},{name:`Koblenz`,type:0},{name:`Trier`,type:1}]},
@@ -2236,13 +2236,13 @@ export var types={
                 {name:`Wittelsbach`,term:`elder wittelsbach`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Savoy`,term:`savoy`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
             ],
-        },{
+        },*/{
             name:[`Belgica`,`Initial`],
             term:`belgica--`,
             hq:[`Royal Army`,`belgica`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Turnhout`,type:1,loc:[1368,381],rule:`Leuven`,connect:[{name:`Antwerp`,type:0},{name:`Hasselt`,type:0}]},
                 {name:`Roermond`,type:0,loc:[1752,393],rule:`Wassenberg`,connect:[{name:`Maastricht`,type:0},{name:`Hasselt`,type:1}]},
@@ -2303,7 +2303,7 @@ export var types={
             hq:[`Royal Army`,`belgica`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Turnhout`,type:1,loc:[1368,381],rule:`Leuven`,connect:[{name:`Antwerp`,type:0},{name:`Hasselt`,type:0}]},
                 {name:`Roermond`,type:0,loc:[1752,393],rule:`Wassenberg`,connect:[{name:`Maastricht`,type:0},{name:`Hasselt`,type:1}]},
@@ -2366,7 +2366,7 @@ export var types={
             hq:[`Royal Army`,`belgica`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:12,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:12,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Groningen`,type:0,loc:[1884,449],rule:`Friesland`,connect:[{name:`Stavoren`,type:0},{name:`Coeverden`,type:0}]},
                 {name:`Stavoren`,type:0,loc:[1544,700],rule:`Friesland`,connect:[{name:`Groningen`,type:0},{name:`Zwolle`,type:0},{name:`Den Haag`,type:2},{name:`Amsterdam`,type:2},{name:`Alkmaar`,type:2}]},
@@ -2440,7 +2440,7 @@ export var types={
             hq:[`Royal Army`,`belgica`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Groningen`,type:0,loc:[1884,449],rule:`Friesland`,connect:[{name:`Stavoren`,type:0},{name:`Coeverden`,type:0}]},
                 {name:`Stavoren`,type:0,loc:[1544,700],rule:`Friesland`,connect:[{name:`Groningen`,type:0},{name:`Zwolle`,type:0},{name:`Den Haag`,type:2},{name:`Amsterdam`,type:2},{name:`Alkmaar`,type:2}]},
@@ -2525,7 +2525,7 @@ export var types={
             hq:[`Royal Army`,`wenceslavia`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Krosno`,type:0,loc:[984,390],rule:`Hohenzollern`,connect:[{name:`Głogów`,type:0},{name:`Żagań`,type:0},{name:`Lübben`,type:1}]},
                 {name:`Lübben`,type:0,loc:[694,471],rule:`Ascania`,connect:[{name:`Krosno`,type:1},{name:`Cottbus`,type:0}]},
@@ -2584,7 +2584,7 @@ export var types={
                 {name:`Táborites`,term:`tabor`,type:`Major Nobility`,allies:[],quality:1.05,chance:1.5},
                 {name:`Junior Přemyslid`,term:`junior premyslid`,type:`Major Nobility`,allies:[`Elder Přemyslid`],quality:1,chance:1.5},
                 {name:`Elder Přemyslid`,term:`elder premyslid`,type:`Massive Nobility`,allies:[`Junior Přemyslid`],quality:1,chance:2},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },{
             name:[`Wenceslavia`,`+ Ring`],
@@ -2592,7 +2592,7 @@ export var types={
             hq:[`Royal Army`,`wenceslavia`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Krosno`,type:0,loc:[1126,376],rule:`Hohenzollern`,connect:[{name:`Głogów`,type:0},{name:`Żagań`,type:0},{name:`Spremberg`,type:0}]},
                 {name:`Lübben`,type:0,loc:[873,446],rule:`Ascania`,connect:[{name:`Spremberg`,type:0},{name:`Torgau`,type:0}]},
@@ -2665,7 +2665,7 @@ export var types={
                 {name:`Ascania`,term:`ascania`,type:`Major Nobility`,allies:[],quality:1,chance:1},
                 {name:`Junior Přemyslid`,term:`junior premyslid`,type:`Major Nobility`,allies:[`Elder Přemyslid`],quality:1,chance:1.5},
                 {name:`Elder Přemyslid`,term:`elder premyslid`,type:`Massive Nobility`,allies:[`Junior Přemyslid`],quality:1,chance:2.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },{
             name:[`Wenceslavia`,`Deluxe`],
@@ -2673,7 +2673,7 @@ export var types={
             hq:[`Royal Army`,`wenceslavia`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:10,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Krosno`,type:0,loc:[1226,376],rule:`Hohenzollern`,connect:[{name:`Głogów`,type:0},{name:`Żagań`,type:0},{name:`Spremberg`,type:0}]},
                 {name:`Głogów`,type:0,loc:[1453,465],rule:`Piast`,connect:[{name:`Krosno`,type:0},{name:`Żagań`,type:0},{name:`Oleśnica`,type:1},{name:`Lwówek`,type:0}]},
@@ -2761,7 +2761,7 @@ export var types={
             hq:[`Orderly Army`,`livonia`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:50/3,garrison:500},raid:2},
+            constants:{spawn:{base:2500,spend:1000,regen:50/3,garrison:500},raid:2,unit:100,rebel:false},
             city:[
                 {name:`Ruhnu`,type:7,loc:[690,285],rule:`Bishop of Courland`,connect:[{name:`Markgrafen`,type:2},{name:`Salatski`,type:2},{name:`Windau`,type:2}]},
                 {name:`Salatski`,type:0,loc:[960,290],rule:`Archbishop of Riga`,connect:[{name:`Lemsal`,type:0},{name:`Ruhnu`,type:2},{name:`Riga`,type:2}]},
@@ -2803,7 +2803,7 @@ export var types={
                 {name:`Bishop of Courland`,term:`courland`,type:`Middle Nobility`,allies:[`Archbishop of Riga`],quality:0.95,chance:1},
                 {name:`Archbishop of Riga`,term:`ecclesiastical5`,type:`Major Nobility`,allies:[`Bishop of Courland`],quality:0.95,chance:1.5},
                 {name:`Winterstätten`,term:`winterstatten`,type:`Middle Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
                 {name:`Russian Raid`,term:`russia`,type:`Headquarters`,allies:[],quality:1,chance:1},
             ],
         },{
@@ -2812,7 +2812,7 @@ export var types={
             hq:[`Orderly Army`,`livonia`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:15,garrison:500},raid:2},
+            constants:{spawn:{base:2500,spend:1000,regen:15,garrison:500},raid:2,unit:100,rebel:false},
             city:[
                 {name:`Soneburg`,type:0,loc:[637,242],rule:`Bellingshausen`,connect:[{name:`Kihnu`,type:2},{name:`Arensburg`,type:0}]},
                 {name:`Arensburg`,type:0,loc:[509,366],rule:`Bishop of Courland`,connect:[{name:`Ruhnu`,type:2},{name:`Soneburg`,type:0},{name:`Windau`,type:2}]},
@@ -2857,7 +2857,7 @@ export var types={
                 {name:`Bishop of Courland`,term:`courland`,type:`Middle Nobility`,allies:[`Archbishop of Riga`],quality:0.95,chance:1},
                 {name:`Archbishop of Riga`,term:`ecclesiastical5`,type:`Major Nobility`,allies:[`Bishop of Courland`],quality:0.95,chance:1.5},
                 {name:`Winterstätten`,term:`winterstatten`,type:`Middle Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
                 {name:`Russian Raid`,term:`russia`,type:`Headquarters`,allies:[],quality:1,chance:1},
             ],
         },{
@@ -2866,7 +2866,7 @@ export var types={
             hq:[`Orderly Army`,`livonia`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:40/3,garrison:500},raid:1.5},
+            constants:{spawn:{base:2500,spend:1000,regen:40/3,garrison:500},raid:1.5,unit:100,rebel:false},
             city:[
                 {name:`Kertel`,type:0,loc:[592,288],rule:`Bellingshausen`,connect:[{name:`Leal`,type:2},{name:`Arensburg`,type:2}]},
                 {name:`Jerwen`,type:0,loc:[1208,321],rule:`Herse`,connect:[{name:`Fickel`,type:0},{name:`Laiuse`,type:1},{name:`Fellin`,type:1}]},
@@ -2920,7 +2920,7 @@ export var types={
                 {name:`Bishop of Dorpat`,term:`dorpat`,type:`Middle Nobility`,allies:[`Bishop of Ösel-Wiek`,`Bishop of Courland`,`Archbishop of Riga`],quality:0.95,chance:1},
                 {name:`Bishop of Courland`,term:`courland`,type:`Middle Nobility`,allies:[`Bishop of Ösel-Wiek`,`Bishop of Dorpat`,`Archbishop of Riga`],quality:0.95,chance:1},
                 {name:`Archbishop of Riga`,term:`ecclesiastical5`,type:`Major Nobility`,allies:[`Bishop of Ösel-Wiek`,`Bishop of Dorpat`,`Bishop of Courland`],quality:0.95,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
                 {name:`Russian Raid`,term:`russia`,type:`Headquarters`,allies:[],quality:1,chance:1},
             ],
         },{
@@ -2929,7 +2929,7 @@ export var types={
             hq:[`Orderly Army`,`livonia`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1},
+            constants:{spawn:{base:2500,spend:1000,regen:12.5,garrison:500},raid:1,unit:100,rebel:false},
             city:[
                 {name:`Tolsburg`,type:0,loc:[1407,148],rule:`Herse`,connect:[{name:`Kehra`,type:0},{name:`Wessenberg`,type:0},{name:`Narva`,type:2},{name:`Reval`,type:2}]},
                 {name:`Reval`,type:0,loc:[1066,173],rule:`League of Cities`,connect:[{name:`Kehra`,type:0},{name:`Padise`,type:0},{name:`Tolsburg`,type:2},{name:`Kertel`,type:2},{name:`Leal`,type:2}]},
@@ -2989,7 +2989,7 @@ export var types={
                 {name:`Bishop of Dorpat`,term:`dorpat`,type:`Middle Nobility`,allies:[`Bishop of Ösel-Wiek`,`Bishop of Courland`,`Archbishop of Riga`],quality:0.95,chance:1},
                 {name:`Bishop of Courland`,term:`courland`,type:`Middle Nobility`,allies:[`Bishop of Ösel-Wiek`,`Bishop of Dorpat`,`Archbishop of Riga`],quality:0.95,chance:1},
                 {name:`Archbishop of Riga`,term:`ecclesiastical5`,type:`Major Nobility`,allies:[`Bishop of Ösel-Wiek`,`Bishop of Dorpat`,`Bishop of Courland`],quality:0.95,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
                 {name:`Russian Raid`,term:`russia`,type:`Headquarters`,allies:[],quality:1,chance:2},
             ],
         },{
@@ -2998,7 +2998,7 @@ export var types={
             hq:[`Royal Army`,`jerusalem`],
             stack:false,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:40/3,garrison:500},raid:2},
+            constants:{spawn:{base:2500,spend:1000,regen:40/3,garrison:500},raid:2,unit:100,rebel:false},
             city:[
                 {name:`Beirut`,type:0,loc:[1140,346],rule:`Fauquembergues`,connect:[{name:`Bothina`,type:0},{name:`Sidon`,type:0},{name:`Famagusta`,type:2}]},
                 {name:`Bothina`,type:0,loc:[1201,511],rule:`Fauquembergues`,connect:[{name:`Beirut`,type:0},{name:`Sidon`,type:0},{name:`Belfort`,type:0}]},
@@ -3046,7 +3046,7 @@ export var types={
                 {name:`Fauquembergues`,term:`fauquembergues`,type:`Major Nobility`,allies:[],quality:1,chance:1},
                 {name:`Bures`,term:`bures`,type:`Major Nobility`,allies:[],quality:1,chance:1},
                 {name:`Rethel`,term:`rethel`,type:`Major Nobility`,allies:[],quality:1,chance:1},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
             ],
         },{
             name:[`Crusader States`,`Frankrokratia`],
@@ -3054,7 +3054,7 @@ export var types={
             hq:[`Royal Army`,`athens`],
             stack:true,
             teamSet:3,
-            constants:{spawn:{base:2500,spend:1000,regen:15,garrison:500},raid:2},
+            constants:{spawn:{base:2500,spend:1000,regen:15,garrison:500},raid:2,unit:100,rebel:false},
             city:[
                 {name:`Oreos`,type:0,loc:[1270,225],rule:`Carceri`,connect:[{name:`Negroponte`,type:0},{name:`Bodonitsa`,type:2}]},
                 {name:`Bodonitsa`,type:0,loc:[958,334],rule:`Milly`,connect:[{name:`Leivadia`,type:0},{name:`Salona`,type:0},{name:`Oreos`,type:2}]},
@@ -3098,7 +3098,77 @@ export var types={
                 {name:`La Roche`,term:`player`,type:`Middle Nobility`,allies:[],quality:1,chance:1},
                 {name:`Zaccaria`,term:`zaccaria`,type:`Major Nobility`,allies:[],quality:1,chance:1.5},
                 {name:`Villehardouin`,term:`villehardouin`,type:`Massive Nobility`,allies:[],quality:1,chance:1.5},
-                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.4,chance:0.5},
+                {name:`Free Company`,term:`free company`,type:`Middle Nobility`,allies:[],quality:1.5,chance:0.5},
+            ],
+        },{
+            name:[`Three Leagues`,``],
+            term:`dreibunde`,
+            hq:[`Confederate Army`,`schwyz`],
+            stack:false,
+            teamSet:3,
+            constants:{spawn:{base:25,spend:10,regen:0.125,garrison:5},raid:1,unit:1,rebel:true},
+            city:[
+                {name:`Maienfeld`,type:0,loc:[1498,486],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`Schiers`,type:0},{name:`Marschlins`,type:1}]},
+                {name:`Schiers`,type:0,loc:[1648,514],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`Marschlins`,type:0},{name:`Maienfeld`,type:0},{name:`Castels`,type:0}]},
+                {name:`Marschlins`,type:0,loc:[1579,580],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Maienfeld`,type:1},{name:`Schiers`,type:0},{name:`Chur`,type:0}]},
+                {name:`Naudersberg`,type:0,loc:[2800,602],rule:`Matsch`,rebel:`League of God's House`,connect:[{name:`Ramosch`,type:0},{name:`Graun`,type:0}]},
+                {name:`Castels`,type:0,loc:[1795,608],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`Schiers`,type:0},{name:`Langwies`,type:0},{name:`Klosters`,type:0}]},
+                {name:`Klosters`,type:0,loc:[1985,703],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`Susch`,type:0},{name:`Davos`,type:0},{name:`Castels`,type:0}]},
+                {name:`Ramosch`,type:0,loc:[2648,714],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Scuol`,type:0},{name:`Graun`,type:0},{name:`Naudersberg`,type:0}]},
+                {name:`Graun`,type:0,loc:[2869,744],rule:`Matsch`,rebel:`League of God's House`,connect:[{name:`Ramosch`,type:0},{name:`Naudersberg`,type:0},{name:`Glurns`,type:0}]},
+                {name:`Chur`,type:3,loc:[1517,788],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Rhäzüns`,type:0},{name:`Churwalden`,type:0},{name:`St. Peter`,type:0},{name:`Marschlins`,type:0}]},
+                {name:`Scuol`,type:0,loc:[2536,796],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Ramosch`,type:0},{name:`Susch`,type:0}]},
+                {name:`St. Peter`,type:0,loc:[1670,810],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`Chur`,type:0},{name:`Langwies`,type:0},{name:`Arosa`,type:0}]},
+                {name:`Belmont`,type:0,loc:[1253,814],rule:`Sax-Misox`,rebel:`Grey League`,connect:[{name:`Hohentrins`,type:0},{name:`Laax`,type:0}]},
+                {name:`Langwies`,type:0,loc:[1768,816],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`St. Peter`,type:0},{name:`Castels`,type:0},{name:`Davos`,type:0}]},
+                {name:`Hohentrins`,type:0,loc:[1336,821],rule:`Werdenberg-Heiligenberg`,rebel:`Grey League`,connect:[{name:`Belmont`,type:0},{name:`Rhäzüns`,type:0}]},
+                {name:`Davos`,type:0,loc:[1907,860],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`Klosters`,type:0},{name:`Greifenstein`,type:0},{name:`Langwies`,type:0}]},
+                {name:`Rhäzüns`,type:0,loc:[1361,899],rule:`Rhäzüns`,rebel:`Grey League`,connect:[{name:`Chur`,type:0},{name:`Hohentrins`,type:0},{name:`Ortenstein`,type:0}]},
+                {name:`Laax`,type:0,loc:[1160,910],rule:`Werdenberg-Sargans`,rebel:`Grey League`,connect:[{name:`Belmont`,type:0},{name:`Ilanz`,type:0}]},
+                {name:`Susch`,type:0,loc:[2263,908],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Wildenberg`,type:0},{name:`Klosters`,type:0},{name:`Scuol`,type:0}]},
+                {name:`Churwalden`,type:0,loc:[1534,912],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`Chur`,type:0},{name:`Arosa`,type:0},{name:`Ortenstein`,type:0}]},
+                {name:`Arosa`,type:0,loc:[1706,919],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`St. Peter`,type:0},{name:`Belfort`,type:0},{name:`Churwalden`,type:0}]},
+                {name:`Jörgenberg`,type:0,loc:[1000,961],rule:`Rhäzüns`,rebel:`Grey League`,connect:[{name:`Ilanz`,type:0},{name:`Rinkenberg`,type:0}]},
+                {name:`Ortenstein`,type:0,loc:[1411,970],rule:`Werdenberg-Sargans`,rebel:`League of God's House`,connect:[{name:`Rhäzüns`,type:0},{name:`Fürstenau`,type:0},{name:`Churwalden`,type:0}]},
+                {name:`Ilanz`,type:0,loc:[1097,971],rule:`Sax-Misox`,rebel:`Grey League`,connect:[{name:`Jörgenberg`,type:0},{name:`Lugnez`,type:0},{name:`Laax`,type:0}]},
+                {name:`Glurns`,type:0,loc:[2892,996],rule:`Matsch`,rebel:`League of God's House`,connect:[{name:`Graun`,type:0},{name:`Müstair`,type:0}]},
+                {name:`Wildenberg`,type:0,loc:[2299,997],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Müstair`,type:0},{name:`Guardaval`,type:0},{name:`Susch`,type:0}]},
+                {name:`Fürstenau`,type:0,loc:[1435,1033],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Ortenstein`,type:0},{name:`Thusis`,type:0},{name:`Nivagl`,type:0}]},
+                {name:`Rinkenberg`,type:0,loc:[848,1056],rule:`Werdenberg-Sargans`,rebel:`Grey League`,connect:[{name:`Disentis`,type:0},{name:`Lugnez`,type:0},{name:`Jörgenberg`,type:0}]},
+                {name:`Nivagl`,type:0,loc:[1556,1078],rule:`Werdenberg-Sargans`,rebel:`League of God's House`,connect:[{name:`Belfort`,type:0},{name:`Fürstenau`,type:0}]},
+                {name:`Lugnez`,type:0,loc:[1076,1087],rule:`Sax-Misox`,rebel:`Grey League`,connect:[{name:`Rinkenberg`,type:0},{name:`Ilanz`,type:0},{name:`Safien`,type:0},{name:`Vals`,type:0}]},
+                {name:`Thusis`,type:0,loc:[1421,1092],rule:`Werdenberg-Sargans`,rebel:`Grey League`,connect:[{name:`Fürstenau`,type:0},{name:`Safien`,type:0},{name:`Bärenburg`,type:0}]},
+                {name:`Müstair`,type:0,loc:[2764,1096],rule:`Matsch`,rebel:`League of God's House`,connect:[{name:`Wildenberg`,type:0},{name:`Glurns`,type:0}]},
+                {name:`Greifenstein`,type:0,loc:[1780,1104],rule:`Matsch`,rebel:`League of God's House`,connect:[{name:`Davos`,type:0},{name:`Bergün`,type:0},{name:`Belfort`,type:1}]},
+                {name:`Belfort`,type:0,loc:[1662,1117],rule:`Toggenburg`,rebel:`League of the Ten Jurisdictions`,connect:[{name:`Nivagl`,type:0},{name:`Reams`,type:0},{name:`Arosa`,type:0},{name:`Greifenstein`,type:1}]},                
+                {name:`Disentis`,type:0,loc:[641,1128],rule:`Werdenberg-Sargans`,rebel:`Grey League`,connect:[{name:`Rinkenberg`,type:0}]},
+                {name:`Safien`,type:0,loc:[1258,1136],rule:`Rhäzüns`,rebel:`Grey League`,connect:[{name:`Lugnez`,type:0},{name:`Vals`,type:0},{name:`Thusis`,type:0}]},
+                {name:`Bergün`,type:0,loc:[1860,1196],rule:`Matsch`,rebel:`League of God's House`,connect:[{name:`Greifenstein`,type:0},{name:`Guardaval`,type:0}]},
+                {name:`Guardaval`,type:0,loc:[2086,1243],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Bergün`,type:0},{name:`Spaniola`,type:0},{name:`Wildenberg`,type:0}]},
+                {name:`Reams`,type:0,loc:[1625,1246],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Belfort`,type:0},{name:`Marmels`,type:0},{name:`Bärenburg`,type:0}]},
+                {name:`Vals`,type:0,loc:[1111,1252],rule:`Sax-Misox`,rebel:`Grey League`,connect:[{name:`Lugnez`,type:0},{name:`Safien`,type:0},{name:`Rheinwald`,type:0}]},
+                {name:`Bärenburg`,type:0,loc:[1429,1301],rule:`Werdenberg-Sargans`,rebel:`Grey League`,connect:[{name:`Rheinwald`,type:0},{name:`Avers`,type:0},{name:`Reams`,type:0},{name:`Thusis`,type:0}]},
+                {name:`Marmels`,type:0,loc:[1684,1367],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Reams`,type:0},{name:`Stalla`,type:0}]},
+                {name:`Rheinwald`,type:0,loc:[1232,1408],rule:`Werdenberg-Sargans`,rebel:`Grey League`,connect:[{name:`Bärenburg`,type:0},{name:`Vals`,type:0},{name:`Misox`,type:0}]},
+                {name:`Spaniola`,type:0,loc:[2078,1435],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Stalla`,type:1},{name:`Poschiavo`,type:0},{name:`Guardaval`,type:0}]},
+                {name:`Avers`,type:0,loc:[1559,1513],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Bärenburg`,type:0},{name:`Stalla`,type:0},{name:`Castelmur`,type:0}]},
+                {name:`Stalla`,type:0,loc:[1739,1522],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Avers`,type:0},{name:`Marmels`,type:0},{name:`Turraccia`,type:0},{name:`Spaniola`,type:1}]},
+                {name:`Turraccia`,type:0,loc:[1771,1655],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Stalla`,type:0},{name:`Castelmur`,type:0}]},
+                {name:`Misox`,type:0,loc:[1204,1705],rule:`Sax-Misox`,rebel:`Grey League`,connect:[{name:`Norantola`,type:0},{name:`Rheinwald`,type:0}]},
+                {name:`Poschiavo`,type:0,loc:[2287,1738],rule:`Matsch`,rebel:`League of God's House`,connect:[{name:`Spaniola`,type:0}]},
+                {name:`Castelmur`,type:0,loc:[1651,1774],rule:`Bishop of Chur`,rebel:`League of God's House`,connect:[{name:`Avers`,type:0},{name:`Turraccia`,type:0}]},
+                {name:`Norantola`,type:0,loc:[1151,1891],rule:`Sax-Misox`,rebel:`Grey League`,connect:[{name:`Misox`,type:0}]},
+            ],team:[
+                {name:`Werdenberg-Heiligenberg`,term:`werdenberg-heiligenberg`,type:`Minimal Nobility`,allies:[`Werdenberg-Sargans`],quality:1,chance:0.5},
+                {name:`Werdenberg-Sargans`,term:`werdenberg-sargans`,type:`Middle Nobility`,allies:[`Werdenberg-Heiligenberg`],quality:1,chance:1.5},
+                {name:`Rhäzüns`,term:`rhazuns`,type:`Minor Nobility`,allies:[],quality:1,chance:1},
+                {name:`Sax-Misox`,term:`sax-misox`,type:`Middle Nobility`,allies:[],quality:1,chance:1.5},
+                {name:`Matsch`,term:`matsch`,type:`Middle Nobility`,allies:[],quality:1,chance:1.5},
+                {name:`Toggenburg`,term:`toggenburg`,type:`Major Nobility`,allies:[],quality:1,chance:2},
+                {name:`Grey League`,term:`grey league`,type:`Rural`,allies:[`League of the Ten Jurisdictions`,`League of God's House`],quality:1.1,chance:1},
+                {name:`League of the Ten Jurisdictions`,term:`ten jurisdictions`,type:`Rural`,allies:[`Grey League`,`League of God's House`],quality:1.1,chance:1},
+                {name:`League of God's House`,term:`god's house`,type:`Rural`,allies:[`Grey League`,`League of the Ten Jurisdictions`],quality:1.1,chance:1},
+                {name:`Bishop of Chur`,term:`chur`,type:`Major Nobility`,allies:[],quality:0.95,chance:2},
             ],
         },
     ],
@@ -3118,5 +3188,5 @@ export var training={
 }
 export var options={strength:1,unitSize:1,scale:1,hq:false,respawn:false,core:false}
 export var graphics={main:0,load:{map:[],city:[],team:[],unit:[]}}
-export var constants={trig:[[],[]],spawn:{},init:false,threshold:100000,thresholdTick:0}
+export var constants={trig:[[],[]],spawn:{},init:false,unit:100,rebel:false,threshold:100000,thresholdTick:0}
 export var inputs={mouse:{base:{x:0,y:0},rel:{x:0,y:0},previous:{base:{x:0,y:0},rel:{x:0,y:0}}}}

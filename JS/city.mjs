@@ -85,9 +85,9 @@ export class city{
     initial(){
         if(this.units.length==0&&this.owner!=-1){
             let mult=types.team[types.teamRef[this.owner]].auto?options.strength:1
-            this.units.push(new unit(this,types.teamRef[this.owner],1,round(constants.spawn.garrison*random(0.4,2)*mult*(this.data.type==7?0.5:1)/100)*100))
+            this.units.push(new unit(this,types.teamRef[this.owner],1,round(constants.spawn.garrison*random(0.4,2)*mult*(this.data.type==7?0.5:1)/constants.unit)*constants.unit))
             if(this.owner!=this.data.rule){
-                this.recruits-=floor(random(15,21))*100
+                this.recruits-=floor(random(15,21))*constants.unit
             }
         }
     }
@@ -123,11 +123,11 @@ export class city{
         this.recruits=min(this.recruits+constants.spawn.regen*10,constants.spawn.base)
         this.mercenaries=min(this.mercenaries+constants.spawn.regen*10,constants.spawn.base)
     }
-    spawn(type){
+    spawn(type,team){
         let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
-        let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
+        //let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
         let mult=(types.team[team].auto?options.strength:1)*(this.data.type==9?0.5:1)
-        let num=floor(this[set]/100/[1,4,types.teamKey[1].includes(this.owner)?1.25:2,4,1.25][type]*mult)*100
+        let num=floor(this[set]/constants.unit/[1,4,types.teamKey[1].includes(this.owner)?1.25:2,4,1.25][type]*mult)*constants.unit
         this.units.push(new unit(this,team,0,num))
         this[set]=type==0?max(0,this[set]-constants.spawn.spend*[1,1,1.25,0.5,1.5][type]):this[set]-constants.spawn.spend*[1,1,1.25,0.5,1.5][type]
         if(num==0){
@@ -138,11 +138,11 @@ export class city{
         }
         this.updateRecords(team)
     }
-    getSpawn(type){
+    getSpawn(type,team){
         let set=[`recruits`,`recruits`,`recruits`,`recruits`,`mercenaries`][type]
-        let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
+        //let team=type==4?types.teamRef[`Free Company`]:type==3?this.operation.ui.turn.main:type==2?types.teamRef[this.owner]:this.ruleIndex
         let mult=(types.team[team].auto?options.strength:1)*(this.data.type==9?0.5:1)
-        let num=floor(this[set]/100/[1,4,types.teamKey[1].includes(this.owner)?1.25:2,4,1.25][type]*mult)*100
+        let num=floor(this[set]/constants.unit/[1,4,types.teamKey[1].includes(this.owner)?1.25:2,4,1.25][type]*mult)*constants.unit
         return max(0,num)
     }
     summonUnit(team,type,value){
@@ -218,12 +218,18 @@ export class city{
         this.units.forEach(unit=>print(unit.nameSelf()))
     }
     updateVisibility(turn){
-        this.visibility=this.units.some(unit=>{return unit.team==turn&&!unit.remove})||this.data.rule==types.team[turn].name?2:0
+        this.visibility=this.units.some(unit=>{return unit.team==turn&&!unit.remove})||
+            this.data.rule==types.team[turn].name||
+            constants.rebel&&this.data.rebel==types.team[turn].name
+            ?2:0
         if(turn>=0){
             if(this.visibility==0){
                 for(let a=0,la=types.city[this.type].connect.length;a<la;a++){
                     let cit=this.operation.cities[types.cityRef[types.city[this.type].connect[a].name]]
                     let aligned=[]
+                    if(cit==undefined){
+                        throw new Error(`City Connection Issue: ${types.city[this.type].connect[a].name}`)
+                    }
                     if(cit.owner!=-1){
                         let own=types.teamRef[cit.owner]
                         aligned=[own,...this.operation.teams[own].allies]
@@ -368,7 +374,7 @@ export class city{
             case `main`:
                 layer.push()
                 layer.translate(this.position.x,this.position.y)
-                layer.scale(1/options.scale)
+                layer.scale(1/options.scale*(constants.unit==1?0.75:1))
                 this.units.forEach(unit=>unit.display(layer))
                 if(this.number>0&&this.data.type!=7){
                     let variant=this.data.type==10?4:this.operation.ui.spawnVariant(this,this.operation.ui.turn.main)
@@ -377,7 +383,7 @@ export class city{
                         layer.stroke(255,this.number)
                         layer.strokeWeight(2)
                         layer.textSize(40)
-                        layer.text(this.getSpawn(variant),0,2)
+                        layer.text(this.getSpawn(variant,this.data.type==10?types.teamRef[`Free Company`]:this.operation.ui.turn.main),0,2)
                     }
                 }
                 layer.pop()

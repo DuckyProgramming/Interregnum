@@ -1,4 +1,4 @@
-import {types,dev,graphics,options} from './variables.mjs'
+import {types,dev,graphics,options,constants} from './variables.mjs'
 import {smoothAnim,moveTowardVecDynamic,floor,random,round,findName} from './functions.mjs'
 export class unit{
     constructor(city,team,type,value){
@@ -53,14 +53,14 @@ export class unit{
         this.turns=composite.turns
     }
     newTurn(){
-        if(this.value>2500&&this.turns>=50&&this.type==0&&floor(random(0,10))==0){
-            let diff=round(this.value*random(0,0.04)/100)*100
+        if(this.value>25*constants.unit&&this.turns>=50&&this.type==0&&floor(random(0,10))==0){
+            let diff=round(this.value*random(0,0.04)/constants.unit)*constants.unit
             if(diff>0){
                 this.value-=diff
                 this.city.operation.teams[this.team].deserters+=diff
             }
         }
-        if(this.value%100!=0&&options.strength==1){
+        if(constants.unit>1&&this.value%constants.unit!=0&&options.strength==1){
             print(this.value)
             throw new Error(`Rounding Fail`)
         }
@@ -80,10 +80,10 @@ export class unit{
             layer.image(img[1],0,0,img[1].width*this.fade.main*options.unitSize,img[1].height*this.fade.main*options.unitSize)
             layer.noStroke()
             layer.fill(0,this.reveal.main*this.fade.main)
-            layer.textSize(15)
-            layer.text(this.value,0,(29-this.type*9)*options.unitSize+3)
+            layer.textSize(constants.unit==1?20:15)
+            layer.text(this.value,0,((constants.unit?32:29)-this.type*9)*options.unitSize+3)
             layer.fill(0,(1-this.reveal.main)*this.fade.main)
-            layer.text(`?`,0,(29-this.type*9)*options.unitSize+3)
+            layer.text(`?`,0,((constants.unit?32:29)-this.type*9)*options.unitSize+3)
             if(this.position.x!=0||this.position.y!=0){
                 layer.pop()
             }
