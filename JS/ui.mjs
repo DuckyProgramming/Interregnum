@@ -627,7 +627,8 @@ export class ui{
                 }
                 this.operation.teams[this.battle.result.casualties[a][b].team].deaths+=this.battle.result.casualties[a][b].number
                 if(this.battle.circumstance[0]==0&&this.battle.circumstance[1]==0&&last(this.battle.result.winner)==2-a){
-                    let num=round(this.battle.result.casualties[a][b].number*random(10,30))/constants.unit
+                    //let num=round(this.battle.result.casualties[a][b].number*random(10,30))/constants.unit
+                    let num=round(this.battle.result.casualties[a][b].number*random(10,30))/100
                     if(num>0){
                         for(let c=0,lc=this.battle.result.casualties[1-a].length;c<lc;c++){
                             this.operation.teams[this.battle.result.casualties[1-a][c].team].prisoners[this.battle.result.casualties[a][b].team]+=round(num*this.battle.result.casualties[1-a][c].base/totals[1-a]/constants.unit+random(-0.5,0.5))*constants.unit
