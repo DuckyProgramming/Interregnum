@@ -12,5 +12,11 @@ Drei Bünde Map:
 I mostly based this map off of Sidonius's map of 1367 noble positions in Graubünden. Note that this is actually outdated, since I want to simulate the formation of the leagues.
 By that time, the Lords of Belfort and perhaps other families had already gone extinct. In fact it was the extinction of the noble houses that largely spurred the establishment of league alliances.
 I will disagree with Sidonius on one point though. My research indicates the existence of a Lordship of Castrisch separate from that of Belmont, though they were held by the same individuals.
+I eventually didn't end up making this change. It's a sort of grey area but it would be impossible for me to verify the status of every lordship as separate from others or not.
+So I think I will end up just using the original map for the sure boundaries and also having transparent boundaries drawn beneath them for the later separate jurisdictions.
+
+So far I had the idea for two variants. The first includes only the lands that the Three Leagues had at their maximal extent, including Untercalven/Vinschgau and Misox.
+The second is the expanded one that also includes all vassals and subjects later obtained. Even though control of the Tre Pievi (three parishes) was extremely temporal we're keeping it around.
+The final major thing to note is that I'm ignoring all lands that were added upon the formation of the canton and had not been previously controlled, those being Tarasp and Haldenstein.
 
 
