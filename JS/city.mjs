@@ -159,7 +159,8 @@ export class city{
         }
     }
     raided(raider){
-        let num=round(this.recruits/20+25)*10
+        //let num=round(this.recruits/20+25)*10
+        let num=round(this.recruits/20+constants.unit/4)*10
         this.recruits-=num
         let total=0
         let send=[]
@@ -170,7 +171,7 @@ export class city{
             send.push([target,mult])
         }
         for(let a=0,la=send.length;a<la;a++){
-            this.operation.cities[send[a][0]].recruits+=round(num*send[a][1]/total/10*0.5)*10
+            this.operation.cities[send[a][0]].recruits+=round(num*send[a][1]/total/constants.unit*5)*constants.unit/10
         }
     }
     getUnits(teams,type=-1){
@@ -412,6 +413,23 @@ export class city{
                             graphics.load.unit[2]
                         ]
                         if(img[0]!=undefined){
+                            if(constants.rebel&&options.core&&this.data.rebel!=``){
+                                img.push(graphics.load.team[this.operation.map][types.team[types.teamRef[this.data.rebel]].loadIndex])
+                                switch(this.data.type){
+                                    case 7:
+                                        layer.image(img[2],img[1].width*0.16,img[1].height*0.41-8,img[1].width*0.32,img[1].height*0.32)
+                                        layer.image(img[1],img[1].width*0.16,img[1].height*0.41-8,img[1].width*0.32,img[1].height*0.32)
+                                    break
+                                    case 9: case 10:
+                                        layer.image(img[2],img[1].width*0.18,img[1].height*0.43-9,img[1].width*0.36,img[1].height*0.36)
+                                        layer.image(img[1],img[1].width*0.18,img[1].height*0.43-9,img[1].width*0.36,img[1].height*0.36)
+                                    break
+                                    default:
+                                        layer.image(img[2],img[1].width*0.2,img[1].height*0.45-10,img[1].width*0.4,img[1].height*0.4)
+                                        layer.image(img[1],img[1].width*0.2,img[1].height*0.45-10,img[1].width*0.4,img[1].height*0.4)
+                                    break
+                                }
+                            }
                             switch(this.data.type){
                                 case 7:
                                     layer.image(img[0],0,img[1].height*0.25-8,img[1].width*0.4,img[1].height*0.4)

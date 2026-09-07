@@ -573,7 +573,7 @@ export class ui{
             }
             ticker++
         }
-        if(!constants.rebel&&!this.operation.cities.some(city=>
+        if(!(constants.rebel&&types.team[ticker].name!=`Free Company`)&&!this.operation.cities.some(city=>
             city.ruleIndex==ticker||
             city.units.some(unit=>unit.team==ticker&&(unit.type==0||!types.teamKey[0].includes(types.team[ticker].name)||!types.teamKey[1].includes(types.team[ticker].name)))
         )){
@@ -1127,7 +1127,8 @@ export class ui{
             types.team[turn].auto&&cit.getSpawn(4,types.teamRef[`Free Company`])>cit.getSpawn(this.spawnVariant(cit,turn),turn)&&
             !types.teamKey[1].includes(types.team[turn].name)
         ){
-            cit.spawn(4,this.turn.main)
+            //cit.spawn(4,this.turn.main)
+            cit.spawn(4,types.teamRef[`Free Company`])
             cit.updateUnits()
             this.turn.timer=30
             if(!this.operation.teams[types.teamRef[`Free Company`]].allies.includes(turn)&&this.operation.teams[turn].name!=`Free Company`){
@@ -1284,7 +1285,8 @@ export class ui{
                 this.moveTab(9)
                 this.select.battleCity=this.select.city
                 let cit=this.operation.cities[this.select.city]
-                cit.sieged+=2
+                //cit.sieged+=2
+                cit.sieged++
                 this.operation.calc.terrain.list=cit.getUnits([this.turn.main],1).length>0?[]:[2]
                 for(let a=0,la=cit.units.length;a<la;a++){
                     let unit=cit.units[a]
@@ -2247,7 +2249,7 @@ export class ui{
                                 layer.fill(0)
                                 layer.textSize(24)
                                 layer.text(`Editing Map`,0,40)
-                                layer.textSize(18)
+                                layer.textSize(types.team[this.select.edit].name.length>20?15:18)
                                 layer.text(`Placing: ${types.team[this.select.edit].name}`,0,tick+7.5)
                                 tick+=25
                                 layer.fill(120)
@@ -2281,7 +2283,7 @@ export class ui{
                                 layer.fill(0)
                                 layer.textSize(24)
                                 layer.text(`Pick Placer`,0,40)
-                                layer.textSize(18)
+                                layer.textSize(types.team[this.select.edit].name.length>20?15:18)
                                 layer.text(`Placing: ${types.team[this.select.edit].name}`,0,tick+7.5)
                                 tick+=25
                                 layer.fill(120)
@@ -2752,7 +2754,7 @@ export class ui{
                                                             )
                                                         )||
                                                         this.operation.cities[a].data.rule==types.team[this.turn.main].name||
-                                        constants.rebel&&this.operation.cities[a].data.rebel==types.team[this.turn.main].name
+                                                        constants.rebel&&this.operation.cities[a].data.rebel==types.team[this.turn.main].name
                                                     ){
                                                         possible.push(a)
                                                     }
@@ -3010,7 +3012,7 @@ export class ui{
                                         if(!dev.close){
                                             this.operation.teams[this.operation.teams[this.turn.main].allies[a]].notif.push(`Alliance Broken\nWith ${this.operation.teams[this.turn.main].name}`)
                                         }
-                                        let num=this.operation.teams[this.turn.main].allies.length
+                                        //let num=this.operation.teams[this.turn.main].allies.length
                                         this.operation.teams[this.turn.main].removeAlly(this.operation.teams[this.operation.teams[this.turn.main].allies[a]])
                                         a--
                                         la--
@@ -3353,7 +3355,8 @@ export class ui{
                                         }
                                     }
                                     cit.updateUnits()
-                                    this.operation.cities[this.select.targetCity].sieged+=2
+                                    //this.operation.cities[this.select.targetCity].sieged+=2
+                                    this.operation.cities[this.select.targetCity].sieged++
                                     this.moveTab(10)
                                     this.battle.circumstance[1]=1
                                     this.agency.time=0
@@ -3574,7 +3577,8 @@ export class ui{
                                             }
                                         }
                                         cit.updateUnits()
-                                        this.operation.cities[this.select.targetCity].sieged+=2
+                                        //this.operation.cities[this.select.targetCity].sieged+=2
+                                        this.operation.cities[this.select.targetCity].sieged++
                                         this.moveTab(10)
                                         this.battle.circumstance[1]=1
                                         this.agency.time=0
@@ -4096,7 +4100,8 @@ export class ui{
                                         }
                                     }
                                     this.operation.cities[this.select.targetCity].updateUnits()
-                                    this.operation.cities[this.select.targetCity].sieged+=2
+                                    //this.operation.cities[this.select.targetCity].sieged+=2
+                                    this.operation.cities[this.select.targetCity].sieged++
                                     this.moveTab(10)
                                     this.battle.circumstance[1]=1
                                 }
@@ -4138,7 +4143,8 @@ export class ui{
                                         }
                                     }
                                     this.operation.cities[this.select.targetCity].updateUnits()
-                                    this.operation.cities[this.select.targetCity].sieged+=2
+                                    //this.operation.cities[this.select.targetCity].sieged+=2
+                                    this.operation.cities[this.select.targetCity].sieged++
                                     this.moveTab(10)
                                     this.battle.circumstance[1]=1
                                 }
@@ -4737,7 +4743,8 @@ export class ui{
                                     }
                                 }
                                 this.operation.cities[this.select.targetCity].updateUnits()
-                                this.operation.cities[this.select.targetCity].sieged+=2
+                                //this.operation.cities[this.select.targetCity].sieged+=2
+                                this.operation.cities[this.select.targetCity].sieged++
                                 this.moveTab(10)
                                 this.battle.circumstance[1]=1
                             }
@@ -4780,7 +4787,8 @@ export class ui{
                                     }
                                 }
                                 this.operation.cities[this.select.targetCity].updateUnits()
-                                this.operation.cities[this.select.targetCity].sieged+=2
+                                //this.operation.cities[this.select.targetCity].sieged+=2
+                                this.operation.cities[this.select.targetCity].sieged++
                                 this.moveTab(10)
                                 this.battle.circumstance[1]=1
                             }
