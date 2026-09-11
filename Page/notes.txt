@@ -1,3 +1,5 @@
+DREI BÜNDE:
+
 The majority of research for this game was done on a fairly surface level, via Wikipedia or Youtube Videos.
 Switzerland maintains its own official history encyclopedia, which as nice to have as well: https://hls-dhs-dss.ch/de/
 Also note that interms of maps, this guy completely carries: https://commons.wikimedia.org/wiki/User:Sidonius
@@ -24,7 +26,12 @@ All three coats of arms (the League of the House of God has had one consistently
 Also note that my in-game narrative for the leagues' formations are not entirely accurate. Nobles often joined or worked with the leagues rather than rebelling, as did the Abbot of Disentis.
 
 To finalize, here's a timeline of Graubünden's territorial evolution.
+    1337 - Extinction of the Barons of Vaz
+    1348 - Chiavenna, Bormio, and Poschiavo ceded by the lords of Matsch to the dukes of Milan
+    1355 - The Counts of Toggenburg obtain control of their lands in Graubünden, including Maienfeld, Davos, Belfort, and Churwalden
 1367 - League of God's House formed
+    1371 - Extinction of the Lords of Belmont
+    1383 - Safien acquired by the Lords of Rhäzüns
 1394 - Bergün joins the League of God's House
 1395 - Grey League formed
 1399 - Hohentrins joins the Grey League
@@ -32,12 +39,16 @@ To finalize, here's a timeline of Graubünden's territorial evolution.
 1406 - Schams joins the Grey League
 1408 - Poschiavo joins the League of God's House
 1415 - Müstair and Untercalven join the League of God's House
+1428 - The Free Men of Laax purchase their freedom from the Counts of Werdenberg-Sargans
+1434 - The Free Men of Laax join the Grey League
 1436 - League of the Ten Jurisdictions formed
 1440 - Heinzenberg and Thusis join the Grey League
 1441 - Cazis Abbey (a women's abbey with very few lands) joins the Grey League
 1452 - Ortenstein joins the League of God's House
 1456 - Obervaz joins the League of God's House
-1480 - Misox joins the Grey League
+    1464 - Tarasp sold from the Matsch family to the Austrians
+1480 - Mesocco and Soazza near Misox join the Grey League, Misox is given to Milan's Gian Giacomo Trivulzio
+1496 - Trivulzio with Misox and Calanca joins the Grey League
 1509 - Lords of Maienfeld removed
 1512 - Bormio, Chiavenna, Valtellina, and the Tre Pievi occupied
 1524 - Tre Pievi lost to Gian Giacomo Medici, Three Leagues formally established as a joint state
@@ -53,8 +64,9 @@ To finalize, here's a timeline of Graubünden's territorial evolution.
 1695 - Rhäzüns directly controlled by the Habsburgs through feudal means
 1788 - Internal split of Ortenstein into Ortenstein im Boden and Ortenstein im Berg
 1797 - Bormio, Chiavenna, and Valtellina become part of the Cisalpine Republic
-1799 - The Three Leagues are merged into the canton of Raetia
-1803 - Haldenstein and Tarasp mediatized from Austria (Haldenstein joins the four villages to become the fifth)
+1798 - The Three Leagues come under the control of the Helvetic Republic
+1799 - The Three Leagues are merged into the canton of Raetia under the Helvetic Republic
+1803 - Act of Mediation, Haldenstein and Tarasp mediatized from Austria (Haldenstein joins the four villages to become the fifth)
 1809 - Rhäzüns transferred to Napoleonic France
 1815 - The return of Rhäzüns to the canton's control is planned at the Congress of Vienna
 1819 - Rhäzüns becomes the last area to join the modern canton
