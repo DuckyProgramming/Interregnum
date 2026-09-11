@@ -32,7 +32,7 @@ export var types={
         {name:`Massive Nobility`,affinity:[0,0,2,1,0,0,0,0]},//8+
         {name:`Headquarters`,affinity:[0,0,0,0,0,0,0,0]},
     ],teamKey:[
-        ['Royal Army','Imperial Army'],
+        [`Royal Army`,`Imperial Army`,`Orderly Army`,`Confederate Army`],
         ['Russian Raid'],
     ],map:[
         {

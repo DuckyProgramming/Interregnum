@@ -573,13 +573,26 @@ export class ui{
             }
             ticker++
         }
-        if(!(constants.rebel&&types.team[ticker].name!=`Free Company`)&&!this.operation.cities.some(city=>
-            city.ruleIndex==ticker||
+        //if(!(constants.rebel&&types.team[ticker].name!=`Free Company`)&&!this.operation.cities.some(city=>
+        if(types.team[ticker].name==`Free Company`||!this.operation.cities.some(city=>
+            city.ruleIndex==ticker&&!constants.rebel||
+            city.data.rebel==types.team[ticker].name&&constants.rebel||
             city.units.some(unit=>unit.team==ticker&&(unit.type==0||!types.teamKey[0].includes(types.team[ticker].name)||!types.teamKey[1].includes(types.team[ticker].name)))
         )){
             ticker=this.pickTurn()
         }
         return ticker
+    }
+    testTurn(){
+        let turn=this.turn.main
+        totals=[]
+        this.operation.teams.forEach(team=>totals.push(0))
+        for(let a=0,la=1000;a<la;a++){
+            this.turn.main=-1
+            totals[this.pickTurn()]++
+        }
+        print(totals)
+        this.turn.main=turn
     }
     accept(){
         let aligned=[this.turn.main,...this.operation.teams[this.turn.main].allies]
