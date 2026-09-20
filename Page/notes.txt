@@ -1,10 +1,15 @@
+GENERAL:
+
+Source for Commercy Coat of Arms (Lillebonne flag): https://nouvelleheraldie.blogspot.com/2019/10/tri-nox-samoni-2.html
+
+Something that annoys me is that this map: https://commons.wikimedia.org/wiki/File:Carte_du_comt%C3%A9_de_Hainaut.jpg exists on Wikimedia but is alone.
+While it is easily the most detailed one of the area, with no other one coming even close, a zoomed-out version simply isn't around, and I don't know why.
+
 DREI BÜNDE:
 
 The majority of research for this game was done on a fairly surface level, via Wikipedia or Youtube Videos.
 Switzerland maintains its own official history encyclopedia, which as nice to have as well: https://hls-dhs-dss.ch/de/
 Also note that interms of maps, this guy completely carries: https://commons.wikimedia.org/wiki/User:Sidonius
-
-Source for Commercy Coat of Arms (Lillebonne flag): https://nouvelleheraldie.blogspot.com/2019/10/tri-nox-samoni-2.html
 
 This log will only cover the updates to this game that occurred in 2026 and beyond, and will likely lack in both depth and length. Things that occurred in 2025 and before are lost.
 Still, though, not much will actually be here. The reality is that this game's research comes down mostly to staring at maps all day and they don't translate well to written notes.
@@ -13,7 +18,9 @@ But anything worth noting about each map and the facts I come across when making
 Drei Bünde Map:
 I mostly based this map off of Sidonius's map of 1367 noble positions in Graubünden. Note that this is actually outdated, since I want to simulate the formation of the leagues.
 By that time, the Lords of Belfort and perhaps other families had already gone extinct. In fact it was the extinction of the noble houses that largely spurred the establishment of league alliances.
+
 I will disagree with Sidonius on one point though. My research indicates the existence of a Lordship of Castrisch separate from that of Belmont, though they were held by the same individuals.
+This is very much a grey area because the concept of separate small lordships held by the same man barely even existed. But here's a map where Sidonius supports this: https://de.wikipedia.org/wiki/Sax_(Adelsgeschlecht)#/media/Datei:Karte_Besitz-der-Sax.png
 I eventually didn't end up making this change. It's a sort of grey area but it would be impossible for me to verify the status of every lordship as separate from others or not.
 So I think I will end up just using the original map for the sure boundaries and also having transparent boundaries drawn beneath them for the later separate jurisdictions.
 
@@ -24,8 +31,10 @@ Also worth noting is that there are no official propotions for the League of the
 While the Grey League had two different coats of arms for quite a while, in 1505 they were standardized. I picked the half-and-half one because while it does look less unique, it's more different from the other leagues.
 All three coats of arms (the League of the House of God has had one consistently) had shield holders, those being the "Wild Man", St. George, and Mary, respectively, though all three have since been removed.
 Also note that my in-game narrative for the leagues' formations are not entirely accurate. Nobles often joined or worked with the leagues rather than rebelling, as did the Abbot of Disentis.
+And remember that some places are known alternately by their castle and municipal names, such as Malans being known as Neu-Aspermont, Churwalden as Strassberg, and Domleschg as Ortenstein and Fürstenau.
 
 To finalize, here's a timeline of Graubünden's territorial evolution.
+    1335 - The Visconti acquire Chiavenna from the Bishops of Chur
     1337 - Extinction of the Barons of Vaz
     1348 - Chiavenna, Bormio, and Poschiavo ceded by the lords of Matsch to the dukes of Milan
     1355 - The Counts of Toggenburg obtain control of their lands in Graubünden, including Maienfeld, Davos, Belfort, and Churwalden
@@ -45,9 +54,10 @@ To finalize, here's a timeline of Graubünden's territorial evolution.
 1440 - Heinzenberg and Thusis join the Grey League
 1441 - Cazis Abbey (a women's abbey with very few lands) joins the Grey League
 1452 - Ortenstein joins the League of God's House
-1456 - Obervaz joins the League of God's House
+1456 - The Counts of Werdenberg-Sargans sell Schams and Obervaz to the Bishop of Chur, Obervaz joins the League of God's House
     1464 - Tarasp sold from the Matsch family to the Austrians
 1480 - Mesocco and Soazza near Misox join the Grey League, Misox is given to Milan's Gian Giacomo Trivulzio
+    1493 - The Counts of Werdenberg-Sargans sell Rheinwald and Safien to Travulzio
 1496 - Trivulzio with his County of Misox and Calanca joins the Grey League
 1498 - Poschiavo and Müstair join the League of God's House
 1509 - Lords of Maienfeld removed
@@ -65,13 +75,20 @@ To finalize, here's a timeline of Graubünden's territorial evolution.
 1679 - Schiers partitioned into Schiers and Seewis
 1695 - Rhäzüns directly controlled by the Habsburgs through feudal means
 1788 - Internal split of Ortenstein into Ortenstein im Boden and Ortenstein im Berg
-1797 - Bormio, Chiavenna, and Valtellina become part of the Cisalpine Republic
+1797 - Bormio, Chiavenna, and Valtellina revolt and are annexed by the Cisalpine Republic
 1798 - The Three Leagues come under the control of the Helvetic Republic
 1799 - The Three Leagues are merged into the canton of Raetia under the Helvetic Republic
 1803 - Act of Mediation, Haldenstein and Tarasp mediatized from Austria (Haldenstein joins the four villages to become the fifth)
 1809 - Rhäzüns transferred to Napoleonic France
 1815 - The return of Rhäzüns to the canton's control is planned at the Congress of Vienna
 1819 - Rhäzüns becomes the last area to join the modern canton
-1863 - Cavaione is transferred to Switzerland from Italy in a minor border adjustment
+1863 - Cavaione is transferred to Switzerland from Italy in a minor border adjustment.
+
+The canton of Raetia was not the final attempt to establish a state of this name, though it does seem to be the last that actually functioned, even if it wasn't very stable.
+The militarily disagraced Archduke John of Austria considered forming a Kingdom of Raetia using his possessions in Tyrol and the Trentino and potentially some Bavarian lands, though it went nowhere.
+
+Also, working on the Three Leagues + Waldstätten scenario has made me realize just how geographically determined many of the borders of the modern canton are.
+Even though some places like Misox are connected over mountain passes rather than being naturally part of the same valley, the majority of canton borders are delinated by mountains.
+I realized this since the actual passages between the Three Leagues and the Waldstätten are quite poor and I couldn't find a way to make them look good on the map.
 
 
