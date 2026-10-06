@@ -1,9 +1,38 @@
 GENERAL:
 
-Source for Commercy Coat of Arms (Lillebonne flag): https://nouvelleheraldie.blogspot.com/2019/10/tri-nox-samoni-2.html
-
 Something that annoys me is that this map: https://commons.wikimedia.org/wiki/File:Carte_du_comt%C3%A9_de_Hainaut.jpg exists on Wikimedia but is alone.
 While it is easily the most detailed one of the area, with no other one coming even close, a zoomed-out version simply isn't around, and I don't know why.
+
+At about this time I would also like to congratulate Ollie Bye for completing his The Holy Roman Empire: Every Year (https://www.youtube.com/watch?v=PhoYI_lqPv8).
+In terms of detail the video is somewhat lacking, but it is highly comprehensive and better-researched than the majority of maps. Interregnum took a few months to develop; this video took years.
+
+A good source for various regions of the HRE (but only very late in its existence) is the following: http://www.hoeckmann.de/germany/index.htm
+
+ARLES:
+
+Source for Commercy Coat of Arms (Lillebonne flag): https://nouvelleheraldie.blogspot.com/2019/10/tri-nox-samoni-2.html
+
+WENCESLAVIA:
+
+Asch/Aš was transferred from Vogtland (the bailiffs of Plauen and formerly Weida) to the King of Bohemia in 1387.
+Charles IV had previousl taken control of this land in 1358 but only now was it fully recognized.
+Under Bohemian suzerainty the area was inherited by the Lords von Zedtwitz in 1394 until in 1775 when they were pressured into giving it up.
+
+The maps that should be referenced for this period are the following: https://commons.wikimedia.org/wiki/File:C._1350_Bohemia.jpg and https://commons.wikimedia.org/wiki/File:C._1450_Bohemia.jpg
+The County of Lauf holds a disputable existence. There's no formal name for this area and "New Bohemia" (Neuböhmen) is a 1783 invention. The best option is probably "County of Sulzbach".
+Vilseck (slightly northeast of Sulzbach) was controlled by the Bishops of Bamberg and never entered this County, despite being marked in it on most maps.
+The same applies to Waldeck-Kemnath, which is about halfway between Bayreuth and Weideh, though again the maps are hard to tell much from at this level of detail.
+Finally, the Stiftland belonging to Waldsassen Abbey, including Neuhaus (just east of Velden) and Wurz (just north of Weiden) as well as a host of other relatively small and irrelevant lands.
+
+The Egerland was taken by Ottokar II of Bohemia but he lost it when killed on the Marchfeld. Afterward it was held by the Habsburgs for some time before John (not yet blind) received it in 1322.
+New Bohemia, or the County of Sulzbach, was gained in stages. It was originally given to Charles IV as a dowry for his marriage to Anna of the Palatinate, but this fell through when she died.
+Instead, the lands were given over as payment for the debts of the new Counts Palatine, as well as donations from the Bishop of Bamberg.
+
+Also, in Silesia, Siewierz was actually part of Bohemia until 1443, when it was purchased by the Bishops of Kraków from the indebted Dukes of Cieszyn/Teschen.
+Because of this, the territory went from the HRE to become part of the Polish Crown, where it would stay, thus not appearing on many later maps.
+The same happened to the Duchies of Oświęcim (Auschwitz) and Zator, right next to each other, which were sold to John I Albert of Poland in 1494.
+One final region was the Duchy of Żywiec, which went to Poland in 1457. A map of all of these duchies is here: https://commons.wikimedia.org/wiki/File:Powiat_%C5%9Al%C4%85ski_pod_koniec_XVI_wieku.png
+All three of these (not Siewierz) were collectively merged into a Silesian County subordinate to Kraków Voivodeship once they were assuredly part of Poland.
 
 DREI BÜNDE:
 
